@@ -1,0 +1,181 @@
+/*For the body of the page */
+body{                                                                                            
+    background-color: #E9DAD8; 
+    margin: 0px;
+    padding: 0px;
+    font-family:'Courier New', Courier, monospace;
+    text-align:left;
+    font-size:larger;
+} 
+
+/* For the header at the top */
+header{
+    background-color: #BE8F89; 
+    color:#ffffff;
+    margin: 10px;
+    padding:50px;
+    text-align:center;
+    height: 200px; 
+}
+
+/* For the profile photo at the top */
+img.circle{
+    margin-top: 30px;
+    width: 380px;
+    height: 380px;
+    border-radius: 200px;     
+}
+
+
+h1{
+   padding: 150px 40px;
+   text-align: center;
+   margin: 40px 
+}
+
+.container1{
+    display: flex;
+    flex-direction:row;   
+    justify-content:space-around;  
+    margin-top: -57px  
+}
+
+.headText{
+    font: size 20px;
+    font-weight: bold;
+}
+
+.container2{
+        display: flex;
+        flex-direction:row;   
+        justify-content:space-around;      
+}
+
+.button {
+    /* display: -webkit-box; */
+    position:relative;
+    top: 40px;
+    left: 420px;    
+    font-weight: bold;    
+    color: #AF766E;
+    font-size: 25px;    
+    line-height: 0;
+    cursor: pointer;
+    padding: auto;    
+}
+
+/* Text in image */
+.items{
+    position: relative;
+    width: 400px;
+  }
+
+  .image { 
+    /* display: flex;  */
+    transition: .5s ease;
+    backface-visibility: hidden;
+    width: 400px;
+    height: 200px;
+    border-radius: 30px;
+    border-style:hidden;
+    opacity: 0.9; 
+  }
+  
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%)
+  }
+  
+  .items:hover .image {
+    opacity: 0.3;
+  }
+  
+  .items:hover .middle {
+    opacity: 1;
+  }
+  
+  .text {
+    background-color: #844F48;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;  
+    cursor: pointer;
+    margin: -22px -68px;
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Not using now */
+
+  /* .blocks{
+    position: relative;
+    width: 50%;     
+    font-weight: bold;
+    margin: 90px; 
+    padding: 140px;
+    width: 120px;
+    font-size: 25px;
+    color: #9E5F57;      
+
+} */
+
+
+img.square{
+    width: 400px;
+    height: 200px;
+    border-radius: 30px;
+    border-style:hidden;
+    opacity: 0.8;  
+    display: block;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+
+
+hr {
+    border:none;
+    border-top:5px dashed rgb(171, 169, 169);
+    color:#fff;
+    background-color:#fff;
+    height:5px;
+    width: 50%;
+}
