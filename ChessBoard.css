@@ -1,0 +1,19 @@
+.Square{    
+    height: 100px;
+    width: 100px; 
+}
+
+   
+
+.board{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100px;
+
+}
+
+body{
+    width: 800px;
+}
+
