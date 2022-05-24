@@ -1,35 +1,34 @@
 <?php 
 
-echo "<html>";                                                                                                      
-    echo "<head>";
-        echo "<title>My Chess Board</title>";                                                          
-    echo "<link href='ChessBoard.css' rel='stylesheet'>";
-    echo "</head>";
+echo "<html>                                                                                                      
+        <head>
+            <title>My Chess Board</title>                                                         
+            <link href='ChessBoard.css' rel='stylesheet'>
+        </head>
+        
+        <body>";                                                                                          
+            $white = "white";
+            $black = "black";
 
-    echo "<body>";                                                                                          
-      $white = "white";
-      $black = "black";
+            for($i = 1; $i < 64/2 + 1; $i++)
+            {
+                if($i == 1 or $i % 4 == 1){
+                    echo "<div class='board'>";
+                }     
 
-     for($i = 1; $i < 64/2 + 1; $i++)
-     {
-        if($i == 1 or $i % 4 == 1){
-            echo "<div class='board'>";
-        }     
+                echo "<h1 class='Square' style='background-color: $white;'></h1>
+                    <h1 class='Square' style='background-color: $black;'></h1>"; 
 
-        echo "<h1 class='Square' style='background-color: $white;'></h1>";
-        echo "<h1 class='Square' style='background-color: $black;'></h1>"; 
+                if($i != 0 and $i % 4 == 0){
+                    echo "</div>";       
+                    $temp = $white;
+                    $white = $black;
+                    $black = $temp; 
+                }       
+            }    
 
-        if($i != 0 and $i % 4 == 0){
-            echo "</div>";       
-            $temp = $white;
-            $white = $black;
-            $black = $temp; 
-        }         
-                  
-    }    
-
-    echo "</body>" ;  
-    echo "</html>"; 
+    echo "</body>   
+    </html>"; 
     
     
 
