@@ -5,16 +5,16 @@
     </head>
     <body>                
         <header><img class= 'image' src="blog.jpg" alt="blog"></header>  
-        <div>  
+        <div >  
         <ul class="a">
             <h2>Here is my <span style= "color: #AF766E; ">Blog:</span><br/></h2>
             <div class= 'list1'>                   
             <li><a href="dance.php" class="buttons2"> Dance</a></li>
-            <li>Motherhood</li>
-            <li>Chess</li>
-            <li>Minimalism</li>
-            <li>Healthy Lifestyle</li>
-            </div> 
+            <li><a href="Motherhood.php" class="buttons2"> Motherhood</a></li>
+            <li><a href="Chess.php" class="buttons2"> Chess</a></li>
+            <li><a href="Minimalism.php" class="buttons2"> Minimalism</a></li>
+            <li><a href="Healthy Lifestyle.php" class="buttons2"> Healthy Lifestyle</a></li>            
+        </div> 
             
   
 
