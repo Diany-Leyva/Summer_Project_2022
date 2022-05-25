@@ -28,8 +28,8 @@
 
           <!-- Blocks with images -->
         <section class="container2">
-            <div class="items">             
-                <img src="images/About_Me.jpg" alt="My blog image" class="image" >
+        <div class="items">             
+         <img src="images/About_Me.jpg" alt="My blog image" class="image" >
                 <div class="middle">
                     <a href="blog.php" class="text">Blog</a>
                 </div>

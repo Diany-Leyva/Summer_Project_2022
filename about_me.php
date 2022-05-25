@@ -4,17 +4,14 @@
         <link href="style.css" rel="stylesheet">                
     </head>
     <body>                
-        <header class="about_Me_Header"></header>  
-        <div class="about_Me_Body">
+        <header></header>  
+        <div>
             <h1>The beginning of a journey</h1>
             <h1>Why programming?</h1>
             <h1>Dancing or not dancing?</h1>
             <h1>Interests</h1>
-            <h1>Hobbies</h1>
-            <h1>Motherhood</h1>
-            <h1>EB information</h1>
-            <h1>Chess</h1>
-            <h1>Minimalism</h1>
+            <h1>Hobbies</h1>           
+
         </div>
 
             
