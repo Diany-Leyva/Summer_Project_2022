@@ -11,11 +11,6 @@
             <h1>Project 3</h1>
             <h1>Project 4</h1>
       
-        </div>
-
-            
-                  
-       
-    </body>  
-
+        </div>         
+     </body>  
 </html>
