@@ -64,6 +64,19 @@ h1{
     padding: auto;    
 }
 
+.buttons2 {
+
+  /* position:relative; */
+  top: 40px;
+  left: 420px;    
+  font-weight: bold;    
+  color: #AF766E;
+  font-size: 35px;    
+  line-height: 0;
+  cursor: pointer;
+  padding: auto;    
+}
+
 /* Text in image */
 .items{
     position: relative;
@@ -110,12 +123,22 @@ h1{
     opacity: 1;
   }
   
- 
-
-
-
+  ul.a {
+    list-style-type: circle;
   
+    
+  }
 
+  h2 {
+      padding: -43px 40px;
+      text-align: left;
+      margin: 40px;
+  }
+
+  /* .list1{
+    font-size: 30px ; 
+    font-weight: normal;
+  } */
 
 
 
