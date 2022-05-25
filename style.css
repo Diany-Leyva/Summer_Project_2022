@@ -52,7 +52,7 @@ h1{
 }
 
 .button {
-    /* display: -webkit-box; */
+
     position:relative;
     top: 40px;
     left: 420px;    
@@ -68,6 +68,7 @@ h1{
 .items{
     position: relative;
     width: 400px;
+   
   }
 
   .image { 
@@ -90,6 +91,16 @@ h1{
     transform: translate(50%, 50%);
     -ms-transform: translate(50%, 50%)
   }
+
+  .text {
+    text-decoration: none;
+    background-color: #844F48;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;  
+    cursor: pointer;
+    margin: -22px -68px;    
+  }
   
   .items:hover .image {
     opacity: 0.3;
@@ -99,19 +110,9 @@ h1{
     opacity: 1;
   }
   
-  .text {
-    background-color: #844F48;
-    color: white;
-    font-size: 16px;
-    padding: 16px 32px;  
-    cursor: pointer;
-    margin: -22px -68px;
-    
-  }
+ 
 
-  a{
-    text-decoration: none;
-  }
+
 
   
 

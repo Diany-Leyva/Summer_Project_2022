@@ -16,14 +16,14 @@
                  who faces every challenge with diligence <br/>
                and perseverance to find efficient solutions.  <br/>
             </span>                  
-            <a href="info.html" class="button">Tell Me More</a>            
+            <a href="about_me.php" class="button">About Me</a>            
         </h1>
             
         <!-- Text above the blocks -->
         <section class="container1">
-            <h2 style="font-size: 30px">Blog</h2>
-            <h2 style="font-size: 30px">Resume</h2>
-            <h2 style="font-size: 30px">Projects</h2>
+            <h2>Blog</h2>
+            <h2>Resume</h2>
+            <h2>Projects</h2>
         </section>   
 
           <!-- Blocks with images -->
@@ -31,21 +31,21 @@
             <div class="items">             
                 <img src="images/About_Me.jpg" alt="My blog image" class="image" >
                 <div class="middle">
-                    <a href="blog.html" class="text">Blog</a>
+                    <a href="blog.php" class="text">Blog</a>
                 </div>
             </div>
 
             <div class="items">              
                 <img src="images/Resume.jpg" alt="My resume image" class="image">
                 <div class="middle">
-                    <div class="text">Resume</div>
+                    <a href="Dianelys_Leyva_Resume.PDF" class="text">Resume</a>
                 </div>
             </div>
 
             <div class="items">               
                 <img src="images/Projects.jpg" alt="My projects image" class="image">
                 <div class="middle">
-                    <div class="text">Projects</div>
+                    <a href="projects.php" class="text">Projects</a>
                 </div>
             </div>
         </section>
