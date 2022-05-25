@@ -21,9 +21,9 @@
             
         <!-- Text above the blocks -->
         <section class="container1">
-            <h2 style="font-size: 30px">About Me</h2>
-            <h3 style="font-size: 30px">Resume</h3>
-            <h4 style="font-size: 30px">Projects</h4>
+            <h2 style="font-size: 30px">Blog</h2>
+            <h2 style="font-size: 30px">Resume</h2>
+            <h2 style="font-size: 30px">Projects</h2>
         </section>   
 
           <!-- Blocks with images -->
@@ -31,7 +31,7 @@
             <div class="items">             
                 <img src="images/About_Me.jpg" alt="My blog image" class="image" >
                 <div class="middle">
-                    <div class="text">About Me</div>
+                    <a href="blog.html" class="text">Blog</a>
                 </div>
             </div>
 

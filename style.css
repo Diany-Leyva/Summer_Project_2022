@@ -100,12 +100,14 @@ h1{
   }
   
   .text {
+    text-decoration: none;
     background-color: #844F48;
     color: white;
     font-size: 16px;
     padding: 16px 32px;  
     cursor: pointer;
     margin: -22px -68px;
+    
   }
 
   
