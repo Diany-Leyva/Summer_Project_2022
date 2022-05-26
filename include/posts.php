@@ -4,7 +4,8 @@ function getAllPosts(){
     return [
         1=> [
             'tittle' => 'Dance',
-            'heading' => 'The world of Dance',
+            'heading1' => 'The world of ',
+            'heading2' => 'Dance',
              'content' => 'Dance is a performing art form consisting of sequences of movement, either improvised <br>
              or purposefully selected. This movement has aesthetic and often symbolic value. <br>
              Dance can be categorized and described by its choreography, by its repertoire of movements, <br>
@@ -13,7 +14,8 @@ function getAllPosts(){
 
         2=> [
             'tittle' => 'Chess',
-            'heading' => 'The world of Chess',
+            'heading1' => 'The world of ',
+            'heading2' => 'Chess',
             'content' => 'Chess is a board game played between two players. <br>
             It is sometimes called Western chess or international chess to distinguish <br>
              it from related games such as xiangqi and shogi.'
@@ -21,7 +23,8 @@ function getAllPosts(){
 
         3=> [
             'tittle' => 'Motherhood',
-            'heading' => 'The world of Momies',
+            'heading1' => 'The world of ',
+            'heading2' => 'Momies',
             'content' => 'Motherhood is the state of being a mother. A person <br>
             enters motherhood when they become a mother. This most commonly happens <br>
             when their child is born, but it can also happen through adoption or by <br>
@@ -31,7 +34,8 @@ function getAllPosts(){
 
         4=> [
             'tittle' => 'Minimalism',
-            'heading' => 'The world of Minimalism',
+            'heading1' => 'The world of ',
+            'heading2' => 'Minimalism',
             'content' => 'Minimalism is about avoiding the unnecessary , <br>
             it is about simplicity, utility and elegance. It is all about “LESS IS MORE” <br>
             in terms of embracing the most of fewer things. The most common misconception <br>
