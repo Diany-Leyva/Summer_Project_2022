@@ -2,18 +2,19 @@
 include('include/initialize.php');   
      echoPagesHeader('Blog', 'image', 'Blog');
 
-echo"<div >  
+     $allPosts= getAllPosts();   
+          
+     echo"<div >  
         <ul class='a'>
             <h2>Here is my <span style= 'color: #AF766E; '>Blog:</span><br/></h2>
-            <div class= 'list1'>                   
-                <li><a href='view_posts.php' class='buttons2'> Dance</a></li>
-                <li><a href='view_posts.php' class='buttons2'> Motherhood</a></li>
-                <li><a href='view_posts.php' class='buttons2'> Chess</a></li>
-                <li><a href='view_posts.php' class='buttons2'> Minimalism</a></li>
-                <li><a href='view_posts.php' class='buttons2'> Healthy Lifestyle</a></li>            
-            </div>         
+            <div class= 'list1'>";  
+            
+            foreach($allPosts as $index => $post) {
+                echo "<li><a href='view_posts.php?id=$index' class='buttons2'>".$post['tittle']."</a></li>";        
+              }
+                          
+  echo "    </div>         
         </u>";
         
 echoFooter();
     
-
