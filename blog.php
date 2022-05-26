@@ -2,7 +2,7 @@
 include('include/initialize.php');   
      echoPagesHeader('Blog', 'image', 'Blog');
 
-     $allPosts= getAllPosts();   
+     $allPosts= getAllBlogPosts();   
           
      echo"<div >  
         <ul class='a'>

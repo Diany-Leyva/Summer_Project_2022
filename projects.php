@@ -15,11 +15,7 @@
                  <li><a href="Minimalism.php" class="buttons2"> Project 4</a></li>
                  <li><a href="Healthy Lifestyle.php" class="buttons2">Project 5</a></li>            
             </div>         
-          </u>   
-                    
-        </div>     
-         
-       
+          </u>                    
+        </div>      
     </body>  
-
 </html>

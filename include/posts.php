@@ -1,6 +1,6 @@
 <?php
 
-function getAllPosts(){
+function getAllBlogPosts(){
     return [
         1=> [
             'tittle' => 'Dance',
@@ -44,3 +44,29 @@ function getAllPosts(){
         ];
  } 
     
+//  function getLinkList(){
+//      return [
+//          1=>['tittle'=> '',
+//             'heading1' => '',
+//             'heading2' => '',
+
+
+//          ],
+
+//          2=>[
+
+//         ],
+
+//         3=>[
+
+//         ],
+
+//         4=>[
+
+//         ],
+
+//         5=>[
+
+//         ],
+//      ];
+//  }
