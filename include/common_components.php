@@ -3,7 +3,7 @@
 include('initialize.php');
 
 
-function echoHeader($tittle, $class, $image){
+function echoHomeHeader($tittle, $class, $image){
     echo "<html>                                                                                                      
     <head>
         <meta charset='utf-8'>
@@ -15,6 +15,18 @@ function echoHeader($tittle, $class, $image){
         <header>";
         getImageSource($class, $image);
         echo"</header>";    
+
+}
+
+function echoPagesHeader($tittle, $class, $image){
+    echo "<html>                                                                                                      
+    <head>
+        <meta charset='utf-8'>
+        <title>$tittle</title>                                                                  
+        <link href='style.css' rel='stylesheet'>
+    </head>
+    <body>  
+        <header class='pagesHeader'></header>";    
 
 }
 
@@ -39,4 +51,12 @@ echo"       <div class='middle'>";
                  getLink($file, 'text', $tittle);                
 echo "     </div>
       </div>";
+}
+
+function echoFooter(){
+echo"      
+           </div>
+            <footer></footer>                            
+       </body>    
+ </html>";
 }

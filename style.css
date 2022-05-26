@@ -18,6 +18,11 @@ header{
     height: 200px; 
 }
 
+.pagesHeader{
+  background-image: url('images/Blog.jpg');
+  background-size: 100%;
+}
+
 /* For the profile photo at the top */
 img.circle{
     margin-top: 30px;
@@ -26,6 +31,11 @@ img.circle{
     border-radius: 200px;     
 }
 
+h2 {
+  padding: -43px 40px;
+  text-align: left;
+  margin: 30px;
+}
 
 h1{
    padding: 150px 40px;
@@ -129,11 +139,7 @@ h1{
     
   }
 
-  h2 {
-      padding: -43px 40px;
-      text-align: left;
-      margin: 30px;
-  }
+
 
   .list1{
     font-size: 30px ; 

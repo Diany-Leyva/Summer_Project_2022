@@ -1,6 +1,6 @@
 <?php
 include('include/initialize.php');   
-     echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
+     echoHomeHeader('Diany Leyva', 'circle', 'Profile_Photo');
 echo"<h1>";    
         echoHeading("Hello, I'm", "Diany");        
 echo"        <span style='font-size: 30px ; font-weight: normal;'>
@@ -14,19 +14,14 @@ echo"        <span style='font-size: 30px ; font-weight: normal;'>
         getLink('about_me.php', 'button', 'About Me');
 echo"</h1> 
 
-     <section class='container1'>
+     <div class='container1'>
         <h2>Blog</h2>
         <h2>Resume</h2>
         <h2>Projects</h2>
-    </section>
+    </div>
 
-    <section class='container2'>";
+    <div class='container2'>";
          echoCHildWithImage('Blog.php', 'Blog');
          echoCHildWithImage('Dianelys_Leyva_Resume.PDF', 'Resume');
-         echoCHildWithImage('Projects.php', 'Projects');
-echo"</section>";
-   
-//              <footer></footer>                            
-//       </body>    
-// </html>
-
+         echoCHildWithImage('Projects.php', 'Projects');   
+echoFooter();
