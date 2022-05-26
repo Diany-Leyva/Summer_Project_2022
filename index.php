@@ -1,56 +1,32 @@
-<html>                                                                                                      
-    <head>
-        <meta charset="utf-8">
-        <title>Diany Leyva</title>                                                                  
-        <link href="style.css" rel="stylesheet">
-    </head>
+<?php
+include('include/initialize.php');   
+     echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
+echo"<h1>";    
+        echoHeading("Hello, I'm", "Diany");        
+echo"        <span style='font-size: 30px ; font-weight: normal;'>
+                I'm currently a senior at Webster University  <br/>
+                studying Computer Science.  <br/> 
+                I'm a passionate and people-oriented software developer <br/>
+                who faces every challenge with diligence <br/>
+                and perseverance to find efficient solutions.  <br/>
+            </span>";
 
-    <body>  
-        <header><img class= "circle" src="images/Photo.jpg" alt="My profile image"></header>            
-        
-        <h1>Hello, I'm <span style= "color: #AF766E;">Diany</span><br/>
-            <span style="font-size: 30px ; font-weight: normal;">
-            I'm currently a senior at Webster University  <br/>
-                    studying Computer Science.  <br/> 
-            I'm a passionate and people-oriented software developer <br/>
-                 who faces every challenge with diligence <br/>
-               and perseverance to find efficient solutions.  <br/>
-            </span>                  
-            <a href="about_me.php" class="button">About Me</a>            
-        </h1>
-            
-        <!-- Text above the blocks -->
-        <section class="container1">
-            <h2>Blog</h2>
-            <h2>Resume</h2>
-            <h2>Projects</h2>
-        </section>   
+        getLink('about_me.php', 'button', 'About Me');
+echo"</h1> 
 
-          <!-- Blocks with images -->
-        <section class="container2">
-        <div class="items">             
-         <img src="images/About_Me.jpg" alt="My blog image" class="image" >
-                <div class="middle">
-                    <a href="blog.php" class="text">Blog</a>
-                </div>
-            </div>
+     <section class='container1'>
+        <h2>Blog</h2>
+        <h2>Resume</h2>
+        <h2>Projects</h2>
+    </section>
 
-            <div class="items">              
-                <img src="images/Resume.jpg" alt="My resume image" class="image">
-                <div class="middle">
-                    <a href="Dianelys_Leyva_Resume.PDF" class="text">Resume</a>
-                </div>
-            </div>
-
-            <div class="items">               
-                <img src="images/Projects.jpg" alt="My projects image" class="image">
-                <div class="middle">
-                    <a href="projects.php" class="text">Projects</a>
-                </div>
-            </div>
-        </section>
-
-        <footer></footer>                            
-      </body>    
-</html>
+    <section class='container2'>";
+         echoCHildWithImage('Blog.php', 'Blog');
+         echoCHildWithImage('Dianelys_Leyva_Resume.PDF', 'Resume');
+         echoCHildWithImage('Projects.php', 'Projects');
+echo"</section>";
+   
+//              <footer></footer>                            
+//       </body>    
+// </html>
 
