@@ -40,7 +40,16 @@ function getAllBlogPosts(){
             it is about simplicity, utility and elegance. It is all about “LESS IS MORE” <br>
             in terms of embracing the most of fewer things. The most common misconception <br>
             is that minimalists “suffer” and “sacrifice” while having less things and less interesting experiences.'
-           ]                    
+        ],
+        
+        5=> [
+            'tittle' => 'Healthy Lifestyle',
+            'heading1' => 'The world of ',
+            'heading2' => 'Health',
+            'content' => 'A healthy lifestyle is a way of living that lowers the risk of being. <br>
+            seriously ill or dying early. Not all diseases are preventable, but a large. <br>
+            proportion of deaths, particularly those from coronary heart disease. and lung cancer, can be avoided.'
+           ]    
         ];
  } 
     
