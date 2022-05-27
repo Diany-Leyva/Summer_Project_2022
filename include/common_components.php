@@ -47,3 +47,17 @@ echo"
        </body>    
  </html>";
 }
+
+function createNewsletterForm(){
+    echo"
+ <form method = 'post' action=''>                                       
+Name: <input type= 'text' name='Name' />
+<br> </br>
+Email: <input type= 'text' name='Email' />
+
+<br> </br>
+<input type= 'submit' name='NewsletterFormSubmit'/>
+
+</form> 
+";
+}

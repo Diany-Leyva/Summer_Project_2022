@@ -45,19 +45,8 @@ debugOutput($errors);
 //action is to submit the information to a different page  
 
 
+createNewsletterForm();
 
-//form submission should be always before an echo
-echo"
- <form method = 'post' action=''>                                       
-Name: <input type= 'text' name='Name' />
-<br> </br>
-Email: <input type= 'text' name='Email' />
-
-<br> </br>
-<input type= 'submit' name='NewsletterFormSubmit'/>
-
-</form> 
-";
 
 
 
