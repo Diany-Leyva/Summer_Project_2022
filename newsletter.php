@@ -8,18 +8,13 @@ $errors = [];
 //REQUEST is a variable that always exits it is how your submit content to the page, which content to submit, what the data is
 // if the info submitted
 if(isset($_REQUEST['NewsletterFormSubmit'])){
-   
-    if(!isset($_REQUEST['Name']) || $_REQUEST['Name'] == ''){
-        $errors['Name'] = 'Required';
-    }
 
-    if(!isset($_REQUEST['Email']) || $_REQUEST['Email'] == ''){
-        $errors['Email'] = 'Required';
-    }
+    validateName($errors);
+    validateEmail($errors);
 
     if(sizeof($errors) == 0){
         //Here we are storing in the database what is written in the URL
-        updateDB();
+        updateNewsletter_Subscriber_TableDB();
 
     // this is to redirect to the same page (always do it before an echo)
      header("location:?"); 
@@ -27,7 +22,7 @@ if(isset($_REQUEST['NewsletterFormSubmit'])){
       
 }
 
-echo sizeof($errors);
+// echo sizeof($errors);
 echoHeader('Newsletter', 'image', 'a');
 
 // var_dump($errors);
