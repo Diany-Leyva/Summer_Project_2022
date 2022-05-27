@@ -16,33 +16,4 @@ function getID($id){
       FROM `posts` 
       WHERE PostId = $id"
     )->fetch();
- 
-    //  return $post;
-
  }
-//  function getLinkList(){
-//      return [
-//          1=>['tittle'=> '',
-//             'heading1' => '',
-//             'heading2' => '',
-
-
-//          ],
-
-//          2=>[
-
-//         ],
-
-//         3=>[
-
-//         ],
-
-//         4=>[
-
-//         ],
-
-//         5=>[
-
-//         ],
-//      ];
-//  }

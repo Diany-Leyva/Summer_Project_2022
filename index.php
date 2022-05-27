@@ -1,6 +1,6 @@
 <?php
 include('include/initialize.php');   
-     echoHomeHeader('Diany Leyva', 'circle', 'Profile_Photo');
+     echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
 
 // debugOutput('jkdhkldjjdhdkhh'->'hdkjdhkjd');
 // exit;

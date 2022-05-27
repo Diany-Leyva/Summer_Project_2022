@@ -1,6 +1,6 @@
 <?php
 include('include/initialize.php');   
-     echoPagesHeader('Blog', 'image', 'Blog');
+     echoHeader('Blog', 'image', 'a');
 
      $allPosts= getAllBlogPosts();   
           
