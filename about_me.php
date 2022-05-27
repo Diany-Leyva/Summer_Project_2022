@@ -4,7 +4,7 @@
         <link href="style.css" rel="stylesheet">                
     </head>
     <body>                
-        <header><img class= 'image' src="blog.jpg" alt="blog"></header>  
+        <header><img class= 'image' src="a.jpg" alt="blog"></header>  
         <div >  
         <ul class="a">
             <h2>Here is information <span style= "color: #AF766E; ">About Me:</span><br/></h2>
@@ -15,11 +15,7 @@
                  <li><a href="Minimalism.php" class="buttons2"> Interests</a></li>
                  <li><a href="Healthy Lifestyle.php" class="buttons2">Hobbies</a></li>            
             </div>         
-          </u>     
-                      
-        </div>        
-         
-       
-    </body>  
-
+          </u>              
+        </div>      
+    </body> 
 </html>

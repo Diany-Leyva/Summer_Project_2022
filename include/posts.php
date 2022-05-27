@@ -10,10 +10,13 @@ function getAllBlogPosts(){
     return $post;      
  } 
     
-function getID($id){
+function getPost($id){
       return dbQuery("
       SELECT * 
       FROM `posts` 
-      WHERE PostId = $id"
+      WHERE Post_Id = $id"
     )->fetch();
  }
+
+
+ 

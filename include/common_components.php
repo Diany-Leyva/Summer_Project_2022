@@ -1,6 +1,6 @@
 <?php
 
-include('initialize.php');
+// include('initialize.php');
 
 
 function echoHeader($tittle, $class, $image){
@@ -27,8 +27,8 @@ function getLink($file, $class, $headerName){
     echo "<a href= $file class= $class > $headerName </a>";
 }
 
-function echoHeading($firstString, $secondString){
-    echo "$firstString <span style= 'color: #AF766E; '>$secondString:</span><br/>";
+function echoHeading($heading, $tittle){
+    echo "$heading <span style= 'color: #AF766E; '>$tittle:</span><br/>";
 }
 
 function echoCHildWithImage($file, $tittle){
