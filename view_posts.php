@@ -12,3 +12,5 @@ echo"<div >
          
         //    echo "Page id: $id";
 echoFooter();
+
+
