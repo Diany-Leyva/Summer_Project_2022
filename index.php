@@ -1,6 +1,10 @@
 <?php
 include('include/initialize.php');   
      echoHomeHeader('Diany Leyva', 'circle', 'Profile_Photo');
+
+// debugOutput('jkdhkldjjdhdkhh'->'hdkjdhkjd');
+// exit;
+
 echo"<h1>";    
         echoHeading("Hello, I'm", "Diany");        
 echo"        <span style='font-size: 30px ; font-weight: normal;'>

@@ -2,13 +2,13 @@
 include('include/initialize.php');  
 
 $allPosts= getAllBlogPosts();  
-$id = $_REQUEST['id'];
+$post = getPost($_REQUEST['id']);
 
-echoPagesHeader($allPosts[$id]['tittle'], 'image', 'Blog');
+echoPagesHeader($post ['tittle'], 'image', 'Blog');
 
 echo"<div >  
-       <h2>".$allPosts[$id]['heading1']. "<span style= 'color: #AF766E; '>" .$allPosts[$id]['heading2']. "</span><br/></h2>
-           <p class='blogs'>".$allPosts[$id]['content']. "</p>";               
+       <h2>".$post['heading1']. "<span style= 'color: #AF766E; '>" .$post['heading2']. "</span><br/></h2>
+           <p class='blogs'>".$post['content']. "</p>";               
          
-           echo "Page id: $id";
+        //    echo "Page id: $id";
 echoFooter();
