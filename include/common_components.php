@@ -28,7 +28,7 @@ function getLink($file, $class, $headerName){
 }
 
 function echoHeading($heading, $tittle){
-    echo "$heading <span style= 'color: #AF766E; '>$tittle:</span><br/>";
+    echo "$heading <span style= 'color: #AF766E; '>$tittle</span><br/>";
 }
 
 function echoCHildWithImage($file, $tittle){
@@ -46,4 +46,18 @@ echo"
             <footer></footer>                            
        </body>    
  </html>";
+}
+
+function createNewsletterForm(){
+    echo"
+ <form method = 'post' action=''>                                       
+Name: <input type= 'text' name='Name' />
+<br> </br>
+Email: <input type= 'text' name='Email' />
+
+<br> </br>
+<input type= 'submit' name='NewsletterFormSubmit'/>
+
+</form> 
+";
 }
