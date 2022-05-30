@@ -27,6 +27,12 @@ function getLink($file, $class, $headerName){
     echo "<a href= $file class= $class > $headerName </a>";
 }
 
+function passVariableThroughLink($file, $id, $class, $tittle){
+    echo "<li><a href='$file?id=$id' class='$class'> $tittle </a></li>"; 
+
+//    / echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>"; 
+}
+
 function echoHeading($headingFirstHalf, $headingSecondHalf){
     echo"$headingFirstHalf <span style= 'color: #AF766E; '> $headingSecondHalf </span><br/>";
 }

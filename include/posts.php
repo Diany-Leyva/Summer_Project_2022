@@ -21,17 +21,7 @@ function getPost($id){
 
 function getAllTopics(){
          return [
-            1=> [
-                'Tittle'=> 'About Me',
-                'Heading' => 'Here is information',
-                'Link1' => 'The beginning of a journey',
-                'Link2' => 'Why programming?',
-                'Link3' => 'Dancing or not dancing?',
-                'Link4' => 'Interests',
-                'Link5' => 'Hobbies'
-             ],
-
-            2=>[
+            1=>[
                 'Tittle'=> 'Blog',
                 'Heading' => 'Here is my',
                 'Link1' => 'Dance',
@@ -39,7 +29,17 @@ function getAllTopics(){
                 'Link3' => 'Chess',
                 'Link4' => 'Minimalism',
                 'Link5' => 'Healthy Lifestyle'     
-            ],       
+            ],  
+
+            2=> [
+                'Tittle'=> 'About Me',
+                'Heading' => 'Here is information',
+                'Link1' => 'The beginning of a journey',
+                'Link2' => 'Why programming?',
+                'Link3' => 'Dancing or not dancing?',
+                'Link4' => 'Interests',
+                'Link5' => 'Hobbies'
+             ],             
        
             3=>[
                 'Tittle'=> 'Projects',
@@ -47,7 +47,12 @@ function getAllTopics(){
                 'Link1' => 'Project1',
                 'Link2' => 'Project2',
                 'Link3' => 'Project3',           
-            ]      
+            ]   
 
          ];
      }
+
+     function getTopic($id){
+        $topic = getAllTopics();
+        return $topic[$id];   
+    }

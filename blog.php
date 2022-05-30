@@ -1,6 +1,6 @@
 <?php
 include('include/initialize.php'); 
-  
+
      echoHeader('Blog', 'image', 'a');
 
      $allPosts= getAllBlogPosts();   
@@ -16,7 +16,8 @@ include('include/initialize.php');
             <div class= 'list1'>";           
           
             foreach($allPosts as $post) {
-                echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>";        
+              passVariableThroughLink('view_posts.php', $post['Post_Id'], 'buttons2', $post['Tittle']);
+              // echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>";     
               }
                           
   echo "    </div>         

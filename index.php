@@ -27,6 +27,11 @@ echo"</h1>
     </div>
 
     <div class='container2'>";
+
+    $allTopics = getAllTopics();
+
+    
+
          echoCHildWithImage('Blog.php', 'Blog');
          echoCHildWithImage('About_Me.php', 'About Me');
          echoCHildWithImage('Projects.php', 'Projects');   
