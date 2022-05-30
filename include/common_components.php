@@ -27,7 +27,7 @@ function getLink($file, $class, $headerName){
     echo "<a href= $file class= $class > $headerName </a>";
 }
 
-function echoHeading($heading, $tittle){
+function echoHeading($heading){
     echo "$heading <span style= 'color: #AF766E; '>$tittle:</span><br/>";
 }
 

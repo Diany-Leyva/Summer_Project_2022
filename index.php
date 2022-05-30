@@ -2,11 +2,10 @@
 include('include/initialize.php');   
      echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
 
-// debugOutput('jkdhkldjjdhdkhh'->'hdkjdhkjd');
-// exit;
+$heading = ["Hello, I'm", "Diany"];
 
 echo"<h1>";    
-        echoHeading("Hello, I'm", "Diany");        
+        echoHeading($heading);        
 echo"        <span style='font-size: 30px ; font-weight: normal;'>
                 I'm currently a senior at Webster University  <br/>
                 studying Computer Science.  <br/> 
