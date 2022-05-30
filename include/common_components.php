@@ -27,8 +27,8 @@ function getLink($file, $class, $headerName){
     echo "<a href= $file class= $class > $headerName </a>";
 }
 
-function echoHeading($heading, $tittle){
-    echo "$heading <span style= 'color: #AF766E; '>$tittle</span><br/>";
+function echoHeading($headingFirstHalf, $headingSecondHalf){
+    echo"$headingFirstHalf <span style= 'color: #AF766E; '> $headingSecondHalf </span><br/>";
 }
 
 function echoCHildWithImage($file, $tittle){

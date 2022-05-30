@@ -4,7 +4,7 @@
         <link href="style.css" rel="stylesheet">                
     </head>
     <body>                
-        <header><img class= 'image' src="blog.jpg" alt="blog"></header>  
+        <header><img class= 'image' src="a.jpg" alt="blog"></header>  
         <div >  
         <ul class="a">
             <h2>Here are my <span style= "color: #AF766E; ">projects:</span><br/></h2>

@@ -1,5 +1,6 @@
 <?php
-include('include/initialize.php');   
+include('include/initialize.php'); 
+  
      echoHeader('Blog', 'image', 'a');
 
      $allPosts= getAllBlogPosts();   
@@ -7,7 +8,10 @@ include('include/initialize.php');
      echo"<div >  
         <ul class='a'>
             <h2>";
-            echoHeading('Here is my', 'Blog');
+
+            $headingArray = array("Here is my", "Blog");
+
+            echoHeading($headingArray[0], $headingArray[1]);
         echo "</h2>
             <div class= 'list1'>";           
           
