@@ -30,9 +30,10 @@ echo"</h1>
 
     $allTopics = getAllTopics();
 
-    
+//     debugOutput($allTopics);
 
-         echoCHildWithImage('Blog.php', 'Blog');
-         echoCHildWithImage('About_Me.php', 'About Me');
-         echoCHildWithImage('Projects.php', 'Projects');   
+foreach($allTopics as $index=>$topic){
+     echoCHildWithImage('Blog.php', $index, $topic['Tittle']);
+}
+
 echoFooter();

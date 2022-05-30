@@ -37,14 +37,25 @@ function echoHeading($headingFirstHalf, $headingSecondHalf){
     echo"$headingFirstHalf <span style= 'color: #AF766E; '> $headingSecondHalf </span><br/>";
 }
 
-function echoCHildWithImage($file, $tittle){
+// function echoCHildWithImage($file, $tittle){
+//     echo "<div class='items'>";        
+//              getImageSource('image', $tittle);
+//     echo"       <div class='middle'>";
+//                      getLink($file, 'text', $tittle);                
+//     echo "     </div>
+//           </div>";
+//     }
+
+function echoCHildWithImage($file, $id, $tittle){
 echo "<div class='items'>";        
          getImageSource('image', $tittle);
 echo"       <div class='middle'>";
-                 getLink($file, 'text', $tittle);                
+        passVariableThroughLink($file, $id, 'text', $tittle);                
 echo "     </div>
       </div>";
 }
+
+
 
 function echoFooter(){
 echo"      

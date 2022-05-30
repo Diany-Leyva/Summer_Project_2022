@@ -1,3 +1,34 @@
+<?php
+include('include/initialize.php'); 
+
+     echoHeader('About Me', 'image', 'a');
+
+     $allTopics= getAllTopics();   
+          
+     echo"<div >  
+        <ul class='a'>
+            <h2>";
+
+            $headingArray = array("Here is iformation", "About Me");
+
+            echoHeading($headingArray[0], $headingArray[1]);
+        echo "</h2>
+            <div class= 'list1'>";           
+          
+            foreach($allPosts as $post) {
+              passVariableThroughLink('view_posts.php', $post['Post_Id'], 'buttons2', $post['Tittle']);
+              // echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>";     
+              }
+                          
+  echo "    </div>         
+        </u>";
+        
+echoFooter();
+
+
+
+
+
 <html>                                                                  
     <head>
         <title>About Me</title>  
@@ -15,7 +46,8 @@
                  <li><a href="Minimalism.php" class="buttons2"> Interests</a></li>
                  <li><a href="Healthy Lifestyle.php" class="buttons2">Hobbies</a></li>            
             </div>         
-          </u>              
+          </u>     
+         
         </div>      
     </body> 
 </html>

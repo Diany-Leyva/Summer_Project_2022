@@ -24,4 +24,3 @@ include('include/initialize.php');
         </u>";
         
 echoFooter();
-    

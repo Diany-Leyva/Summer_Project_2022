@@ -1,7 +1,7 @@
 <?php
 include('include/initialize.php');  
 
-$post = getPost($_REQUEST['id']);
+$post = getBlogPost($_REQUEST['id']);
 
 echoHeader($post ['Tittle'], 'image', 'Blog');
 
