@@ -3,7 +3,23 @@ include('include/initialize.php');
 
      echoHeader('Blog', 'image', 'a');
 
-     $allPosts= getAllBlogPosts();   
+     $topic = getTopic($_REQUEST['id']);
+
+    debugOutput($topic);
+
+    $allTopics = [];
+
+    if($topic['Tittle'] == 'Blog'){
+      $allTopics= getAllBlogPosts();   
+    }
+
+    else if($topic['Tittle'] == 'About Me'){
+      $allTopics= getAllAboutMePosts();  
+    }
+
+    else if($topic['Tittle'] == 'Projects'){
+      $allTopics= getAllProjects();  
+    }  
           
      echo"<div >  
         <ul class='a'>
@@ -15,8 +31,8 @@ include('include/initialize.php');
         echo "</h2>
             <div class= 'list1'>";           
           
-            foreach($allPosts as $post) {
-              passVariableThroughLink('view_posts.php', $post['Post_Id'], 'buttons2', $post['Tittle']);
+            foreach($allTopics as $Onetopic) {
+              passVariableThroughLink('view_posts.php', $Onetopic['Post_Id'], 'buttons2', $Onetopic['Tittle']);
               // echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>";     
               }
                           
