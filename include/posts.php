@@ -40,146 +40,177 @@ function getTopic($id){
 
 function getAllBlogPosts(){
     
-    $post = dbQuery("
+    $blog = dbQuery("
         SELECT * 
-        FROM posts
+        FROM blog
     ")->fetchAll();
 
-    return $post;      
+    return $blog;      
  } 
     
 function getBlogPost($id){
       return dbQuery("
-      SELECT * 
-      FROM `posts` 
-      WHERE Post_Id = $id"
+        SELECT * 
+        FROM `blog` 
+        WHERE Blog_Id = $id"
     )->fetch();
  }
 
-    function getAllAboutMePosts(){
-        return [
-           1=>[
-               'Tittle'=> 'The beginning of a journey',           
-               'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....</br>
-                            Here I will talk more ....Here I will talk more ....',
-               'DateCreated' => '12/01/2022'  
-           ],  
+ function getAllAboutMePosts(){
+    return dbQuery("
+        SELECT * 
+        FROM `about_me`"
+    )->fetchAll();
+}
 
-           2=>[
-            'Tittle'=> 'Why programming?',           
-            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....',
-            'DateCreated' => '12/01/2022'  
-        ],  
+function getAboutMePost($id){
+    return dbQuery("
+      SELECT * 
+      FROM `about_me` 
+      WHERE About_Me_Id = $id"
+  )->fetch();
+}
 
-        3=>[
-            'Tittle'=> 'Dancing or not dancing?',           
-            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....',
-            'DateCreated' => '12/01/2022'  
-        ], 
-
-        4=>[
-            'Tittle'=> 'Interests',           
-            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....',
-            'DateCreated' => '12/01/2022'  
-        ], 
-
-        5=>[
-            'Tittle'=> 'Hobbies',           
-            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....</br>
-                         Here I will talk more ....Here I will talk more ....',
-            'DateCreated' => '12/01/2022'  
-        ] 
-        ];
-    }
-
-    function getAboutMePost($id){
-       $aboutMePosts = getAllAboutMePosts();
-       return $aboutMePosts[$id];   
-   }
-
-
-   function getAllProjects(){
-    return [
-       1=>[
-           'Tittle'=> 'Project 1',           
-           'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....</br>
-                        Here I will talk more ....Here I will talk more ....',
-           'DateCreated' => '12/01/2022'  
-       ],  
-
-       2=>[
-        'Tittle'=> 'Project 2',           
-        'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....',
-        'DateCreated' => '12/01/2022'  
-    ],  
-
-    3=>[
-        'Tittle'=> 'Project 3',           
-        'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....',
-        'DateCreated' => '12/01/2022'  
-    ], 
-
-    4=>[
-        'Tittle'=> 'Project 4',           
-        'Content' => 'Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....</br>
-                     Here I will talk more ....Here I will talk more ....',
-        'DateCreated' => '12/01/2022'  
-    ]    
-    ];
+function getAllProjects(){
+    return dbQuery("
+    SELECT *
+    FROM 'project'"
+    )->fetchAll();
 }
 
 function getProject($id){
-   $projects = getAllProjects();
-   return $projects[$id];   
+    return dbQuery("
+    SELECT * 
+    FROM `project` 
+    WHERE Project_Id = $id"
+    )->fetch();  
 }
+
+
+    // function getAllAboutMePosts(){
+    //     return [
+    //        1=>[
+    //            'Tittle'=> 'The beginning of a journey',           
+    //            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....</br>
+    //                         Here I will talk more ....Here I will talk more ....',
+    //            'DateCreated' => '12/01/2022'  
+    //        ],  
+
+    //        2=>[
+    //         'Tittle'=> 'Why programming?',           
+    //         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....',
+    //         'DateCreated' => '12/01/2022'  
+    //     ],  
+
+    //     3=>[
+    //         'Tittle'=> 'Dancing or not dancing?',           
+    //         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....',
+    //         'DateCreated' => '12/01/2022'  
+    //     ], 
+
+    //     4=>[
+    //         'Tittle'=> 'Interests',           
+    //         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....',
+    //         'DateCreated' => '12/01/2022'  
+    //     ], 
+
+    //     5=>[
+    //         'Tittle'=> 'Hobbies',           
+    //         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....</br>
+    //                      Here I will talk more ....Here I will talk more ....',
+    //         'DateCreated' => '12/01/2022'  
+    //     ] 
+    //     ];
+    // }
+
+//     function getAboutMePost($id){
+//        $aboutMePosts = getAllAboutMePosts();
+//        return $aboutMePosts[$id];   
+//    }
+
+
+//    function getAllProjects(){
+//     return [
+//        1=>[
+//            'Tittle'=> 'Project 1',           
+//            'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....</br>
+//                         Here I will talk more ....Here I will talk more ....',
+//            'DateCreated' => '12/01/2022'  
+//        ],  
+
+//        2=>[
+//         'Tittle'=> 'Project 2',           
+//         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....',
+//         'DateCreated' => '12/01/2022'  
+//     ],  
+
+//     3=>[
+//         'Tittle'=> 'Project 3',           
+//         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....',
+//         'DateCreated' => '12/01/2022'  
+//     ], 
+
+//     4=>[
+//         'Tittle'=> 'Project 4',           
+//         'Content' => 'Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....</br>
+//                      Here I will talk more ....Here I will talk more ....',
+//         'DateCreated' => '12/01/2022'  
+//     ]    
+//     ];
+// }
+
+// function getProject($id){
+//    $projects = getAllProjects();
+//    return $projects[$id];   
+// }
 
