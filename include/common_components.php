@@ -1,19 +1,24 @@
 <?php
 
-function echoHeader($tittle, $class, $image){
-echo "<html>                                                                                                      
-        <head>
-            <meta charset='utf-8'>
-            <title>$tittle</title>                                                                  
-            <link href='style.css' rel='stylesheet'>
-        </head>
-
-        <body>  
-            <header>";
-                getImageSource($class, $image);
-echo"       </header>";    
-
+function echoHeader($tittle){
+    echo "<html>                                                                                                      
+            <head>
+                <meta charset='utf-8'>
+                <title>$tittle</title>                                                                  
+                <link href='style.css' rel='stylesheet'>
+            </head>    
+            <body>";
 }
+
+function echoCircleImage($class, $image){
+    echo "<header>";
+        getImageSource($class, $image);
+    echo"</header>";    
+}
+
+function echoBackgroundImageHeader($class){
+    echo "<header class=$class></header>";     
+}    
 
 function getImageSource($class, $image){
     echo "<img class= $class src= '/images/$image.jpg' alt='$image'>";

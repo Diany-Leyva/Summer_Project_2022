@@ -3,9 +3,10 @@ include('include/initialize.php');
 
 $topicId = $_REQUEST['id'] ;
 $topic = getTopic($topicId);
-$allPostsbyTopic= getAllPostsbyTopic($topicId);
-          
-echoHeader($topic['Tittle'], 'image', 'a');
+$allPostsbyTopic= getAllPostsbyTopic($topicId);        
+
+echoHeader($topic['Tittle']);
+echoBackgroundImageHeader('pagesHeader');
       
 echo"<h2>";          
        echoHeadingTwoColors($topic['Heading']);

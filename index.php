@@ -1,6 +1,7 @@
 <?php
 include('include/initialize.php');   
-echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
+echoHeader('Diany Leyva');
+echoCircleImage('circle', 'Profile_Photo');
 echo"<h1>";    
           echoHeadingTwoColors("Hello, I'm Diany");        
 echo"          <span style='font-size: 30px ; font-weight: normal;'>
