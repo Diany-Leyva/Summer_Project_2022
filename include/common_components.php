@@ -1,62 +1,65 @@
 <?php
 
-include('initialize.php');
+function echoHeader($tittle, $class, $image){
+echo "<html>                                                                                                      
+        <head>
+            <meta charset='utf-8'>
+            <title>$tittle</title>                                                                  
+            <link href='style.css' rel='stylesheet'>
+        </head>
 
-
-function echoHomeHeader($tittle, $class, $image){
-    echo "<html>                                                                                                      
-    <head>
-        <meta charset='utf-8'>
-        <title>$tittle</title>                                                                  
-        <link href='style.css' rel='stylesheet'>
-    </head>
-
-    <body>  
-        <header>";
-        getImageSource($class, $image);
-        echo"</header>";    
-
-}
-
-function echoPagesHeader($tittle, $class, $image){
-    echo "<html>                                                                                                      
-    <head>
-        <meta charset='utf-8'>
-        <title>$tittle</title>                                                                  
-        <link href='style.css' rel='stylesheet'>
-    </head>
-    <body>  
-        <header class='pagesHeader'></header>";    
+        <body>  
+            <header>";
+                getImageSource($class, $image);
+echo"       </header>";    
 
 }
 
 function getImageSource($class, $image){
-    echo "<img class= $class src= '/images/$image.jpg' alt='$image'>"; 
-
+    echo "<img class= $class src= '/images/$image.jpg' alt='$image'>";
 }
 
 function getLink($file, $class, $headerName){
     echo "<a href= $file class= $class > $headerName </a>";
 }
 
-
-function echoHeading($firstString, $secondString){
-    echo "$firstString <span style= 'color: #AF766E; '>$secondString:</span><br/>";
+function passVariableThroughLink($file, $id, $class, $tittle){
+    echo "<li><a href='$file?id=$id' class='$class'> $tittle </a></li>";
 }
 
-function echoCHildWithImage($file, $tittle){
-echo "<div class='items'>";        
-         getImageSource('image', $tittle);
-echo"       <div class='middle'>";
-                 getLink($file, 'text', $tittle);                
-echo "     </div>
-      </div>";
+function echoHeadingTwoColors($heading){
+
+    $lastWord = getLastWord($heading);  
+    $newHeading = removeLastWord($heading); 
+
+    echo"$newHeading <span style= 'color: #AF766E; '> $lastWord </span><br/>
+        ";
+}
+
+function echoCHildWithImage($file, $id, $tittle){
+echo"   <div class='items'>";
+            getImageSource('image', $tittle);
+echo"            <div class='middle'>";
+                        passVariableThroughLink($file, $id, 'text', $tittle);                
+echo "           </div>
+        </div>
+     ";
 }
 
 function echoFooter(){
-echo"      
-           </div>
-            <footer></footer>                            
-       </body>    
- </html>";
+echo"            <footer></footer>                            
+             </body>    
+       </html>
+   ";
+}
+
+function createNewsletterForm(){
+echo"   <form method = 'post' action=''>                                       
+        Name: <input type= 'text' name='Name' />
+        <br> </br>
+        Email: <input type= 'text' name='Email' />
+        <br> </br>
+        <input type= 'submit' name='NewsletterFormSubmit'/>
+        </form> 
+    ";
 }

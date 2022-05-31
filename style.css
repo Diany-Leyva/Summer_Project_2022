@@ -116,6 +116,7 @@ h1{
   }
 
   .text {
+    /* display: flex; */
     text-decoration: none;
     background-color: #844F48;
     color: white;
@@ -144,17 +145,13 @@ h1{
   .list1{
     font-size: 30px ; 
     font-weight: normal;
-    /* background-color: #c79f9a;  */
-    /* color:#ffffff; */
     margin: -18px 26px;
     padding:23px;
-    /* text-align:center; */
     height: 200px; 
   }
 
   .block{
     background-color: #c79f9a; 
-    /* color:#ffffff; */
     margin: 10px;
     padding:50px;
     text-align:center;

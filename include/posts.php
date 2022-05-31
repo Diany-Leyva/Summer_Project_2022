@@ -1,48 +1,60 @@
 <?php
 
-function getAllBlogPosts(){
-    
-    $post = dbQuery("
+function getAllTopics(){
+    $topics = dbQuery("
+        SELECT * 
+        FROM topics
+    ")->fetchAll();
+
+    return $topics;   
+}
+
+function getTopic($id){
+    $topic = dbQuery("
+        SELECT * 
+        FROM topics 
+        WHERE Topic_Id = $id"
+    )->fetch();
+
+return $topic; 
+}
+
+function getAllPosts(){
+    $posts = dbQuery("
         SELECT * 
         FROM posts
     ")->fetchAll();
 
-    return $post;      
+    return $posts;      
  } 
     
 function getPost($id){
-      return dbQuery("
-      SELECT * 
-      FROM `posts` 
-      WHERE PostId = $id"
+      $post = dbQuery("
+        SELECT * 
+        FROM posts 
+        WHERE Post_Id = $id"
     )->fetch();
- 
-    //  return $post;
 
+    return $post;
  }
-//  function getLinkList(){
-//      return [
-//          1=>['tittle'=> '',
-//             'heading1' => '',
-//             'heading2' => '',
 
+ function getAllPostsbyTopic($topicId){
+    $posts = dbQuery("
+      SELECT * 
+      FROM posts 
+      WHERE Topic_Id = $topicId"
+  )->fetchAll();
 
-//          ],
+  return $posts;
+}
 
-//          2=>[
+function getPostbyTopic($topicId){
+    $post = dbQuery("
+      SELECT * 
+      FROM posts 
+      WHERE Topic_Id = $topicId"
+  )->fetch();
 
-//         ],
+  return $post;
+}
 
-//         3=>[
-
-//         ],
-
-//         4=>[
-
-//         ],
-
-//         5=>[
-
-//         ],
-//      ];
-//  }
