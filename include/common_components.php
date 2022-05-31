@@ -44,9 +44,9 @@ function echoHeadingTwoColors($heading){
 function echoCHildWithImage($file, $id, $tittle){
 echo"   <div class='items'>";
             getImageSource('image', $tittle);
-echo"            <div class='middle'>";
-                        passVariableThroughLink($file, $id, 'text', $tittle);                
-echo "           </div>
+echo"            <div class='middle'>
+                    <a href='$file?id=$id' class='text'> $tittle </a>       
+           </div>
         </div>
      ";
 }
