@@ -3,21 +3,21 @@ include('include/initialize.php');
 
      echoHeader('Blog', 'image', 'a');
 
-     $allPosts= getAllPosts();   
+
+    $topicId = $_REQUEST['id'] ;
+     $topic = getTopic($topicId);
+     $allPostsbyTopic= getAllPostsbyTopic($topicId);
           
      echo"<div >  
         <ul class='a'>
-            <h2>";
-
-            $headingArray = array("Here is my", "Blog");
-
-            echoHeading($headingArray[0], $headingArray[1]);
+            <h2>";          
+          
+            echoHeadingTwoColors($topic['Heading']);
         echo "</h2>
             <div class= 'list1'>";           
           
-            foreach($allPosts as $post) {
-              passVariableOnLink('view_posts.php', $post['Post_Id'], 'buttons2', $post['Tittle']);
-                echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'>  </a></li>";        
+            foreach($allPostsbyTopic as $postByTopic) {
+              passVariableThroughLink('view_posts.php', $postByTopic['Post_Id'], 'buttons2', $postByTopic['Tittle']);               
               }
                           
   echo "    </div>         

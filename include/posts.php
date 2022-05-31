@@ -39,12 +39,21 @@ function getPost($id){
     return $post;
  }
 
- function getPostbyTopic($id, $topicId){
+ function getAllPostsbyTopic($topicId){
+    $posts = dbQuery("
+      SELECT * 
+      FROM posts 
+      WHERE Topic_Id = $topicId"
+  )->fetchAll();
+
+  return $posts;
+}
+
+function getPostbyTopic($topicId){
     $post = dbQuery("
       SELECT * 
       FROM posts 
-      WHERE Post_Id = $id
-      AND Topic_Id = $topicId"
+      WHERE Topic_Id = $topicId"
   )->fetch();
 
   return $post;

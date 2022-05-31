@@ -33,8 +33,12 @@ function passVariableThroughLink($file, $id, $class, $tittle){
 //    / echo "<li><a href='view_posts.php?id=$post[Post_Id]' class='buttons2'> $post[Tittle] </a></li>"; 
 }
 
-function echoHeading($headingFirstHalf, $headingSecondHalf){
-    echo"$headingFirstHalf <span style= 'color: #AF766E; '> $headingSecondHalf </span><br/>";
+function echoHeadingTwoColors($heading){
+
+    $lastWord = getLastWord($heading);  
+    $newHeading = removeLastWord($heading); 
+
+    echo"$newHeading <span style= 'color: #AF766E; '> $lastWord </span><br/>";
 }
 
 // function echoCHildWithImage($file, $tittle){
