@@ -1,13 +1,11 @@
 <?php
 include('include/initialize.php'); 
 
-     echoHeader('Blog', 'image', 'a');
-
-
     $topicId = $_REQUEST['id'] ;
      $topic = getTopic($topicId);
      $allPostsbyTopic= getAllPostsbyTopic($topicId);
           
+     echoHeader($topic['Tittle'], 'image', 'a');
      echo"<div >  
         <ul class='a'>
             <h2>";          
