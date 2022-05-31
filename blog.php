@@ -5,7 +5,7 @@ include('include/initialize.php');
 
      $topic = getTopic($_REQUEST['id']);
 
-    debugOutput($topic);
+    // debugOutput($topic);
 
     $allTopics = [];
 

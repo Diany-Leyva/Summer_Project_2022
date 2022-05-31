@@ -1,90 +1,73 @@
 <?php
 
 function getAllTopics(){
-    return [
-       1=>[
-           'Tittle'=> 'Blog',
-           'Heading' => 'Here is my',
-           'Link1' => 'Dance',
-           'Link2' => 'Motherhood',
-           'Link3' => 'Chess',
-           'Link4' => 'Minimalism',
-           'Link5' => 'Healthy Lifestyle'     
-       ],  
+    $topics = dbQuery("
+        SELECT * 
+        FROM topics
+    ")->fetchAll();
 
-       2=> [
-           'Tittle'=> 'About Me',
-           'Heading' => 'Here is information',
-           'Link1' => 'The beginning of a journey',
-           'Link2' => 'Why programming?',
-           'Link3' => 'Dancing or not dancing?',
-           'Link4' => 'Interests',
-           'Link5' => 'Hobbies'
-        ],             
-  
-       3=>[
-           'Tittle'=> 'Projects',
-           'Heading' => 'Here are my',
-           'Link1' => 'Project1',
-           'Link2' => 'Project2',
-           'Link3' => 'Project3',           
-       ]   
-
-    ];
+    return $topics;   
 }
 
 function getTopic($id){
-   $topic = getAllTopics();
-   return $topic[$id];   
+    $topic = dbQuery("
+        SELECT * 
+        FROM topics 
+        WHERE Topic_Id = $id"
+    )->fetch();
+
+return $topic; 
 }
 
-function getAllBlogPosts(){
-    
-    $blog = dbQuery("
+function getAllPosts(){
+
+    $posts = dbQuery("
         SELECT * 
-        FROM blog
+        FROM posts
     ")->fetchAll();
 
-    return $blog;      
+    return $posts;      
  } 
     
-function getBlogPost($id){
-      return dbQuery("
+function getPost($id){
+      $post = dbQuery("
         SELECT * 
-        FROM `blog` 
-        WHERE Blog_Id = $id"
+        FROM posts 
+        WHERE Post_Id = $id"
     )->fetch();
+
+    return $post;
  }
 
- function getAllAboutMePosts(){
-    return dbQuery("
-        SELECT * 
-        FROM `about_me`"
-    )->fetchAll();
-}
+//  function getAllAboutMePosts(){
+//     return dbQuery("
+//         SELECT * 
+//         FROM `about_me`"
+//     )->fetchAll();
+// }
 
-function getAboutMePost($id){
-    return dbQuery("
-      SELECT * 
-      FROM `about_me` 
-      WHERE About_Me_Id = $id"
-  )->fetch();
-}
+// function getAboutMePost($id){
+//     return dbQuery("
+//       SELECT * 
+//       FROM `about_me` 
+//       WHERE About_Me_Id = $id"
+//   )->fetch();
+// }
 
-function getAllProjects(){
-    return dbQuery("
-    SELECT *
-    FROM 'project'"
-    )->fetchAll();
-}
+// function getAllProjects(){
+//     return dbQuery("
+//     SELECT *
+//     FROM 'project'"
+//     )->fetchAll();
+// }
 
-function getProject($id){
-    return dbQuery("
-    SELECT * 
-    FROM `project` 
-    WHERE Project_Id = $id"
-    )->fetch();  
-}
+// function getProject($id){
+//     return dbQuery("
+//     SELECT * 
+//     FROM `project` 
+//     WHERE Project_Id = $id"
+//     )->fetch();  
+// }
 
 
     // function getAllAboutMePosts(){
@@ -213,4 +196,55 @@ function getProject($id){
 //    $projects = getAllProjects();
 //    return $projects[$id];   
 // }
+
+
+// function getAllTopics(){
+//     return [
+//        1=>[
+//            'Tittle'=> 'Blog',
+//            'Heading' => 'Here is my',
+//            'Link1' => 'Dance',
+//            'Link2' => 'Motherhood',
+//            'Link3' => 'Chess',
+//            'Link4' => 'Minimalism',
+//            'Link5' => 'Healthy Lifestyle'     
+//        ],  
+
+//        2=> [
+//            'Tittle'=> 'About Me',
+//            'Heading' => 'Here is information',
+//            'Link1' => 'The beginning of a journey',
+//            'Link2' => 'Why programming?',
+//            'Link3' => 'Dancing or not dancing?',
+//            'Link4' => 'Interests',
+//            'Link5' => 'Hobbies'
+//         ],             
+  
+//        3=>[
+//            'Tittle'=> 'Projects',
+//            'Heading' => 'Here are my',
+//            'Link1' => 'Project1',
+//            'Link2' => 'Project2',
+//            'Link3' => 'Project3',           
+//        ]   
+
+//     ];
+// }
+
+// function getTopic($id){
+//    $topic = getAllTopics();
+//    return $topic[$id];   
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
