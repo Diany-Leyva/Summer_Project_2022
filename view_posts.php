@@ -8,7 +8,5 @@ echoBackgroundImageHeader('pagesHeader');
 echo"<h2>";
     echoHeadingTwoColors($post['Heading']);
 echo"</h2>
-
-     <p class='blogs'>".$post['Content']. "</p>";               
-         
+     <p class='blogs'>".$post['Content']. "</p>";            
 echoFooter();

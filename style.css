@@ -75,14 +75,11 @@ h1{
 }
 
 .buttons2 {
-
-  /* position:relative; */
   top: 40px;
   left: 420px;    
   font-weight: bold;    
   color: #AF766E;
   font-size: 25px;    
-  /* line-height: 0; */
   cursor: pointer;
   padding: auto;    
 }
@@ -90,12 +87,10 @@ h1{
 /* Text in image */
 .items{
     position: relative;
-    width: 400px;
-   
+    width: 400px;   
   }
 
   .image { 
-    /* display: flex;  */
     transition: .5s ease;
     backface-visibility: hidden;
     width: 400px;
@@ -120,10 +115,10 @@ h1{
     text-decoration: none;
     background-color: #844F48;
     color: white;
-    font-size: 16px;
-    padding: 16px 32px;  
+    font-size: 20px;
+    padding: 11px 29px;
     cursor: pointer;
-    margin: -22px -68px;    
+    margin: -32px -62px;   
   }
   
   .items:hover .image {
