@@ -39,6 +39,17 @@ function getPost($id){
     return $post;
  }
 
+ function getPostbyTopic($id, $topicId){
+    $post = dbQuery("
+      SELECT * 
+      FROM posts 
+      WHERE Post_Id = $id
+      AND Topic_Id = $topicId"
+  )->fetch();
+
+  return $post;
+}
+
 //  function getAllAboutMePosts(){
 //     return dbQuery("
 //         SELECT * 

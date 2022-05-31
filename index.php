@@ -18,22 +18,23 @@ echo"        <span style='font-size: 30px ; font-weight: normal;'>
             </span>";
 
         getLink('Dianelys_Leyva_Resume.PDF', 'button', 'Resume');
-echo"</h1> 
+echo"</h1>
+     <div class='container1'>";
 
-     <div class='container1'>
-        <h2>Blog</h2>
-        <h2>About Me</h2>
-        <h2>Projects</h2>
-    </div>
+     $allTopics = getAllTopics();
 
+     // debugOutput($allTopics);
+
+     foreach($allTopics as $topic){
+          echo "<h2>".$topic['Tittle']."</h2>";
+     }
+
+     echo "</div>
     <div class='container2'>";
 
-    $allTopics = getAllTopics();
-
-//     debugOutput($allTopics);
-
-foreach($allTopics as $index=>$topic){
-     echoCHildWithImage('Blog.php', $index, $topic['Tittle']);
+foreach($allTopics as $topic){
+     // debugOutput($topic['Topic_Id']);
+     echoCHildWithImage('post.php', $topic['Topic_Id'], $topic['Tittle']);
 }
 
 echoFooter();
