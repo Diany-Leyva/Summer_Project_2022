@@ -5,11 +5,10 @@ $post = getPost($_REQUEST['id']);
 
 echoHeader($post ['Tittle'], 'image', 'Blog');
 
-echo"<div >  
-       <h2>";
-echoHeadingTwoColors($post['Heading']);
-
+echo"<h2>";
+    echoHeadingTwoColors($post['Heading']);
 echo"</h2>
+
      <p class='blogs'>".$post['Content']. "</p>";               
          
 echoFooter();
