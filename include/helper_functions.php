@@ -16,5 +16,11 @@ function getLastWord($string){
 function removeLastWord($heading){
     $lastWord = getLastWord($heading);  
     return str_replace($lastWord, '', $heading);     
+} 
+
+function updateNewsletter_Subscriber_TableDB(){
+    dbQuery("
+    INSERT INTO newsletter_subscriber(Name, Email)
+    VALUES ('$_REQUEST[Name]', '$_REQUEST[Email]' )
+");
 }
- 
