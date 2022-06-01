@@ -12,7 +12,7 @@ body{
 header{
     background-color: #BE8F89; 
     color:#ffffff;
-    margin: 10px;
+    /* margin: 10px; */
     padding:50px;
     text-align:center;
     height: 200px; 
