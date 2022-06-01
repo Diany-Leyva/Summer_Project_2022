@@ -33,7 +33,7 @@ img.circle{
 
 h2 {
   padding: -43px 40px;
-  text-align: left;
+  text-align: center;
   margin: 30px;
 }
 
@@ -156,7 +156,7 @@ h1{
 /* p.blogs{
   margin: 20px;
 } */
-
+/* 
 .squareBackground {
   height: 500px;
   margin-bottom: 60px;
@@ -164,9 +164,9 @@ h1{
   margin-left: 547px;
   margin-right: 486px;
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-}
+} */
 
-.squareBackground2 {
+.squareBackground {
   height: 271px;
   width: 942px;
   padding: 50px;
