@@ -12,7 +12,7 @@ body{
 header{
     background-color: #BE8F89; 
     color:#ffffff;
-    margin: 10px;
+    /* margin: 10px; */
     padding:50px;
     text-align:center;
     height: 200px; 
@@ -33,7 +33,7 @@ img.circle{
 
 h2 {
   padding: -43px 40px;
-  text-align: left;
+  text-align: center;
   margin: 30px;
 }
 
@@ -75,14 +75,11 @@ h1{
 }
 
 .buttons2 {
-
-  /* position:relative; */
   top: 40px;
   left: 420px;    
   font-weight: bold;    
   color: #AF766E;
   font-size: 25px;    
-  /* line-height: 0; */
   cursor: pointer;
   padding: auto;    
 }
@@ -90,12 +87,10 @@ h1{
 /* Text in image */
 .items{
     position: relative;
-    width: 400px;
-   
+    width: 400px;   
   }
 
   .image { 
-    /* display: flex;  */
     transition: .5s ease;
     backface-visibility: hidden;
     width: 400px;
@@ -120,10 +115,10 @@ h1{
     text-decoration: none;
     background-color: #844F48;
     color: white;
-    font-size: 16px;
-    padding: 16px 32px;  
+    font-size: 20px;
+    padding: 11px 29px;
     cursor: pointer;
-    margin: -22px -68px;    
+    margin: -32px -62px;   
   }
   
   .items:hover .image {
@@ -145,7 +140,7 @@ h1{
   .list1{
     font-size: 30px ; 
     font-weight: normal;
-    margin: -18px 26px;
+    margin: -68px 26px;
     padding:23px;
     height: 200px; 
   }
@@ -158,18 +153,38 @@ h1{
     height: 200px; 
 }
 
-p.blogs{
+/* p.blogs{
   margin: 20px;
+} */
+
+
+
+.squareBackground {
+  height: 271px;
+  border-radius: 30px;
+  width: 942px;
+  padding: 50px;
+  margin-bottom: 31px;
+  margin-top: 50px;
+  margin-left: 474px;
+  margin-right: -71px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
 
 
 
-
-
-
-
-
+.squareBackground2 {
+  background-color: #DBC1BD;
+  border-radius: 30px;
+  height: 355px;
+  margin-bottom: 163px;
+  margin-top: 54px;
+  margin-left: 193px;
+  margin-right: 202px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+ 
 
 
 

@@ -1,6 +1,7 @@
 <?php
 include('include/initialize.php');   
-echoHeader('Diany Leyva', 'circle', 'Profile_Photo');
+echoHeader('Diany Leyva');
+echoCircleImage('circle', 'Profile_Photo');
 echo"<h1>";    
           echoHeadingTwoColors("Hello, I'm Diany");        
 echo"          <span style='font-size: 30px ; font-weight: normal;'>
@@ -13,20 +14,23 @@ echo"          <span style='font-size: 30px ; font-weight: normal;'>
                getLink('Dianelys_Leyva_Resume.PDF', 'button', 'Resume');
 echo"</h1>
      
-     <div class='container1'>";
+          <div class=squareBackground2>
+               <div class='container1'>";
 
-          $allTopics = getAllTopics();
+                    $allTopics = getAllTopics();
 
-          foreach($allTopics as $topic){
-                echo "<h2>".$topic['Tittle']."</h2>";
-          }
+                    foreach($allTopics as $topic){
+                          echo "<h2>".$topic['Tittle']."</h2>";
+            }
 
-echo"</div>
-     <div class='container2'>";
+          echo"</div>
+     
+          <div class='container2'>";
 
           foreach($allTopics as $topic){                                                 //passing index from topics array to post page
                echoCHildWithImage('post.php', $topic['Topic_Id'], $topic['Tittle']);
           }
-echo"</div>";
+echo"     </div>
+       </div>";
 
 echoFooter();

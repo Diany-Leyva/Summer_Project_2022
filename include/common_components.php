@@ -1,19 +1,24 @@
 <?php
 
-function echoHeader($tittle, $class, $image){
-echo "<html>                                                                                                      
-        <head>
-            <meta charset='utf-8'>
-            <title>$tittle</title>                                                                  
-            <link href='style.css' rel='stylesheet'>
-        </head>
-
-        <body>  
-            <header>";
-                getImageSource($class, $image);
-echo"       </header>";    
-
+function echoHeader($tittle){
+    echo "<html>                                                                                                      
+            <head>
+                <meta charset='utf-8'>
+                <title>$tittle</title>                                                                  
+                <link href='style.css' rel='stylesheet'>
+            </head>    
+            <body>";
 }
+
+function echoCircleImage($class, $image){
+    echo "<header>";
+        getImageSource($class, $image);
+    echo"</header>";    
+}
+
+function echoBackgroundImageHeader($class){
+    echo "<header class=$class></header>";     
+}    
 
 function getImageSource($class, $image){
     echo "<img class= $class src= '/images/$image.jpg' alt='$image'>";
@@ -39,9 +44,9 @@ function echoHeadingTwoColors($heading){
 function echoCHildWithImage($file, $id, $tittle){
 echo"   <div class='items'>";
             getImageSource('image', $tittle);
-echo"            <div class='middle'>";
-                        passVariableThroughLink($file, $id, 'text', $tittle);                
-echo "           </div>
+echo"            <div class='middle'>
+                    <a href='$file?id=$id' class='text'> $tittle </a>       
+           </div>
         </div>
      ";
 }
