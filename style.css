@@ -156,18 +156,12 @@ h1{
 /* p.blogs{
   margin: 20px;
 } */
-/* 
-.squareBackground {
-  height: 500px;
-  margin-bottom: 60px;
-  margin-top: 98px;
-  margin-left: 547px;
-  margin-right: 486px;
-  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-} */
+
+
 
 .squareBackground {
   height: 271px;
+  border-radius: 30px;
   width: 942px;
   padding: 50px;
   margin-bottom: 31px;
@@ -180,7 +174,17 @@ h1{
 
 
 
-
+.squareBackground2 {
+  background-color: #DBC1BD;
+  border-radius: 30px;
+  height: 355px;
+  margin-bottom: 163px;
+  margin-top: 54px;
+  margin-left: 193px;
+  margin-right: 202px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+ 
 
 
 
