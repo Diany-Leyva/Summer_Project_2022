@@ -43,6 +43,8 @@ h1{
    margin: 40px 
 }
 
+
+
 .container1{
     display: flex;
     flex-direction:row;   
@@ -183,6 +185,62 @@ h1{
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
  
+/* Comments Area */
+
+.comment-respond, .entry-comments, .ping-list {
+  margin: 0 0 37px;
+}
+.comment-respond, .entry-comments {
+  padding: 37px 0;
+}
+
+h1.reply{
+  padding: 150px 40px;
+  text-align: left;
+  margin: 40px 
+}
+ h3{
+  font-weight: normal;
+  padding: 84px;
+  margin: -250px -4px;
+ }
+
+p {
+  margin: 5px 0 15px;
+  padding: 0;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+
+ p.areacomment{  
+  margin: 67px -1px;
+  font-size: 35px; 
+  font-weight: bold;
+}
+ 
+textarea {
+  background-color: #E9DAD8;
+  margin: -38px -4px;
+  border: 1px solid black;
+  -webkit-box-shadow: 0 0 0 #fff;
+  -webkit-box-shadow: 0 0 0 #fff;
+  box-shadow: 0 0 0 #fff;
+  color: #565656;
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  padding: 10px;
+  width: 932px;
+  height: 274px;
+}
 
 
 
