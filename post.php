@@ -12,7 +12,7 @@ echo"<h2>";
        echoHeadingTwoColors($topic['Heading']);
 echo"</h2>
    
-<div class=squareBackground>
+<div class=squareBackground2>
      <div class= 'list1'> 
           <ul class='a'>";  
               foreach($allPostsbyTopic as $postByTopic) {
