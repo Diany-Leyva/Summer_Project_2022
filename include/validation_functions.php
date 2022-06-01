@@ -1,19 +1,5 @@
 <?php
 
-function debugOutput($input){
-    echo "<pre>";
-    var_dump($input);
-    echo "</pre>";
-}
-
-function updateNewsletter_Subscriber_TableDB(){
-    dbQuery("
-    INSERT INTO newsletter_subscriber(Name, Email)
-    VALUES ('$_REQUEST[Name]', '$_REQUEST[Email]' )
-");
-}
-
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -44,5 +30,3 @@ function validateEmail(&$errors){
         $errors['Email'] = "Invalid email format";
     }
 }
-
-
