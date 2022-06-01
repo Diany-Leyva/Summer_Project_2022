@@ -159,7 +159,25 @@ h1{
 
 
 
+.squareBackground {
+  height: 500px;
+  margin-bottom: 60px;
+  margin-top: 98px;
+  margin-left: 547px;
+  margin-right: 486px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
 
+.squareBackground2 {
+  height: 125px;
+  width: 936px;
+  padding: 50px;
+   margin-bottom: 1px;
+  margin-top: 50px;
+  margin-left: 474px;
+  margin-right: -71px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
 
 
 
