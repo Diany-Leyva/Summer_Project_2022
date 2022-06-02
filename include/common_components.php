@@ -77,29 +77,35 @@ echo"
         echoHeadingTwoColors('Leave a reply');
 
     echo"
+  
         </h1>
-        <h3>Your email address will not be published. Required fields are marked *<br>
-        <p class ='areacomment'>Comment</p>
-        <textarea cols='45' rows='8' maxlength='65525'></textarea>     
-        </h3>
+        <h3 class='reply'>Your email address will not be published. Required fields are marked *<br>   </h3>
         <form method = 'post' action=''> 
-            <ul class='labels'> 
-                <label for='name'> Name *</label>                                  
-                <input type= 'text' id = 'name' name='user_name'>
-            </ul> 
+            <p class ='areacomment'>Comment</p>
+            <textarea cols='45' rows='8' maxlength='65525'></textarea>     
+         
+          
+            <ul> 
+            <li>
+                <label for='name'>Name *</label>                                  
+                <input type='text' id = 'name' name='user_name'>
+                </li>
             <br> </br>  
-            <ul>  
+            <li>
                 <label for='mail'>Email *</label>
                 <input type='text' id='mail' name='user_email'>       
-            </ul> 
+                </li> 
             <br> </br>
-            <ul>   
-                Website <input type='text' name='Website'>             
-            </ul> 
+            <li> 
+                <label for='website'>Website</label>
+                <input type='text' id='website' name='user_website'>                         
+                </li> 
             <br></br>
-            <ul> 
+            <li>
                 <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+                </li>
             </ul>
+          
         </form>  
     ";
 }
