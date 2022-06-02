@@ -242,6 +242,11 @@ textarea {
   height: 274px;
 }
 
+.personalInfo{
+    font-weight: bold;
+    margin: 122px -7px;
+    font-size: 35px;
+}
 
 
 

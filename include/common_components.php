@@ -70,3 +70,21 @@ echo"   <form method = 'post' action=''>
 }
 
 
+function createCommentsForm(){
+    echo"
+    <div  class='personalInfo'>
+        <form method = 'post' action=''>                                       
+        Name * <input type= 'text' name='Name' />
+        <br> </br>
+        Email *  <input type= 'text' name='Email' />
+        <br> </br>
+        Website  <input type= 'text' name='Website' />
+        <br> </br>
+        <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'/>
+        </form> 
+    </div>
+    ";
+}
+
+
+// <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
