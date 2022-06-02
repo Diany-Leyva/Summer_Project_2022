@@ -102,7 +102,7 @@ echo"
                 </li> 
             <br></br>
             <li>
-                <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+                <input  class = 'text reply' type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
                 </li>
             </ul>
           
