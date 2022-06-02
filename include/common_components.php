@@ -71,20 +71,28 @@ echo"   <form method = 'post' action=''>
 
 
 function createCommentsForm(){
+echo"
+        <h1 class ='reply'>
+    ";     
+        echoHeadingTwoColors('Leave a reply');
+
     echo"
-    <div  class='personalInfo'>
+        </h1>
+        <h3>Your email address will not be published. Required fields are marked *<br>
+        <p class = 'areacomment'>Comment</p>
+        <textarea cols='45' rows='8' maxlength='65525'></textarea>     
+        </h3>
         <form method = 'post' action=''>                                       
-        Name * <input type= 'text' name='Name' />
+        Name * <input type= 'text' name='Name' class='personalInfo'>
         <br> </br>
-        Email *  <input type= 'text' name='Email' />
+        Email *  <input type= 'text' name='Email'>
         <br> </br>
-        Website  <input type= 'text' name='Website' />
+        Website  <input type= 'text' name='Website'>
         <br> </br>
-        <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'/>
-        </form> 
-    </div>
+        <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+        </form>  
     ";
 }
 
-
+// <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required" style="width: 542px; height: 171px;"></textarea>
 // <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">

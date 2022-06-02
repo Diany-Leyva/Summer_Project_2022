@@ -239,15 +239,22 @@ textarea {
   letter-spacing: 0.5px;
   padding: 10px;
   width: 932px;
-  height: 274px;
+  height: 274px;  
 }
-
+/* 
 .personalInfo{
     font-weight: bold;
     margin: 122px -7px;
     font-size: 35px;
-}
+} */
 
+
+input[type=text] {
+  /* input elements with type="text" attribute */
+  font-weight: bold;
+  margin: 122px -7px;
+  font-size: 35px;
+}
 
 
 
