@@ -83,7 +83,7 @@ echo"
         <textarea cols='45' rows='8' maxlength='65525'></textarea>     
         </h3>
         <form method = 'post' action=''> 
-            <ul> 
+            <ul class='labels'> 
                 <label for='name'> Name *</label>                                  
                 <input type= 'text' id = 'name' name='user_name'>
             </ul> 

@@ -253,23 +253,23 @@ textarea {
 
 input[type=text] {
   /* input elements with type="text" attribute */
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: 'Courier New', Courier, monospace;
   margin: -9px 19px;
-  font-size: 35px;
+  font-size: 25px;
   width: 390px;
   background-color: #e9dad8;
   height: 45px;
 }
 
-/* label{
-  /* input elements with type="text" attribute */
+.labels{
   font-weight: bold;
-  margin: -9px 19px;
+  /* margin: -9px 19px;
   font-size: 35px;
   width: 390px;
   background-color: #e9dad8;
-  height: 45px;
-} */
+  height: 45px; */
+}
 
 /* 
 li.a{
