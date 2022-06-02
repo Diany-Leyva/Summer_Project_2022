@@ -82,14 +82,21 @@ echo"
         <p class = 'areacomment'>Comment</p>
         <textarea cols='45' rows='8' maxlength='65525'></textarea>     
         </h3>
-        <form method = 'post' action=''>                                       
-        Name * <input type= 'text' name='Name' class='personalInfo'>
-        <br> </br>
-        Email *  <input type= 'text' name='Email'>
-        <br> </br>
-        Website  <input type= 'text' name='Website'>
-        <br> </br>
-        <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+        <form method = 'post' action=''> 
+            <li class = 'com'>                                   
+                Name * <input type= 'text' name='Name' class='personalInfo'>
+                <br> </br>
+            </li> 
+            <li>  
+                Email *  <input type= 'text' name='Email'>
+                <br> </br>
+            </li> 
+            <li>   
+                Website  <input type= 'text' name='Website'>
+                <br> </br>
+            </li>  
+                <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+            </li>   
         </form>  
     ";
 }
