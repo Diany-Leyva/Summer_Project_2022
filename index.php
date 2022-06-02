@@ -11,7 +11,7 @@ echo"          <span style='font-size: 30px ; font-weight: normal;'>
                 who faces every challenge with diligence <br/>
                 and perseverance to find efficient solutions.  <br/>
                </span>";
-               getLink('Dianelys_Leyva_Resume.PDF', 'button', 'Resume');
+               getLink('Dianelys_Leyva_Resume.PDF', 'button1', 'Resume');
 echo"</h1>
      
           <div class=squareBackground2>

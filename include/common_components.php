@@ -79,27 +79,33 @@ echo"
     echo"
         </h1>
         <h3>Your email address will not be published. Required fields are marked *<br>
-        <p class = 'areacomment'>Comment</p>
+        <p class ='areacomment'>Comment</p>
         <textarea cols='45' rows='8' maxlength='65525'></textarea>     
         </h3>
         <form method = 'post' action=''> 
-            <li class = 'com'>                                   
-                Name * <input type= 'text' name='Name' class='personalInfo'>
-                <br> </br>
-            </li> 
-            <li>  
-                Email *  <input type= 'text' name='Email'>
-                <br> </br>
-            </li> 
-            <li>   
-                Website  <input type= 'text' name='Website'>
-                <br> </br>
-            </li>  
+            <ul> 
+                <label for='name'> Name *</label>                                  
+                <input type= 'text' id = 'name' name='user_name'>
+            </ul> 
+            <br> </br>  
+            <ul>  
+                <label for='mail'>Email *</label>
+                <input type='text' id='mail' name='user_email'>       
+            </ul> 
+            <br> </br>
+            <ul>   
+                Website <input type='text' name='Website'>             
+            </ul> 
+            <br></br>
+            <ul> 
                 <input type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
-            </li>   
+            </ul>
         </form>  
     ";
 }
 
-// <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required" style="width: 542px; height: 171px;"></textarea>
-// <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+
+
+
+
+
