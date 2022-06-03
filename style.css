@@ -181,9 +181,12 @@ h1{
 
 /* form style */
 
+.commentsForm{
+  margin: -138px 609px;
+}
 
 form {
-  margin: -371px 664px;
+  /* margin: -371px 664px; */
   width: 972px;
   height: 657px;
   padding: 126px 19px;
