@@ -220,7 +220,8 @@ textarea {
   border-radius: 20px;
   border: 1px solid #CCC; 
   resize: vertical; 
-  max-height: 400px;
+  min-height: 180px;
+  max-height: 300px;
 }
 
 /* form style */
