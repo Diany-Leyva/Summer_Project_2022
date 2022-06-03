@@ -210,9 +210,9 @@ textarea {
 }
 
 h1.reply{
-  padding: 150px 51px;
+  /* padding: 150px 51px; */
   text-align: left;
-  margin: 40px 
+  margin: -235px -23px;
 }
 
 h3.reply{
