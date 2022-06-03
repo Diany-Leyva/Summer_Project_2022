@@ -8,3 +8,4 @@ include_once('common_components.php');
 include_once('posts.php'); 
 include_once('helper_functions.php');
 include_once('validation_functions.php');
+include_once('database_functions.php');

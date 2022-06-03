@@ -69,7 +69,6 @@ echo"   <form method = 'post' action=''>
     ";
 }
 
-
 function createCommentsForm(){
 echo"
         <h1 class ='reply'>
@@ -80,21 +79,21 @@ echo"
         <h3 class='reply'>Your email address will not be published. Required fields are marked *<br>   </h3>
         <form method = 'post' action=''> 
             <p class ='areacomment'>Comment</p>
-            <textarea cols='45' rows='8' maxlength='65525' name='user_content'></textarea>                  
+            <textarea cols='45' rows='8' maxlength='65525' name='Content'></textarea>                  
             <ul> 
                 <li>
                     <label for='name'>Name *</label>                                  
-                    <input type='text' id = 'name' name='user_name'>
+                    <input type='text' id = 'name' name='Name'>
                 </li>
                 <br> </br>  
                 <li>
                     <label for='mail'>Email *</label>
-                    <input type='text' id='mail' name='user_email'>       
+                    <input type='text' id='mail' name='Email'>       
                 </li> 
                 <br> </br>
                 <li> 
                     <label for='website'>Website</label>
-                    <input type='text' id='website' name='user_website'>                         
+                    <input type='text' id='website' name='Website'>                         
                 </li> 
                 <br></br>
                 <li>
@@ -104,6 +103,7 @@ echo"
         </form>  
     ";
 }
+
 
 
 

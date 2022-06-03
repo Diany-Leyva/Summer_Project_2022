@@ -18,17 +18,25 @@ function removeLastWord($heading){
     return str_replace($lastWord, '', $heading);     
 } 
 
-function updateNewsletter_Subscriber_TableDB(){
-    dbQuery("
-    INSERT INTO newsletter_subscriber(Name, Email)
-    VALUES ('$_REQUEST[Name]', '$_REQUEST[Email]' )
-");
-}
+function AddCommentsForm(){
 
-function updateComments_TableDB(){
-    dbQuery("
-    INSERT INTO comments(Content)
-    VALUES ('$_REQUEST[user_content]')
-");
-}
+    $errors = [];
 
+    if(isset($_REQUEST['CommentsFormPostComment'])){    
+    
+        validateContent($errors);
+        validateName($errors);
+        validateEmail($errors);
+
+        if(sizeof($errors) == 0){
+            updateUser_TableDB();                                           
+            $userId = getNewUserId($_REQUEST['Name'], $_REQUEST['Email']);
+            updateComments_TableDB($userId);                                  
+            
+            header("location:?");                                           
+        }    
+    }
+
+    debugOutput($errors);
+    createCommentsForm();
+}

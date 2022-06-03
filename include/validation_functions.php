@@ -7,6 +7,12 @@ function test_input($data) {
     return $data;
 }
 
+function validateContent(&$errors){
+    if(!isset($_REQUEST['Content']) || $_REQUEST['Content'] == ''){
+        $errors['Content'] = 'Required';
+    }
+}
+
 function validateName(&$errors){
 
     if(!isset($_REQUEST['Name']) || $_REQUEST['Name'] == ''){

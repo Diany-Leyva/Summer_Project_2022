@@ -10,5 +10,8 @@ echo"<h2>";
 echo"</h2>
     <div class=squareBackground>
         <p>".$post['Content']. "</p>
-    </div>";            
+    </div>";  
+    
+    AddCommentsForm();
+    
 echoFooter();
