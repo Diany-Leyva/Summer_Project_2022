@@ -165,12 +165,12 @@ h1{
  
 /* Comments Area */
 
-.comment-respond, .entry-comments, .ping-list {
+/* .comment-respond, .entry-comments, .ping-list {
   margin: 0 0 37px;
 }
 .comment-respond, .entry-comments {
   padding: 37px 0;
-}
+} */
 
 
  h3{
@@ -179,20 +179,22 @@ h1{
   margin: -250px -4px;
  }
 
-p {
-  margin: 5px 0 15px;
-  padding: 0;
+/* form style */
+textarea {
+  background-color: #E9DAD8;
+  margin: -53px 22px;
+  font-size: 25px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 10px;
+  width: 932px;
+  /* height: 180px;  */
+  border-radius: 20px;
+  border: 1px solid #CCC; 
+  resize: vertical; 
+  min-height: 180px;
+  max-height: 300px;
 }
 
-p {
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-}
-
-/* comments */
 h1.reply{
   padding: 150px 51px;
   text-align: left;
@@ -209,22 +211,8 @@ h3.reply{
   font-weight: bold;
 }
  
-textarea {
-  background-color: #E9DAD8;
-  margin: -53px 22px;
-  font-size: 25px;
-  font-family: 'Courier New', Courier, monospace;
-  padding: 10px;
-  width: 932px;
-  height: 180px; 
-  border-radius: 20px;
-  border: 1px solid #CCC; 
-  resize: vertical; 
-  min-height: 180px;
-  max-height: 300px;
-}
 
-/* form style */
+
 form {
   margin: 3px 58px;
   width: 972px;
