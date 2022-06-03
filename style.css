@@ -182,17 +182,19 @@ h1{
 /* form style */
 
 .commentsForm{
-  margin: -138px 609px;
-}
-
-form {
-  /* margin: -371px 664px; */
+  margin-bottom: 31px;
+  margin-top: 50px;
+  margin-left: 660px;
+  margin-right: -71px;
   width: 972px;
+}
+/* 
+form {
   height: 657px;
   padding: 126px 19px;
   border: 1px solid #CCC;
   border-radius: 1em;
-}
+} */
 
 textarea {
   background-color: #E9DAD8;

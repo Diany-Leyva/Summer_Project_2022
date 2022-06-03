@@ -72,15 +72,15 @@ echo"   <form method = 'post' action=''>
 function createCommentsForm(){
 echo"
         <form method = 'post' action=''> 
-            <h1 class ='reply'>
+           
     ";     
             echoHeadingTwoColors('Leave a reply');
 echo"  
-            </h1>
        
-            <h3 class='reply'>Your email address will not be published. Required fields are marked *<br></h3>
+       
+           Your email address will not be published. Required fields are marked *<br>
          
-            <p class ='areacomment'>Comment</p>
+          Comment
                 <textarea cols='45' rows='8' maxlength='65525' name='Content'></textarea>                  
                 <ul> 
                     <li>
