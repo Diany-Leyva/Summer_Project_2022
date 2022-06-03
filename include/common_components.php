@@ -25,11 +25,11 @@ function getImageSource($class, $image){
 }
 
 function getLink($file, $class, $headerName){
-    echo "<a href= $file class= $class > $headerName </a>";
+    echo "<a href=".$file." class= ".$class." > ".$headerName." </a>";
 }
 
 function passVariableThroughLink($file, $id, $class, $tittle){
-    echo "<li><a href='$file?id=$id' class='$class'> $tittle </a></li>";
+    echo "<li><a href=$file?id=$id class=$class> $tittle </a></li>";
 }
 
 function echoHeadingTwoColors($heading){
@@ -45,7 +45,7 @@ function echoCHildWithImage($file, $id, $tittle){
 echo"   <div class='items'>";
             getImageSource('image', $tittle);
 echo"            <div class='middle'>
-                    <a href='$file?id=$id' class='text'> $tittle </a>       
+                    <a href='$file?id=$id' class='buttons text'> $tittle </a>       
            </div>
         </div>
      ";
@@ -74,38 +74,33 @@ function createCommentsForm(){
 echo"
         <h1 class ='reply'>
     ";     
-        echoHeadingTwoColors('Leave a reply');
-
-    echo"
-  
+            echoHeadingTwoColors('Leave a reply');
+echo"  
         </h1>
         <h3 class='reply'>Your email address will not be published. Required fields are marked *<br>   </h3>
         <form method = 'post' action=''> 
             <p class ='areacomment'>Comment</p>
-            <textarea cols='45' rows='8' maxlength='65525'></textarea>     
-         
-          
+            <textarea cols='45' rows='8' maxlength='65525' name='user_content'></textarea>                  
             <ul> 
-            <li>
-                <label for='name'>Name *</label>                                  
-                <input type='text' id = 'name' name='user_name'>
+                <li>
+                    <label for='name'>Name *</label>                                  
+                    <input type='text' id = 'name' name='user_name'>
                 </li>
-            <br> </br>  
-            <li>
-                <label for='mail'>Email *</label>
-                <input type='text' id='mail' name='user_email'>       
+                <br> </br>  
+                <li>
+                    <label for='mail'>Email *</label>
+                    <input type='text' id='mail' name='user_email'>       
                 </li> 
-            <br> </br>
-            <li> 
-                <label for='website'>Website</label>
-                <input type='text' id='website' name='user_website'>                         
+                <br> </br>
+                <li> 
+                    <label for='website'>Website</label>
+                    <input type='text' id='website' name='user_website'>                         
                 </li> 
-            <br></br>
-            <li>
-                <input  class = 'text reply' type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
+                <br></br>
+                <li>
+                    <input  class = 'buttons text reply' type= 'submit' name='CommentsFormPostComment' value='Post Comment'>
                 </li>
-            </ul>
-          
+            </ul>          
         </form>  
     ";
 }

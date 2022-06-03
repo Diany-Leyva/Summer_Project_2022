@@ -10,8 +10,8 @@ echo"          <span style='font-size: 30px ; font-weight: normal;'>
                 I'm a passionate and people-oriented software developer <br/>
                 who faces every challenge with diligence <br/>
                 and perseverance to find efficient solutions.  <br/>
-               </span>";
-               getLink('Dianelys_Leyva_Resume.PDF', 'button1', 'Resume');
+               </span>";              
+               getLink('Dianelys_Leyva_Resume.PDF', "'buttons inline'", 'Resume');
 echo"</h1>
      
           <div class=squareBackground2>

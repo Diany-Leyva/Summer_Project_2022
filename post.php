@@ -16,7 +16,7 @@ echo"</h2>
      <div class= 'list1'> 
           <ul class='a'>";  
               foreach($allPostsbyTopic as $postByTopic) {
-                    passVariableThroughLink('view_posts.php', $postByTopic['Post_Id'], 'buttons2', $postByTopic['Tittle']);               
+                    passVariableThroughLink('view_posts.php', $postByTopic['Post_Id'], "'buttons inline'", $postByTopic['Tittle']);               
              }                                       
 echo"     </u>
      </div>         

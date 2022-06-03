@@ -24,3 +24,11 @@ function updateNewsletter_Subscriber_TableDB(){
     VALUES ('$_REQUEST[Name]', '$_REQUEST[Email]' )
 ");
 }
+
+function updateComments_TableDB(){
+    dbQuery("
+    INSERT INTO comments(Content)
+    VALUES ('$_REQUEST[user_content]')
+");
+}
+
