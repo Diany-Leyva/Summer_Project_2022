@@ -71,12 +71,12 @@ echo"   <form method = 'post' action=''>
 
 function createCommentsForm(){
 echo"
+<div class='commentsForm'>
         <form method = 'post' action=''> 
            
     ";     
             echoHeadingTwoColors('Leave a reply');
-echo"  
-       
+echo"        
        
            Your email address will not be published. Required fields are marked *<br>
          
@@ -103,6 +103,7 @@ echo"
                     </li>
                 </ul>          
         </form> 
+    </div>
     
     ";
 }
