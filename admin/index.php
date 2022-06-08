@@ -1,22 +1,28 @@
 <?php
-include('include/initialize.php');                               //Will include initialize later on
-echoHeader('Admin');
+include('../include/initialize.php');     
+           
+echoHeader('List of Students');
 
 $allStudents = getAllStudents();
 
 echo"
-    Here is a list of students:<br>
+<h1>Students List</h1>    
 ";
+
+
 
 foreach($allStudents as $student){
     echo"
-        Student ID: " .$student['Student_Id']."</br> 
-        Firts Name:" .$student['First_Name']."</br> 
-        Last Name:" .$student['Last_Name']."</br> 
-        Email:" .$student['Email']."</br> 
-        Phone:" .$student['Phone']."</br> 
-        Date Created:" .$student['Date_Created']."</br> 
-        Private Notes:" .$student['Private_Notes']."</br> 
+        <b>Student ID: </b>" .$student['Student_Id']."</br> 
+        <b>First Name: </b> " .$student['First_Name']."</br> 
+        <b>Last Name: </b>" .$student['Last_Name']."</br> 
+        <b>Email: </b>" .$student['Email']."</br> 
+        <b>Phone: </b>" .$student['Phone']."</br> 
+        <b>Date Created: </b>" .$student['Date_Created']."</br> 
+        <b>Private Notes: </b>" .$student['Private_Notes']."</br>";        
+        passVariableThroughLink('students.php', $student['Student_Id'], 'Class booked');
+        echo"
+        <br></br>
     ";
 }
 

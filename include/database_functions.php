@@ -1,20 +1,32 @@
 <?php
 
 function getAllStudents(){
-    $students = dbQuery("
-        SELECT *
-        FROM students        
-    ")->fetchAll();
-
-    return $students;
+    return dbQuery("
+            SELECT *
+            FROM students        
+            ")->fetchAll();   
 }
 
-
 function getAllClasses(){
-   $classes = dbQuery("
-        SELECT *
-        FROM classes;   
-   ")->fetchAll();
+    return dbQuery("
+            SELECT *
+            FROM classes;   
+            ")->fetchAll();  
+}
 
-   return $classes;
+function getAllClassesByStudent($studentId){
+    return dbQuery("
+        SELECT *
+        FROM classes
+        WHERE Student_id = $studentId  
+        ORDER BY Start_Date
+        ")->fetchAll();  
+}
+
+function getStudent($studentId){
+    return dbQuery("
+        SELECT *
+        FROM students
+        WHERE Student_Id = $studentId;   
+        ")->fetch();  
 }
