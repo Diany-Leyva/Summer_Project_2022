@@ -33,6 +33,7 @@ img.circle{
 }
 
 h2{
+  font-size: 32px;
   padding: -43px 40px;
   text-align: center;
   margin: 30px;
@@ -45,6 +46,7 @@ h1{
 }
 
 .container1{
+  font-size: 32px;
     display: flex;
     flex-direction:row;   
     justify-content:space-around;  
@@ -121,8 +123,9 @@ h1{
   
   ul.a {
     list-style-type: circle;
-    padding: 70px 25px;
-  }
+    padding: 124px 27px;
+}
+
 
   .list1{
     font-size: 30px ; 
@@ -141,7 +144,8 @@ h1{
 }
 
 .squareBackground {
-  height: 271px;
+  font-size: 25px;
+  height: 328px;
   border-radius: 30px;
   width: 942px;
   padding: 50px;
