@@ -16,7 +16,7 @@ foreach($classes as $class){
         
         <b>Class ID: </b>" .$class['Class_Id']."</br> 
         <b>Class Type: </b>" .$class['Type']."</br> 
-        <b>Zoom Link: </b>" .$class['Zoom_Link']."</br> 
+        <b>Zoom Link: </b>" .$class['Zoom_Link']."</br>     
         <b>Class Date: </b>" .$class['Start_Date']."</br> 
         <b>Duration: </b>" .$class['Duration']." minutes </br>         
         <br></br>  

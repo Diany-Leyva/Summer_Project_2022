@@ -9,8 +9,6 @@ echo"
 <h1>Students List</h1>    
 ";
 
-
-
 foreach($allStudents as $student){
     echo"
         <b>Student ID: </b>" .$student['Student_Id']."</br> 
@@ -25,5 +23,7 @@ foreach($allStudents as $student){
         <br></br>
     ";
 }
+
+
 
 echoFooter();
