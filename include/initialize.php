@@ -1,4 +1,3 @@
-<!-- Code that you run at the beggingin of each file -->
 <?php
 
 ini_set('display_errors', 1);
