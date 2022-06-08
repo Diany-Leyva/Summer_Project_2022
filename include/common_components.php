@@ -3,7 +3,8 @@
 function echoHeader($tittle){
     echo "<html>                                                                                                      
             <head>              
-                <title>$tittle</title>                                                            
+                <title>$tittle</title>  
+                <link href='style.css' rel='stylesheet'>                                                          
             </head>    
             <body>
     ";

@@ -10,6 +10,7 @@ $allStudents = getAllStudents();
 
 foreach($allStudents as $student){
     echo"
+    <div>
         <b>Student ID: </b>" .$student['Student_Id']."</br> 
         <b>First Name: </b> " .$student['First_Name']."</br> 
         <b>Last Name: </b>" .$student['Last_Name']."</br> 
@@ -20,6 +21,7 @@ foreach($allStudents as $student){
                 
         passVariableThroughLink('students.php', $student['Student_Id'], 'Class booked');
         echo"
+    </div>
         <br></br>
     ";
 }
