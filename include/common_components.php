@@ -1,9 +1,9 @@
 <?php
 
-function echoHeader($tittle){
+function echoHeader($title){
     echo "<html>                                                                                                      
             <head>              
-                <title>$tittle</title>  
+                <title>$title</title>  
                 <link href='style.css' rel='stylesheet'>                                                          
             </head>    
             <body>
@@ -19,6 +19,6 @@ function echoFooter(){
 
 
 function passVariableThroughLink($filename, $id, $linkName){
-    echo "<a href=$filename?id=$id> $linkName </a>";
+    echo "<a href='$filename?id=$id'> $linkName </a>";
 }      
 

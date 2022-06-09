@@ -2,9 +2,14 @@
 include('../include/initialize.php'); 
 echoHeader('Classes');
 
-$studentId = $_REQUEST['id'];
+$studentId = $_REQUEST['id'];                           
 $classes = getAllClassesByStudent($studentId);
 $student = getStudent($studentId);
+
+// Working on:
+// StudentId isn't passed in via $_REQUEST
+// Invalid StudentId or no students
+// Student has no classes
 
 echo"
     <h1>Class List for ".$student['First_Name']." ".$student['Last_Name']."</h1>
