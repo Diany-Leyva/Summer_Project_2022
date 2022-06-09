@@ -19,10 +19,8 @@ foreach($classes as $class){
         <b>Class Date: </b>" .formatDate($class['Start_Date'], 'm/d/Y H:i A')."</br> 
         <b>Duration: </b>" .$class['Duration']." minutes </br> 
     </div>        
-        <br></br>        
+    <br></br>        
     ";
 }
 
 echoFooter();
-
-

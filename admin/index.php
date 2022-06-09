@@ -17,12 +17,11 @@ foreach($allStudents as $student){
         <b>Email: </b>" .$student['Email']."</br> 
         <b>Phone: </b>" .$student['Phone']."</br> 
         <b>Date Created: </b>" .formatDate($student['Date_Created'], "m/d/y")."</br> 
-        <b>Private Notes: </b>" .$student['Private_Notes']."</br>";
-                
-        passVariableThroughLink('students.php', $student['Student_Id'], 'Class booked');
+        <b>Private Notes: </b>" .$student['Private_Notes']."</br>";                
+        passVariableThroughLink('students.php', $student['Student_Id'], 'Classes booked');
         echo"
     </div>
-        <br></br>
+    <br></br>
     ";
 }
 
