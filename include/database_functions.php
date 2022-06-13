@@ -3,7 +3,7 @@
 function getAllStudents(){
     return dbQuery("
             SELECT *
-            FROM students        
+            FROM students      
             ")->fetchAll();   
 }
 
