@@ -3,7 +3,7 @@ include('../include/initialize.php');
 echoHeader('Classes');
 
 $studentId = $_REQUEST['id'];                                             //We will work later on this: StudentId isn't passed in via $_REQUEST
-$student = getStudent($studentId);                                        //I'm loading this page only if DB returned data in index so I'm assuming there will be at least one student
+$student = getStudent($studentId);                                        //I'm assuming there will be at least one student since I'm loading this page only if DB returned data in index 
 
 echo"
     <h1>Class List for ".$student['First_Name']." ".$student['Last_Name']."</h1>
