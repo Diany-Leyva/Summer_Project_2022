@@ -11,7 +11,7 @@ echo"
 
 $classes = getAllClassesByStudent($studentId);
 
-if(sizeof(isEmpty($classes)) == 0){ 
+if(!isEmpty($classes)){ 
     foreach($classes as $class){
         echo" 
         <div>

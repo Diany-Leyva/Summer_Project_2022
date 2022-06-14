@@ -8,7 +8,7 @@ echo"
 
 $allStudents = getAllStudents();
 
-if(sizeof(isEmpty($allStudents)) == 0){ 
+if(!isEmpty($allStudents)){ 
     foreach($allStudents as $student){                                                  
         echo"                                                                                     
         <div>
