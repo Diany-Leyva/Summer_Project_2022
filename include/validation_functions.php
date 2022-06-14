@@ -10,7 +10,7 @@ function isEmpty($dataReturned){
     return  $isEmpty;
 }
 
-//At Webster we need to follow programming satndars, so we need to declare a boolean variable and then return it.
+//At Webster we need to follow programming standars, so we need to declare a boolean variable and then return it.
 //But I know I can also do the approach below. I wonder what approach is more common in real life?
 
 // function isEmpty($dataReturned){                         
