@@ -19,7 +19,7 @@ if(!isEmpty($allStudents)){
             <b>Phone: </b>" .$student['Phone']."</br> 
             <b>Date Created: </b>" .formatDate($student['Date_Created'], "m/d/y")."</br> 
             <b>Private Notes: </b>" .$student['Private_Notes']."</br>";                
-            passVariableThroughLink('students.php', $student['Student_Id'], 'Classes booked');
+            passVariableThroughLink('list_students.php', $student['Student_Id'], 'Classes booked');
             echo"
         </div>
         <br></br>

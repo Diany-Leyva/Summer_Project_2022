@@ -1,6 +1,6 @@
 <?php
 include('../include/initialize.php'); 
-echoHeader('Classes');
+echoHeader('My Students');
 
 $studentId = $_REQUEST['id'];                                             //We will work later on this: StudentId isn't passed in via $_REQUEST
 $student = getStudent($studentId);                                        //I'm assuming there will be at least one student since I'm loading this page only if DB returned data in index 

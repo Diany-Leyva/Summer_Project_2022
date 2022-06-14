@@ -1,3 +1,63 @@
+/* default for all items in the page*/
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;                                                          /*Take out the underline of all the links*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.771);
+}
+
+/*Style the body of the website*/
+body{
+background-color: #eee;                                                          
+}
+
+/*Style the menu in the header*/
+nav{                                                                               
+    width: 100%;
+    height: 200px;
+    background-color: #fff;          
+}
+
+.notification{
+    width: 40px;
+    height: 40px;
+    float: right; 
+    padding: 50px 0px;
+}
+
+header{
+
+}
+
+ul {
+
+} 
+
+/*style the individual list inside the ul */
+ul li {
+    list-style: none;                                                              /*Take out the dots*/
+    display: inline-block;                                                         /*Put them one next to each other*/
+    float: right; 
+    line-height: 150px;                                                           /*Not space between them*/
+}
+
+ul li a {
+    display: block;                                                                /*To be able to click it around and not onli in the letters*/
+    font-size: 30px;
+    padding: 0 70px;    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 div{
     font-size: 26px;
