@@ -30,3 +30,11 @@ function getStudent($studentId){
         WHERE Student_Id = $studentId;   
         ")->fetch();  
 }
+
+function getStudentsNumber(){
+    return dbQuery("
+        SELECT COUNT(Student_Id) AS number 
+        FROM students
+        ")->fetch();
+}
+

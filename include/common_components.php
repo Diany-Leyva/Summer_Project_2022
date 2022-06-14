@@ -1,6 +1,6 @@
 <?php
 
-function echoHeader($title){
+function echoHeader($title, $number){
  echo "<html>                                                                                                      
             <head>              
                <title>$title</title>  
@@ -9,14 +9,16 @@ function echoHeader($title){
 
             <nav>
                 <ul>
-                    <li><a href='#'> <img class = 'notification' src= '/images/notification.png' alt='notification'></a></li>  
+                    <li><a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a></li>  
                     <li><a href='#'>Students</a></li>
                     <li><a href='#'>Calendar</a></li> 
-                    <li><a href='#'>Home</a></li>                         
+                    <li><a href='#'>Home</a></li> 
+                    <header>My Students 
+                        <p class='sub-header'>You have $number students</p>                                             
+                    </header>                    
                 </ul>
-            </nav>      
-            <body>    
-        ";
+            </nav>    
+       ";
 }
 
 

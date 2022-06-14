@@ -1,8 +1,10 @@
 <?php
 include('../include/initialize.php');  
-echoHeader('Students');
+
+echoHeader('Students', getStudentsNumber()['number']);
 
 echo"
+      <body> 
         <h1>Students List</h1>    
     ";
 
