@@ -2,8 +2,12 @@
 include('../include/initialize.php');  
 
 echoHeader('Students', getStudentsNumber()['number']);
+echoSearchBar();
+echoVerticalBar();
 
 // $allStudents = getAllStudents();
+
+
 
 // if(!isEmpty($allStudents)){ 
 //     foreach($allStudents as $student){                                                  
@@ -25,8 +29,6 @@ echoHeader('Students', getStudentsNumber()['number']);
 
 // else{
 //     echo"No students to show";              //This will be used properly later on(e.g. showing the correct message etc)
-// }
-                                                  
+// }                                                 
  
-
 echoFooter();

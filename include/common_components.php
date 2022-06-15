@@ -18,14 +18,32 @@ function echoHeader($title, $number){
                 <header>My Students 
                     <p class='sub-header'>You have $number students</p>                                             
                 </header>   
-            </nav>
-
-            <div class='vertical'>  
-                <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                <h1 class='profileHeading'>Yuniesky Quesada</h1>
-            </div>
+            </nav>           
        ";
-}          
+}  
+
+function echoSearchBar(){
+    echo"
+        <h2>Student List</h2>
+
+        <div class='SearchBarContainter'>
+            <form action='' class='search-bar'>
+            <input type='text' placeholder='Search' name='searchBar'>
+            <button type='submit'><img src='/images/search.jpg' alt='search'></button>
+            </form>
+        </div>         
+        
+         ";    
+}
+
+function echoVerticalBar(){
+  echo"
+        <div class='vertical'>  
+            <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+            <h1 class='profileHeading'>Yuniesky Quesada</h1>
+        </div> 
+  ";
+}
     
 function echoFooter(){
     echo"  <footer></footer>                            
@@ -48,14 +66,14 @@ function passVariableThroughLink($filename, $id, $linkName){
 //     echo "</a>";
 // }
 
-function getImageSource($class, $name){
-    echo "<img class = '$class' src= '/images/$name.jpg' alt='$name'>";
-}
+// function getImageSource($class, $name){
+//     echo "<img class = '$class' src= '/images/$name.jpg' alt='$name'>";
+// }
 
 
-function echoCircleImage($class, $profilePic){
-    echo "<header>";
-        getImageSource($class, $profilePic);
-    echo"</header>";    
-} 
+// function echoCircleImage($class, $profilePic){
+//     echo "<header>";
+//         getImageSource($class, $profilePic);
+//     echo"</header>";    
+// } 
 
