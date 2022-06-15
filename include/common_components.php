@@ -44,6 +44,20 @@ function echoVerticalBar(){
         </div> 
   ";
 }
+
+function echoTable(){
+    echo"
+    <div class='attributesContainer'>
+        <li>Name</li>
+        <li>Email</li>
+        <li>Phone</li>
+        <li>ELO</li>
+        <li>Credits</li>
+        <li>Booked</li>
+        <li>Next Class in</li>
+    </div> 
+    ";
+}
     
 function echoFooter(){
     echo"  <footer></footer>                            

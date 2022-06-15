@@ -3,7 +3,9 @@ include('../include/initialize.php');
 
 echoHeader('Students', getStudentsNumber()['number']);
 echoSearchBar();
+echoTable();
 echoVerticalBar();
+
 
 // $allStudents = getAllStudents();
 

@@ -21,9 +21,9 @@ nav{
 }
 
 .vertical{
-    height: 150%;
+    height: 155%;
     border-left: 185px solid #8b898966;
-    margin: -275px 0;
+    margin: -419px 0;
 }
 
 .notificationIcon{
@@ -103,4 +103,14 @@ input[type=text] {
     border: 0;
     border-radius: 50%; 
     cursor: pointer;
+}
+
+.attributesContainer{
+    display: flex;
+    justify-content: space-around;
+    padding: 79px 307px;
+}
+
+li{
+    list-style: none;    
 }
