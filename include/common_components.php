@@ -19,32 +19,7 @@ function echoHeader($title, $number){
                 </ul>
             </nav>    
        ";
-}
-
-
-                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}               
 
 function echoFooter(){
     echo"  <footer></footer>                            
@@ -57,18 +32,24 @@ function passVariableThroughLink($filename, $id, $linkName){
     echo "<a href='$filename?id=$id'> $linkName </a>";
 }      
 
-function echoLink($file, $name){
-    echo "<a href='$file'>$name</a>";
-}
+// function echoLink($file, $name){
+//     echo "<a href='$file'>$name</a>";
+// }
 
-function echoImageLink($file, $name, $class){
-    echo "<a href='$file'>";
-    getImageSource($class, $name);
-    echo "</a>";
-}
+// function echoImageLink($file, $name, $class){
+//     echo "<a href='$file'>";
+//     getImageSource($class, $name);
+//     echo "</a>";
+// }
 
 function getImageSource($class, $name){
     echo "<img class = '$class' src= '/images/$name.jpg' alt='$name'>";
 }
 
+
+function echoCircleImage($class, $profilePic){
+    echo "<header>";
+        getImageSource($class, $profilePic);
+    echo"</header>";    
+} 
 
