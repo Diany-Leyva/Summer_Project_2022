@@ -21,9 +21,9 @@ nav{
 }
 
 .vertical{
-    height: 155%;
+    height: 200%;
     border-left: 185px solid #8b898966;
-    margin: -419px 0;
+    margin: -691px 0;
 }
 
 .notificationIcon{
@@ -53,7 +53,7 @@ header{
 .profileHeading{
     float: left;
     font-size: 10px;
-    margin: 133px -137px;
+    margin: -25px -137px;
 }
 
 ul {
@@ -105,12 +105,25 @@ input[type=text] {
     cursor: pointer;
 }
 
-.attributesContainer{
-    display: flex;
-    justify-content: space-around;
-    padding: 79px 307px;
-}
-
 li{
     list-style: none;    
 }
+
+.tableContainer{
+    display: flex;
+    justify-content: center;
+    margin: 35px 0px;
+}
+
+#studentsTable{      
+    border-collapse:separate;
+    width: 65%;
+}
+
+ #studentsTable td, #studentsTable th {
+    text-align: left;   
+    padding: 15px 22px;
+  } 
+  
+  
+ 

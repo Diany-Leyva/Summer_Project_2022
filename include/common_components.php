@@ -24,7 +24,7 @@ function echoHeader($title, $number){
 
 function echoSearchBar(){
     echo"
-        <h2>Student List</h2>
+        <h2>Students' List</h2>
 
         <div class='SearchBarContainter'>
             <form action='' class='search-bar'>
@@ -45,18 +45,34 @@ function echoVerticalBar(){
   ";
 }
 
-function echoTable(){
+function echoTable($array){
     echo"
-    <div class='attributesContainer'>
-        <li>Name</li>
-        <li>Email</li>
-        <li>Phone</li>
-        <li>ELO</li>
-        <li>Credits</li>
-        <li>Booked</li>
-        <li>Next Class in</li>
-    </div> 
-    ";
+        <div class='tableContainer'>
+            <table id='studentsTable'>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>ELO</th>
+                    <th>Credits</th>
+                    <th>Booked</th>
+                    <th>Next Class in</th>                   
+                </tr>    
+        ";                    
+      
+        foreach($array as $element){                                                  
+        echo"
+            <tr>
+                <td>";passVariableThroughLink('student_profile.php', $element['Student_Id'], $element['First_Name']." ".$element['Last_Name']);echo"</td>
+                <td>".$element['Email']."</td>
+                <td>".$element['Phone']."</td>
+                <td>".$element['ELO']."</td>             
+            </tr> 
+            "; 
+        } 
+        
+        echo"      </table>            
+        </div>";
 }
     
 function echoFooter(){
