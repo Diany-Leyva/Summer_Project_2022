@@ -5,22 +5,28 @@ function echoHeader($title, $number){
             <head>              
                <title>$title</title>  
                <link href='style.css' rel='stylesheet'>                                                          
-            </head> 
+            </head>
+            
+            <body>  
+                <nav>
+                    <ul>                         
+                        <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
+                        <li><a href='#'>Students</a></li>
+                        <li><a href='#'>Calendar</a></li> 
+                        <li><a href='#'>Home</a></li>                        
+                    </ul>
+                <header>My Students 
+                    <p class='sub-header'>You have $number students</p>                                             
+                </header>   
+            </nav>
 
-            <nav>
-                <ul>
-                    <li><a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a></li>  
-                    <li><a href='#'>Students</a></li>
-                    <li><a href='#'>Calendar</a></li> 
-                    <li><a href='#'>Home</a></li> 
-                    <header>My Students 
-                        <p class='sub-header'>You have $number students</p>                                             
-                    </header>                    
-                </ul>
-            </nav>    
+            <div class='vertical'>  
+                <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+                <h1 class='profileHeading'>Yuniesky Quesada</h1>
+            </div>
        ";
-}               
-
+}          
+    
 function echoFooter(){
     echo"  <footer></footer>                            
            </body>    

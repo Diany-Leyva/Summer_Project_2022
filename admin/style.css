@@ -14,26 +14,30 @@ background-color: #eee;
 
 /*Style the menu in the header*/
 nav{                                                                               
-    width: 100%;
+    width: 87.8%;
     height: 137px;
-    background-color: #fff;          
+    background-color: #fff; 
+    margin: 0 185px;       
 }
 
 .vertical{
-    height: 100%;
-    border-left: 185px solid #dddbdb;
+    height: 150%;
+    border-left: 185px solid #8b898966;
+    margin: -137px 0;
 }
+
+
 
 .notificationIcon{
     width: 25px;
     height: 25px;
     float: right;
-    padding: 60px 71px;
+    margin: 59px -86px;
 }
 
 header{
     font-size: 30px;
-    padding: 38px 63px;
+    padding: 58px 63px;
 }
 
 .sub-header{
@@ -47,19 +51,21 @@ img {
 }
 
 .circlePicture{
-    margin: -233px -140px;
+    margin: 43px -137px;
     width: 75px;
     height: 75px;
     border-radius: 75px;
 }
 
 .profileHeading{
-    font-size: 15px;
-    padding: 10; 
+    float: left;
+    font-size: 10px;
+    margin: 133px -137px;
+
 }
 
 ul {
-
+    margin: 0 145px;
 } 
 
 /*style the individual list inside the ul */
@@ -73,20 +79,6 @@ ul li {
 ul li a {
     display: block;                                                                /*To be able to click it around and not onli in the letters*/
     font-size: 25px;
-    padding: 0 70px;    
+    padding: 0 60px;    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-div{
-    font-size: 26px;
-}
