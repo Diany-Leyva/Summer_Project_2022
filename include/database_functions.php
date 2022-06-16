@@ -3,14 +3,16 @@
 function getAllStudents(){
     return dbQuery("
             SELECT *
-            FROM students      
+            FROM students 
+            ORDER BY Student_Id     
             ")->fetchAll();   
 }
 
 function getAllClasses(){
     return dbQuery("
             SELECT *
-            FROM classes;   
+            FROM classes
+            ORDER BY Class_Id        
             ")->fetchAll();  
 }
 
@@ -38,3 +40,28 @@ function getStudentsNumber(){
         ")->fetch();
 }
 
+function getAllCredits(){
+    return dbQuery("
+        SELECT *
+        FROM  credits       
+        ")->fetchAll();
+}
+
+function getStudentsCredits(){
+    return dbQuery("
+        SELECT students.Student_Id, SUM(Amount) as Credits
+        FROM students, credits 
+        WHERE students.Student_Id = credits.Student_Id 
+        GROUP By students.Student_Id
+        ORDER BY Student_Id
+    ")->fetchAll();
+}
+
+// function getAllStudentsWithCredits(){
+//     return dbQuery("
+//         SELECT students.Student_Id, First_Name, Last_Name, Email, Phone, ELO, SUM(Amount) as Credits
+//         FROM students, credits 
+//         WHERE students.Student_Id = credits.Student_Id 
+//         GROUP By students.Student_Id, First_Name, Last_Name, Email, Phone, ELO;
+//     ")->fetchAll();
+// }

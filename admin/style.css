@@ -44,7 +44,7 @@ header{
 }
 
 .circlePicture{
-    margin: 43px -137px;
+    margin: 71px -137px;
     width: 75px;
     height: 75px;
     border-radius: 75px;
@@ -53,7 +53,7 @@ header{
 .profileHeading{
     float: left;
     font-size: 10px;
-    margin: -25px -137px;
+    margin: -54px -137px;
 }
 
 ul {

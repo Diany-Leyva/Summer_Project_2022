@@ -45,7 +45,7 @@ function echoVerticalBar(){
   ";
 }
 
-function echoTable($array){
+function echoTable($students, $allCredits){
     echo"
         <div class='tableContainer'>
             <table id='studentsTable'>
@@ -60,18 +60,21 @@ function echoTable($array){
                 </tr>    
         ";                    
       
-        foreach($array as $element){                                                  
+        $i = 0;
+        foreach($students as $student){                                                  
         echo"
             <tr>
-                <td>";passVariableThroughLink('student_profile.php', $element['Student_Id'], $element['First_Name']." ".$element['Last_Name']);echo"</td>
-                <td>".$element['Email']."</td>
-                <td>".$element['Phone']."</td>
-                <td>".$element['ELO']."</td>             
+                <td>";passVariableThroughLink('student_profile.php', $student['Student_Id'], $student['First_Name']." ".$student['Last_Name']);echo"</td>
+                <td>".$student['Email']."</td>
+                <td>".$student['Phone']."</td>
+                <td>".$student['ELO']."</td>   
+                <td>".$allCredits[$i]['Credits']."</td>                                     
             </tr> 
             "; 
+        $i++;
         } 
         
-        echo"      </table>            
+        echo"</table>            
         </div>";
 }
     
@@ -84,7 +87,7 @@ function echoFooter(){
 
 function passVariableThroughLink($filename, $id, $linkName){
     echo "<a href='$filename?id=$id'> $linkName </a>";
-}      
+}  
 
 // function echoLink($file, $name){
 //     echo "<a href='$file'>$name</a>";
