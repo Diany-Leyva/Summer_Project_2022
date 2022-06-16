@@ -6,10 +6,12 @@ echoSearchBar();
 
 $allStudents = getAllStudents();                                             //gets all students information
 $studentWithCredits = getStudentsCredits();                                  //gets the students and the credits total
+$studentWithClasses = getStudentsClasses();
 
 if(!isEmpty($allStudents)){      
-    $credits = calculateCredits($studentWithCredits, sizeof($allStudents));
-    echoTable($allStudents, $credits);       
+    $credits = calculateStudentInfo($studentWithCredits, sizeof($allStudents), 'Credits');
+    $classes = calculateStudentInfo($studentWithClasses, sizeof($allStudents), 'Classes');     
+    echoTable($allStudents, $credits, $classes);       
 }                                                           
                     
 else{
@@ -21,6 +23,5 @@ echoFooter();
            
    
         
-        
-         
+
  

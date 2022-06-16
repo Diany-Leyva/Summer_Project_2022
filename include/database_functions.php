@@ -49,13 +49,24 @@ function getAllCredits(){
 
 function getStudentsCredits(){
     return dbQuery("
-        SELECT students.Student_Id, SUM(Amount) as Credits
-        FROM students, credits 
-        WHERE students.Student_Id = credits.Student_Id 
-        GROUP By students.Student_Id
+        SELECT S.Student_Id, SUM(Amount) as Credits
+        FROM students S, credits C
+        WHERE S.Student_Id = C.Student_Id 
+        GROUP By S.Student_Id
         ORDER BY Student_Id
     ")->fetchAll();
 }
+
+function getStudentsClasses(){
+    return dbQuery("
+        SELECT S.Student_Id, COUNT(C.Student_Id) as Classes
+        FROM classes C, students S
+        WHERE S.Student_Id = C.Student_Id
+        GROUP BY S.Student_Id
+        ORDER BY Student_Id
+    ")->fetchAll();
+}
+
 
 // function getAllStudentsWithCredits(){
 //     return dbQuery("

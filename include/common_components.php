@@ -45,7 +45,7 @@ function echoVerticalBar(){
   ";
 }
 
-function echoTable($students, $allCredits){
+function echoTable($students, $allCredits, $allClasses){
     echo"
         <div class='tableContainer'>
             <table id='studentsTable'>
@@ -68,7 +68,8 @@ function echoTable($students, $allCredits){
                 <td>".$student['Email']."</td>
                 <td>".$student['Phone']."</td>
                 <td>".$student['ELO']."</td>   
-                <td>".$allCredits[$i]['Credits']."</td>                                     
+                <td>".$allCredits[$i]['Credits']."</td>   
+                <td>".$allClasses[$i]['Classes']."</td>                                    
             </tr> 
             "; 
         $i++;
