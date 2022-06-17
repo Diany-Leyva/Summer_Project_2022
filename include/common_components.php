@@ -45,7 +45,7 @@ function echoVerticalBar(){
   ";
 }
 
-function echoTable($students, $allCredits, $allClasses){
+function echoTable($students, $allCredits, $allClasses, $days){
     echo"
         <div class='tableContainer'>
             <table id='studentsTable'>
@@ -56,10 +56,10 @@ function echoTable($students, $allCredits, $allClasses){
                     <th>ELO</th>
                     <th>Credits</th>
                     <th>Booked</th>
-                    <th>Next Class in</th>                   
+                    <th>Days to next Class</th>                   
                 </tr>    
-        ";                    
-      
+        ";         
+         
         $i = 0;
         foreach($students as $student){                                                  
         echo"
@@ -69,7 +69,8 @@ function echoTable($students, $allCredits, $allClasses){
                 <td>".$student['Phone']."</td>
                 <td>".$student['ELO']."</td>   
                 <td>".$allCredits[$i]['Credits']."</td>   
-                <td>".$allClasses[$i]['Classes']."</td>                                    
+                <td>".$allClasses[$i]['Classes']."</td> 
+                <td>".$days[$i]."</td>                                    
             </tr> 
             "; 
         $i++;

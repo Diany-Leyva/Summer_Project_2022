@@ -1,5 +1,8 @@
 <?php
 
+//Students Table
+// --------------------------------------------------------------------------
+
 function getAllStudents(){
     return dbQuery("
             SELECT *
@@ -7,6 +10,25 @@ function getAllStudents(){
             ORDER BY Student_Id     
             ")->fetchAll();   
 }
+
+function getStudent($studentId){
+    return dbQuery("
+        SELECT *
+        FROM students
+        WHERE Student_Id = $studentId;   
+        ")->fetch();  
+}
+
+function getStudentsNumber(){
+    return dbQuery("
+        SELECT COUNT(Student_Id) AS number 
+        FROM students
+        ")->fetch();
+}
+
+
+//Classes Table
+// --------------------------------------------------------------------------
 
 function getAllClasses(){
     return dbQuery("
@@ -25,20 +47,17 @@ function getAllClassesByStudent($studentId){
         ")->fetchAll();  
 }
 
-function getStudent($studentId){
+function getFutureClasses(){
     return dbQuery("
-        SELECT *
-        FROM students
-        WHERE Student_Id = $studentId;   
-        ")->fetch();  
+        SELECT Student_Id, Start_Date as Date
+        FROM classes
+        WHERE Start_Date > CURRENT_DATE
+        ORDER BY Student_Id, Start_Date
+    ")->fetchAll();   
 }
 
-function getStudentsNumber(){
-    return dbQuery("
-        SELECT COUNT(Student_Id) AS number 
-        FROM students
-        ")->fetch();
-}
+//Credits Table
+// --------------------------------------------------------------------------
 
 function getAllCredits(){
     return dbQuery("
@@ -47,15 +66,8 @@ function getAllCredits(){
         ")->fetchAll();
 }
 
-function getStudentsCredits(){
-    return dbQuery("
-        SELECT S.Student_Id, SUM(Amount) as Credits
-        FROM students S, credits C
-        WHERE S.Student_Id = C.Student_Id 
-        GROUP By S.Student_Id
-        ORDER BY Student_Id
-    ")->fetchAll();
-}
+//Students and Classes Table
+// --------------------------------------------------------------------------
 
 function getStudentsClasses(){
     return dbQuery("
@@ -63,6 +75,19 @@ function getStudentsClasses(){
         FROM classes C, students S
         WHERE S.Student_Id = C.Student_Id
         GROUP BY S.Student_Id
+        ORDER BY Student_Id
+    ")->fetchAll();
+}
+
+//Students and Credits Table
+// --------------------------------------------------------------------------
+
+function getStudentsCredits(){
+    return dbQuery("
+        SELECT S.Student_Id, SUM(Amount) as Credits
+        FROM students S, credits C
+        WHERE S.Student_Id = C.Student_Id 
+        GROUP By S.Student_Id
         ORDER BY Student_Id
     ")->fetchAll();
 }
@@ -76,3 +101,6 @@ function getStudentsClasses(){
 //         GROUP By students.Student_Id, First_Name, Last_Name, Email, Phone, ELO;
 //     ")->fetchAll();
 // }
+
+
+
