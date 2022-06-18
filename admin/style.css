@@ -66,7 +66,7 @@ ul li a {
 }
 
 /* Vertical Bar*/
-.flex-verticalContainer{
+.flex-container-verticalBar{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -90,7 +90,7 @@ h1 {
 /* List_students.php 
 --------------------------------------------------------------------------- */
 /* Search Bar Begins */
-.flex-searchBarContainer{
+.flex-container-searchBar{
     display: flex;
     flex-direction: column;
     justify-content: space-around;   
@@ -100,7 +100,7 @@ h2{
     padding: 31px 59px;
 }
 
-.flex-itemSearchBar{
+.flex-item-SearchBar{
     margin: -24px 56px;
 }
 
@@ -134,7 +134,6 @@ li{
     margin: 56px 38px;
 }
 
-
 #tableContainer td, #tableContainer th {
     text-align: left;  
     padding: 11px 28px;
@@ -144,12 +143,31 @@ li{
  
 /* student_profile.php 
 --------------------------------------------------------------------------- */
-.studentProfilePicturePosition{
-    padding: 22px 36px;
+/*Profile photo */
+.flex-container-pictureCredits{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
-.studentProfilePicture{
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
+.flex-item-profileInfo{
+    padding: 4%;
+}
+
+ol{
+    margin: 10px 174px;
+}
+
+ol li {      
+    font-size: 20px;                                                                                                                                                
+}
+
+.profilePicture {    
+    width: 140px;
+    height: 140px;
+    border-radius: 75px;
+}
+
+.picturePosition{
+    margin: -132px 0px;
 }

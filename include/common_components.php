@@ -12,7 +12,7 @@ function echoVerticalBar(){
     echo"
         <section class='wrapper'>
             <section>  
-                <div class='flex-verticalContainer'>  
+                <div class='flex-container-verticalBar'>  
                     <div class='flex-item-verticalBarPicture'>
                         <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
                         <h1 >Yuniesky Quesada</h1>
@@ -43,9 +43,9 @@ function echoHorizontalBar($heading, $subheading){
 
 function echoSearchBar($heading){
     echo"
-        <div class='flex-searchBarContainer'>
+        <div class='flex-container-searchBar'>
             <h2>$heading</h2>
-            <div class='flex-itemSearchBar'>
+            <div class='flex-item-SearchBar'>
                 <form action='' class='search-bar'>
                 <input type='text' placeholder='Search' name='searchBar'>
                 <button type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></button>
@@ -90,7 +90,10 @@ function echoTable($students, $allCredits, $allClasses, $days){
 }
     
 function echoFooter(){
-    echo"  <footer></footer>                            
+    echo"  
+                </section>
+                </section>  
+                <footer></footer>                            
            </body>    
         </html>
        ";
