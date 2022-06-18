@@ -2,6 +2,7 @@
 include('../include/initialize.php');  
 echoHeader('Students');
 $allStudents = getAllStudents(); 
+echoVerticalBar();
 echoHorizontalBar("My Students", "You have ".sizeof($allStudents)." students");
 echoSearchBar("Students' List");                                                                
 
@@ -22,7 +23,7 @@ else{
     echo"No students to show";                                                                   //This will be used properly later on(e.g. showing the correct message etc)
 }                                          
 
-echoVerticalBar();
+
 echoFooter();    
          
 

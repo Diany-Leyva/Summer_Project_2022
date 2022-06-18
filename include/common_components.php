@@ -8,22 +8,37 @@ function echoHeader($title){
             <body>";
 }
 
-function echoHorizontalBar($heading, $subheading){
- echo "     
-        <nav>
-            <header>$heading
-                <p> $subheading</p>
-            </header>
-            <div class='flex-item-horizontalMenu'>
-                <ul>                         
-                    <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
-                    <li><a href='#'>Students</a></li>
-                    <li><a href='#'>Calendar</a></li> 
-                    <li><a href='#'>Home</a></li>                        
-                </ul> 
-            </div>                
-        </nav>      
+function echoVerticalBar(){
+    echo"
+        <section class='wrapper'>
+            <section>  
+                <div class='flex-verticalContainer'>  
+                    <div class='flex-item-verticalBarPicture'>
+                        <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+                        <h1 >Yuniesky Quesada</h1>
+                    </div>            
+                </div>  
+        </section>      
     ";
+  }
+
+function echoHorizontalBar($heading, $subheading){
+ echo " 
+    <section>     
+            <nav>
+                <header>$heading
+                    <p> $subheading</p>
+                </header>
+                <div class='flex-item-horizontalMenu'>
+                    <ul>                         
+                        <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
+                        <li><a href='#'>Students</a></li>
+                        <li><a href='#'>Calendar</a></li> 
+                        <li><a href='#'>Home</a></li>                        
+                    </ul> 
+                </div>                
+            </nav>      
+";
 } 
 
 function echoSearchBar($heading){
@@ -41,52 +56,38 @@ function echoSearchBar($heading){
 }
 
 function echoTable($students, $allCredits, $allClasses, $days){
-    echo"   
-        <div class='flex-tableContainer'>    
-            <table id='tableContainer'>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>ELO</th>
-                    <th>Credits</th>
-                    <th>Booked</th>
-                    <th>Days to next Class</th>                   
-                </tr>
-         
-        ";         
-         
+    echo"
+        <table id='tableContainer'>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>ELO</th>
+                <th>Credits</th>
+                <th>Booked</th>
+                <th>Days to next Class</th>                   
+            </tr>
+";        
+
         $i = 0;
         foreach($students as $student){                                                  
         echo"
-            <tr>
-                <td>";passVariableThroughLink('student_profile.php', $student['Student_Id'], $student['First_Name']." ".$student['Last_Name']);echo"</td>
-                <td>".$student['Email']."</td>
-                <td>".$student['Phone']."</td>
-                <td>".$student['ELO']."</td>   
-                <td>".$allCredits[$i]['Credits']."</td>   
-                <td>".$allClasses[$i]['Classes']."</td> 
-                <td>".$days[$i]."</td>                                    
-            </tr> 
-            "; 
+        <tr>
+            <td>";passVariableThroughLink('student_profile.php', $student['Student_Id'], $student['First_Name']." ".$student['Last_Name']);echo"</td>
+            <td>".$student['Email']."</td>
+            <td>".$student['Phone']."</td>
+            <td>".$student['ELO']."</td>   
+            <td>".$allCredits[$i]['Credits']."</td>   
+            <td>".$allClasses[$i]['Classes']."</td> 
+            <td>".$days[$i]."</td>                                    
+        </tr> 
+"; 
         $i++;
         } 
-        
-        echo"</table>  
-        </div>          
-       ";
-}
 
-function echoVerticalBar(){
-    echo"
-        <div class='flex-verticalContainer'>  
-            <div class='flex-item-verticalBarPicture'>
-                <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                <h1 >Yuniesky Quesada</h1>
-            </div>            
-        </div>        
-    ";
-  }
+     echo"</table>
+";
+}
     
 function echoFooter(){
     echo"  <footer></footer>                            

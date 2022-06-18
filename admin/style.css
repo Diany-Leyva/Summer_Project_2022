@@ -12,28 +12,45 @@ body{
 background-color: #eee;                                                          
 }
 
-.flex-RightSideContainer{
-
+/* Grid layout */
+.wrapper{
+    display: grid;
+    grid-template-columns: 12% 88% ;
+    height: 100%;
 }
 
-/* Horizontal Bar begins */
+.wrapper > section{
+    background: #8f858566 ;    
+}
+
+.wrapper > section:nth-last-child(odd){
+    background: #d7d0d066 ;
+}      
+
+/* Horizontal Bar*/
 nav{   
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 1364px;
-    height: 137px;
-    background-color: #fff;     
-    margin: 0 155px; 
+    justify-content: space-between;   
+    background-color: #fff; 
 }
+
+header{
+    font-size: 30px;
+    padding: 63px 59px; 
+}
+
+header p{
+    font-size: 15px;
+ }
 
 .flex-item-horizontalMenu{
     padding-right: 10%;
 }
 
-ul li {                                                                            /*style the individual list inside the ul */                                                                                 
-    display: inline-block;                                                         /*Put them one next to each other*/
-    line-height: 150px;                                                            /*Not space between them*/
+ul li {                                                                                                                                                           
+    display: inline-block;                                                        
+    line-height: 150px;                                                            
 }
 
 ul li a {                                                               
@@ -48,31 +65,15 @@ ul li a {
     padding: 61px;
 }
 
-header{
-    font-size: 30px;
-    padding: 60px 75px;
-   
-}
-
-header p{
-    font-size: 15px;
- }
-
-/* Horizontal Bar ends */
-
-/* Vertical Bar Begins*/
+/* Vertical Bar*/
 .flex-verticalContainer{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #8b898966;
-    width: 155px;
-    height: 200%;
-    /* margin: -256px 0; */
 }
 
 .flex-item-verticalBarPicture{
-    padding: 30px 30px;
+    padding: 46px 47px;
 }
 
 .circlePicture {    
@@ -83,9 +84,8 @@ header p{
 
 h1 {
     font-size: 10px;
-    padding-top: 10%;
+    padding-top: 10;
 }
-/* Vertical Bar Ends*/
 
 /* List_students.php 
 --------------------------------------------------------------------------- */
@@ -93,12 +93,11 @@ h1 {
 .flex-searchBarContainer{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin: 0 155px;
+    justify-content: space-around;   
 }
 
 h2{
-    padding: 29px 79px;
+    padding: 31px 59px;
 }
 
 .flex-itemSearchBar{
@@ -116,8 +115,7 @@ input[type=text] {
 
 .search-bar{ 
     display: flex;
-    align-items: center;   
-    padding: 10px 20px;
+    align-items: center;    
 }
 
 .searchButton{
@@ -127,27 +125,22 @@ input[type=text] {
     cursor: pointer;
 }
 
-/* Search Bar Ends */
-
 /* Table Begins */
-
-.flex-tableContainer{
-    margin: 53px 237px;
-}
-
 li{
     list-style: none;    
 }
 
-/* #tableContainer{   
-    /* margin: 48px 210px; */
+#tableContainer{   
+    margin: 56px 38px;
+}
 
 
- #tableContainer td, #tableContainer th {
-    text-align: left;   
-    /* padding: 15px 22px; */
+#tableContainer td, #tableContainer th {
+    text-align: left;  
+    padding: 11px 28px;
+    /* padding: 1% 1%;   */
 }   
-/* Table Begins */
+
  
 /* student_profile.php 
 --------------------------------------------------------------------------- */
