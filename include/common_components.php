@@ -1,54 +1,49 @@
 <?php
-
-function echoHeader($title, $number){
- echo "<html>                                                                                                      
+function echoHeader($title){
+    echo "<html>                                                                                                      
             <head>              
-               <title>$title</title>  
-               <link href='style.css' rel='stylesheet'>                                                          
-            </head>
-            
-            <body>  
-                <nav>
-                    <ul>                         
-                        <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
-                        <li><a href='#'>Students</a></li>
-                        <li><a href='#'>Calendar</a></li> 
-                        <li><a href='#'>Home</a></li>                        
-                    </ul>
-                <header>My Students 
-                    <p class='sub-header'>You have $number students</p>                                             
-                </header>   
-            </nav>           
-       ";
-}  
-
-function echoSearchBar(){
-    echo"
-        <h2>Students' List</h2>
-
-        <div class='SearchBarContainter'>
-            <form action='' class='search-bar'>
-            <input type='text' placeholder='Search' name='searchBar'>
-            <button type='submit'><img src='/images/search.jpg' alt='search'></button>
-            </form>
-        </div>         
-        
-         ";    
+                <title>$title</title>  
+                <link href='style.css' rel='stylesheet'>                                                          
+            </head>            
+            <body>";
 }
 
-function echoVerticalBar(){
-  echo"
-        <div class='vertical'>  
-            <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-            <h1 class='profileHeading'>Yuniesky Quesada</h1>
-        </div> 
-  ";
+function echoHorizontalBar($heading, $subheading){
+ echo "     
+        <nav>
+            <header>$heading
+                <p> $subheading</p>
+            </header>
+            <div class='flex-item-horizontalMenu'>
+                <ul>                         
+                    <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
+                    <li><a href='#'>Students</a></li>
+                    <li><a href='#'>Calendar</a></li> 
+                    <li><a href='#'>Home</a></li>                        
+                </ul> 
+            </div>                
+        </nav>      
+    ";
+} 
+
+function echoSearchBar($heading){
+    echo"
+        <div class='flex-searchBarContainer'>
+            <h2>$heading</h2>
+            <div class='flex-itemSearchBar'>
+                <form action='' class='search-bar'>
+                <input type='text' placeholder='Search' name='searchBar'>
+                <button type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></button>
+                </form>
+            </div> 
+        </div>     
+";    
 }
 
 function echoTable($students, $allCredits, $allClasses, $days){
-    echo"
-        <div class='tableContainer'>
-            <table id='studentsTable'>
+    echo"   
+        <div class='flex-tableContainer'>    
+            <table id='tableContainer'>
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -57,7 +52,8 @@ function echoTable($students, $allCredits, $allClasses, $days){
                     <th>Credits</th>
                     <th>Booked</th>
                     <th>Days to next Class</th>                   
-                </tr>    
+                </tr>
+         
         ";         
          
         $i = 0;
@@ -76,9 +72,21 @@ function echoTable($students, $allCredits, $allClasses, $days){
         $i++;
         } 
         
-        echo"</table>            
-        </div>";
+        echo"</table>  
+        </div>          
+       ";
 }
+
+function echoVerticalBar(){
+    echo"
+        <div class='flex-verticalContainer'>  
+            <div class='flex-item-verticalBarPicture'>
+                <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+                <h1 >Yuniesky Quesada</h1>
+            </div>            
+        </div>        
+    ";
+  }
     
 function echoFooter(){
     echo"  <footer></footer>                            

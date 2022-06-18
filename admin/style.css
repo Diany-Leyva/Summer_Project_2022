@@ -1,93 +1,115 @@
-/* default for all items in the page*/
+/* Common to all pages 
+--------------------------------------------------------------------------- */
 * {
     margin: 0;
     padding: 0;
-    text-decoration: none;                                                          /*Take out the underline of all the links*/
+    text-decoration: none;                                                          
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgba(0, 0, 0, 0.771);
 }
 
-/*Style the body of the website*/
 body{
 background-color: #eee;                                                          
 }
 
-/*Style the menu in the header*/
-nav{                                                                               
-    width: 87.8%;
+.flex-RightSideContainer{
+
+}
+
+/* Horizontal Bar begins */
+nav{   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1364px;
     height: 137px;
-    background-color: #fff; 
-    margin: 0 185px;       
+    background-color: #fff;     
+    margin: 0 155px; 
 }
 
-.vertical{
-    height: 200%;
-    border-left: 185px solid #8b898966;
-    margin: -691px 0;
+.flex-item-horizontalMenu{
+    padding-right: 10%;
 }
 
+ul li {                                                                            /*style the individual list inside the ul */                                                                                 
+    display: inline-block;                                                         /*Put them one next to each other*/
+    line-height: 150px;                                                            /*Not space between them*/
+}
+
+ul li a {                                                               
+    font-size: 25px;
+    padding: 0 55px;    
+}
+                                                 
 .notificationIcon{
     width: 25px;
     height: 25px;
     float: right;
-    margin: 59px -86px;
+    padding: 61px;
 }
 
 header{
     font-size: 30px;
-    padding: 58px 63px;
+    padding: 60px 75px;
+   
 }
 
-.sub-header{
+header p{
     font-size: 15px;
-    padding-top: 8px;
+ }
+
+/* Horizontal Bar ends */
+
+/* Vertical Bar Begins*/
+.flex-verticalContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #8b898966;
+    width: 155px;
+    height: 200%;
+    /* margin: -256px 0; */
 }
 
-.circlePicture{
-    margin: 71px -137px;
+.flex-item-verticalBarPicture{
+    padding: 30px 30px;
+}
+
+.circlePicture {    
     width: 75px;
     height: 75px;
     border-radius: 75px;
 }
 
-.profileHeading{
-    float: left;
+h1 {
     font-size: 10px;
-    margin: -54px -137px;
+    padding-top: 10%;
 }
+/* Vertical Bar Ends*/
 
-ul {
-    margin: 0 145px;
-} 
-
-/*style the individual list inside the ul */
-ul li {
-    list-style: none;                                                              /*Take out the dots*/
-    display: inline-block;                                                         /*Put them one next to each other*/
-    float: right; 
-    line-height: 150px;                                                           /*Not space between them*/
-}
-
-ul li a {
-    display: block;                                                                /*To be able to click it around and not onli in the letters*/
-    font-size: 25px;
-    padding: 0 60px;    
+/* List_students.php 
+--------------------------------------------------------------------------- */
+/* Search Bar Begins */
+.flex-searchBarContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 155px;
 }
 
 h2{
-    margin: 30px 252px;
+    padding: 29px 79px;
 }
 
-.SearchBarContainter{
-    display: flex;
-    margin: -31px 229px;
+.flex-itemSearchBar{
+    margin: -24px 56px;
 }
 
 input[type=text] { 
     font-size: 20px;
     width: 554px;
-    padding: 25px;
-    height: 20px;
+    padding: 21px;
+    height: 0px;
     border-radius: 262px;
     border: 1px solid #CCC;
 }
@@ -98,32 +120,43 @@ input[type=text] {
     padding: 10px 20px;
 }
 
-.search-bar button img{
+.searchButton{
     width: 56px;
     border: 0;
     border-radius: 50%; 
     cursor: pointer;
 }
 
+/* Search Bar Ends */
+
+/* Table Begins */
+
+.flex-tableContainer{
+    margin: 53px 237px;
+}
+
 li{
     list-style: none;    
 }
 
-.tableContainer{
-    display: flex;
-    justify-content: center;
-    margin: 35px 0px;
-}
+/* #tableContainer{   
+    /* margin: 48px 210px; */
 
-#studentsTable{      
-    border-collapse:separate;
-    width: 65%;
-}
 
- #studentsTable td, #studentsTable th {
+ #tableContainer td, #tableContainer th {
     text-align: left;   
-    padding: 15px 22px;
-  } 
-  
-  
+    /* padding: 15px 22px; */
+}   
+/* Table Begins */
  
+/* student_profile.php 
+--------------------------------------------------------------------------- */
+.studentProfilePicturePosition{
+    padding: 22px 36px;
+}
+
+.studentProfilePicture{
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+}
