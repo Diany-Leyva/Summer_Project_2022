@@ -57,7 +57,8 @@ function echoFooter(){
 
 function echoSearchBar($heading){
     echo"
-        <div class='flex-container-searchBar'>
+    <div class='flex-container-searchBarButtons'>
+        <div>
             <h2>$heading</h2>
             <div class='flex-item-SearchBar'>
                 <form action='' class='search-bar'>
@@ -69,8 +70,18 @@ function echoSearchBar($heading){
 ";    
 }
 
+function addButtons($heading){
+    echo"
+        <div class='flex-item-buttons'>              
+            <button type='button'>$heading</button>
+        </div>
+    </div>    
+";    
+}
+
 function echoStudentTable($students, $credits, $classes, $days){
     echo"
+    <div class='studentTable'>
         <table id='tableContainer'>
             <tr>
                 <th>Name</th>
@@ -107,6 +118,7 @@ function echoStudentTable($students, $credits, $classes, $days){
 } 
 
 echo"</table>
+</div>
 ";
 }  
 

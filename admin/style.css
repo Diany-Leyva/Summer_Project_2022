@@ -91,11 +91,6 @@ h1 {
 /* List_students.php 
 --------------------------------------------------------------------------- */
 /* Search Bar*/
-.flex-container-searchBar{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;   
-}
 
 h2{
     padding: 31px 59px;
@@ -126,7 +121,20 @@ input[type=text] {
     cursor: pointer;
 }
 
+/*Buttons session */
+
+.flex-container-searchBarButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 /* Students Table*/
+
+.studentTable{
+    margin-top: -70px;
+}
+
 li{
     list-style: none;    
 }

@@ -5,7 +5,8 @@ echoVerticalBar();
 
 $allStudents = getAllStudents(); 
 echoHorizontalBar("My Students", "You have ".sizeof($allStudents)." students");
-echoSearchBar("Students' List");                                                                
+echoSearchBar("Students' List"); 
+addButtons('Add Student');                                                           
 
 if(!isEmpty($allStudents)){ 
 
