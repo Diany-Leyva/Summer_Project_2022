@@ -90,7 +90,7 @@ h1 {
 
 /* List_students.php 
 --------------------------------------------------------------------------- */
-/* Search Bar Begins */
+/* Search Bar*/
 .flex-container-searchBar{
     display: flex;
     flex-direction: column;
@@ -126,7 +126,7 @@ input[type=text] {
     cursor: pointer;
 }
 
-/* Table Begins */
+/* Students Table*/
 li{
     list-style: none;    
 }
@@ -236,7 +236,7 @@ ol li {
     justify-content: flex-end;
     flex-wrap: wrap;
     width: 20%;
-    margin: -711px 956px;
+    margin: -723px 956px;
     background: #d7d0d066;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -249,7 +249,12 @@ ol li {
 
 .totalSectionHeader{
     font-size: 25PX;
-    /* margin-right: -171px; */
-    /* margin-top: -43px; */
+    margin-right: -92px;
+    margin-top: -44px;
+}
+
+#totalNumber{
+    font-size: 30px;
+    padding: 40% 40%;
 }
 

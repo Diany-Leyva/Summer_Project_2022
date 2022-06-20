@@ -1,4 +1,6 @@
 <?php
+
+// Common to all files
 function echoHeader($title){
     echo "<html>                                                                                                      
             <head>              
@@ -41,6 +43,18 @@ function echoHorizontalBar($heading, $subheading){
 ";
 } 
 
+function echoFooter(){
+    echo"  
+                    </section>
+                </section>  
+                <footer></footer>                            
+           </body>    
+        </html>
+       ";
+}
+
+// list_students.php file
+
 function echoSearchBar($heading){
     echo"
         <div class='flex-container-searchBar'>
@@ -55,7 +69,7 @@ function echoSearchBar($heading){
 ";    
 }
 
-function echoTable($students, $allCredits, $allClasses, $days){
+function echoTable($students, $credits, $classes, $days){
     echo"
         <table id='tableContainer'>
             <tr>
@@ -77,8 +91,8 @@ function echoTable($students, $allCredits, $allClasses, $days){
             <td>".$student['Email']."</td>
             <td>".$student['Phone']."</td>
             <td>".$student['ELO']."</td>   
-            <td>".$allCredits[$i]['Credits']."</td>   
-            <td>".$allClasses[$i]['Classes']."</td> 
+            <td>".$credits[$i]['Remaining_Credits']."</td>   
+            <td>".$classes[$i]['Classes_Pending']."</td> 
             <td>".$days[$i]."</td>                                    
         </tr> 
 "; 
@@ -87,17 +101,83 @@ function echoTable($students, $allCredits, $allClasses, $days){
 
      echo"</table>
 ";
+}  
+
+// student_profile.php file
+
+function echoProfileInfo($student, $picture){
+    echo"
+        <div class='flex-container-pictureCredits'>
+            <div class='flex-item-profileInfo'>
+                <ol>
+                    <li>".$student['First_Name']." ".$student['Last_Name']."</li>
+                    <li>".$student['Email']."</li>
+                    <li>".$student['Phone']."</li>    
+                    <li>ELO ".$student['ELO']."</li>
+                    <li>".$student['Lichess_Link']."</li>
+                </ol>
+                <div class='picturePosition'>
+                    <a href='#'> <img class = 'profilePicture' src= '/images/$picture.png' alt='$picture'></a>
+                </div> 
+            </div>  
+";
 }
-    
-function echoFooter(){
-    echo"  
-                </section>
-                </section>  
-                <footer></footer>                            
-           </body>    
-        </html>
-       ";
-    }
+
+
+function echoFormButtons($credits){
+    echo"
+            <div class='flex-item-buttons'>
+                <p>$credits credits</p>
+                <button type='button'>Book Class</button>
+                <button type='button'>Add Credits</button>
+            </div>
+        </div>   
+";
+}
+
+function echoClassesInfo(){
+    echo"
+        <div class='flex-container-classesInfo'>
+            <div class='flex-item-classesInfo'>
+                <p class='classBlock'>Classes Booked</p>
+            </div>
+
+            <div class='flex-item-classesInfo'>
+                <p class='classBlock'>Classes Booked</p>
+            </div>
+
+            <div class='flex-item-classesInfo'>
+                <p class='classBlock'>Classes Booked</p>
+            </div>
+
+            <div class='flex-item-classesInfo'>
+                <p class='classBlock'>Classes Booked</p>
+            </div>                        
+        </div>
+";
+}
+
+function echoTotalClassesSection(){
+    echo"
+        <div class='flex-container-totalClassesSection'>
+            <div class='flex-item-total'>
+                <p class='totalSectionHeader'>Month</p>         
+                <div class='profilePicture'>
+                    <p id='totalNumber'>10</p>
+                </div>
+            </div>
+        
+            <div class='flex-item-total'>
+                <p class='totalSectionHeader'>Year</p>  
+                <div class='profilePicture'>
+                    <p id='totalNumber'>10</p>
+                </div>
+            </div>
+        </div>
+";
+}
+
+// Used by most files 
 
 function passVariableThroughLink($filename, $id, $linkName){
     echo "<a href='$filename?id=$id'> $linkName </a>";

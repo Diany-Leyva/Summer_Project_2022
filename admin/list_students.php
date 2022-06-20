@@ -1,27 +1,25 @@
 <?php
 include('../include/initialize.php');  
 echoHeader('Students');
-$allStudents = getAllStudents(); 
 echoVerticalBar();
+
+$allStudents = getAllStudents(); 
 echoHorizontalBar("My Students", "You have ".sizeof($allStudents)." students");
 echoSearchBar("Students' List");                                                                
 
-if(!isEmpty($allStudents)){     
-    $studentWithCredits = getStudentsCredits();                                                 //gets the students and the credits total
-    $studentWithClasses = getStudentsClasses(); 
-    $futureClasses= unique_multidim_array(getFutureClasses(), 'Student_Id');                    //Remove any duplicate from the array based on the studentId, since the date 
-                                                                                                //was sorted in the query, this will keep the date of the nearest class
-    $credits = calculateStudentInfo($studentWithCredits, sizeof($allStudents), 'Credits', 0);   
-    $classes = calculateStudentInfo($studentWithClasses, sizeof($allStudents), 'Classes', 0);  
-    $dates = calculateStudentInfo($futureClasses, sizeof($allStudents), 'Date', currentDate());     
-    $days = calculateDaysToNextClass($dates);
+if(!isEmpty($allStudents)){ 
 
-    echoTable($allStudents, $credits, $classes, $days);       
+    $remainingCredits = [];                                                                       //These arrays will be passed by reference to be updated
+    $classesBookedAmount = [];
+    $days = [];
+    
+    calculateStudentTable($allStudents, $remainingCredits, $classesBookedAmount, $days);         
+    echoTable($allStudents, $remainingCredits, $classesBookedAmount, $days);       
 }                                                        
                
 else{
     echo"No students to show";                                                                   //This will be used properly later on(e.g. showing the correct message etc)
-}                                          
+}                                        
 
 
 echoFooter();    

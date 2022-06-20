@@ -56,6 +56,38 @@ function getFutureClasses(){
     ")->fetchAll();   
 }
 
+function getFutureClassesbyStudent($studentId){
+    return dbQuery("
+        SELECT Student_Id, Start_Date as Date
+        FROM classes
+        WHERE Start_Date > CURRENT_DATE
+        AND Student_Id = $studentId
+        ORDER BY Student_Id, Start_Date
+    ")->fetch();
+    
+   
+}
+
+function getClassesAmount(){
+    return dbQuery("
+    SELECT Student_Id, COUNT(Student_Id) as Classes_Amount
+    FROM classes   
+    GROUP BY Student_Id 
+    ORDER BY Student_Id   
+")->fetchAll();
+}
+
+function getFutureClassesAmount(){
+    return dbQuery("
+    SELECT Student_Id, COUNT(Student_Id) as Classes_Pending
+    FROM classes 
+    WHERE Start_Date > CURRENT_DATE        
+    GROUP BY Student_Id 
+    ORDER BY Student_Id   
+")->fetchAll();
+
+}
+
 //Credits Table
 // --------------------------------------------------------------------------
 
@@ -66,12 +98,44 @@ function getAllCredits(){
         ")->fetchAll();
 }
 
+function getCreditsAmount(){
+    return dbQuery("
+        SELECT Student_Id, SUM(Amount) as Credits_Amount
+        FROM credits 
+        GROUP By Student_Id
+        ORDER BY Student_Id
+    ")->fetchAll();
+}
+
+
+function getAllRemainingCredits(){
+    return dbQuery("
+       
+    
+
+
+
+
+    ")->fetchAll();
+}
+
+function getRemainingCreditsbyStudent(){
+    return dbQuery("
+               
+            
+        
+        
+        
+        
+            
+    ")->fetchAll();
+}
+
 //Students and Classes Table
 // --------------------------------------------------------------------------
-
-function getStudentsClasses(){
+function getAllStudentsWithClasses(){
     return dbQuery("
-        SELECT S.Student_Id, COUNT(C.Student_Id) as Classes
+        SELECT S.Student_Id, First_Name, Last_Name, COUNT(C.Student_Id) as Classes
         FROM classes C, students S
         WHERE S.Student_Id = C.Student_Id
         GROUP BY S.Student_Id
@@ -84,7 +148,7 @@ function getStudentsClasses(){
 
 function getStudentsCredits(){
     return dbQuery("
-        SELECT S.Student_Id, SUM(Amount) as Credits
+        SELECT S.Student_Id, First_Name, Last_Name, SUM(Amount) as Credits
         FROM students S, credits C
         WHERE S.Student_Id = C.Student_Id 
         GROUP By S.Student_Id
