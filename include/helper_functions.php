@@ -27,20 +27,21 @@ function formatDate($date, $format) {
 
 // --------------------------------------------------------------------------
 
-function calculateStudentTable($allStudents, &$remainingCredits, &$classesBookedAmount, &$days){
+function calculateStudentTable($allStudents, &$remainingCredits, &$classesBookedAmount, &$daysToNextCLass){
     
     $allCredits = updateStudentInfo(getCreditsAmount(), sizeof($allStudents), 'Credits_Amount', '0');  //gets the credit total of each student with credits
     $allClasses = updateStudentInfo(getClassesAmount(), sizeof($allStudents), 'Classes_Amount', '0');  //and fill out with 0 those with not credits (dame with classes)
     
     $remainingCredits = [];  
-    $remainingCredits = calcRemainingCredits($allStudents, $allCredits, $allClasses);
-
+    $remainingCredits = calcAllRemainingCredits($allStudents, $allCredits, $allClasses);
+ 
     $classesBookedAmount = updateStudentInfo(getFutureClassesAmount(), sizeof($allStudents), 'Classes_Pending', '0');   //Get total classes pending per student and fills out those with no classes pending
-                                           
     $nextClasses= removeDuplicateMultiDArray(getFutureClasses(), 'Student_Id');                              //gets the classes pending to be taught and remove any duplicate                          
-                                                                                                        //this will keep only the date of the nearest class
+                                                                                                            //this will keep only the date of the nearest class
     $nextClasses = updateStudentInfo($nextClasses, sizeof($allStudents), 'Date', formatDate(currentDate(), 'Y-m-d H:i:s'));  //Fill out with current date those with not pending classes 
-    $days = calculateDaysToNextClass($nextClasses);                                                      
+    
+    $daysToNextCLass = calculateDaysToNextClass($nextClasses);  
+    
 }
 
 // --------------------------------------------------------------------------
@@ -94,17 +95,19 @@ function calculateDaysToNextClass($dates){
     $i = 0;
 
     foreach($dates as $date){        
-        $classDate = new DATETIME($date['Date']);
+        $classDate = new DATETIME($date['Date']);      
         $days[$i] = getDayDifference($classDate, $today);
         $i++;       
     }
 
+   
     return $days;
+    
 }
 
 // --------------------------------------------------------------------------
 
-function calcRemainingCredits($allStudents, $allCredits, $allClasses){         
+function calcAllRemainingCredits($allStudents, $allCredits, $allClasses){         
 
     $remainingCredits = [];
 
@@ -130,6 +133,16 @@ function calcRemainingCredits($allStudents, $allCredits, $allClasses){
 
 // --------------------------------------------------------------------------
 
+function calcStudentRemainingCredits($studentId){
+    $remainingCredits = [];    
+
+    $remainingCredits = getStudentCreditAmount($studentId)['Credits_Amount'] - getStudentClassesAmount($studentId)['Classes_Amount'];
+
+    return $remainingCredits;
+}
+
+// --------------------------------------------------------------------------
+
 function currentDate(){
     date_default_timezone_set("America/Chicago");
     return date("Y/m/d h:i:s");
@@ -137,8 +150,30 @@ function currentDate(){
 
 // --------------------------------------------------------------------------
 
-function getDayDifference($futureDate, $today){
-    return $futureDate->diff($today)->format('%d');
+function getDayDifference($futureDate, $today){ 
+    $difference = $futureDate->diff($today);
+    $date = [];
+    $date['Months'] = $difference->format('%m');
+    $date['Days'] = $difference->format('%d');    
+    return $date;
 }
+
+// --------------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------------
+
+
+
+// --------------------------------------------------------------------------
+
+
+
 
 // --------------------------------------------------------------------------

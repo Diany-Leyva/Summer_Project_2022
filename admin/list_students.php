@@ -11,10 +11,10 @@ if(!isEmpty($allStudents)){
 
     $remainingCredits = [];                                                                       //These arrays will be passed by reference to be updated
     $classesBookedAmount = [];
-    $days = [];
+    $daysToNextCLass = [];
     
-    calculateStudentTable($allStudents, $remainingCredits, $classesBookedAmount, $days);         
-    echoTable($allStudents, $remainingCredits, $classesBookedAmount, $days);       
+    calculateStudentTable($allStudents, $remainingCredits, $classesBookedAmount, $daysToNextCLass);         
+    echoStudentTable($allStudents, $remainingCredits, $classesBookedAmount, $daysToNextCLass);       
 }                                                        
                
 else{

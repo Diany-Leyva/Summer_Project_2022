@@ -191,15 +191,27 @@ ol li {
 }
 .flex-item-classesInfo{
     display: flex;
-    justify-content: center; 
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
     height: 271px;
     width: 335px;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
+.flex-item-classesInfo div{
+    margin-top: 52px;
+    margin-left: 36px;
+}
+
+.flex-item-classesInfo li{
+    padding: 9px;
+}
+
 .classBlock{
-    margin-top: -44px;
+    margin-left: 76px;
+    margin-top: -55px;
     font-size: 25px;
 }
 

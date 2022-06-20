@@ -69,7 +69,7 @@ function echoSearchBar($heading){
 ";    
 }
 
-function echoTable($students, $credits, $classes, $days){
+function echoStudentTable($students, $credits, $classes, $days){
     echo"
         <table id='tableContainer'>
             <tr>
@@ -78,8 +78,8 @@ function echoTable($students, $credits, $classes, $days){
                 <th>Phone</th>
                 <th>ELO</th>
                 <th>Credits</th>
-                <th>Booked</th>
-                <th>Days to next Class</th>                   
+                <th>Classes</th>
+                <th>Next Class in</th>                   
             </tr>
 ";        
 
@@ -92,14 +92,21 @@ function echoTable($students, $credits, $classes, $days){
             <td>".$student['Phone']."</td>
             <td>".$student['ELO']."</td>   
             <td>".$credits[$i]['Remaining_Credits']."</td>   
-            <td>".$classes[$i]['Classes_Pending']."</td> 
-            <td>".$days[$i]."</td>                                    
+            <td>".$classes[$i]['Classes_Pending']."</td>";
+            
+            $daysToNextCLass = $days[$i]['Days']." days";
+            
+            if($days[$i]['Months'] != 0){
+                $daysToNextCLass = $days[$i]['Months']." months and ".$days[$i]['Days']. " days";
+            }
+        echo"
+            <td>$daysToNextCLass</td>                                    
         </tr> 
 "; 
         $i++;
-        } 
+} 
 
-     echo"</table>
+echo"</table>
 ";
 }  
 
@@ -135,42 +142,58 @@ function echoFormButtons($credits){
 ";
 }
 
-function echoClassesInfo(){
-    echo"
-        <div class='flex-container-classesInfo'>
+function echoClassesInfo($classes, $heading){
+    echo"    
             <div class='flex-item-classesInfo'>
-                <p class='classBlock'>Classes Booked</p>
-            </div>
+                <p class='classBlock'>$heading</p>
+                <div>";
+    
+    if(!isEmpty($classes)){
+        foreach($classes as $class){                                             //Eventually a link will be clicked toshow the class info with link etc
+            echo"  
+            <li>".$class['Type']."  ".formatDate($class['Start_Date'], 'D  M  dS  H:i A')."</li>                       
+            ";        
+        }    
+    }
+    
+    else{
+        echo"    
+            <li> No classes</li>                     
+        ";
+    }
 
-            <div class='flex-item-classesInfo'>
-                <p class='classBlock'>Classes Booked</p>
-            </div>
-
-            <div class='flex-item-classesInfo'>
-                <p class='classBlock'>Classes Booked</p>
-            </div>
-
-            <div class='flex-item-classesInfo'>
-                <p class='classBlock'>Classes Booked</p>
-            </div>                        
-        </div>
-";
+    echo"   </div>
+        </div>";
 }
 
-function echoTotalClassesSection(){
+function echoNotes($notes, $heading){
+    $message;
+
+    echo" <div class='flex-item-classesInfo'>
+            <p class='classBlock'>$heading</p>
+            <div>";
+    
+    (!isEmpty($notes))? $message = $notes : $message = 'No notes';  
+    
+    echo"<p>$message</p>                       
+              </div>
+        </div>";
+}
+
+function echoTotalClassesSection($monthNumber, $yearNumber){
     echo"
         <div class='flex-container-totalClassesSection'>
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Month</p>         
                 <div class='profilePicture'>
-                    <p id='totalNumber'>10</p>
+                    <p id='totalNumber'>$monthNumber</p>
                 </div>
             </div>
         
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Year</p>  
                 <div class='profilePicture'>
-                    <p id='totalNumber'>10</p>
+                    <p id='totalNumber'>$yearNumber</p>
                 </div>
             </div>
         </div>

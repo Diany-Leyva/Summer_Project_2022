@@ -58,15 +58,24 @@ function getFutureClasses(){
 
 function getFutureClassesbyStudent($studentId){
     return dbQuery("
-        SELECT Student_Id, Start_Date as Date
+        SELECT *
         FROM classes
         WHERE Start_Date > CURRENT_DATE
         AND Student_Id = $studentId
         ORDER BY Student_Id, Start_Date
-    ")->fetch();
-    
-   
+    ")->fetchAll();    
 }
+
+function getStudentPastClasses($studentId){
+    return dbQuery("
+        SELECT *
+        FROM classes
+        WHERE Start_Date < CURRENT_DATE
+        AND Student_Id = $studentId
+        ORDER BY Student_Id, Start_Date
+    ")->fetchAll();   
+}
+
 
 function getClassesAmount(){
     return dbQuery("
@@ -77,6 +86,15 @@ function getClassesAmount(){
 ")->fetchAll();
 }
 
+function getStudentClassesAmount($studentId){
+    return dbQuery("
+        SELECT Student_Id, COUNT(Student_Id) as Classes_Amount
+        FROM classes 
+        WHERE Student_Id =  $studentId
+        ORDER BY Student_Id   
+")->fetch();
+}
+
 function getFutureClassesAmount(){
     return dbQuery("
     SELECT Student_Id, COUNT(Student_Id) as Classes_Pending
@@ -85,8 +103,29 @@ function getFutureClassesAmount(){
     GROUP BY Student_Id 
     ORDER BY Student_Id   
 ")->fetchAll();
-
 }
+
+function getStudentClassesAmountThisMonth($studentId){
+    return dbQuery("
+        SELECT Student_Id, COUNT(Student_Id) Amount
+        FROM classes
+        WHERE Student_Id = $studentId
+        AND MONTH(Start_date) = MONTH(CURRENT_DATE)
+        AND YEAR(Start_date) = YEAR(CURRENT_DATE)
+        GROUP BY Student_Id    
+    ")->fetch();
+}
+
+function getStudentClassesAmountThisYear($studentId){
+    return dbQuery("
+        SELECT Student_Id, COUNT(Student_Id) as Amount
+        FROM classes
+        WHERE Student_Id = $studentId        
+        AND YEAR(Start_date) = YEAR(CURRENT_DATE)
+        GROUP BY Student_Id    
+    ")->fetch();
+}
+
 
 //Credits Table
 // --------------------------------------------------------------------------
@@ -107,28 +146,14 @@ function getCreditsAmount(){
     ")->fetchAll();
 }
 
-
-function getAllRemainingCredits(){
+function getStudentCreditAmount($student_Id){
     return dbQuery("
-       
-    
-
-
-
-
-    ")->fetchAll();
-}
-
-function getRemainingCreditsbyStudent(){
-    return dbQuery("
-               
-            
-        
-        
-        
-        
-            
-    ")->fetchAll();
+        SELECT Student_Id, SUM(Amount) as Credits_Amount
+        FROM credits 
+        WHERE Student_Id = $student_Id
+        GROUP By Student_Id
+        ORDER BY Student_Id       
+    ")->fetch();
 }
 
 //Students and Classes Table
