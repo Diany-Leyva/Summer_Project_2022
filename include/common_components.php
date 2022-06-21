@@ -63,7 +63,7 @@ function echoSearchBar($heading){
             <div class='flex-item-SearchBar'>
                 <form action='' class='search-bar'>
                 <input type='text' placeholder='Search' name='searchBar'>
-                <button type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></button>
+                <button class='searchB' type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></button>
                 </form>
             </div> 
         </div>     
@@ -73,7 +73,7 @@ function echoSearchBar($heading){
 function addButtons($heading){
     echo"
         <div class='flex-item-buttons'>              
-            <button type='button'>$heading</button>
+            <button onclick= document.getElementById('id01').style.display='block' style='width:fit-content;'>$heading</button>
         </div>
     </div>    
 ";    
@@ -209,6 +209,57 @@ function echoTotalClassesSection($monthNumber, $yearNumber){
                 </div>
             </div>
         </div>
+";
+}
+
+// Forms
+
+function createNewStudentForm(){
+    echo"         
+    <div id='id01' class='modal'>
+        
+        <form class='modal-content animate' action='' method='post'>
+          <div class='imgcontainer'>
+            <span onclick= document.getElementById('id01').style.display='none' class='close' title='Close Modal'>&times;</span>
+            <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
+          </div>
+      
+          <div class='container'>
+            <label for='ufname'><b>First Name</b></label>
+            <input type='text' placeholder='First Name' name='ufname' required>
+    
+            <label for='ulname'><b>Last Name</b></label>
+            <input type='text' placeholder='Last Name' name='ulname' required>
+      
+            
+            <label for='uemail'><b>Email</b></label>
+            <input type='text' placeholder='Email' name='uemail' required>
+    
+            <label for='uphone'><b>Phone</b></label>
+            <input type='text' placeholder='Phone' name='uphone' required>
+    
+            <label for='urating'><b>ELO Rating</b></label>
+            <input type='text' placeholder='ELO' name='urating' required>       
+          </div>
+      
+          <div class='container' style='background-color:#f1f1f1'>
+              <button type='submit'>Add</button>
+            <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
+           </div>
+        </form>
+      </div>
+    
+      <script>
+      // Get the modal
+      var modal = document.getElementById('id01');
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = 'none';
+          }
+      }
+      </script>   
 ";
 }
 
