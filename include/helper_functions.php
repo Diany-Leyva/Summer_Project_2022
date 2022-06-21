@@ -134,10 +134,11 @@ function calcAllRemainingCredits($allStudents, $allCredits, $allClasses){
 // --------------------------------------------------------------------------
 
 function calcStudentRemainingCredits($studentId){
-    $remainingCredits = [];    
-
-    $remainingCredits = getStudentCreditAmount($studentId)['Credits_Amount'] - getStudentClassesAmount($studentId)['Classes_Amount'];
-
+    $remainingCredits = [];  
+    $remainingCredits = getStudentCreditAmount($studentId);
+  
+    (!$remainingCredits)? $remainingCredits = '0': $remainingCredits = getStudentCreditAmount($studentId)['Credits_Amount'] - getStudentClassesAmount($studentId)['Classes_Amount'];
+    
     return $remainingCredits;
 }
 

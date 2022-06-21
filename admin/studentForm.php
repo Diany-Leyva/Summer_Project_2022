@@ -6,5 +6,6 @@ echoHeader('Add Student');
 createNewStudentForm();
 
 
+
 echoFooter();    
          

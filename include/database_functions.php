@@ -192,4 +192,11 @@ function getStudentsCredits(){
 // }
 
 
+// Update 
 
+function updatestudents_TableDB(){
+    dbQuery("
+    INSERT INTO students(First_Name, Last_Name, Email, Phone, ELO)
+    VALUES ('$_REQUEST[ufname]', '$_REQUEST[ulname]', '$_REQUEST[uemail]', '$_REQUEST[uphone]', '$_REQUEST[urating]')
+");
+}

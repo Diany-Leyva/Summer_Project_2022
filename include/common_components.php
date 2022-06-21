@@ -143,8 +143,8 @@ function echoProfileInfo($student, $picture){
 }
 
 
-function echoFormButtons($credits){
-    echo"
+function echoFormButtons($credits){  
+   echo"
             <div class='flex-item-buttons'>
                 <p>$credits credits</p>
                 <button type='button'>Book Class</button>
@@ -230,8 +230,7 @@ function createNewStudentForm(){
     
             <label for='ulname'><b>Last Name</b></label>
             <input type='text' placeholder='Last Name' name='ulname' required>
-      
-            
+                  
             <label for='uemail'><b>Email</b></label>
             <input type='text' placeholder='Email' name='uemail' required>
     
@@ -243,7 +242,7 @@ function createNewStudentForm(){
           </div>
       
           <div class='container' style='background-color:#f1f1f1'>
-              <button type='submit'>Add</button>
+              <button type='submit' name='AddStudentSubmitted'>Add</button>
             <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
            </div>
         </form>
