@@ -147,8 +147,10 @@ function echoFormButtons($credits){
    echo"
             <div class='flex-item-buttons'>
                 <p>$credits credits</p>
-                <button type='button'>Book Class</button>
-                <button type='button'>Add Credits</button>
+                <div class='item-buttons'>
+                    <button onclick='openClassForm()'>Book Class</button>
+                    <button onclick='openCreditForm()'>Add Credit</button>
+                </div>
             </div>
         </div>   
 ";
@@ -243,24 +245,101 @@ function createNewStudentForm(){
       
           <div class='container' style='background-color:#f1f1f1'>
               <button type='submit' name='AddStudentSubmitted'>Add</button>
-            <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
-           </div>
+                <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
+          </div>
         </form>
       </div>
     
       <script>
-      // Get the modal
-      var modal = document.getElementById('id01');
-      
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-          if (event.target == modal) {
-              modal.style.display = 'none';
-          }
-      }
+        // Get the modal
+        var modal = document.getElementById('id01');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
       </script>   
 ";
 }
+
+function createAddCreditsForm(){
+    echo"          
+        <div class='form-popup' id='addCreditsForm'>
+            <form action='' class='form-container'>                
+                <button type='submit' class='btn' name='AddCredditsSubmitted'>Add</button>
+                <button type='button' class='btn cancel' onclick='closeCreditForm()'>Close</button>         
+                <label for='camount'><b>Credits Amount</b></label>
+                <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required> 
+                <label for='id'><b></b></label>
+                <input type='hidden' name='id' value=$_REQUEST[id]>        
+            </form>
+        </div>
+        
+        <script>
+            function openCreditForm() {
+                document.getElementById('addCreditsForm').style.display = 'block';
+            }
+            
+            function closeCreditForm() {
+                document.getElementById('addCreditsForm').style.display = 'none';
+            }
+        </script>      
+    ";
+}
+
+function createAddClassForm(){
+    echo"          
+        <div class='form-popup' id='addClassForm'>
+            <form action='' class='form-container'>
+                <button type='button' class='btn cancel' onclick='closeClassForm()'>Close</button>
+                <button type='submit' class='btn' name='AddClassesSubmitted'>Book</button>
+                <label for='ctype'>Class Type</label>
+                <select id='dropdown' name='ctype'>
+                <option value='Online'>Online</option>
+                <option value='In Person'>In Person</option>                  
+                </select>      
+                <label for='classDate'>Class Date</label>
+                <input type='date'name='classDate'>
+                <label for='czoomLink'><b>Zoom Link</b></label>
+                <input type='text' placeholder='Link' name='czoomLink' required> 
+                <label for='id'><b></b></label>
+                <input type='hidden' name='id' value=$_REQUEST[id]>        
+            </form>   
+        </div>
+        
+        <script>
+            function openClassForm() {
+                document.getElementById('addClassForm').style.display = 'block';
+            }
+            
+            function closeClassForm() {
+                document.getElementById('addClassForm').style.display = 'none';
+            }
+        </script>      
+    ";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Used by most files 
 

@@ -192,7 +192,7 @@ function getStudentsCredits(){
 // }
 
 
-// Update 
+// Updates 
 
 function updatestudents_TableDB(){
     dbQuery("
@@ -200,3 +200,26 @@ function updatestudents_TableDB(){
     VALUES ('$_REQUEST[ufname]', '$_REQUEST[ulname]', '$_REQUEST[uemail]', '$_REQUEST[uphone]', '$_REQUEST[urating]')
 ");
 }
+
+
+function updateCredits_TableDB(){    
+    dbQuery("
+    INSERT INTO credits(Amount, Student_Id)
+    VALUES ('$_REQUEST[camount]', '$_REQUEST[id]')
+");
+}
+
+function updateClasses_TableDB(){    
+    dbQuery("
+    INSERT INTO classes(Type, Zoom_Link, Start_Date, Student_Id)
+    VALUES ('$_REQUEST[ctype]', '$_REQUEST[czoomLink]', '$_REQUEST[classDate]', '$_REQUEST[id]')
+");
+}
+
+
+
+
+
+
+
+

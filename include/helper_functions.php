@@ -153,7 +153,7 @@ function currentDate(){
 
 function getDayDifference($futureDate, $today){ 
     $difference = $futureDate->diff($today);
-    $date = [];
+    $date = [];                                             //I wonder if I should out the year too just in case
     $date['Months'] = $difference->format('%m');
     $date['Days'] = $difference->format('%d');    
     return $date;
