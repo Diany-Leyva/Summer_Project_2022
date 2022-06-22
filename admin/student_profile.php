@@ -1,7 +1,7 @@
 <?php
 include('../include/initialize.php');
 
-$tittle = "Student's Profile";
+$tittle = "Student Profile";
 echoHeader($tittle); 
 echoVerticalBar();
 echoHorizontalBar($tittle, "");
