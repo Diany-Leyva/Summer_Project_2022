@@ -1,6 +1,8 @@
 <?php
 
 // Common to all files
+// --------------------------------------------------------------------------
+
 function echoHeader($title){
     echo "<html>                                                                                                      
             <head>              
@@ -9,6 +11,8 @@ function echoHeader($title){
             </head>            
             <body>";
 }
+
+// --------------------------------------------------------------------------
 
 function echoVerticalBar(){
     echo"
@@ -23,6 +27,8 @@ function echoVerticalBar(){
         </section>      
     ";
   }
+
+// --------------------------------------------------------------------------
 
 function echoHorizontalBar($heading, $subheading){
  echo " 
@@ -41,7 +47,9 @@ function echoHorizontalBar($heading, $subheading){
                 </div>                
             </nav>      
 ";
-} 
+}
+
+// --------------------------------------------------------------------------
 
 function echoFooter(){
     echo"  
@@ -54,6 +62,7 @@ function echoFooter(){
 }
 
 // list_students.php file
+// --------------------------------------------------------------------------
 
 function echoSearchBar($heading){
     echo"
@@ -70,6 +79,8 @@ function echoSearchBar($heading){
 ";    
 }
 
+// --------------------------------------------------------------------------
+
 function addButtons($heading){
     echo"
         <div class='flex-item-buttons'>              
@@ -78,6 +89,8 @@ function addButtons($heading){
     </div>    
 ";    
 }
+
+// --------------------------------------------------------------------------
 
 function echoStudentTable($students, $credits, $classes, $days){
     echo"
@@ -123,6 +136,7 @@ echo"</table>
 }  
 
 // student_profile.php file
+// --------------------------------------------------------------------------
 
 function echoProfileInfo($student, $picture){
     echo"
@@ -142,6 +156,7 @@ function echoProfileInfo($student, $picture){
 ";
 }
 
+// --------------------------------------------------------------------------
 
 function echoFormButtons($credits){  
    echo"
@@ -156,14 +171,16 @@ function echoFormButtons($credits){
 ";
 }
 
+// --------------------------------------------------------------------------
+
 function echoClassesInfo($classes, $heading){
     echo"    
             <div class='flex-item-classesInfo'>
                 <p class='classBlock'>$heading</p>
                 <div>";
     
-    if(!isEmpty($classes)){
-        foreach($classes as $class){                                             //Eventually a link will be clicked toshow the class info with link etc
+    if(!empty($classes)){
+        foreach($classes as $class){                                                                //Eventually a link will be clicked to show the class info with link etc
             echo"  
             <li>".$class['Type']."  ".formatDate($class['Start_Date'], 'D  M  dS  H:i A')."</li>                       
             ";        
@@ -178,7 +195,11 @@ function echoClassesInfo($classes, $heading){
 
     echo"   </div>
         </div>";
+
+
 }
+
+// --------------------------------------------------------------------------
 
 function echoNotes($notes, $heading){
     $message;
@@ -187,12 +208,14 @@ function echoNotes($notes, $heading){
             <p class='classBlock'>$heading</p>
             <div>";
     
-    (!isEmpty($notes))? $message = $notes : $message = 'No notes';  
+    (!empty($notes))? $message = $notes : $message = 'No notes';  
     
-    echo"<p>$message</p>                       
-              </div>
+    echo"       <p>$message</p>                       
+            </div>
         </div>";
 }
+
+// --------------------------------------------------------------------------
 
 function echoTotalClassesSection($monthNumber, $yearNumber){
     echo"
@@ -215,11 +238,11 @@ function echoTotalClassesSection($monthNumber, $yearNumber){
 }
 
 // Forms
+// --------------------------------------------------------------------------
 
 function createNewStudentForm(){
     echo"         
-    <div id='id01' class='modal'>
-        
+    <div id='id01' class='modal'>        
         <form class='modal-content animate' action='' method='post'>
           <div class='imgcontainer'>
             <span onclick= document.getElementById('id01').style.display='none' class='close' title='Close Modal'>&times;</span>
@@ -234,18 +257,18 @@ function createNewStudentForm(){
             <input type='text' placeholder='Last Name' name='ulname' required>
                   
             <label for='uemail'><b>Email</b></label>
-            <input type='text' placeholder='Email' name='uemail' required>
-    
+            <input type='email' placeholder='Email' name='uemail' required>
+         
             <label for='uphone'><b>Phone</b></label>
-            <input type='text' placeholder='Phone' name='uphone' required>
-    
+            <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required>
+
             <label for='urating'><b>ELO Rating</b></label>
-            <input type='text' placeholder='ELO' name='urating' required>       
+            <input type='number' min='0' max='3000'placeholder='ELO' name='urating' required>       
           </div>
       
           <div class='container' style='background-color:#f1f1f1'>
               <button type='submit' name='AddStudentSubmitted'>Add</button>
-                <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
+              <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
           </div>
         </form>
       </div>
@@ -264,14 +287,18 @@ function createNewStudentForm(){
 ";
 }
 
+// --------------------------------------------------------------------------
+
 function createAddCreditsForm(){
     echo"          
         <div class='form-popup' id='addCreditsForm'>
             <form action='' class='form-container'>                
                 <button type='submit' class='btn' name='AddCredditsSubmitted'>Add</button>
-                <button type='button' class='btn cancel' onclick='closeCreditForm()'>Close</button>         
+                <button type='button' class='btn cancel' onclick='closeCreditForm()'>Close</button>
+
                 <label for='camount'><b>Credits Amount</b></label>
-                <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required> 
+                <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required>
+
                 <label for='id'><b></b></label>
                 <input type='hidden' name='id' value=$_REQUEST[id]>        
             </form>
@@ -289,21 +316,27 @@ function createAddCreditsForm(){
     ";
 }
 
+// --------------------------------------------------------------------------
+
 function createAddClassForm(){
     echo"          
         <div class='form-popup' id='addClassForm'>
             <form action='' class='form-container'>
                 <button type='button' class='btn cancel' onclick='closeClassForm()'>Close</button>
                 <button type='submit' class='btn' name='AddClassesSubmitted'>Book</button>
+
                 <label for='ctype'>Class Type</label>
                 <select id='dropdown' name='ctype'>
-                <option value='Online'>Online</option>
-                <option value='In Person'>In Person</option>                  
-                </select>      
+                    <option value='Online'>Online</option>
+                    <option value='In Person'>In Person</option>                  
+                </select>   
+
                 <label for='classDate'>Class Date</label>
-                <input type='date'name='classDate'>
+                <input type='datetime-local' name='classDate' required> 
+
                 <label for='czoomLink'><b>Zoom Link</b></label>
                 <input type='text' placeholder='Link' name='czoomLink' required> 
+
                 <label for='id'><b></b></label>
                 <input type='hidden' name='id' value=$_REQUEST[id]>        
             </form>   
@@ -321,27 +354,8 @@ function createAddClassForm(){
     ";
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Used by most files 
+// Used by most files
+// -------------------------------------------------------------------------- 
 
 function passVariableThroughLink($filename, $id, $linkName){
     echo "<a href='$filename?id=$id'> $linkName </a>";
