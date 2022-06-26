@@ -27,23 +27,63 @@ function formatDate($date, $format) {
 
 // --------------------------------------------------------------------------
 
-function calculateStudentTable($allStudents){
-    
-    global $remainingCredits, $classesBookedAmount, $daysToNextCLass;
-    
+function calcRemainingCredits($allStudents){
+    $remainingCredits = [];
+
     $allCredits = updateStudentInfo(getCreditsAmount(), sizeof($allStudents), 'Credits_Amount', '0');                 //gets the credit total of each student with credits
     $allClasses = updateStudentInfo(getClassesAmount(), sizeof($allStudents), 'Classes_Amount', '0');                 //and fill out with 0 those with not credits (dame with classes)
+
+    for($i = 0; $i < sizeof($allStudents); $i++){       
+
+        if($allCredits[$i]['Student_Id'] == $allStudents[$i]['Student_Id'] &&                       //Check if the function above did the calculations
+           $allClasses[$i]['Student_Id'] == $allStudents[$i]['Student_Id']){
+                                                                                                    //Might need to check something before?
+            $tempAmount = $allCredits[$i]['Credits_Amount'] - $allClasses[$i]['Classes_Amount'];    //Subtract the credits total by the classes total 
+                                                                                                    //This caculation is done based on the constraint that each class booked is 60 minutes (not more)
+            $remainingCredits[$i]['Student_Id'] = $allStudents[$i]['Student_Id'];                     
+            $remainingCredits[$i]['Remaining_Credits'] =  $tempAmount;
+        }
+
+        else{
+            echo"Student Id does not match";                                                       
+        }                                                                                           //Eventually this will be a different error message or something
+    } 
+
+    return $remainingCredits;
+}
+
+// --------------------------------------------------------------------------
+
+function calcFutureClassesAmount($allStudents){
+    $futureClassesAmount = [];
+
+    debugOutput(getFutureClassesAmount());
+
+    $futureClassesAmount = updateStudentInfo(getFutureClassesAmount(), sizeof($allStudents), 'Classes_Pending', '0'); 
+
+    return $futureClassesAmount;
+}
+
+// --------------------------------------------------------------------------
+
+function calcDaysToNextClass($allStudents){  
     
-    $remainingCredits = [];  
-    calcAllRemainingCredits($allStudents, $allCredits, $allClasses);
- 
-    $classesBookedAmount = updateStudentInfo(getFutureClassesAmount(), sizeof($allStudents), 'Classes_Pending', '0');        //Get total classes pending per student and fills out those with no classes pending
+         //Get total classes pending per student and fills out those with no classes pending
     $nextClasses= removeDuplicateMultiDArray(getFutureClasses(), 'Student_Id');                                              //gets the classes pending to be taught and remove any duplicate                          
                                                                                                                              //this will keep only the date of the nearest class
     $nextClasses = updateStudentInfo($nextClasses, sizeof($allStudents), 'Date', formatDate(currentDate(), 'Y-m-d H:i:s'));  //Fill out with current date those with not pending classes 
     
-    $daysToNextCLass = calculateDaysToNextClass($nextClasses);  
+    $today = new DATETIME(currentDate());
+    $daysToNextClass = [];
+    $i = 0;
+
+    foreach($nextClasses as $nextClass){        
+        $classDate = new DATETIME($nextClass['Date']);      
+        $daysToNextClass[$i] = getDayDifference($classDate, $today);
+        $i++;       
+    }  
     
+    return $daysToNextClass;    
 }
 
 // --------------------------------------------------------------------------
@@ -91,42 +131,42 @@ function removeDuplicateMultiDArray($array, $key) {                             
 
 // --------------------------------------------------------------------------
 
-function calculateDaysToNextClass($dates){
-    $today = new DATETIME(currentDate());
-    $days = [];
-    $i = 0;
+// function calculateDaysToNextClass($dates){
+//     $today = new DATETIME(currentDate());
+//     $days = [];
+//     $i = 0;
 
-    foreach($dates as $date){        
-        $classDate = new DATETIME($date['Date']);      
-        $days[$i] = getDayDifference($classDate, $today);
-        $i++;       
-    }
+//     foreach($dates as $date){        
+//         $classDate = new DATETIME($date['Date']);      
+//         $days[$i] = getDayDifference($classDate, $today);
+//         $i++;       
+//     }
    
-    return $days;    
-}
+//     return $days;    
+// }
 
 // --------------------------------------------------------------------------
 
-function calcAllRemainingCredits($allStudents, $allCredits, $allClasses){         
+// function calcAllRemainingCredits($allStudents, $allCredits, $allClasses){         
 
-    global $remainingCredits;
+//     global $remainingCredits;
 
-    for($i = 0; $i < sizeof($allStudents); $i++){       
+//     for($i = 0; $i < sizeof($allStudents); $i++){       
 
-        if($allCredits[$i]['Student_Id'] == $allStudents[$i]['Student_Id'] &&                       //Check if the function above did the calculations
-           $allClasses[$i]['Student_Id'] == $allStudents[$i]['Student_Id']){
-                                                                                                    //Might need to check something before?
-            $tempAmount = $allCredits[$i]['Credits_Amount'] - $allClasses[$i]['Classes_Amount'];    //Subtract the credits total by the classes total 
-                                                                                                    //This caculation is done based on the constraint that each class booked is 60 minutes (not more)
-            $remainingCredits[$i]['Student_Id'] = $allStudents[$i]['Student_Id'];                     
-            $remainingCredits[$i]['Remaining_Credits'] =  $tempAmount;
-        }
+//         if($allCredits[$i]['Student_Id'] == $allStudents[$i]['Student_Id'] &&                       //Check if the function above did the calculations
+//            $allClasses[$i]['Student_Id'] == $allStudents[$i]['Student_Id']){
+//                                                                                                     //Might need to check something before?
+//             $tempAmount = $allCredits[$i]['Credits_Amount'] - $allClasses[$i]['Classes_Amount'];    //Subtract the credits total by the classes total 
+//                                                                                                     //This caculation is done based on the constraint that each class booked is 60 minutes (not more)
+//             $remainingCredits[$i]['Student_Id'] = $allStudents[$i]['Student_Id'];                     
+//             $remainingCredits[$i]['Remaining_Credits'] =  $tempAmount;
+//         }
 
-        else{
-            echo"Student Id does not match";                                                       
-        }                                                                                           //Eventually this will be a different error message or something
-    } 
-}
+//         else{
+//             echo"Student Id does not match";                                                       
+//         }                                                                                           //Eventually this will be a different error message or something
+//     } 
+// }
 
 // --------------------------------------------------------------------------
 

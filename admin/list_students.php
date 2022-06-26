@@ -1,25 +1,7 @@
 <?php
-include('../include/initialize.php');  
-echoHeader('Students');
-echoVerticalBar();
+include('../include/initialize.php');
 
-$allStudents = getAllStudents(); 
-echoHorizontalBar("My Students", "You have ".sizeof($allStudents)." students");
-echoSearchBar("Students' List"); 
-addButtons('Add Student');  
-
-if(!empty($allStudents)){ 
-
-    $remainingCredits =  $classesBookedAmount = $daysToNextCLass =  [];                                                                       
-    
-    calculateStudentTable($allStudents);         
-    echoStudentTable($allStudents, $remainingCredits, $classesBookedAmount, $daysToNextCLass);       
-}                                                        
-               
-else{
-    echo"No students to show";                                                                       //This will be used properly later on(e.g. showing the correct message etc)
-}    
-
+//Might add function to do this
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_REQUEST['AddStudentSubmitted'])){
@@ -30,14 +12,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
        if(sizeof($errors) == 0){
             updatestudents_TableDB();                                                                    
-            header("location:?");                                                                      // this is to redirect to the same page 
+            header("location:?");                                                                      
        }   
        
        else{
       //  debugOutput($errors);                                                                        //This is just to try I will display correct message in the form
        }
     }  
-  }
+}
+
+$allStudents = getAllStudents(); 
+echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." students");
+echoSearchBar("Students' List"); 
+echoAddStudentButton('Add Student');  
+
+if(!empty($allStudents)){  
+    
+    $remainingCredits = calcRemainingCredits($allStudents);
+    $futureClassesAmount = calcFutureClassesAmount($allStudents);    
+    $daysToNextClass = calcDaysToNextClass($allStudents);  
+
+    echoStudentTable($allStudents, $remainingCredits, $futureClassesAmount, $daysToNextClass);       
+}                                                        
+               
+else{
+    echo"No students to show";                                                                       //This will be used properly later on(e.g. showing the correct message etc)
+} 
 
 createNewStudentForm();
 echoFooter();    

@@ -1,10 +1,8 @@
 <?php
 include('../include/initialize.php');
 
-$tittle = "Student Profile";
-echoHeader($tittle); 
-echoVerticalBar();
-echoHorizontalBar($tittle, "");
+$tittle = 'Student Profile';
+echoPageLayout($tittle, $tittle, '');
 
 if(isset($_REQUEST['id'])){
 
