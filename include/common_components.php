@@ -79,7 +79,7 @@ function echoAddStudentButton($buttonText){
 
 // --------------------------------------------------------------------------
 
-function echoStudentTable($students, $credits, $classes, $days){
+function echoStudentTable($students){
     echo"
     <div class='studentTable'>
         <table id='tableContainer'>
@@ -92,29 +92,28 @@ function echoStudentTable($students, $credits, $classes, $days){
                 <th>Classes</th>
                 <th>Next Class in</th>                   
             </tr>
-";        
+";       
 
-        $i = 0;
-        foreach($students as $student){                                                  
+    foreach($students as $student){                                                        
         echo"
         <tr>
-            <td>";passVariableThroughLink('student_profile.php', $student['Student_Id'], $student['First_Name']." ".$student['Last_Name']);echo"</td>
+            <td><a href='student_profile.php?studentId=".$student['Student_Id']."'>".$student['First_Name']." ".$student['Last_Name']."</a></td>    
             <td>".$student['Email']."</td>
             <td>".$student['Phone']."</td>
             <td>".$student['ELO']."</td>   
-            <td>".$credits[$i]['Remaining_Credits']."</td>   
-            <td>".$classes[$i]['Classes_Pending']."</td>";
+            <td>".$student['Credits']."</td>   
+            <td>".$student['Classes']."</td>";
             
-            $daysToNextCLass = $days[$i]['Days']." days";
+            $daysToNextCLass = $student['DaysToNextClass']['Days']." days";
             
-            if($days[$i]['Months'] != 0){
-                $daysToNextCLass = $days[$i]['Months']." months and ".$days[$i]['Days']. " days";
+            if($student['DaysToNextClass']['Months'] != 0){
+                $daysToNextCLass = $student['DaysToNextClass']['Months']." months and ".$student['DaysToNextClass']['Days']. " days";
             }
         echo"
             <td>$daysToNextCLass</td>                                    
         </tr> 
 "; 
-        $i++;
+     
 } 
 
 echo"</table>
@@ -145,7 +144,7 @@ function echoProfileInfo($student, $picture){
 
 // --------------------------------------------------------------------------
 
-function echoFormButtons($credits){  
+function echoAddClassAndAddCreditsButtons($credits){  
    echo"
             <div class='flex-item-buttons'>
                 <p>$credits credits</p>
@@ -204,20 +203,20 @@ function echoNotes($notes, $heading){
 
 // --------------------------------------------------------------------------
 
-function echoTotalClassesSection($monthNumber, $yearNumber){
+function echoTotalClassesSection($totalClasses){
     echo"
         <div class='flex-container-totalClassesSection'>
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Month</p>         
                 <div class='profilePicture'>
-                    <p id='totalNumber'>$monthNumber</p>
+                    <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
                 </div>
             </div>
         
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Year</p>  
                 <div class='profilePicture'>
-                    <p id='totalNumber'>$yearNumber</p>
+                    <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
                 </div>
             </div>
         </div>
@@ -280,14 +279,14 @@ function createAddCreditsForm(){
     echo"          
         <div class='form-popup' id='addCreditsForm'>
             <form action='' class='form-container'>                
-                <button type='submit' class='btn' name='AddCredditsSubmitted'>Add</button>
+                <button type='submit' class='btn' name='AddCreditsSubmitted'>Add</button>
                 <button type='button' class='btn cancel' onclick='closeCreditForm()'>Close</button>
 
                 <label for='camount'><b>Credits Amount</b></label>
                 <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required>
 
                 <label for='id'><b></b></label>
-                <input type='hidden' name='id' value=$_REQUEST[id]>        
+                <input type='hidden' name='id' value=$_REQUEST[studentId]>        
             </form>
         </div>
         
@@ -325,7 +324,7 @@ function createAddClassForm(){
                 <input type='text' placeholder='Link' name='czoomLink' required> 
 
                 <label for='id'><b></b></label>
-                <input type='hidden' name='id' value=$_REQUEST[id]>        
+                <input type='hidden' name='id' value=$_REQUEST[studentId]>        
             </form>   
         </div>
         
@@ -344,9 +343,9 @@ function createAddClassForm(){
 // Used by most files
 // -------------------------------------------------------------------------- 
 
-function passVariableThroughLink($filename, $id, $linkName){
-    echo "<a href='$filename?id=$id'> $linkName </a>";
-}  
+// function passVariableThroughLink($filename, $id, $linkName){
+//     echo "<a href='$filename?id=$id'> $linkName </a>";
+// }  
 
 // function echoLink($file, $name){
 //     echo "<a href='$file'>$name</a>";

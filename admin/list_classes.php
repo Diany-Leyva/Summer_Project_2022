@@ -1,9 +1,9 @@
 <?php
-// include('../include/initialize.php'); 
-// echoHeader('My Students');
+include('../include/initialize.php'); 
+echoHeader('My Students');
 
 
-// echoFooter();
+echoFooter();
 
 
     

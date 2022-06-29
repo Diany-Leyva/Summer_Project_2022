@@ -204,17 +204,25 @@ function updatestudents_TableDB(){
 function updateCredits_TableDB(){    
     dbQuery("
     INSERT INTO credits(Amount, Student_Id)
-    VALUES ('$_REQUEST[camount]', '$_REQUEST[id]')
+    VALUES ('$_REQUEST[camount]', '$_REQUEST[studentId]')
 ");
 }
 
 function updateClasses_TableDB(){    
     dbQuery("
     INSERT INTO classes(Type, Zoom_Link, Start_Date, Student_Id)
-    VALUES ('$_REQUEST[ctype]', '$_REQUEST[czoomLink]', '$_REQUEST[classDate]', '$_REQUEST[id]')
+    VALUES ('$_REQUEST[ctype]', '$_REQUEST[czoomLink]', '$_REQUEST[classDate]', '$_REQUEST[studentId]')
 ");
 }
 
+// Deletions
+// -------------------------------------------------------------------------- 
+
+function deleteStudents_TableDB(){    
+    dbQuery("
+        DELETE FROM students WHERE Student_Id = '$REQUEST[studentId]'
+");
+}
 
 
 

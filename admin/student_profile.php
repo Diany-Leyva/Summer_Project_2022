@@ -1,12 +1,11 @@
 <?php
 include('../include/initialize.php');
 
-$tittle = 'Student Profile';
-echoPageLayout($tittle, $tittle, '');
+$title = 'Student Profile';
+echoPageLayout($title, $title, '');
 
-if(isset($_REQUEST['id'])){
-
-    $studentId = $_REQUEST['id'];                               
+if(isset($_REQUEST['studentId'])){
+    $studentId = $_REQUEST['studentId'];                               
     $student = getStudent($studentId);
     
     if(!empty($student)){     
@@ -17,29 +16,27 @@ if(isset($_REQUEST['id'])){
         echo"No student!";                                                               //This will be used properly later on(e.g. showing the correct message etc)
     }         
     
-    echoFormButtons(calcStudentRemainingCredits($studentId));
+    echoAddClassAndAddCreditsButtons(calcStudentRemainingCredits($studentId));
     
     echo"<div class='flex-container-classesInfo'>";
             echoClassesInfo(getFutureClassesbyStudent($studentId), 'Classes Booked');
             echoClassesInfo(getStudentPastClasses($studentId), 'Recent Classes');
             echoNotes($student['Private_Notes'], 'Private Notes');
             echoNotes($student['Public_Notes'], 'Public Notes');
-    echo"</div>";   
-
-    $monthAmount = $yearAmount = ''; 
-    calculateTotalClasses(getStudentClassesAmountThisMonth($studentId),                   
-                          getStudentClassesAmountThisYear($studentId));  
-
-    echoTotalClassesSection($monthAmount, $yearAmount);
+    echo"</div>"; 
     
-    if(isset($_REQUEST['AddCredditsSubmitted'])){    
+    $totalClasses = calculateTotalClasses(getStudentClassesAmountThisMonth($studentId), getStudentClassesAmountThisYear($studentId));
+
+    echoTotalClassesSection($totalClasses);
+    
+    if(isset($_REQUEST['AddCreditsSubmitted'])){    
           updateCredits_TableDB();                           
-          header("location:? id={$_REQUEST['id']}");                                              //Passing the id when reloading the page after updating                   
+          header("location:? studentId={$_REQUEST['studentId']}");                                              //Passing the id when reloading the page after updating                   
     }
 
     if(isset($_REQUEST['AddClassesSubmitted'])){        
         updateClasses_TableDB();                           
-        header("location:? id={$_REQUEST['id']}");                           
+        header("location:? studentId={$_REQUEST['studentId']}");                           
     }
     
     createAddClassForm();

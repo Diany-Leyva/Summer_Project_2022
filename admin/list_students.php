@@ -26,13 +26,13 @@ echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." stu
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
-if(!empty($allStudents)){  
-    
-    $remainingCredits = calcRemainingCredits($allStudents);
-    $futureClassesAmount = calcFutureClassesAmount($allStudents);    
-    $daysToNextClass = calcDaysToNextClass($allStudents);  
+if(!empty($allStudents)){     
 
-    echoStudentTable($allStudents, $remainingCredits, $futureClassesAmount, $daysToNextClass);       
+    addRemainingCredits($allStudents);            
+    addFutureClassesAmount($allStudents);           
+    addDaysToNextClass($allStudents);             
+
+    echoStudentTable($allStudents);       
 }                                                        
                
 else{
