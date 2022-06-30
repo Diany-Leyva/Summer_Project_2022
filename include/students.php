@@ -85,9 +85,12 @@ function addFutureClassesAmount(&$allStudents){
 
 function addDaysToNextClass(&$allStudents){
     $allFutureClasses = getFutureClasses();                                                     //Gets all the classes that are scheduled 
-    $nextClasses= removeDuplicateMultiDArray($allFutureClasses, 'StudentId');                  //I'm removing the duplicated studentId because the query above returns all the future classes, so 
-                                                                                                //there could be a student with several future classes, so this function will ensure there is only one class 
-                                                                                                //per student in the array which will be the next class because the query is ordered by date                        
+    $nextClasses= removeDuplicateMultiDArray($allFutureClasses, 'StudentId');                   //I commented in the code: I'm removing the duplicated studentId (the whole element, not only the id) 
+                                                                                                //because the query above returns all the future classes of each student. So there could be a student 
+                                                                                                //with several future classes (which means if a student has 3 future classes, there will be 3 array 
+                                                                                                //elements with the same studentId and just different class information). So this function removes the "duplicates" 
+                                                                                                //(perhaps I should name it differently). o consider any element with the same studentId to be a duplicate. 
+                                                                                                //In the end, it leaves only one row per student, which will be the next class, since the query is ordered by date.   
     $studentIdsArray = array_column($nextClasses, 'StudentId');                                 
     $today = new DATETIME(date("Y/m/d h:i:s"));                                                //Today will be used to perform the calculation with the class date
   
