@@ -65,7 +65,6 @@ function echoStudentTable($students){
         </tr> 
 ";     
 } 
-
 echo"</table>
 </div>
 ";

@@ -1,15 +1,15 @@
 <?php
 include('../include/initialize.php');  
 
-$tittle = 'Index';
-echoPageLayout($tittle, $tittle, '');
+// $tittle = 'Index';
+// echoPageLayout($tittle, $tittle, '');
 
-$allStudents = getAllStudents(); 
+// $allStudents = getAllStudents(); 
 
-debug($allStudents);
-calcRemainingCredits($allStudents);            //Add a credits key to the array od students with the remaining credits they have 
-debug($allStudents);
+// debug($allStudents);
+// calcRemainingCredits($allStudents);            
+// debug($allStudents);
 
 
-echoFooter();
+// echoFooter();
 

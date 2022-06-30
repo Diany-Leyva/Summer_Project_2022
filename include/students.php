@@ -89,8 +89,8 @@ function addDaysToNextClass(&$allStudents){
                                                                                                 //there could be a student with several future classes, so this function will ensure there is only one class 
                                                                                                 //per student in the array which will be the next class because the query is ordered by date                        
     $studentIdsArray = array_column($nextClasses, 'StudentId');                                 
-    $today = new DATETIME(currentDate());                                                       //Today will be used to perform the calculation with the class date
-    debug($today);
+    $today = new DATETIME(date("Y/m/d h:i:s"));                                                //Today will be used to perform the calculation with the class date
+  
     $i = 0;
     foreach($allStudents as $student){
     

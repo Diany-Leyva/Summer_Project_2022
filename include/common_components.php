@@ -40,7 +40,7 @@ function echoFooter(){
     echo"  
                     </section>
                 </section> 
-                <script src='/include/jsfunctions.js'></script> 
+                <script src='/include/javascriptFunctions.js'></script> 
                 <footer></footer>                            
            </body>    
         </html>

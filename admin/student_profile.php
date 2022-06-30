@@ -19,14 +19,8 @@ if(isset($_REQUEST['studentId'])){
     $studentId = $_REQUEST['studentId'];                               
     $student = getStudent($studentId);
     
-    if(!empty($student)){     
-        echoProfileInfo($student, 'bishop');                                                                     //will handle profiles pictures later
-    }                                                        
-                   
-    else{
-        echo"No student!";                                                                                       //This will be used properly later on(e.g. showing the correct message etc)
-    }         
-    
+    echoProfileInfo($student, 'bishop');                                                                     //will handle profiles pictures later
+     
     $credits = calcStudentRemainingCredits($studentId);                                                          
     echoAddClassAndAddCreditsButtons($credits);
     

@@ -1,7 +1,6 @@
 <?php
 include('../include/initialize.php');
 
-//Might add function to do this
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_REQUEST['AddStudentSubmitted'])){
@@ -16,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        }   
        
        else{
-       //debugOutput($errors);                                                                        //This is just to try I will display correct message in the form
+       //debug($errors);                                                                        //This is just to try I will display correct message in the form
        }
     }  
 }
@@ -26,9 +25,9 @@ echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." stu
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
-if(!empty($allStudents)){     
+if(!empty($allStudents)){   
 
-    addRemainingCredits($allStudents);            
+    addRemainingCredits($allStudents);                                                         //These functions will the info needed to the students array      
     addFutureClassesAmount($allStudents);           
     addDaysToNextClass($allStudents);             
 
