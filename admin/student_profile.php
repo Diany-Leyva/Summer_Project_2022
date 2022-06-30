@@ -1,44 +1,45 @@
 <?php
 include('../include/initialize.php');
 
-$title = 'Student Profile';
-echoPageLayout($title, $title, '');
-
 if(isset($_REQUEST['studentId'])){
+
+    if(isset($_REQUEST['AddCreditsSubmitted'])){    
+        insertCredit($_REQUEST['camount'], $_REQUEST['studentId'] );                           
+        header("location:? studentId={$_REQUEST['studentId']}");                                              //Passing the id when reloading the page after inserting                   
+    }
+
+    if(isset($_REQUEST['AddClassesSubmitted'])){        
+      insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $_REQUEST['classDate'], $_REQUEST['studentId']);                           
+      header("location:? studentId={$_REQUEST['studentId']}");                           
+    } 
+
+    $title = 'Student Profile';
+    echoPageLayout($title, $title, '');
+
     $studentId = $_REQUEST['studentId'];                               
     $student = getStudent($studentId);
     
     if(!empty($student)){     
-        echoProfileInfo($student, 'bishop');                                             //will handle profiles pictures later
+        echoProfileInfo($student, 'bishop');                                                                     //will handle profiles pictures later
     }                                                        
                    
     else{
-        echo"No student!";                                                               //This will be used properly later on(e.g. showing the correct message etc)
+        echo"No student!";                                                                                       //This will be used properly later on(e.g. showing the correct message etc)
     }         
     
-    echoAddClassAndAddCreditsButtons(calcStudentRemainingCredits($studentId));
+    $credits = calcStudentRemainingCredits($studentId);                                                          
+    echoAddClassAndAddCreditsButtons($credits);
     
     echo"<div class='flex-container-classesInfo'>";
-            echoClassesInfo(getFutureClassesbyStudent($studentId), 'Classes Booked');
+            echoClassesInfo(getStudentsFutureClasses($studentId), 'Classes Booked');
             echoClassesInfo(getStudentPastClasses($studentId), 'Recent Classes');
-            echoNotes($student['Private_Notes'], 'Private Notes');
-            echoNotes($student['Public_Notes'], 'Public Notes');
+            echoNotes($student['PrivateNotes'], 'Private Notes');
+            echoNotes($student['PublicNotes'], 'Public Notes');
     echo"</div>"; 
     
-    $totalClasses = calculateTotalClasses(getStudentClassesAmountThisMonth($studentId), getStudentClassesAmountThisYear($studentId));
-
-    echoTotalClassesSection($totalClasses);
-    
-    if(isset($_REQUEST['AddCreditsSubmitted'])){    
-          updateCredits_TableDB();                           
-          header("location:? studentId={$_REQUEST['studentId']}");                                              //Passing the id when reloading the page after updating                   
-    }
-
-    if(isset($_REQUEST['AddClassesSubmitted'])){        
-        updateClasses_TableDB();                           
-        header("location:? studentId={$_REQUEST['studentId']}");                           
-    }
-    
+    $totalClasses = calculateTotalClasses($studentId);
+    echoTotalClassesSection($totalClasses);  
+       
     createAddClassForm();
     createAddCreditsForm();
 }

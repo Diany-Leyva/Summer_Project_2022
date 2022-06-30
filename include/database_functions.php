@@ -7,7 +7,7 @@ function getAllStudents(){
     return dbQuery("
             SELECT *
             FROM students 
-            ORDER BY Student_Id     
+            ORDER BY StudentId     
     ")->fetchAll();   
 }
 
@@ -15,17 +15,9 @@ function getStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
-        WHERE Student_Id = $studentId;   
+        WHERE StudentId = $studentId;   
     ")->fetch();  
 }
-
-// function getStudentsNumber(){
-//     return dbQuery("
-//         SELECT COUNT(Student_Id) AS number 
-//         FROM students
-//         ")->fetch();
-// }
-
 
 //Classes Table
 // --------------------------------------------------------------------------
@@ -49,20 +41,20 @@ function getStudent($studentId){
 
 function getFutureClasses(){
     return dbQuery("
-        SELECT Student_Id, Start_Date as Date
+        SELECT StudentId, StartDate 
         FROM classes
-        WHERE Start_Date > CURRENT_DATE
-        ORDER BY Student_Id, Start_Date
+        WHERE StartDate > CURRENT_DATE
+        ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
 
-function getFutureClassesbyStudent($studentId){
+function getStudentsFutureClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
-        WHERE Start_Date > CURRENT_DATE
-        AND Student_Id = $studentId
-        ORDER BY Student_Id, Start_Date
+        WHERE StartDate > CURRENT_DATE
+        AND StudentId = $studentId
+        ORDER BY StudentId, StartDate
     ")->fetchAll();    
 }
 
@@ -70,59 +62,58 @@ function getStudentPastClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
-        WHERE Start_Date < CURRENT_DATE
-        AND Student_Id = $studentId
-        ORDER BY Student_Id, Start_Date
+        WHERE StartDate < CURRENT_DATE
+        AND StudentId = $studentId
+        ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
 
-
 function getClassesAmount(){
     return dbQuery("
-    SELECT Student_Id, COUNT(Student_Id) as Classes_Amount
+    SELECT StudentId, COUNT(StudentId) as ClassesAmount
     FROM classes   
-    GROUP BY Student_Id 
-    ORDER BY Student_Id   
+    GROUP BY StudentId 
+    ORDER BY StudentId   
 ")->fetchAll();
 }
 
 function getStudentClassesAmount($studentId){
     return dbQuery("
-        SELECT Student_Id, COUNT(Student_Id) as Classes_Amount
+        SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
-        WHERE Student_Id =  $studentId
-        ORDER BY Student_Id   
+        WHERE StudentId =  $studentId
+        ORDER BY StudentId   
 ")->fetch();
 }
 
 function getFutureClassesAmount(){
     return dbQuery("
-    SELECT Student_Id, COUNT(Student_Id) as Classes_Pending
+    SELECT StudentId, COUNT(StudentId) as ClassesPending
     FROM classes 
-    WHERE Start_Date > CURRENT_DATE        
-    GROUP BY Student_Id 
-    ORDER BY Student_Id   
+    WHERE StartDate > CURRENT_DATE        
+    GROUP BY StudentId 
+    ORDER BY StudentId   
 ")->fetchAll();
 }
 
 function getStudentClassesAmountThisMonth($studentId){
     return dbQuery("
-        SELECT Student_Id, COUNT(Student_Id) Amount
+        SELECT StudentId, COUNT(StudentId) Amount
         FROM classes
-        WHERE Student_Id = $studentId
-        AND MONTH(Start_date) = MONTH(CURRENT_DATE)
-        AND YEAR(Start_date) = YEAR(CURRENT_DATE)
-        GROUP BY Student_Id    
+        WHERE StudentId = $studentId
+        AND MONTH(Startdate) = MONTH(CURRENT_DATE)
+        AND YEAR(Startdate) = YEAR(CURRENT_DATE)
+        GROUP BY StudentId    
     ")->fetch();
 }
 
 function getStudentClassesAmountThisYear($studentId){
     return dbQuery("
-        SELECT Student_Id, COUNT(Student_Id) as Amount
+        SELECT StudentId, COUNT(StudentId) as Amount
         FROM classes
-        WHERE Student_Id = $studentId        
-        AND YEAR(Start_date) = YEAR(CURRENT_DATE)
-        GROUP BY Student_Id    
+        WHERE StudentId = $studentId        
+        AND YEAR(StartDate) = YEAR(CURRENT_DATE)
+        GROUP BY StudentId    
     ")->fetch();
 }
 
@@ -139,20 +130,20 @@ function getStudentClassesAmountThisYear($studentId){
 
 function getCreditsAmount(){
     return dbQuery("
-        SELECT Student_Id, SUM(Amount) as Credits_Amount
+        SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
-        GROUP By Student_Id
-        ORDER BY Student_Id
+        GROUP By StudentId
+        ORDER BY StudentId
     ")->fetchAll();
 }
 
 function getStudentCreditAmount($student_Id){
     return dbQuery("
-        SELECT Student_Id, SUM(Amount) as Credits_Amount
+        SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
-        WHERE Student_Id = $student_Id
-        GROUP By Student_Id
-        ORDER BY Student_Id       
+        WHERE StudentId = $student_Id
+        GROUP By StudentId
+        ORDER BY StudentId       
     ")->fetch();
 }
 
@@ -193,34 +184,33 @@ function getStudentCreditAmount($student_Id){
 // Updates
 // -------------------------------------------------------------------------- 
 
-function updatestudents_TableDB(){
+function insertStudent($fName, $lName, $email, $phone, $rating){
     dbQuery("
-    INSERT INTO students(First_Name, Last_Name, Email, Phone, ELO)
-    VALUES ('$_REQUEST[ufname]', '$_REQUEST[ulname]', '$_REQUEST[uemail]', '$_REQUEST[uphone]', '$_REQUEST[urating]')
+    INSERT INTO students(FirstName, LastName, Email, Phone, ELO)
+    VALUES ('$fName', '$lName', '$email', '$phone', '$rating')
 ");
 }
 
-
-function updateCredits_TableDB(){    
+function insertCredit($amount, $studentId){    
     dbQuery("
-    INSERT INTO credits(Amount, Student_Id)
-    VALUES ('$_REQUEST[camount]', '$_REQUEST[studentId]')
+    INSERT INTO credits(Amount, StudentId)
+    VALUES ('$amount', '$studentId')
 ");
 }
 
-function updateClasses_TableDB(){    
+function insertClass($type, $link, $classDate, $studentId){    
     dbQuery("
-    INSERT INTO classes(Type, Zoom_Link, Start_Date, Student_Id)
-    VALUES ('$_REQUEST[ctype]', '$_REQUEST[czoomLink]', '$_REQUEST[classDate]', '$_REQUEST[studentId]')
+    INSERT INTO classes(Type, ZoomLink, StartDate, StudentId)
+    VALUES ('$type', '$link', '$classDate', '$studentId')   
 ");
 }
 
 // Deletions
 // -------------------------------------------------------------------------- 
 
-function deleteStudents_TableDB(){    
+function deleteStudents_TableDB($studentId){    
     dbQuery("
-        DELETE FROM students WHERE Student_Id = '$REQUEST[studentId]'
+        DELETE FROM students WHERE StudentId = $studentId
 ");
 }
 

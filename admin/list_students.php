@@ -11,12 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         validateName($_REQUEST['ulname']); 
         
        if(sizeof($errors) == 0){
-            updatestudents_TableDB();                                                                    
+            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating']);                                                                    
             header("location:?");                                                                      
        }   
        
        else{
-      //  debugOutput($errors);                                                                        //This is just to try I will display correct message in the form
+       //debugOutput($errors);                                                                        //This is just to try I will display correct message in the form
        }
     }  
 }
