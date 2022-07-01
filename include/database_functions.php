@@ -208,7 +208,7 @@ function insertClass($type, $link, $classDate, $studentId){
 // Deletions
 // -------------------------------------------------------------------------- 
 
-function deleteStudents_TableDB($studentId){    
+function deleteStudent($studentId){    
     dbQuery("
         DELETE FROM students WHERE StudentId = $studentId
 ");

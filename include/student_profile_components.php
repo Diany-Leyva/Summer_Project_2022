@@ -14,7 +14,7 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['LichessLink']."</li>
                 </ol>
                 <div class='picturePosition'>
-                    <a href='#'> <img class = 'profilePicture' src= '/images/$picture.png' alt='$picture'></a>
+                    <a href='#'> <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'></a>
                 </div> 
             </div>  
 ";
@@ -27,8 +27,8 @@ function echoAddClassAndAddCreditsButtons($credits){
             <div class='flex-item-buttons'>
                 <p>$credits credits</p>
                 <div class='item-buttons'>
-                    <button onclick='openClassForm()'>Book Class</button>
-                    <button onclick='openCreditForm()'>Add Credit</button>
+                    <button class='zoom' onclick='openClassForm()'>Book Class</button>
+                    <button class='zoom' onclick='openCreditForm()'>Add Credit</button>
                 </div>
             </div>
         </div>   

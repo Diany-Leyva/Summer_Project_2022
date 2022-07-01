@@ -18,6 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        //debug($errors);                                                                        //This is just to try I will display correct message in the form
        }
     }  
+
+    if(isset($_REQUEST['studentDeleted'])){
+        deleteStudent($_REQUEST['stdId']);                                                                    
+        header("location:?");                                                             
+    } 
 }
 
 $allStudents = getAllStudents(); 
@@ -25,7 +30,7 @@ echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." stu
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
-if(!empty($allStudents)){   
+if(!empty($allStudents)){  
 
     addRemainingCredits($allStudents);                                                         //These functions will the info needed to the students array      
     addFutureClassesAmount($allStudents);           
@@ -36,8 +41,9 @@ if(!empty($allStudents)){
                
 else{
     echo"No students to show";                                                                       //This will be used properly later on(e.g. showing the correct message etc)
-} 
+}
 
 createNewStudentForm();
+createDeleteForm('');
 echoFooter();    
          

@@ -10,7 +10,7 @@ function echoSearchBar($heading){
             <div class='flex-item-SearchBar'>
                 <form action='' class='search-bar' method='post'>
                 <input type='text' placeholder='Search' name='searchBar'>
-                <button class='searchB' type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></button>
+                <a class='searchB' type='submit'><img class= 'searchButton'src='/images/search.jpg' alt='search'></a>
                 </form>
             </div> 
         </div>     
@@ -22,7 +22,7 @@ function echoSearchBar($heading){
 function echoAddStudentButton($buttonText){
     echo"
         <div class='flex-item-buttons'>              
-            <button onclick= \"document.getElementById('id01').style.display='block'\" style='width:fit-content;'>$buttonText</button>
+            <button class='zoom' onclick= \"document.getElementById('addStudentForm').style.display='block'\" style='width:fit-content;'>$buttonText</button>
         </div>
     </div>    
 ";    
@@ -35,6 +35,7 @@ function echoStudentTable($students){
     <div class='studentTable'>
         <table id='tableContainer'>
             <tr>
+                <th>Delete</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -43,11 +44,14 @@ function echoStudentTable($students){
                 <th>Classes</th>
                 <th>Next Class in</th>                   
             </tr>
-";       
+"; 
 
-    foreach($students as $student){                                                        
+//Here in line 54 I'm 
+    foreach($students as $student){ 
+        $studentId = $student['StudentId'];                                                       
         echo"
-        <tr>
+        <tr>      
+            <td><button class='zoom' onclick='openDeleteForm($studentId)'>X</button></td>
             <td><a href='student_profile.php?studentId=".$student['StudentId']."'>".$student['FirstName']." ".$student['LastName']."</a></td>    
             <td>".$student['Email']."</td>
             <td>".$student['Phone']."</td>
@@ -62,7 +66,7 @@ function echoStudentTable($students){
             }
         echo"
             <td>$daysToNextCLass</td>                                    
-        </tr> 
+        </tr>
 ";     
 } 
 echo"</table>

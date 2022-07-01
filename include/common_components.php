@@ -12,7 +12,7 @@ function echoPageLayout($title, $heading, $subheading){
                     <section>  
                         <div class='flex-container-verticalBar'>  
                             <div class='flex-item-verticalBarPicture'>
-                                <img class ='circlePicture' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+                                <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
                                 <h1 >Yuniesky Quesada</h1>
                             </div>            
                         </div>  
@@ -24,10 +24,10 @@ function echoPageLayout($title, $heading, $subheading){
                             </header>
                             <div class='flex-item-horizontalMenu'>
                                 <ul>                         
-                                    <a href='#'> <img class = 'notificationIcon' src= '/images/notification.png' alt='notification'></a> 
-                                    <li><a href='#'>Students</a></li>
-                                    <li><a href='#'>Calendar</a></li> 
-                                    <li><a href='#'>Home</a></li>                        
+                                    <a href='#'> <img class = 'notificationIcon zoom' src= '/images/notification.png' alt='notification'></a> 
+                                    <li class='zoom'><a href='#'>Students</a></li>
+                                    <li class='zoom'><a href='#'>Calendar</a></li> 
+                                    <li class='zoom'><a href='#'>Home</a></li>                        
                                 </ul> 
                             </div>                
                         </nav>  
