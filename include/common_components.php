@@ -25,9 +25,9 @@ function echoPageLayout($title, $heading, $subheading){
                             <div class='flex-item-horizontalMenu'>
                                 <ul>                         
                                     <a href='#'> <img class = 'notificationIcon zoom' src= '/images/notification.png' alt='notification'></a> 
-                                    <li class='zoom'><a href='#'>Students</a></li>
-                                    <li class='zoom'><a href='#'>Calendar</a></li> 
-                                    <li class='zoom'><a href='#'>Home</a></li>                        
+                                    <li class='zoom'><a href='/admin/index.php'; '>Home</a></li>                   
+                                    <li class='zoom'><a href='/admin/list_students.php'>Students</a></li>
+                                    <li class='zoom'><a href='/admin/calendar.php'>Calendar</a></li> 
                                 </ul> 
                             </div>                
                         </nav>  

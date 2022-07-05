@@ -5,7 +5,9 @@
 function debug($input){
     echo "<pre>";
     var_dump($input);
-    echo "</pre>";
+    echo "<br></br>
+          <br></br>
+         </pre>";
 }
 
 // --------------------------------------------------------------------------
@@ -45,4 +47,5 @@ function getDayDifference($futureDate, $today){
 }
 
 // --------------------------------------------------------------------------
+
 

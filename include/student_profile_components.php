@@ -1,8 +1,19 @@
 <?php
 
 // --------------------------------------------------------------------------
+//In this function several things are happening. In line 21 I attempted to pass the student php array ar parameter to
+//the openAddStudentForm() js function but that wasn't working, so I hid an array and then
+//got that value wihtin the js function.I was also having trouble when encodig the student array because
+//when I tried to parse it in the js function it had missing elements so I had to make it smaller in line 14 and I'm passing
+//only the elements I need in the form.  In line 35 I do something similar but passing the variable
+//to the function to then delete the student. 
+// --------------------------------------------------------------------------
 
 function echoProfileInfo($student, $picture){
+    $studentId = $student['StudentId'];   
+    $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
+    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessUsername']); 
+   
     echo"
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
@@ -11,24 +22,40 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['Email']."</li>
                     <li>".$student['Phone']."</li>    
                     <li>ELO ".$student['ELO']."</li>
-                    <li>".$student['LichessLink']."</li>
+                    <li>".$student['LichessUsername']."</li>
+                    <button class='zoom' onclick='openAddStudentForm($studentId)'>Edit</button>
+                    <input type='hidden' id='hiddenStudent' value=";echo json_encode($studentArray);echo"       
                 </ol>
                 <div class='picturePosition'>
-                    <a href='#'> <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'></a>
-                </div> 
-            </div>  
+                   <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
+                </div>
+
+            </div>            
+            
+            <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>       
+      
 ";
 }
 
 // --------------------------------------------------------------------------
 
-function echoAddClassAndAddCreditsButtons($credits){      
-   echo"
+//Since I'm using the same form for both add and subtract, then I'm passing Add or Subtract
+//to the js function to indicate which button was clicked
+function echoAddClassAndAddCreditsButtons($credits){ 
+   
+    $buttonState = "enabled class='zoom'";
+    
+    if($credits == 0){                                                                                  //I want subtract and class button to be enabled only when credits are more than 0
+        $buttonState = "disabled style ='background-color: #8080807a; cursor:context-menu;'"; 
+    }     
+  
+    echo"
             <div class='flex-item-buttons'>
                 <p>$credits credits</p>
-                <div class='item-buttons'>
-                    <button class='zoom' onclick='openClassForm()'>Book Class</button>
-                    <button class='zoom' onclick='openCreditForm()'>Add Credit</button>
+                <div class='item-buttons'>                    
+                    <button class='zoom' onclick=\"openCreditForm('Add', '')\">+</button>               
+                    <button $buttonState onclick=\"openCreditForm('Subtract', $credits)\">-</button>
+                    <button $buttonState onclick='openClassForm()'>Book Class</button>
                 </div>
             </div>
         </div>   
@@ -37,44 +64,90 @@ function echoAddClassAndAddCreditsButtons($credits){
 
 // --------------------------------------------------------------------------
 
-function echoClassesInfo($classes, $heading){
-    echo"    
+function echoFutureClassesInfo($classes, $heading){
+    echo"
             <div class='flex-item-classesInfo'>
-                <p class='classBlock'>$heading</p>
-                <div>";
-    
-                if(!empty($classes)){
-                    foreach($classes as $class){                                                                //Eventually a link will be clicked to show the class info with link etc
-                        echo"  
-                        <li>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."</li>                       
-                        ";        
-                    }    
-                }
-                
-                else{
-                    echo"    
-                        <li> No classes</li>                     
-                    ";
-                }
-
+                <div>
+                    <p class='classInfoHeading'>$heading</p>";
+            
+                        if(!empty($classes)){                            
+                            foreach($classes as $class){
+                                $classId = $class['ClassId'];                                                                 
+                                echo"                  
+                                    <li class='info-table-row'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
+                                    ".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."                      
+                                    </li>
+                                ";        
+                            }    
+                        }
+                        
+                        else{
+                            echo"    
+                                <li class='info-table-row'> No classes</li>                     
+                            ";
+                        }
         echo"   </div>
             </div>";
 }
 
 // --------------------------------------------------------------------------
 
-function echoNotes($notes, $heading){
+function echoPastClassesInfo($classes, $heading){
+    echo"
+            <div class='flex-item-classesInfo'>
+                <div>
+                    <p class='classInfoHeading'>$heading</p>";
+            
+                        if(!empty($classes)){                            
+                            foreach($classes as $class){                                                                                              
+                                echo"                  
+                                    <li class='info-table-row'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."                      
+                                    </li>
+                                ";        
+                            }    
+                        }
+                        
+                        else{
+                            echo"    
+                                <li class='info-table-row'> No classes</li>                     
+                            ";
+                        }
+        echo"   </div>
+            </div>";
+}
+
+// --------------------------------------------------------------------------
+//these two function are very similar so I will combine them but I was getting 
+//unexpected behavior when I had only one function so I will keep it like
+//this for now and then combine them
+// --------------------------------------------------------------------------
+
+function echoPrivateNotes($notes){   
     $message;
 
-    echo" <div class='flex-item-classesInfo'>
-            <p class='classBlock'>$heading</p>
-            <div>";
-    
-    (!empty($notes))? $message = $notes : $message = 'No notes';  
-    
-    echo"       <p>$message</p>                       
-            </div>
-        </div>";
+    echo"<div>";
+            (!empty($notes))? $message = $notes : $message = 'No notes';  
+        echo"<p class='classInfoHeading'>Private Notes</p>
+        <form action='' method='post'>
+            <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
+            <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
+        </form>
+            </div>";
+}
+
+// --------------------------------------------------------------------------
+
+function echoPublicNotes($notes){   
+    $message;   
+
+    echo"<div>";
+            (!empty($notes))? $message = $notes : $message = 'No notes';  
+        echo"<p class='classInfoHeading'>Public Notes</p>
+        <form action='' method='post'>
+            <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
+            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>
+        </form>
+            </div>";
 }
 
 // --------------------------------------------------------------------------

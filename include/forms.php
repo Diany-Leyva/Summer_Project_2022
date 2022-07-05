@@ -2,7 +2,7 @@
 
 // --------------------------------------------------------------------------
 
-function createNewStudentForm(){
+function addStudentForm(){
     echo"         
     <div id='addStudentForm' class='modal'> 
         <form action='' method='post' class='form-container animate'>
@@ -12,24 +12,27 @@ function createNewStudentForm(){
         
             <div class='container input-container'>
                 <label for='ufname'><b>First Name</b></label>
-                <input type='text' placeholder='First Name' name='ufname' required>
+                <input type='text' placeholder='First Name' name='ufname' id='fname' value='' required>
         
                 <label for='ulname'><b>Last Name</b></label>
-                <input type='text' placeholder='Last Name' name='ulname' required>
+                <input type='text' placeholder='Last Name' name='ulname' id='lname' value='' required>
                     
                 <label for='uemail'><b>Email</b></label>
-                <input type='email' placeholder='Email' name='uemail' required>
+                <input type='email' placeholder='Email' name='uemail' id='email' value='' required>
             
                 <label for='uphone'><b>Phone</b></label>
-                <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required>
+                <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' id='phone' value='' required>
 
                 <label for='urating'><b>ELO Rating</b></label>
-                <input type='number' min='0' max='3000'placeholder='ELO' name='urating' required>       
+                <input type='number' min='0' max='3000'placeholder='ELO' name='urating' id='rating' value='' required>
+                
+                <label for='ulichess'><b>Username</b></label>
+                <input type='text' placeholder='Lichess Username' name='ulichess' id='lichess' value='' required>
             </div>
         
             <div class='buttons-container' style='background-color:#f1f1f1'>
                 <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>
-                <button type='button' class='cancel' onclick= document.getElementById('addStudentForm').style.display='none'>Cancel</button>
+                <button type='button' class='cancel' onclick= 'closeAddStudentForm()'>Cancel</button>
             </div>
         </form>
     </div>   
@@ -38,21 +41,23 @@ function createNewStudentForm(){
 
 // --------------------------------------------------------------------------
 
-function createAddCreditsForm(){
+function changeCreditsForm(){
+
     echo"          
-        <div id='addCreditsForm' class='modal'>
+        <div id='changeCreditsForm' class='modal'>
             <form action='' method='post' class='form-container animate'> 
                 <header class='container'>
-                Add Credits              
+                Credits              
                 </header>  
 
                 <div class='container input-container'>
                     <label for='camount'><b>Credits Amount</b></label>
-                    <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required>
+                    <input id='maxCredit' type='number' min='1' max='100' placeholder='1 - 100' name='camount' required>
                 </div> 
 
                 <div class='buttons-container'>
-                    <button type='submit' class='submit' name='AddCreditsSubmitted'>Add</button>
+                    <input type='hidden' id='hiddenValue' name='hiddenValue' value=''>
+                    <button type='submit' class='submit' name='changeCreditsSubmitted'>Submit</button>               
                     <button type='button' class='cancel' onclick='closeCreditForm()'>Cancel</button>
                 </div>
             </form>
@@ -62,7 +67,7 @@ function createAddCreditsForm(){
 
 // --------------------------------------------------------------------------
 
-function createAddClassForm(){
+function addClassForm(){
     echo"          
         <div id='addClassForm' class='modal'>
             <form action='' method='post' class='form-container animate'>  
@@ -96,9 +101,9 @@ function createAddClassForm(){
 
 // --------------------------------------------------------------------------
 
-function createDeleteForm(){    
+function deleteStudentForm(){    
     echo"
-        <div id='addDeleteForm' class='modal'>
+        <div id='addDeleteStudent' class='modal'>
                 <form action='' method='post' class='form-container animate'>
                     <header class='container'>
                         Delete Student                  
@@ -107,7 +112,7 @@ function createDeleteForm(){
                     <div class='buttons-container'>
                             <input type='hidden' id='hiddenStudentId' name='stdId' value=''>
                             <button type='submit' class='submit' name='studentDeleted'>Delete</button>                      
-                            <button type='button' class='cancel' onclick='closeDeleteForm()'>Cancel</button>
+                            <button type='button' class='cancel' onclick='closeDeleteStudent()'>Cancel</button>
                     </div>                  
                 </form>
         </div>
@@ -116,4 +121,22 @@ function createDeleteForm(){
 
 // -------------------------------------------------------------------------- 
 
+function deleteClassForm(){    
+    echo"
+        <div id='addDeleteClass' class='modal'>
+                <form action='' method='post' class='form-container animate'>
+                    <header class='container'>
+                        Delete Class                  
+                        <p>Are you sure you want to delete this class?</p>
+                    </header> 
+                    <div class='buttons-container'>
+                            <input type='hidden' id='hiddenClassId' name='classId' value=''>
+                            <button type='submit' class='submit' name='classDeleted'>Delete</button>                      
+                            <button type='button' class='cancel' onclick='closeDeleteClass()'>Cancel</button>
+                    </div>                  
+                </form>
+        </div>
+    ";
+}
 
+// -------------------------------------------------------------------------- 

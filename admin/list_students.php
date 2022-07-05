@@ -1,16 +1,16 @@
 <?php
-include('../include/initialize.php');
+include('../include/initialize.php');                
+$allStudents = getAllStudents();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(isset($_REQUEST['AddStudentSubmitted'])){
-
+    if(isset($_REQUEST['AddStudentSubmitted'])){   
         $errors = [];
         validateName($_REQUEST['ufname']);
         validateName($_REQUEST['ulname']); 
         
        if(sizeof($errors) == 0){
-            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating']);                                                                    
+            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess']);                                                                    
             header("location:?");                                                                      
        }   
        
@@ -23,18 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         deleteStudent($_REQUEST['stdId']);                                                                    
         header("location:?");                                                             
     } 
-}
 
-$allStudents = getAllStudents(); 
+    if(isset($_REQUEST['searchSubmitted'])){
+       
+        searchStudent($allStudents, $_REQUEST['searchContent']);                                                                 
+    }  
+}
+ 
 echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." students");
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
-if(!empty($allStudents)){  
-
-    addRemainingCredits($allStudents);                                                         //These functions will the info needed to the students array      
-    addFutureClassesAmount($allStudents);           
-    addDaysToNextClass($allStudents);             
+if(!empty($allStudents)){
+    
+    $remainingCredits = calcRemainingCredits();
+    $allStudents = addRemainingCredits($remainingCredits, $allStudents);                                                         //These functions will the info needed to the students array      
+    $futureClassesAmount = getFutureClassesAmount();
+    $allStudents = addFutureClassesAmount($futureClassesAmount, $allStudents);           
+    $allStudents = addDaysToNextClass($allStudents);             
 
     echoStudentTable($allStudents);       
 }                                                        
@@ -43,7 +49,7 @@ else{
     echo"No students to show";                                                                       //This will be used properly later on(e.g. showing the correct message etc)
 }
 
-createNewStudentForm();
-createDeleteForm('');
+addStudentForm();
+deleteStudentForm();
 echoFooter();    
          
