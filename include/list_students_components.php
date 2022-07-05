@@ -8,25 +8,12 @@ function echoSearchBar($heading){
         <div>
             <h2>$heading</h2>
             <div class='flex-item-SearchBar search-bar'>          
-            <input type='text' id='myInput' onkeyup='myFunction()' placeholder='🔎 Search Name...' title='Type in a name'>
+            <input type='text' id='myInput' onkeyup='searchStudent()' placeholder='🔎 Search Name...' title='Type in a name'>
         </div> 
     </div>     
 ";    
 }
 
-
-
-
-
-// <div>
-// <h2>$heading</h2>
-// <div class='flex-item-SearchBar'>
-//     <form action='' class='search-bar' method='post'>
-//     <input type='text' placeholder='Search Name' name='searchContent'>
-//     <button class='searchB zoom' type='submit' name='searchSubmitted'><img class='searchButton'src='/images/search.jpg' alt='search'></button>
-//     </form>
-// </div> 
-// </div> 
 // --------------------------------------------------------------------------
 
 function echoAddStudentButton($buttonText){

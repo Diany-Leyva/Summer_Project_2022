@@ -90,7 +90,7 @@ function showSaveButton(heading){
 //Search Bar
 // --------------------------------------------------------------------------
 
-function myFunction() {
+function searchStudent() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('myInput');
     filter = input.value.toUpperCase();   

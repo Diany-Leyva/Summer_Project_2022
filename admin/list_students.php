@@ -22,11 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_REQUEST['studentDeleted'])){
         deleteStudent($_REQUEST['stdId']);                                                                    
         header("location:?");                                                             
-    } 
-
-    if(isset($_REQUEST['searchSubmitted'])){
-       
-        searchStudent($allStudents, $_REQUEST['searchContent']);                                                                 
     }  
 }
  
