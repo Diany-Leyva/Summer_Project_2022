@@ -22,7 +22,7 @@ function echoSearchBar($heading){
 function echoAddStudentButton($buttonText){
     echo"
         <div class='flex-item-buttons'>              
-            <button onclick= \"document.getElementById('id01').style.display='block'\" style='width:fit-content;'>$buttonText</button>
+            <button onclick= \"document.getElementById('addStudentForm').style.display='block'\" style='width:fit-content;'>$buttonText</button>
         </div>
     </div>    
 ";    

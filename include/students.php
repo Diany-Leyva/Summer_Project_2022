@@ -10,11 +10,11 @@ function addRemainingCredits(&$allStudents){
     $creditsAmount = getCreditsAmount();                                              //Gets the amount of credit the students have from the credits table
     $classesAmount = getClassesAmount();                                              //Same with classes amount
 
-    $studentIdsArray = array_column($classesAmount, 'StudentId');                   //Gets an array of studentsId from the classes array because is the easiest way I found to search for specific studentId.
+    $studentsWithClassesArray = array_column($classesAmount, 'StudentId');                   //Gets an array of studentsId from the classes array because is the easiest way I found to search for specific studentId.
   
     $i = 0;
     foreach($creditsAmount as $credit){                                              //Go throught the creditsAmount array and
-        if (in_array($creditsAmount[$i]['StudentId'], $studentIdsArray)){           //branch if the studentsId from the credits array is found in the classes array. I do this because 
+        if (in_array($creditsAmount[$i]['StudentId'], $studentsWithClassesArray)){           //branch if the studentsId from the credits array is found in the classes array. I do this because 
                                                                                      //I want to loop throught that array only if I know the student id is there. I wonder if there is a built in function that returns it
             foreach($classesAmount as $class){                                    
                 if($class['StudentId'] == $creditsAmount[$i]['StudentId'] ){       //when the studentsId is found
@@ -85,7 +85,7 @@ function addFutureClassesAmount(&$allStudents){
 
 function addDaysToNextClass(&$allStudents){
     $allFutureClasses = getFutureClasses();                                                     //Gets all the classes that are scheduled 
-    $nextClasses= removeDuplicateMultiDArray($allFutureClasses, 'StudentId');                   //I commented in the code: I'm removing the duplicated studentId (the whole element, not only the id) 
+    $nextClasses= removeDuplicateMultiDArray($allFutureClasses, 'StudentId');                   //I'm removing the duplicated studentId (the whole element, not only the id) 
                                                                                                 //because the query above returns all the future classes of each student. So there could be a student 
                                                                                                 //with several future classes (which means if a student has 3 future classes, there will be 3 array 
                                                                                                 //elements with the same studentId and just different class information). So this function removes the "duplicates" 

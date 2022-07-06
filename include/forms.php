@@ -4,10 +4,10 @@
 
 function createNewStudentForm(){
     echo"         
-    <div id='id01' class='modal'>        
+    <div id='addStudentForm' class='modal'>        
         <form class='modal-content animate' action='' method='post'>
             <div class='imgcontainer'>
-                <span onclick= document.getElementById('id01').style.display='none' class='close' title='Close Modal'>&times;</span>
+                <span onclick= document.getElementById('addStudentForm').style.display='none' class='close' title='Close Modal'>&times;</span>
                 <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
             </div>
         
@@ -30,7 +30,7 @@ function createNewStudentForm(){
         
             <div class='container' style='background-color:#f1f1f1'>
                 <button type='submit' name='AddStudentSubmitted'>Add</button>
-                <button type='button' onclick= document.getElementById('id01').style.display='none' class='cancelbtn'>Cancel</button>
+                <button type='button' onclick= document.getElementById('addStudentForm').style.display='none' class='cancelbtn'>Cancel</button>
             </div>
         </form>
     </div>   

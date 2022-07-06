@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
        if(sizeof($errors) == 0){
             insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating']);                                                                    
-            header("location:?");                                                                      
+            header("location:?");  
+            exit();                                                                    
        }   
        
        else{

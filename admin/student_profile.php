@@ -6,11 +6,14 @@ if(isset($_REQUEST['studentId'])){
     if(isset($_REQUEST['AddCreditsSubmitted'])){    
         insertCredit($_REQUEST['camount'], $_REQUEST['studentId'] );                           
         header("location:? studentId={$_REQUEST['studentId']}");                                              //Passing the id when reloading the page after inserting                   
+        exit();                                                                   
     }
 
     if(isset($_REQUEST['AddClassesSubmitted'])){        
       insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $_REQUEST['classDate'], $_REQUEST['studentId']);                           
-      header("location:? studentId={$_REQUEST['studentId']}");                           
+      header("location:? studentId={$_REQUEST['studentId']}"); 
+      exit();                                                                   
+
     } 
 
     $title = 'Student Profile';
