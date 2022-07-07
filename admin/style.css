@@ -477,7 +477,7 @@ button:hover {
 
 /*Home Page
 --------------------------------------------------------------------------- */
-
+/* Day view calendar */
 .dayViewContainer{
     position: relative;  
     margin: 16px 38px;
@@ -511,7 +511,6 @@ hr{
     background-color: #bcb7b7;
     border-radius: -22px;
 }
-
 
 /* Next class info */
 .next-class-info{
