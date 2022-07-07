@@ -66,8 +66,13 @@ function changeCreditsForm(){
 }
 
 // --------------------------------------------------------------------------
-
+//I'm sure that as I get more familiar with js libraries I will be able to
+//updated this date-time picker :). I'm literally just using a list for time
+//but I don't want to allow 4:35Pm as a time for instance, I just want :00 or
+// :30 as an option 
+// --------------------------------------------------------------------------
 function addClassForm(){
+    $today = date('Y-m-d');
     echo"          
         <div id='addClassForm' class='modal'>
             <form action='' method='post' class='form-container animate'>  
@@ -83,7 +88,26 @@ function addClassForm(){
                 </select>   
 
                 <label for='classDate'>Class Date</label>
-                <input type='datetime-local' name='classDate' required> 
+                <input type='date' name='classDate' min='$today' value='$today' required>
+
+                <label for='classTime'>Class Time</label>
+                <select name='classTime' id='clock'>";
+
+                    for($i = 8; $i < 24; $i++){
+                        $meridiam = 'AM';                  
+                      
+                        if($i > 11){
+                            $meridiam = 'PM';
+                        }
+
+                        $hour = $i.":00";
+                        $min = $i.":30";
+                   
+                        echo"<option value=$hour>$hour $meridiam</option>";
+                        echo"<option value=$min>$min $meridiam</option>";
+                    }
+                    echo"
+                </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
                 <input type='text' placeholder='Link' name='czoomLink' required>            
@@ -91,8 +115,7 @@ function addClassForm(){
                                 
                 <div class='buttons-container'>
                     <button type='submit' class='submit' name='AddClassesSubmitted'>Book</button>
-                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>
-               
+                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>               
                 </div>      
             </form>   
         </div>         

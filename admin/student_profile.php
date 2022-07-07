@@ -33,8 +33,9 @@ if(isset($_REQUEST['studentId'])){
     }
 
     if(isset($_REQUEST['AddClassesSubmitted'])){
-         
-      insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $_REQUEST['classDate'], $_REQUEST['studentId']);                           
+
+      $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
+      insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $date, $_REQUEST['studentId']);                           
       header("location:? studentId={$_REQUEST['studentId']}");                           
     } 
 

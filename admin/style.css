@@ -177,7 +177,7 @@ li{
     padding: 4%;
 }
 
-ol{
+.flex-item-profileInfo ol{
     margin: 10px 174px;
 }
 
@@ -337,7 +337,9 @@ button:hover {
     justify-content: flex-end;
     flex-wrap: wrap;
     width: 15%;
-    margin: -736px 956px;
+    top: 531px;
+    right: 158px;
+    /* margin: -736px 956px; */
     background: #d7d0d066;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -415,7 +417,8 @@ button:hover {
   
      
 .container input[type=text], .container input[type=email], .container input[type=tel]
-,.container input[type=number], .container input[type="datetime-local" i], .container #dropdown{
+,.container input[type=number], .container input[type="date" i], .container #clock,
+ .container #dropdown{
     width: 400px;
     padding: 10px 0px;
     margin: 2px 0 16px 0;
@@ -472,5 +475,119 @@ button:hover {
   }  
       
 
+/*Home Page
+--------------------------------------------------------------------------- */
 
+.dayViewContainer{
+    position: relative;  
+    margin: 16px 38px;
+    height: 857px;
+    width: 569px;
+    background: #d7d0d066;
+    /* overflow: auto; */
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+
+h3{
+    padding: 5%;
+}
+
+time{
+    position: absolute;
+    /* top: 50px; */
+    left: 25px;
+}
+
+hr{
+    width: 494px;
+}
+
+.one-hour-class{
+    position: absolute;
+    height: 50px;
+    width: 336px;
+    left: 107px;
+    background-color: #bcb7b7;
+    border-radius: -22px;
+}
+
+
+/* Next class info */
+.next-class-info{
+    position: absolute;
+    top: 284px;
+    right: 142px;
+    height: 360px;
+    width: 471px;
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+
+.nextClassheader{
+    font-size: 24px;
+    position: absolute;
+    top: 207px;
+    right: 425px;
+}
+
+.nextClassPicturePosition{
+    position: absolute;
+    top: -8px;
+    left: -171px;
+}
+
+.next-class-info-content{
+    position: absolute;
+    top: 42px;
+    right: 114px;
+}
+
+.nextclass-buttons-container p{
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+.nextclass-buttons-container a{
+    font-size: 50px;
+}
+
+.nextclass-buttons-container{
+    display: flex;
+    position: absolute;
+    top: 167px;
+    right: -163px;
+}
+
+.nextclass-buttons-container div{
+    margin: 34px -93px;
+}
+
+.nextclass-buttons-container img{
+    height: 18%;
+}
+
+
+/* total class section */
+.index-totalClassesSection{
+    position: absolute;
+    display: flex;   
+    width: 511px;
+    height: 360px;
+    top: 760px;
+    right: 101px;
+    background: #d7d0d066;
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
  
+.item-total{
+    display: flex;
+    padding: 95px 89px;
+}
+
+
+#totalNumberIndexPage {
+    font-size: 30px;
+    padding: 40% 40%;
+}

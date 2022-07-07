@@ -197,7 +197,6 @@ function calcStudentRemainingCredits($studentId){
 function calculateTotalClasses($studentId){
     $classesThisMonth = getStudentClassesAmountThisMonth($studentId);
     $classesThisYear = getStudentClassesAmountThisYear($studentId);
-
     $monthAmount= $yearAmount = [];
     
     (!$classesThisMonth)? $monthAmount = 0 : $monthAmount = $classesThisMonth['Amount'];

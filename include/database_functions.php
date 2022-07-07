@@ -48,6 +48,24 @@ function getFutureClasses(){
     ")->fetchAll();   
 }
 
+function getFutureClassesWithStudentNames(){
+    return dbQuery("
+        SELECT classes.StudentId, FirstName, LastName, StartDate 
+        FROM classes, students
+        WHERE classes.StudentId = students.StudentId
+        AND StartDate > CURRENT_DATE
+        ORDER BY StartDate
+    ")->fetchAll();   
+}
+
+// function getClassesToday(){
+//     return dbQuery("
+//         SELECT StudentId, StartDate 
+//         FROM classes
+//         WHERE StartDate = CURRENT_DATE        
+//     ")->fetchAll();   
+// }
+
 function getStudentsFutureClasses($studentId){
     return dbQuery("
         SELECT *
@@ -104,6 +122,23 @@ function getStudentClassesAmountThisMonth($studentId){
         AND MONTH(Startdate) = MONTH(CURRENT_DATE)
         AND YEAR(Startdate) = YEAR(CURRENT_DATE)
         GROUP BY StudentId    
+    ")->fetch();
+}
+
+function getClassesAmountThisMonth(){
+    return dbQuery("
+        SELECT COUNT(ClassId) Amount
+        FROM classes
+        WHERE MONTH(Startdate) = MONTH(CURRENT_DATE)
+        AND YEAR(Startdate) = YEAR(CURRENT_DATE)          
+    ")->fetch();
+}
+
+function getClassesAmountThisYear(){
+    return dbQuery("
+        SELECT COUNT(ClassId) as Amount
+        FROM classes
+        WHERE YEAR(StartDate) = YEAR(CURRENT_DATE)   
     ")->fetch();
 }
 

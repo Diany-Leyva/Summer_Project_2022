@@ -91,7 +91,7 @@ function showSaveButton(heading){
 // --------------------------------------------------------------------------
 
 function searchStudent() {
-    var input, filter, table, tr, td, i, txtValue;
+    let input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('myInput');
     filter = input.value.toUpperCase();   
     table = document.getElementById('tableContainer');   
@@ -114,13 +114,13 @@ function searchStudent() {
 // When the user clicks anywhere outside of the modal, close it
 // --------------------------------------------------------------------------
 
-var addStudentModal = document.getElementById('addStudentForm');
-var deleteStudentModal = document.getElementById('addDeleteStudent');
-var addClassModal = document.getElementById('addClassForm');
-var addCreditsModal = document.getElementById('changeCreditsForm');
-var deleteClassModal = document.getElementById('addDeleteClass');
-var privateNotesModal = document.getElementById('privateNotesTextarea');
-var publicNotesModal = document.getElementById('publicNotesTextarea');
+let addStudentModal = document.getElementById('addStudentForm');
+let deleteStudentModal = document.getElementById('addDeleteStudent');
+let addClassModal = document.getElementById('addClassForm');
+let addCreditsModal = document.getElementById('changeCreditsForm');
+let deleteClassModal = document.getElementById('addDeleteClass');
+let privateNotesModal = document.getElementById('privateNotesTextarea');
+let publicNotesModal = document.getElementById('publicNotesTextarea');
 
 window.onclick = function(event) {
     

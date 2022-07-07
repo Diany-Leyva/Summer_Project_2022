@@ -1,39 +1,102 @@
-<!-- <html>
-    <head>              
-        <title>My Students</title>  
-        <link href='style.css' rel='stylesheet'>                                                          
-   
-    <style>
-      </style>
-          </head> 
-    <body>
-      
-      <div class='form-popup' id='changeCreditsForm'>
-        <form action='' class='form-container'>
-            <button type='button' class='btn cancel' onclick='closeForm()'>Close</button>
-            <button type='submit' class='btn' name='AddCredditsSubmitted'>Add</button>         
-            <label for='camount'><b>Credits Amount</b></label>
-            <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required> 
-            <label for='id'><b></b></label>
-            <input type='hidden' name='id' value=$_REQUEST[id]>        
-        </form>
-    </div>
-    
-    <script>
-        function openForm() {
-            document.getElementById('changeCreditsForm').style.display = 'block';
-        }
-        
-        function closeForm() {
-            document.getElementById('changeCreditsForm').style.display = 'none';
-        }
-    </script>    
-       
-            
-        
-</body> 
-</html> -->
+<html>                                                                                                      
+            <head>              
+                <title>Home</title>  
+                <link href='style.css' rel='stylesheet'>   
+                
+                <style>
 
+                    .dayViewContainer{
+                        position: relative;
+                        margin: 16px 38px;
+                        height: 705px;
+                        width: 469px;
+                        background: #d7d0d066;
+                        border-radius: 30px;
+                        box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+                    }
+
+                </style>
+            </head>            
+            <body>
+                <section class='wrapper'>
+                    <section>  
+                        <div class='flex-container-verticalBar'>  
+                            <div class='flex-item-verticalBarPicture'>
+                                <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
+                                <h1 >Yuniesky Quesada</h1>
+                            </div>            
+                        </div>  
+                    </section>  
+                    <section>     
+                        <nav>
+                            <header>Welcome back, Yuniesky
+                                <p>You have 3 classes today</p>
+                            </header>
+                            <div class='flex-item-horizontalMenu'>
+                                <ul>                         
+                                    <a href='#'> <img class = 'notificationIcon zoom' src= '/images/notification.png' alt='notification'></a> 
+                                    <li class='zoom'><a href='/admin/index.php'>Home</a></li>                   
+                                    <li class='zoom'><a href='/admin/list_students.php'>Students</a></li>
+                                    <li class='zoom'><a href='/admin/calendar.php'>Calendar</a></li> 
+                                </ul> 
+                            </div>                
+                        </nav>  
+                        <div>
+                            <h2>Daily Schedule</h2>                            
+                        </div> 
+
+                        <div class='dayViewContainer'>
+
+
+
+
+
+
+                            
+
+                        </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </section>
+                </section> 
+                <script src='/include/javascriptFunctions.js'></script> 
+                <footer></footer>                            
+           </body>    
+        </html>
+
+
+                 
+       
 
                  
        
