@@ -36,12 +36,12 @@ function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $key){
     $creditsAmountUpdated = $creditsAmount;
 
     //Make an array with only the students ids 
-    $studentIdsArray = array_column($amountToSubtractArray, 'StudentId');                                      
+    $studentsWithClassesArray = array_column($amountToSubtractArray, 'StudentId');                                      
 
     //Now I need to update the credits amount by subtracting the corresponding value
     $i = 0;
     foreach($creditsAmountUpdated as $credit){
-        if (in_array($creditsAmountUpdated[$i]['StudentId'], $studentIdsArray)){                                                    //Check if the current studentId is in the array
+        if (in_array($creditsAmountUpdated[$i]['StudentId'], $studentsWithClassesArray)){                                                    //Check if the current studentId is in the array
             foreach($amountToSubtractArray as $amount){                                    
                 if($amount['StudentId'] == $creditsAmountUpdated[$i]['StudentId'] ){                                               //When we find the studentId
                     $creditsAmountUpdated[$i]['CreditsAmount'] -= $amount[$key];         

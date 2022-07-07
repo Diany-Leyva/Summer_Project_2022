@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
        if(sizeof($errors) == 0){
             insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess']);                                                                    
-            header("location:?");                                                                      
+            header("location:?"); 
+            exit();                                                                     
        }   
        
        else{
@@ -21,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_REQUEST['studentDeleted'])){
         deleteStudent($_REQUEST['stdId']);                                                                    
-        header("location:?");                                                             
+        header("location:?");  
+        exit();                                                             
     }  
 }
  

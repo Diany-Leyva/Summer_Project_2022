@@ -11,7 +11,8 @@ if(isset($_REQUEST['studentId'])){
       
     if(sizeof($errors) == 0){
       updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess'], $_REQUEST['studentId']);                                                                    
-      header("location:? studentId={$_REQUEST['studentId']}");                                                                  
+      header("location:? studentId={$_REQUEST['studentId']}");    
+      exit();                                                                
     }   
      
     else{
@@ -30,35 +31,41 @@ if(isset($_REQUEST['studentId'])){
       }     
                                   
       header("location:? studentId={$_REQUEST['studentId']}");                                              //Passing the id when reloading the page after inserting                   
+      exit();  
     }
 
     if(isset($_REQUEST['AddClassesSubmitted'])){
 
       $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
       insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $date, $_REQUEST['studentId']);                           
-      header("location:? studentId={$_REQUEST['studentId']}");                           
+      header("location:? studentId={$_REQUEST['studentId']}");  
+      exit();                           
     } 
 
     if(isset($_REQUEST['studentDeleted'])){
      
       deleteStudent($_REQUEST['stdId']);                                                                    
-      header("location:/admin/list_students.php");     
+      header("location:/admin/list_students.php"); 
+      exit();      
     } 
 
     if(isset($_REQUEST['classDeleted'])){   
       deleteClass($_REQUEST['classId']);                                                                    
-      header("location:? studentId={$_REQUEST['studentId']}");        
+      header("location:? studentId={$_REQUEST['studentId']}");   
+      exit();       
     } 
 
     if(isset($_REQUEST['privNotesSaveButtonSubmitted'])){   
        
       updateNotes($_REQUEST['studentId'], $_REQUEST['privateNotes'], 'PrivateNotes');                                                                    
-      header("location:? studentId={$_REQUEST['studentId']}");        
+      header("location:? studentId={$_REQUEST['studentId']}"); 
+      exit();         
     } 
 
     if(isset($_REQUEST['publicNotesSaveButtonSubmitted'])){  
       updateNotes($_REQUEST['studentId'], $_REQUEST['publicNotes'], 'PublicNotes');                                                                   
-      header("location:? studentId={$_REQUEST['studentId']}");        
+      header("location:? studentId={$_REQUEST['studentId']}"); 
+      exit();         
     }   
 
     $title = 'Student Profile';
