@@ -292,7 +292,7 @@ button{
     display: inline-block;
     font-size: 16px;
     margin: 21px 1px;
-    /* cursor: pointer; */
+    cursor: pointer;
     border-radius: 64px;
     width: 100%;   
 }
