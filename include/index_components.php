@@ -35,7 +35,6 @@ function echoDayViewCalendar(){
 //starting date and ending date. But this is what I came up with. 
 // --------------------------------------------------------------------------
 function echoEvents($classesToday){ 
-    
     foreach($classesToday as $class){
         $hour = formatDate($class['StartDate'], 'H');            
         $time = formatDate($class['StartDate'], 'H:i A');                    
@@ -49,7 +48,8 @@ function echoEvents($classesToday){
 
 // --------------------------------------------------------------------------
 
-function echoNextClassSection($nextClass){   
+function echoNextClassSection($nextClass){  
+    //  debug($nextClass);
     echo"
         <p class='nextClassheader'>Next Class</p>
         <div class='next-class-info'>
@@ -63,17 +63,17 @@ function echoNextClassSection($nextClass){
             
                 <div class='nextclass-buttons-container'>
                     <div>
-                        <a href='#'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                        <a href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                         <p>Message</p>
                     </div>
 
                     <div>
-                        <a href='#'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                        <a href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                         <p>Lichess</p>
                     </div>
 
                     <div>
-                        <a href='#'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                        <a href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                         <p>Zoom</p>
                     </div>
                 </div>

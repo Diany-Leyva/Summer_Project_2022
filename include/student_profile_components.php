@@ -12,7 +12,7 @@
 function echoProfileInfo($student, $picture){
     $studentId = $student['StudentId'];   
     $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
-    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessUsername']); 
+    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessLink']); 
    
     echo"
         <div class='flex-container-pictureCredits'>
@@ -22,7 +22,7 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['Email']."</li>
                     <li>".$student['Phone']."</li>    
                     <li>ELO ".$student['ELO']."</li>
-                    <li>".$student['LichessUsername']."</li>
+                    <li>".$student['LichessLink']."</li>
                     <button class='zoom' onclick='openAddStudentForm($studentId)'>Edit</button>
                     <input type='hidden' id='hiddenStudent' value=";echo json_encode($studentArray);echo"       
                 </ol>

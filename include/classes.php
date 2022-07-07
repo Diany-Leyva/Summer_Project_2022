@@ -22,6 +22,28 @@ function calcClassesToday($futureClasses){
 }
 
 // --------------------------------------------------------------------------
+//This function takes the classes today and check for the time (hour) and if 
+//any element's hour is pass current hour then it deletes it from the array
+//and then re-index the array.I could do this in SQL but since I have so many 
+//queries I will keep this in php. So at the end we return an array with the 
+//pending classes today
+// --------------------------------------------------------------------------
+
+function calcNextClass($classesToday){
+    $nextClasses = $classesToday;  
+
+    for($i = 0; $i < sizeof($classesToday); $i++){
+        if(formatDate($nextClasses[$i]['StartDate'], 'H') < date('H')){       
+            unset($nextClasses[$i]);
+        }
+    }
+
+    $nextClasses = array_values($nextClasses);
+
+    return $nextClasses; 
+}
+
+// --------------------------------------------------------------------------
 
 function calcTotalClasses(){
 

@@ -50,7 +50,7 @@ function echoStudentTable($students){
             <td><a href='student_profile.php?studentId=".$student['StudentId']."'>".$student['FirstName']." ".$student['LastName']."</a></td>    
             <td>".$student['Email']."</td>
             <td>".$student['Phone']."</td>
-            <td>".$student['LichessUsername']."</td>   
+            <td>".$student['LichessLink']."</td>   
             <td>".$student['Credits']."</td>   
             <td>".$student['Classes']."</td>";
 

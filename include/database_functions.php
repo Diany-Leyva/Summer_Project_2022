@@ -48,9 +48,9 @@ function getFutureClasses(){
     ")->fetchAll();   
 }
 
-function getFutureClassesWithStudentNames(){
+function getFutureClassesWithStudentInfo(){
     return dbQuery("
-        SELECT classes.StudentId, FirstName, LastName, StartDate 
+        SELECT classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
         FROM classes, students
         WHERE classes.StudentId = students.StudentId
         AND StartDate > CURRENT_DATE
@@ -123,6 +123,18 @@ function getStudentClassesAmountThisMonth($studentId){
         AND YEAR(Startdate) = YEAR(CURRENT_DATE)
         GROUP BY StudentId    
     ")->fetch();
+}
+
+function getStudentsClassesToday(){
+    return dbQuery("
+        SELECT COUNT(ClassId) Amount
+        FROM classes
+        WHERE YEAR(Startdate) = YEAR(CURRENT_DATE) 
+        AND MONTH(Startdate) = MONTH(CURRENT_DATE)
+        AND DAY(Startdate) = DAY(CURRENT_DATE)
+        AND HOUR(StartDate) > HOUR(CURRENT_TIMESTAMP)      
+")->fetch();
+   
 }
 
 function getClassesAmountThisMonth(){
@@ -208,7 +220,7 @@ function getStudentRefundAmount($student_Id){
 
 function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
     dbQuery("
-    INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessUsername)
+    INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
     VALUES ('$fName', '$lName', '$email', '$phone', '$rating', '$lichess')
 ");
 }
@@ -260,7 +272,7 @@ function deleteClass($classId){
 function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $studentId){
     dbQuery("
     UPDATE students
-    SET FirstName ='$fName', LastName='$lName', Email='$email', Phone='$phone', ELO='$rating', LichessUsername ='$lichess' 
+    SET FirstName ='$fName', LastName='$lName', Email='$email', Phone='$phone', ELO='$rating', LichessLink ='$lichess' 
     WHERE StudentId = '$studentId'
 ");
 }
