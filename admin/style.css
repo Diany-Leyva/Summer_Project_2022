@@ -250,6 +250,7 @@ ol li {
 textarea{
     padding: 10%;
     resize: none;
+    font-size: 16px;
 }
 
 .saveNoteButton{
@@ -490,7 +491,7 @@ button:hover {
 }
 
 h3{
-    padding: 5%;
+    padding: 3%;
 }
 
 time{
@@ -506,7 +507,7 @@ hr{
 .one-hour-class{
     position: absolute;
     height: 50px;
-    width: 336px;
+    width: 415px;
     left: 107px;
     background-color: #bcb7b7;
     border-radius: -22px;
@@ -566,6 +567,10 @@ hr{
     height: 18%;
 }
 
+.noclasses-message{
+    font-size: 25px;
+    margin: 105px 26px;
+}
 
 /* total class section */
 .index-totalClassesSection{

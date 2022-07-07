@@ -32,13 +32,15 @@ function calcClassesToday($futureClasses){
 function calcNextClass($classesToday){
     $nextClasses = $classesToday;  
 
-    for($i = 0; $i < sizeof($classesToday); $i++){
-        if(formatDate($nextClasses[$i]['StartDate'], 'H') < date('H')){       
-            unset($nextClasses[$i]);
+    if(!empty($nextClasses)){                                                               //Only do theb procces if is not empty because I'm unsure  
+        for($i = 0; $i < sizeof($classesToday); $i++){                                      //there could be any odd behiavor when trying to
+            if(formatDate($nextClasses[$i]['StartDate'], 'H') < date('H')){                 //re-index an empty array so I will have this for now 
+                unset($nextClasses[$i]);
+            }
         }
-    }
-
-    $nextClasses = array_values($nextClasses);
+    
+        $nextClasses = array_values($nextClasses);
+    }    
 
     return $nextClasses; 
 }

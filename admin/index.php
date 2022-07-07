@@ -2,27 +2,31 @@
 include('../include/initialize.php'); 
 
 $futureClasses = getFutureClassesWithStudentInfo();
-// debug($futureClasses);
 $classesToday = calcClassesToday($futureClasses);
-
 $size = sizeof($classesToday);
 
+//just to handle singular and plural for the classes message
 $word = 'classes';
 if($size == 1){
     $word = 'class';
 }
 
-echoPageLayout('Home', 'Welcome back, Yuniesky', "You have ".sizeof($classesToday)." ".$word." today");
+$headingInfo = "You have ".$size." ".$word." today";
 
-if(!empty($classesToday)){
-    $nextClasses = calcNextClass($classesToday);                                                     
-}                                                  
-
-else{
-    //Pending to handle when there are no classes
+if($size == 0){
+    $headingInfo = 'No classes today';
 }
 
-echoNextClassSection($nextClasses[0]);                                                          
+echoPageLayout('Home', 'Welcome back, Yuniesky', $headingInfo);
+
+$nextClasses = calcNextClass($classesToday); 
+
+$nextclass = [];
+if(!empty($nextClasses)){                                               //Branch only if the are next classes for same reason above
+    $nextclass = $nextClasses[0];  
+}                                                 
+                                             
+echoNextClassSection($nextclass);                                                          
 
 $totalClasses = calcTotalClasses();
 echoIndexTotalSection($totalClasses);

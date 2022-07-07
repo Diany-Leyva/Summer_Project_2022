@@ -50,7 +50,6 @@ function closeCreditForm(){
 
 function openClassForm() {
     document.getElementById('addClassForm').style.display = 'block';
-
 }
 
 function closeClassForm() {

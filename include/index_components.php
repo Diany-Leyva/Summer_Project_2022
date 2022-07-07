@@ -9,7 +9,7 @@ function echoDayViewCalendar(){
             <h3><center> $day</h3>";
                 $topPosition = 50;
                 $currentTop = 50;
-                $left = 25;
+                // $left = 25;
 
                 for($i = 8; $i < 24; $i++){
                     $meridiem = 'AM';
@@ -32,7 +32,8 @@ function echoDayViewCalendar(){
 
 // --------------------------------------------------------------------------
 //I'm sure this is not what you had in mind haha since you were talking about a function to pass
-//starting date and ending date. But this is what I came up with. 
+//starting date and ending date and I'm sure involves js. But this is what I came up with. 
+//I will talk to you about it in the jog meeting 
 // --------------------------------------------------------------------------
 function echoEvents($classesToday){ 
     foreach($classesToday as $class){
@@ -48,30 +49,34 @@ function echoEvents($classesToday){
 
 // --------------------------------------------------------------------------
 
-function echoNextClassSection($nextClass){  
-    //  debug($nextClass);
+function echoNextClassSection($nextClass){    
+    
     echo"
         <p class='nextClassheader'>Next Class</p>
-        <div class='next-class-info'>
-            <div class='next-class-info-content'>
+        <div class='next-class-info'> 
+            <div class='next-class-info-content'>";      
+
+        if($nextClass){
+            echo"
+         
                 <ol>
                     <li>".$nextClass['FirstName']." ".$nextClass['LastName']."</li>
                     <li>".formatDate($nextClass['StartDate'], 'd M')."</li>
                     <li>".formatDate($nextClass['StartDate'], 'H:i A')."</li>    
                     <li>1 hour</li>                               
                 </ol>
-            
+        
                 <div class='nextclass-buttons-container'>
                     <div>
                         <a href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                         <p>Message</p>
                     </div>
-
+        
                     <div>
                         <a href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                         <p>Lichess</p>
                     </div>
-
+        
                     <div>
                         <a href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                         <p>Zoom</p>
@@ -79,9 +84,16 @@ function echoNextClassSection($nextClass){
                 </div>
                 <div class='nextClassPicturePosition'>
                     <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
-                </div>
-            </div>
-        </div>";
+                </div>        
+                ";
+        }
+
+        else{
+            echo"<p class='noclasses-message'>No classes today</p>";
+        }
+        
+        echo"</div>
+    </div>";
 }
 
 // --------------------------------------------------------------------------

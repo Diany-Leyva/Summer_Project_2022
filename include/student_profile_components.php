@@ -138,7 +138,7 @@ function echoPrivateNotes($notes){
 // --------------------------------------------------------------------------
 
 function echoPublicNotes($notes){   
-    $message;   
+    $message; 
 
     echo"<div>";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
