@@ -21,20 +21,23 @@ function formatDate($date, $format){
 
 // --------------------------------------------------------------------------
 
-function removeDuplicateMultiDArray($array, $key) {                                                                
-    $temp_array = [];  
+function removeDuplicate($arrayWithDuplicates, $key) {                                                                
+    $tempArray = [];  
     $i = 0; 
-    $key_array = []; 
+    $keyArray = []; 
     
-    foreach($array as $val) { 
-        if (!in_array($val[$key], $key_array)) {                                                                      
-            $key_array[$i] = $val[$key]; 
-            $temp_array[$i] = $val; 
+    foreach($arrayWithDuplicates as $array) { 
+        if (!in_array($array[$key], $keyArray)) {                                                                      
+            $keyArray[$i] = $array[$key]; 
+            $tempArray[$i] = $array; 
         } 
         $i++; 
     } 
-    return $temp_array; 
+
+    return getIndexByPKArray($tempArray, $key);  
 }
+
+
 
 // --------------------------------------------------------------------------
 
@@ -47,17 +50,17 @@ function getDayDifference($futureDate, $today){
 }
 
 // --------------------------------------------------------------------------
-//This function takes an indexed array and its primary key name, and returns an 
-//array that is indexed by the primary key. To make it more generic I passed the 
-//primary key name as parameter so it can be used for any array. 
+//This function takes an indexed arrayWithDuplicates and its primary key name, and returns an 
+//arrayWithDuplicates that is indexed by the primary key. To make it more generic I passed the 
+//primary key name as parameter so it can be used for any arrayWithDuplicates. 
 // --------------------------------------------------------------------------
 
-function getIndexByPKArray($arrayToUpdate, $primaryKey){
+function getIndexByPKArray($arrayWithDuplicatesToUpdate, $primaryKey){
 
     $newArray = [];
-
-    foreach ($arrayToUpdate as $array){
-        $newArray[$array[$primaryKey]] = $array;
+  
+    foreach ($arrayWithDuplicatesToUpdate as $arrayWithDuplicates){
+        $newArray[$arrayWithDuplicates[$primaryKey]] = $arrayWithDuplicates;
     } 
 
     return $newArray;
@@ -65,3 +68,15 @@ function getIndexByPKArray($arrayToUpdate, $primaryKey){
 
 // --------------------------------------------------------------------------
 
+// function getIndexByStudentId($arrayWithDuplicatesToUpdate){
+    // $new = [];
+    // foreach($allFutureClasses as $key=>$class){
+    // // debug($class['StudentId']);
+    // // debug($new);
+
+    //     $new[$class['StudentId']][$key] = $class;
+    // }
+    // debug($new);
+// }
+
+// // --------------------------------------------------------------------------

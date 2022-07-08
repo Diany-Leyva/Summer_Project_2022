@@ -6,83 +6,61 @@
 // --------------------------------------------------------------------------
 
 
-function calcRemainingCredits(){
-    $creditsAmount = getCreditsAmount();                                              
-    $classesAmount = getClassesAmount();                                              
-    $refundsAmount = getRefundsAmount();                
+function calcRemainingCredits(){   
 
+    $creditsAmount = getIndexByPKArray(getCreditsAmount(), 'StudentId');
+    $classesAmount = getIndexByPKArray(getClassesAmount(), 'StudentId');
+    $refundsAmount = getIndexByPKArray(getRefundsAmount(), 'StudentId');    
+                                      
     //Do the calculation based on the refunds the students have. Each student 
     //has a certain amount of credits in the table, but I need to consider wheter
     //a refund was made, and if so I need to subtract that from the orginal amount
 
     $creditsAmount = updateCreditsAmountArray($creditsAmount, $refundsAmount, 'RefundAmount');                                
 
-    //Noe we need to consider if the students have any classes 
-    //So now the strategy is similar to above but subtracting the classes each student has 
+    //Now we need to consider if the students have any classes 
+    //So now the strategy is similar to above but subtracting the amount of classes each student has 
 
     $creditsAmount = updateCreditsAmountArray($creditsAmount, $classesAmount, 'ClassesAmount');
-   
-    //Now that the calculation of the remaining credits is done I will add it to the students array
-    //using similar strategy as above
-
+    
     return $creditsAmount;
 } 
 
 // --------------------------------------------------------------------------
-//This function is used to calculated the remaing credits based of on amountToSubtractArray
-//that in this program can be refunds and classes
+//This function is used to calculate the remaing credits based of the amountToSubtractArray
 // --------------------------------------------------------------------------
-function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $key){
-    debug($creditsAmount);
-    $creditsAmountUpdated = getIndexByPKArray($creditsAmount, 'StudentId');                                                        //returns an array indexed by the primary key
-    debug( $creditsAmountUpdated);
+function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $keyTosubtract){
     
-    //Make an array with only the students ids 
-    $studentsWithClassesArray = array_column($amountToSubtractArray, 'StudentId');                                      
-
-    //Now I need to update the credits amount by subtracting the corresponding value
-    $i = 0;
-    foreach($creditsAmountUpdated as $credit){
-        if (in_array($creditsAmountUpdated[$i]['StudentId'], $studentsWithClassesArray)){                                                    //Check if the current studentId is in the array
-            foreach($amountToSubtractArray as $amount){                                    
-                if($amount['StudentId'] == $creditsAmountUpdated[$i]['StudentId'] ){                                               //When we find the studentId
-                    $creditsAmountUpdated[$i]['CreditsAmount'] -= $amount[$key];         
-                }
-            }   
-        }
-         $i++;
-    }
-
+    $creditsAmountUpdated = $creditsAmount;                                      
+   
+    //Loop through, and check if the current key (studentID) is in the array of ids 
+    //from the amountToSubtractArray (array or refunds or classes) and then if the id 
+    //is there subtract the creditsa from the original amount of credits 
+    foreach($creditsAmountUpdated as $key=>$credit){   
+        if(in_array($key, array_column($amountToSubtractArray, 'StudentId'))){       
+            $creditsAmountUpdated[$key]['CreditsAmount'] -= $amountToSubtractArray[$key][$keyTosubtract];     
+        }     
+    }                 
+       
     return $creditsAmountUpdated;
 }
 
 // --------------------------------------------------------------------------
 //I'm doing all of these because there are students with no credits so they are no in 
 //the credits table. My strategy here is to add a credits key to the students array with 0 credits
-//and then update the credits amount. This is the remaining credits they have (not the total of credits) 
-//so I'm subtracting the total credits to the total classes they have to get the 
-//remaining credits and then update that in the student array
+//and then update the credits amount. This is the remaining credits they have (not the total of credits)
 // --------------------------------------------------------------------------
 
 function addRemainingCredits($remainingCredits, $allStudents){ 
     
-    $allStudentsUpdated = $allStudents;   
-    
-    $studentIdsArray = array_column($remainingCredits, 'StudentId');               
-    
-    $i = 0;
-    foreach($allStudentsUpdated as $student){
-        $allStudentsUpdated[$i]['Credits']='0';                                               //add a key "credits" to each student and initialize it to 0
+    $allStudentsUpdated = $allStudents;    
+       
+    foreach($allStudentsUpdated as $key=>$student){ 
+        $allStudentsUpdated[$key]['Credits'] = '0';  
 
-        if (in_array($allStudentsUpdated[$i]['StudentId'], $studentIdsArray)){                //branch if the current student id is in the  array
-
-            foreach($remainingCredits as $credit){                                       
-                if($credit['StudentId'] == $allStudentsUpdated[$i]['StudentId'] ){            //when the ids are equal
-                    $allStudentsUpdated[$i]['Credits'] = $credit['CreditsAmount'];           //update the credits amount (originally 0) with the correct amount. Those without credits will remain with 0
-                }
-            }       
-        }    
-        $i++;
+        if(in_array($key, array_column($remainingCredits, 'StudentId'))){       
+            $allStudentsUpdated[$key]['Credits'] = $remainingCredits[$key]['CreditsAmount'];     
+        }     
     }  
     
     return $allStudentsUpdated;
@@ -95,74 +73,49 @@ function addRemainingCredits($remainingCredits, $allStudents){
 
 function addFutureClassesAmount($futureClassesAmount, $allStudents){
 
-    $allStudentsUpdated = $allStudents;                                          
-    $studentIdsArray = array_column($futureClassesAmount, 'StudentId');                   
+    $allStudentsUpdated = $allStudents; 
+    
+    foreach($allStudentsUpdated as $key=>$student){ 
+        $allStudentsUpdated[$key]['Classes'] = '0';  
 
-    $i = 0;
-    foreach($allStudentsUpdated as $student){
-    
-        $allStudentsUpdated[$i]['Classes']='0';                                                   
-    
-        if (in_array($allStudentsUpdated[$i]['StudentId'], $studentIdsArray)){                 
-    
-            foreach($futureClassesAmount as $futureClass){                                
-                if($futureClass['StudentId'] == $allStudentsUpdated[$i]['StudentId'] ){         
-                    $allStudentsUpdated[$i]['Classes'] = $futureClass['ClassesPending'];        
-                }
-            }       
-        }
-       
-        $i++;
+        if(in_array($key, array_column($futureClassesAmount, 'StudentId'))){       
+            $allStudentsUpdated[$key]['Classes'] = $futureClassesAmount[$key]['ClassesPending'];     
+        }     
     }
 
     return $allStudentsUpdated;
 }
 
 // --------------------------------------------------------------------------
-//Same strategy but slightly different at the end
+//Same strategy but slightly different at the end. So I'm adding a DaysToNextCLass
+//key to each element its the corresponding values  
 // --------------------------------------------------------------------------
 
 function addDaysToNextClass($allStudents){
-    $allStudentsUpdated = $allStudents;  
+    $allStudentsUpdated = $allStudents;
+   
+    $allClasses = getIndexByPKArray(getAllClasses(), 'ClassId');                                                            //Making sure is indexed by pk
+    $allFutureClasses = calcFutureClasses($allClasses);                                                                     //calc the future classes      
+    $studentsNextClass= removeDuplicate($allFutureClasses, 'StudentId');                                                    //I'm removing the duplicated students to leave only the next class (previus wuery is ordered by StartDate)
+                                                                                          
+    foreach($allStudentsUpdated as $key=>$student){ 
+        $allStudentsUpdated[$key]['DaysToNextClass']['Months'] = '0';  
+        $allStudentsUpdated[$key]['DaysToNextClass']['Days'] = '0'; 
 
-    $allFutureClasses = getFutureClasses();                                                     //Gets all the classes that are scheduled 
-    $nextClasses= removeDuplicateMultiDArray($allFutureClasses, 'StudentId');                   //I commented in the code: I'm removing the duplicated studentId (the whole element, not only the id) 
-                                                                                                //because the query above returns all the future classes of each student. So there could be a student 
-                                                                                                //with several future classes (which means if a student has 3 future classes, there will be 3 array 
-                                                                                                //elements with the same studentId and just different class information). So this function removes the "duplicates" 
-                                                                                                //(perhaps I should name it differently). o consider any element with the same studentId to be a duplicate. 
-                                                                                                //In the end, it leaves only one row per student, which will be the next class, since the query is ordered by date.   
-    $studentIdsArray = array_column($nextClasses, 'StudentId');                                 
-    $today = new DATETIME(date("Y/m/d h:i:s"));                                                //Today will be used to perform the calculation with the class date
-  
-    $i = 0;
-    foreach($allStudentsUpdated as $student){
-    
-        $allStudentsUpdated[$i]['DaysToNextClass']['Months']='0';                                      //add a DaysToNextClass key that will have days and months initialized to 0
-        $allStudentsUpdated[$i]['DaysToNextClass']['Days']='0';
-    
-        if(in_array($allStudentsUpdated[$i]['StudentId'], $studentIdsArray)){                         //branch if the current student id is in the classes array
-    
-            foreach($nextClasses as $nextClass){
-                if($nextClass['StudentId'] == $allStudentsUpdated[$i]['StudentId']){                 //when the ids are equal
-                    $classDate = new DATETIME($nextClass['StartDate']);                              //When performing the calculations with date (see getDayDifference function) I had to use
-                                                                                                //new DATETIME to be able to use diff()
-                    $allStudentsUpdated[$i]['DaysToNextClass'] = getDayDifference($classDate, $today); //perform the calculation 
-                }                                   
-            }       
-        }
-    
-        $i++;
-    } 
-    
+        if(in_array($key, array_column($studentsNextClass, 'StudentId'))){ 
+           $classDate = new DATETIME($studentsNextClass[$key]['StartDate']);                                              
+           $allStudentsUpdated[$key]['DaysToNextClass'] = getDayDifference($classDate, new DATETIME(date('Y/m/d H:i:s')));  //My getDayDifference performs accurate calculation if I use nes DATETIME why? Who knows 
+        }      
+    }
+
     return $allStudentsUpdated;
 }
 
 
 // --------------------------------------------------------------------------
-//Here the strategy for one student is similar to what I did for all the students
-//but simpler since it is just for one. Get the total credits and subtract any
-//refund and any classes to get the remaining credits.
+// Here the strategy for one student is similar to what I did for all the students
+// but simpler since it is just for one. Get the total credits and subtract any
+// refund and any classes to get the remaining credits.
 // --------------------------------------------------------------------------
 
 function calcStudentRemainingCredits($studentId){

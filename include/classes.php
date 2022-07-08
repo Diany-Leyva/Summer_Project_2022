@@ -1,5 +1,53 @@
 <?php
 
+//This function takes all the classes as parameter and it returns an array
+//with only the classes scheduled in the future 
+// --------------------------------------------------------------------------
+
+function calcFutureClasses($allClasses){
+
+    $futureClasses = []; 
+    
+    foreach($allClasses as $key=>$class){
+        if(formatDate($class['StartDate'], 'Y/m/d H:i') > date('Y/m/d H:i')){
+            $futureClasses[$key] = $class;
+        }
+    }
+
+    return $futureClasses;
+}
+
+// --------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --------------------------------------------------------------------------
 //This function takes the array with future classes and it compares the dates
 //with the current date to then delete those dates different from today. Here
@@ -50,8 +98,8 @@ function calcNextClass($classesToday){
 function calcTotalClasses(){
 
     $monthAmount= $yearAmount = [];
-    $totalThisYear = getClassesAmountThisYear();
-    $totalThisMonth = getClassesAmountThisMonth();
+    $totalThisYear = getAllClassesAmountThisYear();
+    $totalThisMonth = getAllClassesAmountThisMonth();
 
     (!$totalThisMonth)? $monthAmount = 0 : $monthAmount = $totalThisMonth['Amount'];
     (!$totalThisYear)? $yearAmount = 0 : $yearAmount = $totalThisYear['Amount'];
@@ -62,4 +110,3 @@ function calcTotalClasses(){
     ];
 }
 
-// --------------------------------------------------------------------------

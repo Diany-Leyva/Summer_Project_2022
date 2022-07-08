@@ -1,7 +1,10 @@
 <?php
-include('../include/initialize.php');                
-$allStudents = getAllStudents();
-// debug($allStudents);
+include('../include/initialize.php');
+//All my select queries return an indexed array, but I'm updating my functions to work with 
+//arrays indexed by pk. So, every time I run a select query I will call the getIndexByPKArray()
+//that updates the array to be indexed by primary key.
+
+$allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -32,14 +35,16 @@ echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." stu
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
-if(!empty($allStudents)){
-    
+if(!empty($allStudents)){   
+    //calculate the information we need
     $remainingCredits = calcRemainingCredits();
-    $allStudents = addRemainingCredits($remainingCredits, $allStudents);                                                         //These functions will the info needed to the students array      
-    $futureClassesAmount = getFutureClassesAmount();
-    $allStudents = addFutureClassesAmount($futureClassesAmount, $allStudents);           
-    $allStudents = addDaysToNextClass($allStudents);             
-
+    $futureClassesAmount = getIndexByPKArray(getFutureClassesAmount(), 'StudentId');  
+    
+    //add the information collected to the students array
+    $allStudents = addRemainingCredits($remainingCredits, $allStudents);        
+    $allStudents = addFutureClassesAmount($futureClassesAmount, $allStudents);         
+    $allStudents = addDaysToNextClass($allStudents);           
+          
     echoStudentTable($allStudents);       
 }                                                        
                
