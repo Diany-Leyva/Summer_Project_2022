@@ -33,8 +33,10 @@ function calcRemainingCredits(){
 //that in this program can be refunds and classes
 // --------------------------------------------------------------------------
 function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $key){
-    $creditsAmountUpdated = $creditsAmount;
-
+    debug($creditsAmount);
+    $creditsAmountUpdated = getIndexByPKArray($creditsAmount, 'StudentId');                                                        //returns an array indexed by the primary key
+    debug( $creditsAmountUpdated);
+    
     //Make an array with only the students ids 
     $studentsWithClassesArray = array_column($amountToSubtractArray, 'StudentId');                                      
 

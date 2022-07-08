@@ -1,6 +1,7 @@
 <?php
 include('../include/initialize.php');                
 $allStudents = getAllStudents();
+// debug($allStudents);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

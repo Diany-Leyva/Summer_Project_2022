@@ -47,5 +47,21 @@ function getDayDifference($futureDate, $today){
 }
 
 // --------------------------------------------------------------------------
+//This function takes an indexed array and its primary key name, and returns an 
+//array that is indexed by the primary key. To make it more generic I passed the 
+//primary key name as parameter so it can be used for any array. 
+// --------------------------------------------------------------------------
 
+function getIndexByPKArray($arrayToUpdate, $primaryKey){
+
+    $newArray = [];
+
+    foreach ($arrayToUpdate as $array){
+        $newArray[$array[$primaryKey]] = $array;
+    } 
+
+    return $newArray;
+}
+
+// --------------------------------------------------------------------------
 
