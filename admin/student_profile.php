@@ -1,12 +1,11 @@
 <?php
 include('../include/initialize.php');
 
-
 if(isset($_REQUEST['studentId'])){
 
   if(isset($_REQUEST['AddStudentSubmitted'])){
     $errors = [];
-    validateName($_REQUEST['ufname']);
+    validateName($_REQUEST['ufname']);                                                                       
     validateName($_REQUEST['ulname']); 
       
     if(sizeof($errors) == 0){
@@ -79,16 +78,28 @@ if(isset($_REQUEST['studentId'])){
     $credits = calcStudentRemainingCredits($studentId);                                                          
     echoAddClassAndAddCreditsButtons($credits);
     
-    echo"<div class='flex-container-classesInfo'>";
-            echoFutureClassesInfo(getStudentsFutureClasses($studentId), 'Classes Booked');
-            echoPastClassesInfo(getStudentPastClasses($studentId), 'Recent Classes');
-            echoPrivateNotes($student['PrivateNotes']);
-            echoPublicNotes($student['PublicNotes']);
-    echo"</div>"; 
-    
-    $totalClasses = calculateTotalClasses($studentId);
-    echoTotalClassesSection($totalClasses);  
-       
+    //here the strategy is get an array with all the classes the student has and then calc the 
+    //future and past classes on the fly and echo them
+    echo"<div class='flex-container-classesInfo'>";    
+        $studentClassess = getIndexByPKArray(getStudentClasses($studentId), 'ClassId');
+
+        $studentFutureClasses = calcFutureClasses($studentClassess);
+        echoFutureClassesInfo($studentFutureClasses, 'Classes Booked');    
+        
+        $studentPastClasses = calcPastClasses($studentClassess);
+        echoPastClassesInfo($studentPastClasses, 'Recent Classes');
+
+        echoPrivateNotes($student['PrivateNotes']);
+        echoPublicNotes($student['PublicNotes']);
+    echo"</div>";       
+           
+    //Now I call the calcStudentTotalClasses to calc the student total. I tried to make the 
+    //function generic so depending on the format will cal the total we want    
+    $totalClasses = [];
+    $totalClasses['MonthTotal'] = calcStudentTotalClasses($studentClassess, 'Y/m');   
+    $totalClasses['YearTotal'] = calcStudentTotalClasses($studentClassess, 'Y');
+    echoTotalClassesSection($totalClasses);   
+      
     addClassForm();
     changeCreditsForm();
     deleteStudentForm();

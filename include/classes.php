@@ -4,11 +4,11 @@
 //with only the classes scheduled in the future 
 // --------------------------------------------------------------------------
 
-function calcFutureClasses($allClasses){
+function calcFutureClasses($classes){
 
     $futureClasses = []; 
     
-    foreach($allClasses as $key=>$class){
+    foreach($classes as $key=>$class){
         if(formatDate($class['StartDate'], 'Y/m/d H:i') > date('Y/m/d H:i')){
             $futureClasses[$key] = $class;
         }
@@ -19,6 +19,20 @@ function calcFutureClasses($allClasses){
 
 // --------------------------------------------------------------------------
 
+function calcPastClasses($classes){
+
+    $pastClasses = []; 
+    
+    foreach($classes as $key=>$class){
+        if(formatDate($class['StartDate'], 'Y/m/d H:i') < date('Y/m/d H:i')){
+            $pastClasses[$key] = $class;
+        }
+    }
+
+    return $pastClasses;
+}
+
+// --------------------------------------------------------------------------
 
 
 

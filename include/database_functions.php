@@ -30,7 +30,7 @@ function getAllClasses(){
     ")->fetchAll();  
 }
 
-function getAllClassesByStudent($studentId){
+function getStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
@@ -102,15 +102,15 @@ function getClassesToday(){
     ")->fetchAll();   
 }
 
-function getStudentsFutureClasses($studentId){
-    return dbQuery("
-        SELECT *
-        FROM classes
-        WHERE StartDate > CURRENT_DATE
-        AND StudentId = $studentId
-        ORDER BY StudentId, StartDate
-    ")->fetchAll();    
-}
+// function getStudentsFutureClasses($studentId){
+//     return dbQuery("
+//         SELECT *
+//         FROM classes
+//         WHERE StartDate > CURRENT_DATE
+//         AND StudentId = $studentId
+//         ORDER BY StudentId, StartDate
+//     ")->fetchAll();    
+// }
 
 function getStudentPastClasses($studentId){
     return dbQuery("
@@ -163,16 +163,16 @@ function getAllClassesAmountThisMonth(){
     ")->fetch();
 }
 
-function getStudentClassesAmountThisMonth($studentId){
-    return dbQuery("
-        SELECT StudentId, COUNT(StudentId) Amount
-        FROM classes
-        WHERE StudentId = $studentId
-        AND MONTH(Startdate) = MONTH(CURRENT_DATE)
-        AND YEAR(Startdate) = YEAR(CURRENT_DATE)
-        GROUP BY StudentId    
-    ")->fetch();
-}
+// function getStudentClassesAmountThisMonth($studentId){
+//     return dbQuery("
+//         SELECT StudentId, COUNT(StudentId) Amount
+//         FROM classes
+//         WHERE StudentId = $studentId
+//         AND MONTH(Startdate) = MONTH(CURRENT_DATE)
+//         AND YEAR(Startdate) = YEAR(CURRENT_DATE)
+//         GROUP BY StudentId    
+//     ")->fetch();
+// }
 
 function getStudentsClassesToday(){
     return dbQuery("

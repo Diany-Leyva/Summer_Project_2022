@@ -119,9 +119,9 @@ function addDaysToNextClass($allStudents){
 // --------------------------------------------------------------------------
 
 function calcStudentRemainingCredits($studentId){
-    $remainingCredits = [];  
+    
     $remainingCredits = getStudentCreditAmount($studentId);                                                  //gets the amount of credits the students has
-  
+        
     if(!$remainingCredits){
         $remainingCredits = '0';
     }
@@ -145,21 +145,22 @@ function calcStudentRemainingCredits($studentId){
 }
 
 // --------------------------------------------------------------------------
-//This function calculates the total classes a students has in the current month
-//and year. 
+//This function calculates the total classes a students has. It takes a format
+//parameter that it will indicate what total to calc. This can be used for years, 
+//months, days etc.
 // --------------------------------------------------------------------------
 
-function calculateTotalClasses($studentId){
-    $classesThisMonth = getStudentClassesAmountThisMonth($studentId);
-    $classesThisYear = getStudentClassesAmountThisYear($studentId);
-    $monthAmount= $yearAmount = [];
-    
-    (!$classesThisMonth)? $monthAmount = 0 : $monthAmount = $classesThisMonth['Amount'];
-    (!$classesThisYear)? $yearAmount = 0 : $yearAmount = $classesThisYear['Amount'];
+function calcStudentTotalClasses($studentClasses, $format){
+    $amount = 0;
 
-    return [
-        'MonthTotal' => $monthAmount,
-        'YearTotal' => $yearAmount        
-    ];
+    foreach($studentClasses as $class){      
+        if(formatDate($class['StartDate'], $format) == date($format)){
+            $amount++;
+        }
+    } 
+   
+    return $amount;
 }
+
 // --------------------------------------------------------------------------
+
