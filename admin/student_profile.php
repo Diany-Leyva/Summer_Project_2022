@@ -71,7 +71,7 @@ if(isset($_REQUEST['studentId'])){
     echoPageLayout($title, $title, '');
 
     $studentId = $_REQUEST['studentId'];                               
-    $student = getStudent($studentId);
+    $student = getOneStudent($studentId);
     
     echoProfileInfo($student, 'bishop');                                                                     //will handle profiles pictures later
      
@@ -81,7 +81,7 @@ if(isset($_REQUEST['studentId'])){
     //here the strategy is to get an array with all the classes the student has and then calc the 
     //future and past classes on the fly and echo them
     echo"<div class='flex-container-classesInfo'>";    
-        $studentClassess = getIndexByPKArray(getStudentClasses($studentId), 'ClassId');
+        $studentClassess = getIndexByPKArray(getOneStudentClasses($studentId), 'ClassId');
 
         $studentFutureClasses = calcFutureClasses($studentClassess);
         echoFutureClassesInfo($studentFutureClasses, 'Classes Booked');    
@@ -93,11 +93,11 @@ if(isset($_REQUEST['studentId'])){
         echoPublicNotes($student['PublicNotes']);
     echo"</div>";       
            
-    //Now I call the calcStudentTotalClasses to calc the student total. I tried to make the 
+    //Now I call the calcTotalClasses to calc the student total. I tried to make the 
     //function generic so depending on the format we pass the function will calc the total we want    
     $totalClasses = [];
-    $totalClasses['MonthTotal'] = calcStudentTotalClasses($studentClassess, 'Y/m');   
-    $totalClasses['YearTotal'] = calcStudentTotalClasses($studentClassess, 'Y');
+    $totalClasses['MonthTotal'] = calcTotalClasses($studentClassess, 'Y/m');   
+    $totalClasses['YearTotal'] = calcTotalClasses($studentClassess, 'Y');
     echoTotalClassesSection($totalClasses);   
       
     addClassForm();

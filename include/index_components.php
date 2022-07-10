@@ -39,9 +39,14 @@ function echoDayViewCalendar(){
 //I will talk to you about it in the jog meeting 
 // --------------------------------------------------------------------------
 function echoEvents($classesToday){ 
+
     foreach($classesToday as $class){
         $hour = formatDate($class['StartDate'], 'H');            
-        $time = formatDate($class['StartDate'], 'H:i A');                    
+        $time = formatDate($class['StartDate'], 'H:i A');   
+        
+        // debug($hour);
+        // debug($time);
+
         $topPosition = 50 * ($hour - 7);
     
         echo"

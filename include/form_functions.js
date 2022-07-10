@@ -30,18 +30,23 @@ function closeAddStudentForm(){
 
 //Add credits form   
 // --------------------------------------------------------------------------
-function openCreditForm(buttonclicked, credits){   
-    document.getElementById('hiddenValue').value = buttonclicked;                             //I'm setting the id parameter to the type hidden (how is this called?) so I can now wich button was clicked
+function openCreditForm(buttonclicked, credits){ 
+    document.getElementById('hiddenValue').value = buttonclicked;                             //I'm setting the id parameter to the type hidden field so I can know wich button was clicked in the Request
     
     if(buttonclicked == 'Subtract'){                                                 //What's happening here is that if subtract was clicked I want the max to be set to remaining credits amount
         document.getElementById('maxCredit').max = credits;                          //so the user cannot subtract more credits that the remaining ones. So if a user has 2 credits left a refund of more than
         document.getElementById('maxCredit').placeholder = '1 - ' + credits;         //2 credits cannot be done.This ensure that only students with remaining credits can get a refund
-    }   
+    }  
+    
+    if(buttonclicked == 'Add'){                                                 //Trying out I see that id I click subtract first and then add the placeholder and max values
+        document.getElementById('maxCredit').max = '100';                            //do not go back to normal and stay with the values I set above so I'm setting them here
+        document.getElementById('maxCredit').placeholder = '1 - 100';
+    }
     
     document.getElementById('changeCreditsForm').style.display = 'block';             //I'm just using what I know if there a better way to do this please let me know :)
 }
     
-function closeCreditForm(){
+function closeCreditForm(){ 
     document.getElementById('changeCreditsForm').style.display = 'none';
 }
 

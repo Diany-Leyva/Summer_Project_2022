@@ -66,3 +66,12 @@ function getIndexByPKArray($arrayWithDuplicatesToUpdate, $primaryKey){
 }
 
 // --------------------------------------------------------------------------
+
+function compareDate($firstElement, $secondElement) {
+
+    $temp1 = strtotime($firstElement['StartDate']);
+    $temp2 = strtotime($secondElement['StartDate']);
+    return $temp1 - $temp2;
+} 
+
+// --------------------------------------------------------------------------

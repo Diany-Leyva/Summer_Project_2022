@@ -11,7 +11,7 @@ function getAllStudents(){
     ")->fetchAll();   
 }
 
-function getStudent($studentId){
+function getOneStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
@@ -30,7 +30,7 @@ function getAllClasses(){
     ")->fetchAll();  
 }
 
-function getStudentClasses($studentId){
+function getOneStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
@@ -39,7 +39,7 @@ function getStudentClasses($studentId){
     ")->fetchAll();  
 }
 
-function getClassesAmount(){
+function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
     FROM classes   
@@ -48,7 +48,7 @@ function getClassesAmount(){
 ")->fetchAll();
 }
 
-function getStudentClassesAmount($studentId){
+function getOneStudentClassesAmount($studentId){
     return dbQuery("
         SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
@@ -56,33 +56,6 @@ function getStudentClassesAmount($studentId){
         ORDER BY StudentId   
 ")->fetch();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getFutureClasses(){
-//     return dbQuery("
-//         SELECT StudentId, StartDate 
-//         FROM classes
-//         WHERE StartDate > CURRENT_DATE
-//         ORDER BY StudentId, StartDate
-//     ")->fetchAll();   
-// }
-
-
-
 
 function getAllStudentsWithClasses(){
     return dbQuery("
@@ -93,36 +66,7 @@ function getAllStudentsWithClasses(){
     ")->fetchAll();   
 }
 
-// function getClassesToday(){
-//     return dbQuery("
-//         SELECT StudentId, StartDate 
-//         FROM classes
-//         WHERE StartDate = CURRENT_DATE        
-//     ")->fetchAll();   
-// }
-
-// function getStudentsFutureClasses($studentId){
-//     return dbQuery("
-//         SELECT *
-//         FROM classes
-//         WHERE StartDate > CURRENT_DATE
-//         AND StudentId = $studentId
-//         ORDER BY StudentId, StartDate
-//     ")->fetchAll();    
-// }
-
-function getStudentPastClasses($studentId){
-    return dbQuery("
-        SELECT *
-        FROM classes
-        WHERE StartDate < CURRENT_DATE
-        AND StudentId = $studentId
-        ORDER BY StudentId, StartDate
-    ")->fetchAll();   
-}
-
-
-
+//I'm keeping this one for now but I might get rid of it later on
 function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
@@ -133,88 +77,17 @@ function getFutureClassesAmount(){
 ")->fetchAll();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function getAllClassesAmountThisMonth(){
-    return dbQuery("
-        SELECT COUNT(ClassId) Amount
-        FROM classes
-        WHERE MONTH(Startdate) = MONTH(CURRENT_DATE)
-        AND YEAR(Startdate) = YEAR(CURRENT_DATE)          
-    ")->fetch();
-}
-
-// function getStudentClassesAmountThisMonth($studentId){
-//     return dbQuery("
-//         SELECT StudentId, COUNT(StudentId) Amount
-//         FROM classes
-//         WHERE StudentId = $studentId
-//         AND MONTH(Startdate) = MONTH(CURRENT_DATE)
-//         AND YEAR(Startdate) = YEAR(CURRENT_DATE)
-//         GROUP BY StudentId    
-//     ")->fetch();
-// }
-
-function getStudentsClassesToday(){
-    return dbQuery("
-        SELECT COUNT(ClassId) Amount
-        FROM classes
-        WHERE YEAR(Startdate) = YEAR(CURRENT_DATE) 
-        AND MONTH(Startdate) = MONTH(CURRENT_DATE)
-        AND DAY(Startdate) = DAY(CURRENT_DATE)
-        AND HOUR(StartDate) > HOUR(CURRENT_TIMESTAMP)      
-")->fetch();
-   
-}
-
-function getAllClassesAmountThisYear(){
-    return dbQuery("
-        SELECT COUNT(ClassId) as Amount
-        FROM classes
-        WHERE YEAR(StartDate) = YEAR(CURRENT_DATE)   
-    ")->fetch();
-}
-
-function getStudentClassesAmountThisYear($studentId){
-    return dbQuery("
-        SELECT StudentId, COUNT(StudentId) as Amount
-        FROM classes
-        WHERE StudentId = $studentId        
-        AND YEAR(StartDate) = YEAR(CURRENT_DATE)
-        GROUP BY StudentId    
-    ")->fetch();
-}
-
-
 //Credits Table
 // --------------------------------------------------------------------------
 
-// function getAllCredits(){
-//     return dbQuery("
-//         SELECT *
-//         FROM  credits       
-//         ")->fetchAll();
-// }
+function getAllCredits(){
+    return dbQuery("
+        SELECT *
+        FROM  credits       
+        ")->fetchAll();
+}
 
-function getCreditsAmount(){
+function getAllCreditsAmount(){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
@@ -223,7 +96,7 @@ function getCreditsAmount(){
     ")->fetchAll();
 }
 
-function getStudentCreditAmount($student_Id){
+function getOneStudentCreditAmount($student_Id){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
@@ -235,7 +108,7 @@ function getStudentCreditAmount($student_Id){
 
 //Refunds Table
 // --------------------------------------------------------------------------
-function getRefundsAmount(){
+function getAllRefundsAmount(){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as RefundAmount
         FROM refunds 
@@ -244,7 +117,7 @@ function getRefundsAmount(){
     ")->fetchAll();
 }
 
-function getStudentRefundAmount($student_Id){
+function getOneStudentRefundAmount($student_Id){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as RefundAmount
         FROM refunds 

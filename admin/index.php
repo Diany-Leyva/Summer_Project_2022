@@ -4,7 +4,7 @@ include('../include/initialize.php');
 //get all the students with classes including the student information (join query), 
 //and then calc today classes on the fly
 $allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassId');
-$classesToday = calcClassesToday($allStudentsWithClasses);
+$classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
 
 $size = sizeof($classesToday);
 
@@ -23,17 +23,19 @@ if($size == 0){
 echoPageLayout('Home', 'Welcome back, Yuniesky', $headingInfo);
 
 $nextClasses = calcFutureClasses($classesToday); 
-
-//nextClasses above will have all the pending classes today, and the query was ordered by stratDate so
-//the first class in the array, if any, is the next class
 $nextclass = [];
-if(!empty($nextClasses)){                                               
-    $nextclass = $nextClasses[0];  
-}                                                 
-                                             
-echoNextClassSection($nextclass);                                                          
 
-$totalClasses = calcTotalClasses();
+if(!empty($nextClasses)){                                                                //I checked this within the function but will keep this here just in case                                           
+
+    $nextclass = calcNextClass($nextClasses);
+}  
+                                       
+echoNextClassSection($nextclass);                                                      
+
+$totalClasses = [];
+$totalClasses['MonthTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y/m');   
+$totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
+
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 echoEvents($classesToday);

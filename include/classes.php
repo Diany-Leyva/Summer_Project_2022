@@ -36,16 +36,16 @@ function calcPastClasses($classes){
 
 
 // --------------------------------------------------------------------------
-// This function takes the array with all classes and it compares the dates
-// with the current year,month and date and return an array with the classes scheduled 
-// today
+// This function takes the array with classes and it compares the dates
+// acording to a format passed as parameter and return an array with the classes 
+//scheduled. It can be used to calc classes today, this month, this year etc
 // --------------------------------------------------------------------------
 
-function calcClassesToday($classes){
+function calcClasses($classes, $format){
     $classesToday = []; 
 
     foreach($classes as $key=>$class){
-        if(formatDate($class['StartDate'], 'Y/m/d') == date('Y/m/d')){
+        if(formatDate($class['StartDate'], $format) == date($format)){
             $classesToday[$key] = $class;
         }
     }   
@@ -54,21 +54,25 @@ function calcClassesToday($classes){
 }
 
 // --------------------------------------------------------------------------
+//This function calls the compareDate function through the usort method to
+//sort the array by date, and then the function returns the first element 
+//since is the next class
+// --------------------------------------------------------------------------
 
-function calcTotalClasses(){
+function calcNextClass($nextClasses){
+    
+    $nextClass = []; 
 
-    $monthAmount= $yearAmount = [];
+    usort($nextClasses, 'compareDate');                                       //this method returns an indexed array sorted by date
+    $nextClasses = getIndexByPKArray($nextClasses, 'ClassId');                //make it indexed by PK
 
-    $totalThisYear = getAllClassesAmountThisYear();                                        //I'm keeping this queries for now but might change this to php 
-    $totalThisMonth = getAllClassesAmountThisMonth();
+    if(!empty($nextClasses)){
+        $key = array_key_first($nextClasses);                                 //get the key of first element   
+        $nextClass = $nextClasses[$key];                                       
+    }   
 
-    (!$totalThisMonth)? $monthAmount = 0 : $monthAmount = $totalThisMonth['Amount'];
-    (!$totalThisYear)? $yearAmount = 0 : $yearAmount = $totalThisYear['Amount'];
-
-    return [
-        'MonthTotal' => $monthAmount,
-        'YearTotal' => $yearAmount        
-    ];
+    return $nextClass;
+ 
 }
 
 // --------------------------------------------------------------------------

@@ -8,9 +8,9 @@
 
 function calcRemainingCredits(){   
 
-    $creditsAmount = getIndexByPKArray(getCreditsAmount(), 'StudentId');
-    $classesAmount = getIndexByPKArray(getClassesAmount(), 'StudentId');
-    $refundsAmount = getIndexByPKArray(getRefundsAmount(), 'StudentId');    
+    $creditsAmount = getIndexByPKArray(getAllCreditsAmount(), 'StudentId');
+    $classesAmount = getIndexByPKArray(getAllClassesAmount(), 'StudentId');
+    $refundsAmount = getIndexByPKArray(getAllRefundsAmount(), 'StudentId');    
                                       
     //Do the calculation based on the refunds the students have. Each student 
     //has a certain amount of credits in the table, but I need to consider wheter
@@ -120,7 +120,7 @@ function addDaysToNextClass($allStudents){
 
 function calcStudentRemainingCredits($studentId){
     
-    $remainingCredits = getStudentCreditAmount($studentId);                                                  //gets the amount of credits the students has
+    $remainingCredits = getOneStudentCreditAmount($studentId);                                                  //gets the amount of credits the students has
         
     if(!$remainingCredits){
         $remainingCredits = '0';
@@ -128,8 +128,8 @@ function calcStudentRemainingCredits($studentId){
 
     else{
         $remainingCredits = $remainingCredits['CreditsAmount'];        
-        $refundAmount = getStudentRefundAmount($studentId);
-        $classesAmount = getStudentClassesAmount($studentId);
+        $refundAmount = getOneStudentRefundAmount($studentId);
+        $classesAmount = getOneStudentClassesAmount($studentId);
 
         if($refundAmount){
             $remainingCredits -= $refundAmount['RefundAmount'];
@@ -150,10 +150,10 @@ function calcStudentRemainingCredits($studentId){
 //months, days etc.
 // --------------------------------------------------------------------------
 
-function calcStudentTotalClasses($studentClasses, $format){
+function calcTotalClasses($classes, $format){
     $amount = 0;
 
-    foreach($studentClasses as $class){      
+    foreach($classes as $class){      
         if(formatDate($class['StartDate'], $format) == date($format)){
             $amount++;
         }
