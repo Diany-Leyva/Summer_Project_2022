@@ -9,11 +9,13 @@ function test_input($data) {
 
 function validateName($name){
 
-    global $errors;    
+    $errors = [];    
 
     if (!preg_match('/^[a-zA-Z- ]*$/',$name)) {
         $errors['Name'] = "Only letters allowed";
     }
+
+    return $errors;
 }
 
 // function validateEmail(&$errors){

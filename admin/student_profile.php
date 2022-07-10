@@ -5,8 +5,8 @@ if(isset($_REQUEST['studentId'])){
 
   if(isset($_REQUEST['AddStudentSubmitted'])){
     $errors = [];
-    validateName($_REQUEST['ufname']);                                                                       
-    validateName($_REQUEST['ulname']); 
+    $errors = validateName($_REQUEST['ufname']);                                                                       
+    $errors = validateName($_REQUEST['ulname']); 
       
     if(sizeof($errors) == 0){
       updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess'], $_REQUEST['studentId']);                                                                    
@@ -78,7 +78,7 @@ if(isset($_REQUEST['studentId'])){
     $credits = calcStudentRemainingCredits($studentId);                                                          
     echoAddClassAndAddCreditsButtons($credits);
     
-    //here the strategy is get an array with all the classes the student has and then calc the 
+    //here the strategy is to get an array with all the classes the student has and then calc the 
     //future and past classes on the fly and echo them
     echo"<div class='flex-container-classesInfo'>";    
         $studentClassess = getIndexByPKArray(getStudentClasses($studentId), 'ClassId');
@@ -94,7 +94,7 @@ if(isset($_REQUEST['studentId'])){
     echo"</div>";       
            
     //Now I call the calcStudentTotalClasses to calc the student total. I tried to make the 
-    //function generic so depending on the format will cal the total we want    
+    //function generic so depending on the format we pass the function will calc the total we want    
     $totalClasses = [];
     $totalClasses['MonthTotal'] = calcStudentTotalClasses($studentClassess, 'Y/m');   
     $totalClasses['YearTotal'] = calcStudentTotalClasses($studentClassess, 'Y');

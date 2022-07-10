@@ -1,16 +1,19 @@
 <?php
 // --------------------------------------------------------------------------
+//To place the times I did what you recomended me. Each element position is
+//absolute and en event has height: 50px. So I just loop and add 50 to the 
+//counter as needed. I also add a timeframe for the half hours (tempTop) 
+// --------------------------------------------------------------------------
 
 function echoDayViewCalendar(){
-    $day = date('l');
+    $day = date('l').", ".date('M d');
     echo"
         <h2>Daily Schedule</h2>
         <div class='dayViewContainer'>
             <h3><center> $day</h3>";
                 $topPosition = 50;
                 $currentTop = 50;
-                // $left = 25;
-
+            
                 for($i = 8; $i < 24; $i++){
                     $meridiem = 'AM';
 
@@ -89,7 +92,7 @@ function echoNextClassSection($nextClass){
         }
 
         else{
-            echo"<p class='noclasses-message'>No classes today</p>";
+            echo"<p class='noclasses-message'>No classes pending</p>";
         }
         
         echo"</div>

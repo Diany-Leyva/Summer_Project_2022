@@ -34,16 +34,15 @@ function removeDuplicate($arrayWithDuplicates, $key) {
         $i++; 
     } 
 
-    return getIndexByPKArray($tempArray, $key);  
+    //making sure I return an array indexed by PK
+    return getIndexByPKArray($tempArray, $key);                               
 }
-
-
 
 // --------------------------------------------------------------------------
 
 function getDayDifference($futureDate, $today){ 
     $difference = $futureDate->diff($today);
-    $date = [];                                                                                              //I wonder if I should out the year too just in case
+    $date = [];                                                                                              
     $date['Months'] = $difference->format('%m');
     $date['Days'] = $difference->format('%d');    
     return $date;
@@ -67,16 +66,3 @@ function getIndexByPKArray($arrayWithDuplicatesToUpdate, $primaryKey){
 }
 
 // --------------------------------------------------------------------------
-
-// function getIndexByStudentId($arrayWithDuplicatesToUpdate){
-    // $new = [];
-    // foreach($allFutureClasses as $key=>$class){
-    // // debug($class['StudentId']);
-    // // debug($new);
-
-    //     $new[$class['StudentId']][$key] = $class;
-    // }
-    // debug($new);
-// }
-
-// // --------------------------------------------------------------------------

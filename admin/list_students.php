@@ -1,8 +1,8 @@
 <?php
 include('../include/initialize.php');
 //All my select queries return an indexed array, but I'm updating my functions to work with 
-//arrays indexed by pk. So, every time I run a select query I will call the getIndexByPKArray()
-//that updates the array to be indexed by primary key.
+//arrays indexed by PK. So, I will call the getIndexByPKArray() that updates the array to be 
+//indexed by primary key.
 
 $allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
 
@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(isset($_REQUEST['AddStudentSubmitted'])){   
         $errors = [];
-        validateName($_REQUEST['ufname']);
-        validateName($_REQUEST['ulname']); 
+        $errors = validateName($_REQUEST['ufname']);
+        $errors = validateName($_REQUEST['ulname']); 
         
        if(sizeof($errors) == 0){
             insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess']);                                                                    

@@ -17,6 +17,8 @@ function calcFutureClasses($classes){
     return $futureClasses;
 }
 
+//This function takes all the classes as parameter and it returns an array
+//with only the classes scheduled in the past 
 // --------------------------------------------------------------------------
 
 function calcPastClasses($classes){
@@ -32,79 +34,23 @@ function calcPastClasses($classes){
     return $pastClasses;
 }
 
-// --------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // --------------------------------------------------------------------------
-//This function takes the array with future classes and it compares the dates
-//with the current date to then delete those dates different from today. Here
-//when I use unset it does not adjust the indexes of the array, so I had to
-//us array-values to re-index it because I work with the index later on to
-//get the first element that it is the next class
+// This function takes the array with all classes and it compares the dates
+// with the current year,month and date and return an array with the classes scheduled 
+// today
 // --------------------------------------------------------------------------
 
-function calcClassesToday($futureClasses){
-    $classesToday = $futureClasses; 
+function calcClassesToday($classes){
+    $classesToday = []; 
 
-    for($i = 0; $i < sizeof($futureClasses); $i++){
-        if(formatDate($classesToday[$i]['StartDate'], 'Y/m/d') != date("Y/m/d")){
-            unset($classesToday[$i]);
+    foreach($classes as $key=>$class){
+        if(formatDate($class['StartDate'], 'Y/m/d') == date('Y/m/d')){
+            $classesToday[$key] = $class;
         }
     }   
-    $classesToday = array_values($classesToday);
 
     return $classesToday; 
-}
-
-// --------------------------------------------------------------------------
-//This function takes the classes today and check for the time (hour) and if 
-//any element's hour is pass current hour then it deletes it from the array
-//and then re-index the array.I could do this in SQL but since I have so many 
-//queries I will keep this in php. So at the end we return an array with the 
-//pending classes today
-// --------------------------------------------------------------------------
-
-function calcNextClass($classesToday){
-    $nextClasses = $classesToday;  
-
-    if(!empty($nextClasses)){                                                               //Only do theb procces if is not empty because I'm unsure  
-        for($i = 0; $i < sizeof($classesToday); $i++){                                      //there could be any odd behiavor when trying to
-            if(formatDate($nextClasses[$i]['StartDate'], 'H') < date('H')){                 //re-index an empty array so I will have this for now 
-                unset($nextClasses[$i]);
-            }
-        }
-    
-        $nextClasses = array_values($nextClasses);
-    }    
-
-    return $nextClasses; 
 }
 
 // --------------------------------------------------------------------------
@@ -112,7 +58,8 @@ function calcNextClass($classesToday){
 function calcTotalClasses(){
 
     $monthAmount= $yearAmount = [];
-    $totalThisYear = getAllClassesAmountThisYear();
+
+    $totalThisYear = getAllClassesAmountThisYear();                                        //I'm keeping this queries for now but might change this to php 
     $totalThisMonth = getAllClassesAmountThisMonth();
 
     (!$totalThisMonth)? $monthAmount = 0 : $monthAmount = $totalThisMonth['Amount'];
@@ -124,3 +71,4 @@ function calcTotalClasses(){
     ];
 }
 
+// --------------------------------------------------------------------------

@@ -84,23 +84,22 @@ function getStudentClassesAmount($studentId){
 
 
 
-function getFutureClassesWithStudentInfo(){
+function getAllStudentsWithClasses(){
     return dbQuery("
-        SELECT classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
+        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
         FROM classes, students
-        WHERE classes.StudentId = students.StudentId
-        AND StartDate > CURRENT_DATE
-        ORDER BY StartDate
+        WHERE classes.StudentId = students.StudentId      
+        ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
 
-function getClassesToday(){
-    return dbQuery("
-        SELECT StudentId, StartDate 
-        FROM classes
-        WHERE StartDate = CURRENT_DATE        
-    ")->fetchAll();   
-}
+// function getClassesToday(){
+//     return dbQuery("
+//         SELECT StudentId, StartDate 
+//         FROM classes
+//         WHERE StartDate = CURRENT_DATE        
+//     ")->fetchAll();   
+// }
 
 // function getStudentsFutureClasses($studentId){
 //     return dbQuery("
