@@ -35,19 +35,26 @@ function echoDayViewCalendar(){
 
 // --------------------------------------------------------------------------
 //I'm sure this is not what you had in mind haha since you were talking about a function to pass
-//starting date and ending date and I'm sure involves js. But this is what I came up with. 
-//I will talk to you about it in the jog meeting 
+//starting date and ending date and I'm sure involves js. But this is what I came up with in php
+//and so far is doing the job (I finally calculated the half hour too) 
+//Strategy:
+//The class "one-hour-class" has a height of 50px, so I loop throught the array of classesToday and
+//I store the hour and min. Then I multiply the height(50) times the class hour (-7 because my schedule starts at 8)
+//and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
+//when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
 // --------------------------------------------------------------------------
 function echoEvents($classesToday){ 
 
     foreach($classesToday as $class){
         $hour = formatDate($class['StartDate'], 'H');            
-        $time = formatDate($class['StartDate'], 'H:i A');   
-        
-        // debug($hour);
-        // debug($time);
+        $min = formatDate($class['StartDate'], 'i');  
+        $halfhour = 0;
 
-        $topPosition = 50 * ($hour - 7);
+        if($min == 30){
+            $halfhour = 25;
+        }
+      
+        $topPosition = (50 * ($hour - 7)) + $halfhour;      
     
         echo"
         <p class='one-hour-class' style='top:".$topPosition."px;'>".$class['FirstName']." ".$class['LastName']."<p>";           
