@@ -18,8 +18,3 @@ function validateName($name){
     return $errors;
 }
 
-// function validateEmail(&$errors){
-//     if (!filter_var(test_input($_REQUEST["Email"]), FILTER_VALIDATE_EMAIL)) {
-//         $errors['Email'] = "Invalid email format";
-//     }
-// }
