@@ -275,10 +275,15 @@ textarea{
     margin-top: 17px;
 }
 
+.info-table-row span{
+    cursor: pointer;
+}
+
 .deleteButton.onClassInfo{
     padding: 5%;
     margin: -23px -1px;
 }
+
 
 
 /*Credits and buttons section */

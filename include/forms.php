@@ -2,9 +2,9 @@
 
 // --------------------------------------------------------------------------
 
-function addStudentForm(){
+function studentForm(){
     echo"         
-    <div id='addStudentForm' class='modal'> 
+    <div id='studentForm' class='modal'> 
         <form action='' method='post' class='form-container animate'>
             <div class='imgcontainer'>
                 <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
@@ -32,7 +32,7 @@ function addStudentForm(){
         
             <div class='buttons-container' style='background-color:#f1f1f1'>
                 <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>
-                <button type='button' class='cancel' onclick= 'closeAddStudentForm()'>Cancel</button>
+                <button type='button' class='cancel' onclick= 'closeStudentForm()'>Cancel</button>
             </div>
         </form>
     </div>   
@@ -41,10 +41,10 @@ function addStudentForm(){
 
 // --------------------------------------------------------------------------
 
-function changeCreditsForm(){
+function creditsForm(){
 
     echo"          
-        <div id='changeCreditsForm' class='modal'>
+        <div id='creditsForm' class='modal'>
             <form action='' method='post' class='form-container animate'> 
                 <header class='container'>
                 Credits              
@@ -71,10 +71,10 @@ function changeCreditsForm(){
 //but I don't want to allow 4:35Pm as a time for instance, I just want :00 or
 // :30 as an option 
 // --------------------------------------------------------------------------
-function addClassForm(){
+function classForm(){
     $today = date('Y-m-d');
     echo"          
-        <div id='addClassForm' class='modal'>
+        <div id='classForm' class='modal'>
             <form action='' method='post' class='form-container animate'>  
                 <header class='container'>
                         Book Class                
@@ -82,17 +82,17 @@ function addClassForm(){
 
                 <div class='container input-container'>
                 <label for='ctype'>Class Type</label>
-                <select id='dropdown' name='ctype'>
+                <select id='dropdown' name='ctype'>                   
                     <option value='Online'>Online</option>
-                    <option value='In Person'>In Person</option>                  
+                    <option value='In-Person'>In-Person</option>                  
                 </select>   
 
                 <label for='classDate'>Class Date</label>
-                <input type='date' name='classDate' min='$today' value='$today' required>
+                <input type='date' id='ClassDate' name='classDate' min='$today'required>
 
                 <label for='classTime'>Class Time</label>
-                <select name='classTime' id='clock'>";
-
+                <select name='classTime' id='clock'>";         
+                         
                     for($i = 8; $i < 24; $i++){
                         $meridiam = 'AM';                  
                       
@@ -103,19 +103,20 @@ function addClassForm(){
                         $hour = $i.":00";
                         $min = $i.":30";
                    
-                        echo"<option value=$hour>$hour $meridiam</option>";
-                        echo"<option value=$min>$min $meridiam</option>";
+                        echo"<option id=$hour value=$hour>$hour $meridiam</option>";
+                        echo"<option id=$min value=$min>$min $meridiam</option>";
                     }
                     echo"
                 </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' placeholder='Link' name='czoomLink' required>            
+                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>            
                 </div>        
                                 
                 <div class='buttons-container'>
-                    <button type='submit' class='submit' name='AddClassesSubmitted'>Book</button>
-                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>               
+                    <button type='submit' id='submitButton' class='submit' name='AddClassesSubmitted'>Book</button>
+                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>  
+                    <input type='hidden' id='hiddenClassId-Edit' name='classId' value=''>                                 
                 </div>      
             </form>   
         </div>         
@@ -126,7 +127,7 @@ function addClassForm(){
 
 function deleteStudentForm(){    
     echo"
-        <div id='addDeleteStudent' class='modal'>
+        <div id='deleteStudent' class='modal'>
                 <form action='' method='post' class='form-container animate'>
                     <header class='container'>
                         Delete Student                  
@@ -146,14 +147,14 @@ function deleteStudentForm(){
 
 function deleteClassForm(){    
     echo"
-        <div id='addDeleteClass' class='modal'>
+        <div id='deleteClass' class='modal'>
                 <form action='' method='post' class='form-container animate'>
                     <header class='container'>
                         Delete Class                  
                         <p>Are you sure you want to delete this class?</p>
                     </header> 
                     <div class='buttons-container'>
-                            <input type='hidden' id='hiddenClassId' name='classId' value=''>
+                            <input type='hidden' id='hiddenClassId-Delete' name='classId' value=''>
                             <button type='submit' class='submit' name='classDeleted'>Delete</button>                      
                             <button type='button' class='cancel' onclick='closeDeleteClass()'>Cancel</button>
                     </div>                  

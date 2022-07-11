@@ -2,7 +2,7 @@
 
 // --------------------------------------------------------------------------
 //In this function several things are happening. In line 21 I attempted to pass the student php array ar parameter to
-//the openAddStudentForm() js function but that wasn't working, so I hid an array and then
+//the openStudentForm() js function but that wasn't working, so I hid an array and then
 //got that value wihtin the js function.I was also having trouble when encodig the student array because
 //when I tried to parse it in the js function it had missing elements so I had to make it smaller in line 14 and I'm passing
 //only the elements I need in the form.  In line 35 I do something similar but passing the variable
@@ -23,8 +23,8 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['Phone']."</li>    
                     <li>ELO ".$student['ELO']."</li>
                     <li>".$student['LichessLink']."</li>
-                    <button class='zoom' onclick='openAddStudentForm($studentId)'>Edit</button>
-                    <input type='hidden' id='hiddenStudent' value=";echo json_encode($studentArray);echo"       
+                    <button class='zoom' onclick='openStudentForm($studentId)'>Edit</button>
+                    <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
                 </ol>
                 <div class='picturePosition'>
                    <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
@@ -55,13 +55,18 @@ function echoAddClassAndAddCreditsButtons($credits){
                 <div class='item-buttons'>                    
                     <button class='zoom' onclick=\"openCreditForm('Add', '')\">+</button>               
                     <button $buttonState onclick=\"openCreditForm('Subtract', $credits)\">-</button>
-                    <button $buttonState onclick='openClassForm()'>Book Class</button>
+                    <button $buttonState onclick=\"openClassForm('')\">Book Class</button>
                 </div>
             </div>
         </div>   
 ";
 }
 
+//Here I'm giiving the ability to edit a class by clicking the class
+//to do this I hide the class array in a hidden field and then I access
+//the array from the js function. I pass the classId to identify when 
+//I'm editing and when creating a class. When I create a class in a different session 
+//here I pass an empty string, but when editing I pass the classId.
 // --------------------------------------------------------------------------
 
 function echoFutureClassesInfo($classes, $heading){
@@ -72,10 +77,16 @@ function echoFutureClassesInfo($classes, $heading){
             
                         if(!empty($classes)){                            
                             foreach($classes as $class){
-                                $classId = $class['ClassId'];                                                                 
+                                $classId = $class['ClassId']; 
+                                $date = formatDate($class['StartDate'], 'Y-m-d');
+                                $time = formatDate($class['StartDate'], 'H:i');
+
+                                $classArray = array('ClassId'=>$class['ClassId'], 'Type'=>$class['Type'], 'ClassDate'=>$date, 'ClassTime'=>$time, 'ZoomLink'=>$class['ZoomLink'], 'StudentId'=>$class['StudentId']); 
+                                                           
                                 echo"                  
                                     <li class='info-table-row'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
-                                    ".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."                      
+                                    <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."</span>                     
+                                    <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo"                                     
                                     </li>
                                 ";        
                             }    

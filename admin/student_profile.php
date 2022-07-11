@@ -33,13 +33,20 @@ if(isset($_REQUEST['studentId'])){
       exit();  
     }
 
-    if(isset($_REQUEST['AddClassesSubmitted'])){
-
+    if(isset($_REQUEST['AddClassesSubmitted'])){ 
       $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
       insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $date, $_REQUEST['studentId']);                           
       header("location:? studentId={$_REQUEST['studentId']}");  
       exit();                           
     } 
+
+    if(isset($_REQUEST['EditClassesSubmitted'])){    
+      $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
+      updateClass($_REQUEST['classId'], $_REQUEST['ctype'], $_REQUEST['czoomLink'], $date);                                                                    
+      header("location:? studentId={$_REQUEST['studentId']}");    
+      exit(); 
+    }
+    
 
     if(isset($_REQUEST['studentDeleted'])){
      
@@ -100,10 +107,10 @@ if(isset($_REQUEST['studentId'])){
     $totalClasses['YearTotal'] = calcTotalClasses($studentClassess, 'Y');
     echoTotalClassesSection($totalClasses);   
       
-    addClassForm();
-    changeCreditsForm();
+    classForm();
+    creditsForm();
     deleteStudentForm();
-    addStudentForm();
+    studentForm();
     deleteClassForm();
 }
 

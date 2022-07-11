@@ -197,6 +197,14 @@ function updateNotes($studentId, $notes, $attribute){
 ");
 }
 
+function updateClass($classId, $type, $zoom, $date){
+    dbQuery("
+    UPDATE classes
+    SET Type ='$type', ZoomLink ='$zoom', StartDate ='$date' 
+    WHERE ClassId = '$classId'
+");
+}
+
 
 
 

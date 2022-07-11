@@ -5,11 +5,11 @@
 //I don't pass the id and when editing I pass the id and thats how I diff it here. Id the studentId was passed 
 //Then I assign the values to the hidden fields in the form
 // --------------------------------------------------------------------------
-function openAddStudentForm(studentId){
+function openStudentForm(studentId){
 
     if(studentId){
-        const student = document.getElementById('hiddenStudent').value;
-        const myStudent = JSON.parse(student);
+        const hiddenStudent = document.getElementById('hiddenStudent-Edit').value;
+        const myStudent = JSON.parse(hiddenStudent);
 
         document.getElementById('fname').value = myStudent.FirstName;
         document.getElementById('lname').value = myStudent.LastName;
@@ -20,12 +20,12 @@ function openAddStudentForm(studentId){
                      
     } 
       
-    document.getElementById('addStudentForm').style.display = 'block';
+    document.getElementById('studentForm').style.display = 'block';
 }
 
 
-function closeAddStudentForm(){
-    document.getElementById('addStudentForm').style.display = 'none';
+function closeStudentForm(){
+    document.getElementById('studentForm').style.display = 'none';
 }
 
 //Add credits form   
@@ -43,22 +43,54 @@ function openCreditForm(buttonclicked, credits){
         document.getElementById('maxCredit').placeholder = '1 - 100';
     }
     
-    document.getElementById('changeCreditsForm').style.display = 'block';             //I'm just using what I know if there a better way to do this please let me know :)
+    document.getElementById('creditsForm').style.display = 'block';             //I'm just using what I know if there a better way to do this please let me know :)
 }
     
 function closeCreditForm(){ 
-    document.getElementById('changeCreditsForm').style.display = 'none';
+    document.getElementById('creditsForm').style.display = 'none';
 }
 
 //AddClass Form
+//Here I use the form for creating a new class and for editing a new class 
+//when is for creating I pass an empty string, whn editing I pass the classId and then 
+//I set the hidden values in the form to the corrsponding values in the array 
+//that is hidden. I didn't know how to pass and array as parameter from php
+//to js and the only thing that worked was hidding the array using json_encode
+//and then accessing it from here 
 // --------------------------------------------------------------------------
 
-function openClassForm() {
-    document.getElementById('addClassForm').style.display = 'block';
+function openClassForm(classId) { 
+  
+    if(classId){
+        const hiddenClass = document.getElementById('hiddenClass-Edit').value;    
+        const myClass = JSON.parse(hiddenClass);
+      
+        document.getElementById('dropdown').value = myClass.Type;
+        document.getElementById('ClassDate').value = myClass.ClassDate;
+        document.getElementById('clock').value = myClass.ClassTime;
+        document.getElementById('zoomLink').value = myClass.ZoomLink;
+        document.getElementById('hiddenClassId-Edit').value = myClass.ClassId;
+        document.getElementById('submitButton').name = 'EditClassesSubmitted';      
+      
+    }
+
+    //Since these add/edit are used in the same page, I need to reset the values because
+    //when I use edit and I want to add a class right after, the add form shows up with
+    //the values set above, so we need to re-set this
+    else{  
+        document.getElementById('dropdown').value = 'Online';    
+        document.getElementById('ClassDate').value = '';
+        document.getElementById('clock').value = document.getElementById('8:00').value
+        document.getElementById('zoomLink').value = '';
+        document.getElementById('hiddenClassId-Edit').value = '';
+        document.getElementById('submitButton').name = 'AddClassesSubmitted';   
+    }
+
+    document.getElementById('classForm').style.display = 'block';
 }
 
 function closeClassForm() {
-    document.getElementById('addClassForm').style.display = 'none';
+    document.getElementById('classForm').style.display = 'none';
 }
 
 //Delete student form
@@ -66,23 +98,23 @@ function closeClassForm() {
 
 function openDeleteStudent(studentId) {
    document.getElementById('hiddenStudentId').value = studentId;
-   document.getElementById('addDeleteStudent').style.display = 'block';
+   document.getElementById('deleteStudent').style.display = 'block';
 }
 
 function closeDeleteStudent() {
-    document.getElementById('addDeleteStudent').style.display = 'none';
+    document.getElementById('deleteStudent').style.display = 'none';
 }  
 
 //Delete class form
 // --------------------------------------------------------------------------
 
 function openDeleteClass(classId) {
-    document.getElementById('hiddenClassId').value = classId;
-    document.getElementById('addDeleteClass').style.display = 'block';
+    document.getElementById('hiddenClassId-Delete').value = classId;
+    document.getElementById('deleteClass').style.display = 'block';
  }
  
  function closeDeleteClass() {
-     document.getElementById('addDeleteClass').style.display = 'none';
+     document.getElementById('deleteClass').style.display = 'none';
  }  
 
  //Save notes
@@ -118,30 +150,30 @@ function searchStudent() {
 // When the user clicks anywhere outside of the modal, close it
 // --------------------------------------------------------------------------
 
-let addStudentModal = document.getElementById('addStudentForm');
-let deleteStudentModal = document.getElementById('addDeleteStudent');
-let addClassModal = document.getElementById('addClassForm');
-let addCreditsModal = document.getElementById('changeCreditsForm');
-let deleteClassModal = document.getElementById('addDeleteClass');
+let studentFormModal = document.getElementById('studentForm');
+let deleteStudentModal = document.getElementById('deleteStudent');
+let classFormModal = document.getElementById('classForm');
+let creditsFormModal = document.getElementById('creditsForm');
+let deleteClassModal = document.getElementById('deleteClass');
 let privateNotesModal = document.getElementById('privateNotesTextarea');
 let publicNotesModal = document.getElementById('publicNotesTextarea');
 
 window.onclick = function(event) {
     
-    if (event.target == addStudentModal) {
-        addStudentModal.style.display = 'none';
+    if (event.target == studentFormModal) {
+        studentFormModal.style.display = 'none';
     }
 
     if (event.target == deleteStudentModal) {
         deleteStudentModal.style.display = 'none';
     }
 
-    if (event.target == addClassModal) {
-        addClassModal.style.display = 'none';
+    if (event.target == classFormModal) {
+        classFormModal.style.display = 'none';
     }
 
-    if (event.target == addCreditsModal) {
-        addCreditsModal.style.display = 'none';
+    if (event.target == creditsFormModal) {
+        creditsFormModal.style.display = 'none';
     }
 
     if (event.target == deleteClassModal) {
