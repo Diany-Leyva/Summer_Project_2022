@@ -182,7 +182,6 @@ window.onclick = function(event) {
 
     if (event.target != privateNotesModal) {
         document.getElementById('privNotesSaveButton').style.visibility = 'hidden';
-
     }
 
     if (event.target != publicNotesModal) {
