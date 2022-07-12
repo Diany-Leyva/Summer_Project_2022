@@ -9,7 +9,7 @@ function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
         <h2>Daily Schedule</h2>
-        <div class='dayViewContainer'>
+        <div class='dayViewContainer'> 
             <h3><center> $day</h3>";
                 $topPosition = 50;
                 $currentTop = 50;
@@ -43,9 +43,11 @@ function echoDayViewCalendar(){
 //and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
 //when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
 // --------------------------------------------------------------------------
-function echoEvents($classesToday){ 
+function echoEvents($classesToday){
 
+    $id = 1;
     foreach($classesToday as $class){
+        $time = formatDate($class['StartDate'], 'H:i A'); 
         $hour = formatDate($class['StartDate'], 'H');            
         $min = formatDate($class['StartDate'], 'i');  
         $halfhour = 0;
@@ -57,8 +59,14 @@ function echoEvents($classesToday){
         $topPosition = (50 * ($hour - 7)) + $halfhour;      
     
         echo"
-        <p class='one-hour-class' style='top:".$topPosition."px;'>".$class['FirstName']." ".$class['LastName']."<p>";           
-                
+        <p id='class-$id' class='one-hour-class zoom' style='top:".$topPosition."px;'>
+            <p class='class-content' style='top:".$topPosition."px;'>Online Class<br>
+            ".$class['FirstName']." ".$class['LastName']."<br>
+            $time
+            </p>
+        </p>";   
+       
+        $id++;     
     }
 }
 

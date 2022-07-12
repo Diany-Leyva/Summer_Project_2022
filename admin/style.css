@@ -518,6 +518,11 @@ hr{
     border-radius: -22px;
 }
 
+.class-content{
+    position: absolute;
+    right: 210px;
+}
+
 /* Next class info */
 .next-class-info{
     position: absolute;
@@ -600,3 +605,6 @@ hr{
     font-size: 30px;
     padding: 40% 40%;
 }
+
+
+/* dayView Calendar */
