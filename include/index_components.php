@@ -60,10 +60,9 @@ function echoEvents($classesToday){
     
         echo"
         <p id='class-$id' class='one-hour-class zoom' style='top:".$topPosition."px;'>
-            <p class='class-content' style='top:".$topPosition."px;'>Online Class<br>
+            Online Class<br>
             ".$class['FirstName']." ".$class['LastName']."<br>
-            $time
-            </p>
+            $time  
         </p>";   
        
         $id++;     
