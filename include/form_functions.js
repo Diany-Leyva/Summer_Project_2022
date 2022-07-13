@@ -151,20 +151,19 @@ function searchStudent() {
 //class info in the clss info session. I couln't figure out how to pass the whole object
 //by just passing the object name, so I just passed a each element separated by a comma
 // --------------------------------------------------------------------------
-function displayClassInfo(fName, lName, StartTime, Email, Lichess, Zoom){
-
-// const hiddenEvent = document.getElementById('hiddenEventObjectInfo').value; 
-// const hiddenEventArray = hiddenEvent.split(',');   
-   
+function displayClassInfo(fName, lName, StartTime, Email, Lichess, Zoom){   
 
 document.getElementById('classInfoHeading').innerHTML = 'Class Info';
 document.getElementById('classInfoName').innerHTML = fName+" "+lName;
 document.getElementById('classInfoTime').innerHTML = StartTime;
+document.getElementById('classInfoDuration').innerHTML = '1 hour';
+document.getElementById('classInfoEmail').className = 'enableAnchor';
 document.getElementById('classInfoEmail').href = Email;
+document.getElementById('classInfoLichess').className = 'enableAnchor';
 document.getElementById('classInfoLichess').href = Lichess;
+document.getElementById('classInfoZoom').className = 'enableAnchor';
 document.getElementById('classInfoZoom').href = Zoom;
 document.getElementById('nextClassInfo').className = 'next-class-info nextClassInfoChanged';
-
 }
  
 // When the user clicks anywhere outside of the modal, close it

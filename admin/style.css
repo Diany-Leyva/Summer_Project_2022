@@ -604,6 +604,14 @@ hr{
         border-radius: 10px;
 }
 
+.disableAnchor{
+    pointer-events : none;
+}
+
+.enableAnchor{
+    pointer-events : auto;
+}
+
 .nextClassheader{
     font-size: 30px;
 }

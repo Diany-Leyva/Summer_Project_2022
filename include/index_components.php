@@ -78,52 +78,65 @@ function addEvents($classesToday){
     <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
 </div>";    
 }  
+
+//So here I echo this function but if there is no classes I set up default values
+//I do this because then I use JS to display the class info here when I click an event in the
+//calendar and I'm doing so by using document.getElementbyId('...').value so I need this
+//to have a previus value. Initialy I did if nextclass is not empty echo the stuff otherwise just
+//echo "No pending classes", but that aproach does not work with my js changes 
 // --------------------------------------------------------------------------
 
 function echoNextClassSection($nextClass){    
     
+    if($nextClass){
+        $heading = 'Next Class';
+        $name = $nextClass['FirstName']." ".$nextClass['LastName'];
+        $classDate = formatDate($nextClass['StartDate'], 'd M');
+        $classTime = formatDate($nextClass['StartDate'], 'H:i A');
+        $email = $nextClass['Email'];
+        $lichess = $nextClass['LichessLink'];
+        $zoom = $nextClass['ZoomLink'];
+        $hour = '1 hour';
+        $disable = '';
+    }
+
+    else{
+        $heading = 'No pending <br>Classes';
+        $name = $classDate = $classTime = $email = $lichess = $zoom = $hour = ' '; 
+    }
+
     echo"        
         <div id='nextClassInfo' class='next-class-info'> 
-            <div class='next-class-info-content'>";      
+            <div class='next-class-info-content'>     
+                <div id='classInfo'>
+                    <p id='classInfoHeading' class='nextClassheader'>$heading</p>
+                    <ol>
+                        <li id='classInfoName'>$name</li>
+                        <li id='classInfoDate'>$classDate</li>
+                        <li id='classInfoTime'>$classTime</li>    
+                        <li id='classInfoDuration'>$hour</li>                               
+                    </ol>
 
-        if($nextClass){
-            echo"
-                <p id='classInfoHeading' class='nextClassheader'>Next Class</p>
-                <ol>
-                    <li id='classInfoName'>".$nextClass['FirstName']." ".$nextClass['LastName']."</li>
-                    <li id='classInfoDate'>".formatDate($nextClass['StartDate'], 'd M')."</li>
-                    <li id='classInfoTime'>".formatDate($nextClass['StartDate'], 'H:i A')."</li>    
-                    <li>1 hour</li>                               
-                </ol>
-        
-                <div class='nextclass-buttons-container'>
-                    <div>
-                        <a id='classInfoEmail' href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
-                        <p>Message</p>
+                    <div class='nextclass-buttons-container'>
+                        <div>
+                            <a id='classInfoEmail' class='disableAnchor' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                            <p>Message</p>
+                        </div>
+                        <div>
+                            <a id='classInfoLichess' class='disableAnchor' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                            <p>Lichess</p>
+                        </div>
+                        <div>
+                            <a id='classInfoZoom' class='disableAnchor' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                            <p>Zoom</p>
+                        </div>
                     </div>
-        
-                    <div>
-                        <a id='classInfoLichess' href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
-                        <p>Lichess</p>
+                    <div class='nextClassPicturePosition'>
+                        <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
                     </div>
-        
-                    <div>
-                        <a id='classInfoZoom' href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
-                        <p>Zoom</p>
-                    </div>
-                </div>
-                <div class='nextClassPicturePosition'>
-                    <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
                 </div>        
-                ";
-        }
-
-        else{
-            echo"<p class='noclasses-message'>No classes pending</p>";
-        }
-        
-        echo"</div>
-    </div>";
+            </div>
+        </div>";
 }
 
 // --------------------------------------------------------------------------
