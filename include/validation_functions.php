@@ -1,24 +1,23 @@
 <?php
 
-function isEmpty($dataReturned){                            
-   $isEmpty = false;
-   
-    if($dataReturned == NULL || $dataReturned == ''){
-        $isEmpty = true;                                      
-    }                                                            
-         
-    return  $isEmpty;
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
-//At Webster we need to follow programming standars, so we need to declare a boolean variable and then return it.
-//But I know I can also do the approach below. I wonder what approach is more common in real life?
+function validateName($name){
 
-// function isEmpty($dataReturned){                         
-     
-//     if($dataReturned == NULL || $dataReturned == ''){
-//         return true;                                      
-//     }                                                            
-         
-//     return  false;
+    global $errors;    
+
+    if (!preg_match('/^[a-zA-Z- ]*$/',$name)) {
+        $errors['Name'] = "Only letters allowed";
+    }
+}
+
+// function validateEmail(&$errors){
+//     if (!filter_var(test_input($_REQUEST["Email"]), FILTER_VALIDATE_EMAIL)) {
+//         $errors['Email'] = "Invalid email format";
+//     }
 // }
-
