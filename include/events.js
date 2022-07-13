@@ -2,7 +2,7 @@
 const hiddenEvents = document.getElementById('hiddenEventsArray').value;
 const events = JSON.parse(hiddenEvents);
 
-const hiddenClassesInfo = document.getElementById('hiddenClassesInfoArray').value;
-const classeInfo = JSON.parse(hiddenClassesInfo);
+// const hiddenClassesInfo = document.getElementById('hiddenClassesInfoArray').value;
+// const classeInfo = JSON.parse(hiddenClassesInfo);
 
-layOutDay(events);
+layOutEvent(events);

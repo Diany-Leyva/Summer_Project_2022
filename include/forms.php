@@ -104,7 +104,10 @@ function classForm(){
                         $min = $i.":30";
                    
                         echo"<option id=$hour value=$hour>$hour $meridiam</option>";
-                        echo"<option id=$min value=$min>$min $meridiam</option>";
+
+                        if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
+                            echo"<option id=$min value=$min>$min $meridiam</option>";
+                        }
                     }
                     echo"
                 </select>        

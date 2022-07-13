@@ -11,8 +11,8 @@ function echoDayViewCalendar(){
         <h2>Daily Schedule</h2>
         <div class='dayViewContainer'> 
             <h3><center> $day</h3>";
-                $topPosition = 50;
-                $currentTop = 50;
+                $topPosition = 60;
+                $currentTop = 60;
             
                 for($i = 8; $i < 24; $i++){
                     $meridiem = 'AM';
@@ -23,7 +23,7 @@ function echoDayViewCalendar(){
 
                     echo"
                         <div><time style='top:".$currentTop."px;'><hr>$i:00 $meridiem</time><div><br></br>"; 
-                        $tempTop = $currentTop + 25;
+                        $tempTop = $currentTop + 30;
                     echo"<div><time style='top:".$tempTop."px;'><small style='color:#38393882'>$i:30 $meridiem</small></time><div> 
                         ";       
                                 
@@ -43,10 +43,9 @@ function echoDayViewCalendar(){
 //and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
 //when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
 // --------------------------------------------------------------------------
-function echoEvents($classesToday){  
+function addEvents($classesToday){  
     $events = [];                                                                         //Array to hold the start/end of every class today
-    $classesInfo = [];                                                                    //Array to hold the class information to be displayed in the events
-    
+      
     $i = 0;                                                                               
     foreach($classesToday as $class){
       
@@ -55,38 +54,25 @@ function echoEvents($classesToday){
         $halfhour = 0;
 
         if($min == 30){
-            $halfhour = 25;
+            $halfhour = 30;
         }
       
-        $topPosition = (50 * ($hour - 7)) + $halfhour;                                    
+        $topPosition = (60 * ($hour - 7)) + $halfhour;                                    
         $events[$i]['start'] =  $topPosition;  
-        $events[$i]['end'] =  $topPosition + 50;  
+        $events[$i]['end'] =  $topPosition + 60;  
         
-        $classesInfo[$i]['Type'] = $class['Type'];
-        $classesInfo[$i]['FirstName'] = $class['FirstName'];
-        $classesInfo[$i]['LastName'] = $class['LastName'];
-        $classesInfo[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');        
-
-    
-        // echo"
-        // <p id='class-$i' class='one-hour-class zoom' style='top:".$topPosition."px;'>
-        //     Online Class<br>
-        //     ".$class['FirstName']." ".$class['LastName']."<br>
-        //     $time  
-        // </p>";   
-       
+        $events[$i]['Type'] = $class['Type'];
+        $events[$i]['FirstName'] = $class['FirstName'];
+        $events[$i]['LastName'] = $class['LastName'];
+        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');     
+      
         $i++;     
     }
 
-    //Hidding this arrays to then access them from js
+    //Hidding this array to then access it from js
     echo"
-    <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">  
-    <input type='hidden' id='hiddenClassesInfoArray' value=";echo json_encode($classesInfo);echo">   
-
-    </div>"; 
-
-    // debug($events);
-    // debug($classesInfo); 
+    <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
+</div>";    
 }  
 // --------------------------------------------------------------------------
 

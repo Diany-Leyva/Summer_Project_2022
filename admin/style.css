@@ -285,8 +285,6 @@ textarea{
     margin: -23px -1px;
 }
 
-
-
 /*Credits and buttons section */
 button{
     background-color: #383938;
@@ -485,16 +483,6 @@ button:hover {
 /*Home Page
 --------------------------------------------------------------------------- */
 /* Day view calendar */
-/* .dayViewContainer{
-    position: relative;  
-    margin: 16px 38px;
-    height: 857px;
-    width: 569px;
-    background: #d7d0d066;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-} */
-
 h3{
     padding: 3%;
 }
@@ -506,7 +494,7 @@ time{
 }
 
 hr{
-    width: 494px;
+    width: 527px;
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
@@ -515,7 +503,7 @@ hr{
 .dayViewContainer{
     position: relative;  
     margin: 16px 38px;
-    height: 871px;
+    height: 1030px;
     width: 569px;
     background: #d7d0d066;
     border-radius: 30px;
@@ -526,20 +514,36 @@ hr{
     background-color: #57b98654;
     border-style: solid;
     border-width: 1px;
-    border-left-width: 5px;
+    border-right-width: 5px;
     border-color: #dfdbdb;
-    border-left-color: #04aa6d;
-    padding-left: 151px;
+    border-right-color: #04aa6d;
+    padding-left: 208px;
     padding-top: 7px;
-    position: absolute; 
+    position: absolute;
     font-size: 0.5em;
     box-sizing: border-box;
+    border-radius: 10px;
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
 }
 
 .event .title {
-  color: #57b986;
-  font-size: 200%;
+  color: #088c5b;;
+  font-size: 210%;
 }
+
+.event .event-name {
+    /* color: #57b986; */
+    font-size: 200%;
+  }
+
+  .event .event-time {
+    font-size: 180%;
+    padding-left: 16px;
+  }
+
+  .event.zoom:hover{
+    transform: scale(0.9);
+  }
 
 
 

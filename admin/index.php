@@ -38,5 +38,5 @@ $totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
 
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
-echoEvents($classesToday);
+addEvents($classesToday);
 echoFooter(); 
