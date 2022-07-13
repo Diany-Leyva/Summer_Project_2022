@@ -59,7 +59,7 @@ function getOneStudentClassesAmount($studentId){
 
 function getAllStudentsWithClasses(){
     return dbQuery("
-        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
+        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink, Type
         FROM classes, students
         WHERE classes.StudentId = students.StudentId      
         ORDER BY StudentId, StartDate

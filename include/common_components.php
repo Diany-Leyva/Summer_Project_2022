@@ -42,6 +42,7 @@ function echoFooter(){
                 </section> 
                 <script src='/include/form_functions.js'></script> 
                 <script src='/include/dayViewCalendar.js'></script>
+                <script src='/include/events.js'></script>
                 <footer></footer>                            
            </body>    
         </html>
