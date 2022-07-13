@@ -14,28 +14,29 @@ let width = [];
     let top = event.start / minutesinDay * containerHeight; 
     // let end = event.end;
     // let start = event.start;
-    let type = event.Type;
-    let fName = event.FirstName;
-    let lName = event.LastName;
-    let time = event.StartTime;
+    // let type = event.Type;
+    // let fName = event.FirstName;
+    // let lName = event.LastName;
+    // let time = event.StartTime;
 
     let units = width[id];
     if (!units) {units = 1};
     let left = (containerWidth / width[id]) * 10;
     if (!left || left < 0) {left = 10};
-    createEvent(height, top, left, units, 
-                type, fName, lName, time);
+    createEvent(height, top, left, units, event);
     });
 }
 
-let createEvent = (height, top, left, units, type, fName, lName, time) => {
-
+//I couln't figure out how to pass the whole event array to displayClassInfo(), or how to hide the whole 
+//event object here, so I just hide each element in hiddenEventObjectInfo and then I split it in the function
+let createEvent = (height, top, left, units, event) => {
     let node = document.createElement('DIV');
     node.className = 'event zoom';
     node.innerHTML = 
-    "<span class='title'>"+type+" Class</span>\
-    <br><span class='event-name'>"+fName+" "+lName+"</span>\
-    <br><span class='event-time'>"+time+"</span>";
+    "<div onclick='displayClassInfo(\""+event.FirstName+"\", \""+event.LastName+"\", \""+event.StartTime+"\", \""+event.Email+"\", \""+event.LichessLink+"\", \""+event.ZoomLink+"\")'><span class='title'>"+event.Type+" Class</span>\
+    <br><span class='event-name'>"+event.FirstName+" "+event.LastName+"</span>\
+    <br><span class='event-time'>"+event.StartTime+"</span></div>\
+    ";
 
     // Customized CSS to position each event
     node.style.width = (containerWidth/units) + 'px';

@@ -17,7 +17,7 @@ function echoDayViewCalendar(){
                 for($i = 8; $i < 24; $i++){
                     $meridiem = 'AM';
 
-                    if($i > 12){
+                    if($i > 11){
                         $meridiem = 'PM';
                     }
 
@@ -45,7 +45,7 @@ function echoDayViewCalendar(){
 // --------------------------------------------------------------------------
 function addEvents($classesToday){  
     $events = [];                                                                         //Array to hold the start/end of every class today
-      
+     
     $i = 0;                                                                               
     foreach($classesToday as $class){
       
@@ -57,15 +57,19 @@ function addEvents($classesToday){
             $halfhour = 30;
         }
       
-        $topPosition = (60 * ($hour - 7)) + $halfhour;                                    
-        $events[$i]['start'] =  $topPosition;  
-        $events[$i]['end'] =  $topPosition + 60;  
+        $topPosition = (60 * ($hour - 7)) + $halfhour;    
         
+        //I'm storing all the information beacuse I use it to display the class Info in js later on
+        //and this is the source 
+        $events[$i]['start'] =  $topPosition;  
+        $events[$i]['end'] =  $topPosition + 60;       
         $events[$i]['Type'] = $class['Type'];
         $events[$i]['FirstName'] = $class['FirstName'];
         $events[$i]['LastName'] = $class['LastName'];
-        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');     
-      
+        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');
+        $events[$i]['Email'] = $class['Email'];
+        $events[$i]['LichessLink'] = $class['LichessLink'];
+        $events[$i]['ZoomLink'] = $class['ZoomLink'];        
         $i++;     
     }
 
@@ -78,34 +82,33 @@ function addEvents($classesToday){
 
 function echoNextClassSection($nextClass){    
     
-    echo"
-        <p class='nextClassheader'>Next Class</p>
-        <div class='next-class-info'> 
+    echo"        
+        <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>";      
 
         if($nextClass){
             echo"
-         
+                <p id='classInfoHeading' class='nextClassheader'>Next Class</p>
                 <ol>
-                    <li>".$nextClass['FirstName']." ".$nextClass['LastName']."</li>
-                    <li>".formatDate($nextClass['StartDate'], 'd M')."</li>
-                    <li>".formatDate($nextClass['StartDate'], 'H:i A')."</li>    
+                    <li id='classInfoName'>".$nextClass['FirstName']." ".$nextClass['LastName']."</li>
+                    <li id='classInfoDate'>".formatDate($nextClass['StartDate'], 'd M')."</li>
+                    <li id='classInfoTime'>".formatDate($nextClass['StartDate'], 'H:i A')."</li>    
                     <li>1 hour</li>                               
                 </ol>
         
                 <div class='nextclass-buttons-container'>
                     <div>
-                        <a href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                        <a id='classInfoEmail' href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                         <p>Message</p>
                     </div>
         
                     <div>
-                        <a href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                        <a id='classInfoLichess' href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                         <p>Lichess</p>
                     </div>
         
                     <div>
-                        <a href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                        <a id='classInfoZoom' href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                         <p>Zoom</p>
                     </div>
                 </div>
