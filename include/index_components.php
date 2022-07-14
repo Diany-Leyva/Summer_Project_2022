@@ -69,7 +69,9 @@ function addEvents($classesToday){
         $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');
         $events[$i]['Email'] = $class['Email'];
         $events[$i]['LichessLink'] = $class['LichessLink'];
-        $events[$i]['ZoomLink'] = $class['ZoomLink'];        
+        $events[$i]['ZoomLink'] = $class['ZoomLink']; 
+        $events[$i]['ClassId'] = $class['ClassId'];   
+       
         $i++;     
     }
 
@@ -90,26 +92,31 @@ function echoNextClassSection($nextClass){
     
     if($nextClass){
         $heading = 'Next Class';
+        $id = $nextClass['ClassId'];
         $name = $nextClass['FirstName']." ".$nextClass['LastName'];
         $classDate = formatDate($nextClass['StartDate'], 'd M');
         $classTime = formatDate($nextClass['StartDate'], 'H:i A');
         $email = $nextClass['Email'];
         $lichess = $nextClass['LichessLink'];
         $zoom = $nextClass['ZoomLink'];
-        $hour = '1 hour';
-        $disable = '';
+        $hour = '1 hour';     
+        $class = 'enableAnchor';
+        $deleteButtonVisibility = "style='visibility: visible';";
     }
 
     else{
         $heading = 'No pending <br>Classes';
-        $name = $classDate = $classTime = $email = $lichess = $zoom = $hour = ' '; 
+        $id = $name = $classDate = $classTime = $email = $lichess = $zoom = $hour = '';
+        $class = 'disableAnchor';
+        $deleteButtonVisibility = "style='visibility: hidden';";
     }
 
+    $showButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
+    
     echo"        
         <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>     
-                <div id='classInfo'>
-                    <p id='classInfoHeading' class='nextClassheader'>$heading</p>
+                <p id='classInfoHeading' class='nextClassheader'>$heading</p>
                     <ol>
                         <li id='classInfoName'>$name</li>
                         <li id='classInfoDate'>$classDate</li>
@@ -119,24 +126,24 @@ function echoNextClassSection($nextClass){
 
                     <div class='nextclass-buttons-container'>
                         <div>
-                            <a id='classInfoEmail' class='disableAnchor' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                            <a id='classInfoEmail' class='$class' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                             <p>Message</p>
                         </div>
                         <div>
-                            <a id='classInfoLichess' class='disableAnchor' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                            <a id='classInfoLichess' class='$class' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                             <p>Lichess</p>
                         </div>
                         <div>
-                            <a id='classInfoZoom' class='disableAnchor' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                            <a id='classInfoZoom' class='$class' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                             <p>Zoom</p>
                         </div>
                     </div>
                     <div class='nextClassPicturePosition'>
+                        <span id='showDeleteButton'> $showButton </span>
                         <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
                     </div>
-                </div>        
-            </div>
-        </div>";
+                </div>      
+            </div>";
 }
 
 // --------------------------------------------------------------------------

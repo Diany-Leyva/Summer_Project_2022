@@ -12,13 +12,6 @@ let width = [];
     events.forEach((event, id) => {
     let height = (event.end - event.start) / minutesinDay * containerHeight;
     let top = event.start / minutesinDay * containerHeight; 
-    // let end = event.end;
-    // let start = event.start;
-    // let type = event.Type;
-    // let fName = event.FirstName;
-    // let lName = event.LastName;
-    // let time = event.StartTime;
-
     let units = width[id];
     if (!units) {units = 1};
     let left = (containerWidth / width[id]) * 10;
@@ -31,9 +24,10 @@ let width = [];
 //event object here, so I just hide each element in hiddenEventObjectInfo and then I split it in the function
 let createEvent = (height, top, left, units, event) => {
     let node = document.createElement('DIV');
+    node.id = 'newEvent';
     node.className = 'event zoom';
     node.innerHTML = 
-    "<div onclick='displayClassInfo(\""+event.FirstName+"\", \""+event.LastName+"\", \""+event.StartTime+"\", \""+event.Email+"\", \""+event.LichessLink+"\", \""+event.ZoomLink+"\")'><span class='title'>"+event.Type+" Class</span>\
+    "<div onclick='displayClassInfo(\""+event.FirstName+"\", \""+event.LastName+"\", \""+event.StartTime+"\", \""+event.Email+"\", \""+event.LichessLink+"\", \""+event.ZoomLink+"\", \""+event.ClassId+"\")'><span class='title'>"+event.Type+" Class</span>\
     <br><span class='event-name'>"+event.FirstName+" "+event.LastName+"</span>\
     <br><span class='event-time'>"+event.StartTime+"</span></div>\
     ";

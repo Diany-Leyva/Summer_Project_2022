@@ -211,7 +211,13 @@ ol li {
     position: absolute;
     margin: 40px 24px;
 }
-      
+     
+.deleteButton.onClassSession{
+    position: absolute;
+    margin: -16px -32px;
+}
+
+
   /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
     display: block;    
   } */

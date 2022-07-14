@@ -151,8 +151,10 @@ function searchStudent() {
 //class info in the clss info session. I couln't figure out how to pass the whole object
 //by just passing the object name, so I just passed a each element separated by a comma
 // --------------------------------------------------------------------------
-function displayClassInfo(fName, lName, StartTime, Email, Lichess, Zoom){   
+function displayClassInfo(fName, lName, StartTime, Email, Lichess, Zoom, id){   
 
+document.getElementById('deletButtonInfoClass').style.visibility = 'visible';
+document.getElementById('showDeleteButton').innerHTML = "<button id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass("+id+")\">🗑</button>";
 document.getElementById('classInfoHeading').innerHTML = 'Class Info';
 document.getElementById('classInfoName').innerHTML = fName+" "+lName;
 document.getElementById('classInfoTime').innerHTML = StartTime;
@@ -164,6 +166,7 @@ document.getElementById('classInfoLichess').href = Lichess;
 document.getElementById('classInfoZoom').className = 'enableAnchor';
 document.getElementById('classInfoZoom').href = Zoom;
 document.getElementById('nextClassInfo').className = 'next-class-info nextClassInfoChanged';
+
 }
  
 // When the user clicks anywhere outside of the modal, close it
@@ -178,6 +181,14 @@ let privateNotesModal = document.getElementById('privateNotesTextarea');
 let publicNotesModal = document.getElementById('publicNotesTextarea');
 
 window.onclick = function(event) {
+
+    if (event.target != privateNotesModal) {
+        document.getElementById('privNotesSaveButton').style.visibility = 'hidden';
+    }
+
+    if (event.target != publicNotesModal) {
+        document.getElementById('publicNotesSaveButton').style.visibility = 'hidden';
+    }
     
     if (event.target == studentFormModal) {
         studentFormModal.style.display = 'none';
@@ -198,14 +209,7 @@ window.onclick = function(event) {
     if (event.target == deleteClassModal) {
         deleteClassModal.style.display = 'none';
     }
-
-    // if (event.target != privateNotesModal) {
-    //     document.getElementById('privNotesSaveButton').style.visibility = 'hidden';
-    // }
-
-    // if (event.target != publicNotesModal) {
-    //     document.getElementById('publicNotesSaveButton').style.visibility = 'hidden';
-    // }
+ 
 }
 
 // --------------------------------------------------------------------------

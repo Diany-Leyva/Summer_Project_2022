@@ -6,6 +6,17 @@ include('../include/initialize.php');
 $allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassId');
 $classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if(isset($_REQUEST['classDeleted'])){ 
+        // debug($_REQUEST);
+        // die();  
+        deleteClass($_REQUEST['classId']);                                                                    
+        header("location:?");   
+        exit();       
+      } 
+}
+
 $size = sizeof($classesToday);
 
 //just to handle singular and plural for the classes message
@@ -39,4 +50,5 @@ $totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 addEvents($classesToday);
+deleteClassForm();
 echoFooter(); 
