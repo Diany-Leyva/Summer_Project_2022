@@ -61,6 +61,8 @@ function closeCreditForm(){
 
 function openClassForm(classId) { 
   
+    let today = document.getElementById('ClassDate').value;
+
     if(classId){
         const hiddenClass = document.getElementById('hiddenClass-Edit').value;    
         const myClass = JSON.parse(hiddenClass);
@@ -77,9 +79,10 @@ function openClassForm(classId) {
     //Since these add/edit are used in the same page, I need to reset the values because
     //when I use edit and I want to add a class right after, the add form shows up with
     //the values set above, so we need to re-set this
-    else{  
+    else{      
+
         document.getElementById('dropdown').value = 'Online';    
-        document.getElementById('ClassDate').value = '';
+        document.getElementById('ClassDate').value = today;
         document.getElementById('clock').value = document.getElementById('8:00').value
         document.getElementById('zoomLink').value = '';
         document.getElementById('hiddenClassId-Edit').value = '';
@@ -91,6 +94,99 @@ function openClassForm(classId) {
 
 function closeClassForm() {
     document.getElementById('classForm').style.display = 'none';
+}
+
+// 
+// --------------------------------------------------------------------------
+
+function openIndexPageClassForm(classId){  
+
+    let today = document.getElementById('ClassDateIndexPage').value;
+
+    if(classId){
+        const hiddenClass = document.getElementById('hiddenClass-Edit').value;    
+        const myClass = JSON.parse(hiddenClass);
+      
+        document.getElementById('dropdownIndexPage').value = myClass.Type;
+        document.getElementById('ClassDateIndexPage').value = myClass.ClassDate;
+        document.getElementById('clockIndexPage').value = myClass.ClassTime;
+        document.getElementById('zoomLinkIndexPage').value = myClass.ZoomLink;
+        document.getElementById('hiddenClassId-Edit-IndexPage').value = myClass.ClassId;
+        document.getElementById('submitButtonIndexPage').name = 'EditClassesSubmitted';   
+    }
+
+    //Since these add/edit are used in the same page, I need to reset the values because
+    //when I use edit and I want to add a class right after, the add form shows up with
+    //the values set above, so we need to re-set this
+    else{     
+
+        document.getElementById('dropdownIndexPage').value = 'Online';    
+        document.getElementById('ClassDateIndexPage').value = today;
+        document.getElementById('zoomLinkIndexPage').value = '';
+        document.getElementById('hiddenClassId-Edit-IndexPage').value = '';
+        document.getElementById('submitButtonIndexPage').name = 'AddClassesSubmitted';  
+
+        //get the studentId and the remaining credits that were hidden in the options
+        let studentId = document.getElementById('studentListIndexPage').value;
+        let remainingCredits = document.getElementById("credits"+studentId).value;
+
+        if(remainingCredits > 0){
+            document.getElementById('StdCreditAmount').value = remainingCredits;
+            document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
+            document.getElementById('messageCredits').style.visibility = 'hidden';     
+
+          }
+        
+          else{
+            document.getElementById('StdCreditAmount').value = 0;
+            document.getElementById('StdCreditAmount').placeholder = 0;
+            document.getElementById('messageCredits').style.visibility = 'visible';       
+
+        }
+
+        }
+
+        document.getElementById('classFormIndexPage').style.display = 'block';
+}
+
+//Change credits amount if the selection was changed
+document.addEventListener('input', function (event) {
+
+	// Only run for #studentListIndexPage select
+    if (event.target.id === 'studentListIndexPage'){
+
+  //update the remaing credits
+  let studentId = document.getElementById('studentListIndexPage').value;
+  let remainingCredits = document.getElementById("credits"+studentId).value;
+  
+  if(remainingCredits > 0){
+    document.getElementById('StdCreditAmount').value = remainingCredits;
+    document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
+    document.getElementById('messageCredits').style.visibility = 'hidden';     
+
+  }
+
+  else{
+    document.getElementById('StdCreditAmount').value = 0;
+    document.getElementById('StdCreditAmount').placeholder = 0;
+    document.getElementById('messageCredits').style.visibility = 'visible';   
+
+}
+  
+  //Update the element with the remaining credits
+  console.log(document.getElementById('StdCreditAmount').required);
+}
+
+});
+
+function closeIndexPageClassForm() {          
+      
+    document.getElementById('classFormIndexPage').style.display = 'none';
+
+    //I'm reloading the page because I changed a lot of option within the class form (the time to show in the clock
+    //for instance) so if I reload the page I get all the values back to when the form was created 
+    location.reload();  
+    exit();                                                     
 }
 
 //Delete student form
@@ -182,33 +278,33 @@ let publicNotesModal = document.getElementById('publicNotesTextarea');
 
 window.onclick = function(event) {
 
-    if (event.target != privateNotesModal) {
-        document.getElementById('privNotesSaveButton').style.visibility = 'hidden';
-    }
+    // if (event.target != privateNotesModal) {
+    //     document.getElementById('privNotesSaveButton').style.visibility = 'hidden';
+    // }
 
-    if (event.target != publicNotesModal) {
-        document.getElementById('publicNotesSaveButton').style.visibility = 'hidden';
-    }
-    
-    if (event.target == studentFormModal) {
-        studentFormModal.style.display = 'none';
-    }
+    // if (event.target != publicNotesModal) {
+    //     document.getElementById('publicNotesSaveButton').style.visibility = 'hidden';
+    // }  
+   
+    // if (event.target == studentFormModal) {
+    //     studentFormModal.style.display = 'none';
+    // }
 
-    if (event.target == deleteStudentModal) {
-        deleteStudentModal.style.display = 'none';
-    }
+    // if (event.target == deleteStudentModal) {
+    //     deleteStudentModal.style.display = 'none';
+    // }
 
-    if (event.target == classFormModal) {
-        classFormModal.style.display = 'none';
-    }
+    // if (event.target == classFormModal) {
+    //     classFormModal.style.display = 'none';
+    // }
 
-    if (event.target == creditsFormModal) {
-        creditsFormModal.style.display = 'none';
-    }
+    // if (event.target == creditsFormModal) {
+    //     creditsFormModal.style.display = 'none';
+    // }
 
-    if (event.target == deleteClassModal) {
-        deleteClassModal.style.display = 'none';
-    }
+    // if (event.target == deleteClassModal) {
+    //     deleteClassModal.style.display = 'none';
+    // }
  
 }
 

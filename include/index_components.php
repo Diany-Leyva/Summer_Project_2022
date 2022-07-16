@@ -10,10 +10,11 @@ function echoDayViewCalendar(){
     echo"
         <h2>Daily Schedule</h2>
         <div class='dayViewContainer'> 
+     
             <h3><center> $day</h3>";
                 $topPosition = 60;
-                $currentTop = 60;
-            
+                $currentTop = 60;            
+                                                                                        
                 for($i = 8; $i < 24; $i++){
                     $meridiem = 'AM';
 
@@ -21,18 +22,21 @@ function echoDayViewCalendar(){
                         $meridiem = 'PM';
                     }
 
-                    echo"
-                        <div><time style='top:".$currentTop."px;'><hr>$i:00 $meridiem</time><div><br></br>"; 
-                        $tempTop = $currentTop + 30;
-                    echo"<div><time style='top:".$tempTop."px;'><small style='color:#38393882'>$i:30 $meridiem</small></time><div> 
-                        ";       
-                                
-                    $currentTop+=$topPosition;
-                } 
-                echo"
-                <div id='events'>";         
-}
+                    $hour = $i.":00 $meridiem";
+                    $min = $i.":30 $meridiem";
 
+                    echo"
+                        <div id='timeArea$i'>
+                            <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$i:00 $meridiem</time></div><br></br>"; 
+                            $tempTop = $currentTop + 30;
+                        echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$i:30 $meridiem</small></time></div> 
+                        </div>";                              
+                                
+                    $currentTop+=$topPosition;                  
+                } 
+                     
+}
+// onclick=\"openClassForm('')\"
 // --------------------------------------------------------------------------
 //I'm sure this is not what you had in mind haha since you were talking about a function to pass
 //starting date and ending date and I'm sure involves js. But this is what I came up with in php
@@ -77,7 +81,11 @@ function addEvents($classesToday){
 
     //Hidding this array to then access it from js
     echo"
-    <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
+   
+    <div id='events'>  
+        <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
+
+</div>
 </div>";    
 }  
 

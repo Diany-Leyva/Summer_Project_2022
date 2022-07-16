@@ -88,10 +88,84 @@ function classForm(){
                 </select>   
 
                 <label for='classDate'>Class Date</label>
-                <input type='date' id='ClassDate' name='classDate' min='$today'required>
+                <input type='date' id='ClassDate' name='classDate' value='$today' min='$today' required>
 
                 <label for='classTime'>Class Time</label>
                 <select name='classTime' id='clock'>";         
+                         
+                    for($i = 8; $i < 24; $i++){
+                        $meridiam = 'AM';                  
+                      
+                        if($i > 11){
+                            $meridiam = 'PM';
+                        }
+
+                        $hour = $i.":00";
+                        $min = $i.":30";
+                   
+                        echo"<option value=$hour>$hour $meridiam</option>";
+
+                        if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
+                            echo"<option value=$min>$min $meridiam</option>";
+                        }
+                    }
+                    echo"
+                </select>        
+
+                <label for='czoomLink'><b>Zoom Link</b></label>
+                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>            
+                </div>        
+                                
+                <div class='buttons-container'>
+                    <button type='submit' id='submitButton' class='submit' name='AddClassesSubmitted'>Book</button>
+                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>  
+                    <input type='hidden' id='hiddenClassId-Edit' name='classId' value=''>                                 
+                </div>      
+            </form>   
+        </div>         
+";
+}
+
+// --------------------------------------------------------------------------
+
+function classFormIndexPage($students){
+    $today = date('Y-m-d'); 
+
+    debug($students);
+    echo"          
+        <div id='classFormIndexPage' class='modal'>
+            <form action='' method='post' class='form-container animate'>  
+                <header class='container'>
+                        Book Class                
+                </header>
+                <div class='container input-container'>
+                <label for='listStudentId'><b>Students</b></label>
+                <select name='listStudentId' id='studentListIndexPage'>";         
+                    foreach($students as $key=>$student){
+                        $credit = calcStudentRemainingCredits($key);                         
+                        echo"<option id='studentId$key' value=$key>".$student['FirstName']." ".$student['LastName']."</option>
+                            <option hidden id='credits$key' value='$credit'></option>";                     
+                    } 
+                echo"     
+                </select>
+
+                <label for='StdCreditAmount'><b>Remaining credits</b></label>
+                <input type='text' name='StdCreditAmount' id='StdCreditAmount' value=''>       
+                <label>Add one credit</label>   
+                <input class='toggle' type='checkbox' id='toggle'>   
+                <p id='messageCredits'><b style='color: red;'>Student without credits. Please add one credit</b></p>  
+
+                <label for='ctype'><b>Class Type</b></label>
+                <select id='dropdownIndexPage' name='ctype'>                   
+                    <option value='Online'>Online</option>
+                    <option value='In-Person'>In-Person</option>                  
+                </select>   
+
+                <label for='classDate'>Class Date</label>
+                <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
+
+                <label for='classTime'>Class Time</label>
+                <select name='classTime' id='clockIndexPage'>";         
                          
                     for($i = 8; $i < 24; $i++){
                         $meridiam = 'AM';                  
@@ -113,13 +187,13 @@ function classForm(){
                 </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>            
+                <input type='text' id='zoomLinkIndexPage' placeholder='Link' name='czoomLink' required>            
                 </div>        
                                 
                 <div class='buttons-container'>
-                    <button type='submit' id='submitButton' class='submit' name='AddClassesSubmitted'>Book</button>
-                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>  
-                    <input type='hidden' id='hiddenClassId-Edit' name='classId' value=''>                                 
+                    <button type='submit' id='submitButtonIndexPage' class='submit' name='AddClassesSubmitted'>Book</button>
+                    <button type='button' class='cancel' onclick='closeIndexPageClassForm()'>Cancel</button>  
+                    <input type='hidden' id='hiddenClassId-Edit-IndexPage' name='classId' value=''>                                 
                 </div>      
             </form>   
         </div>         
