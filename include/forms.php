@@ -150,9 +150,10 @@ function classFormIndexPage($students){
                 </select>
 
                 <label for='StdCreditAmount'><b>Remaining credits</b></label>
-                <input type='text' name='StdCreditAmount' id='StdCreditAmount' value=''>       
+                <input type='text' name='StdCreditAmount' id='StdCreditAmount' value='' readonly>
+                
                 <label>Add one credit</label>   
-                <input class='toggle' type='checkbox' id='toggle'>   
+                <input class='toggle' type='checkbox' id='toggle' required>   
                 <p id='messageCredits'><b style='color: red;'>Student without credits. Please add one credit</b></p>  
 
                 <label for='ctype'><b>Class Type</b></label>
