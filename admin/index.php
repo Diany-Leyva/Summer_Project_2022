@@ -75,6 +75,7 @@ $totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 addEvents($classesToday);
+addCurrentTime();
 classFormIndexPage($allStudents);
 deleteClassForm();
 echoFooter(); 

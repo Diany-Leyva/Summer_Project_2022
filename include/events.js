@@ -7,4 +7,5 @@ layOutEvent(events);
 
 //Access then hidden current time from php and parse them to use in js
 let currentTime = document.getElementById('hiddenCurrentTime').value;
-layOutCurrentTimeLine(currentTime);
+const timeLine = JSON.parse(currentTime);
+layOutCurrentTimeLine(timeLine);

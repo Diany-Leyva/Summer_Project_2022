@@ -89,29 +89,35 @@ let createEvent = (height, top, event) => {
   }
 
 //To display currentTime line 
+
   let layOutCurrentTimeLine = (currentTime) => {
 
     // clear any existing nodes
     let myNode = document.getElementById('timeLine');
     myNode.innerHTML = '';   
-      
-    let height = (currentTime.end - currentTime.start) / minutesinDay * containerHeight;
-    let top = currentTime.start / minutesinDay * containerHeight;    
-    createCurrentTime(height, top);
+
+    currentTime.forEach((ctime) => {
+      let height = (ctime.end - ctime.start) / minutesinDay * containerHeight;
+      let top = (ctime.start / minutesinDay * containerHeight) + 5;    
+      createCurrentTime(height, top);
+    });  
    
 }
 
 let createCurrentTime = (height, top) =>{
-  let node = document.createElement('DIV');
-  node.id = 'currentTimeLine';
+  let node = document.createElement('p');
+  node.id = 'newTimeLine';
   node.className = 'currentTime';
   node.innerHTML = 
-  "<span><hr></span>";
+  "<p></p>\
+  ";
 
    node.style.width = containerWidth + 'px';
     node.style.height = height + 'px';
     node.style.top = top + 'px';
     node.style.left = 20 + 'px';
+
+    document.getElementById('timeLine').appendChild(node);
 }
 
 

@@ -39,7 +39,8 @@ function echoDayViewCalendar(){
                             <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
                             $tempTop = $currentTop + 30;
                         echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
-                        </div>";                              
+                        </div>";                      
+                                                 
                                 
                     $currentTop+=$topPosition;                  
                 } 
@@ -56,26 +57,7 @@ function echoDayViewCalendar(){
 //and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
 //when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
 // --------------------------------------------------------------------------
-function addEvents($classesToday){  
-    $currentTime = date('H:i');   
-
-    $h = formatDate($class['StartDate'], 'H');            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // debug($currentTime);
-    // die();
+function addEvents($classesToday){
     $events = [];                                                                         //Array to hold the start/end of every class today
      
     $i = 0;                                                                               
@@ -111,14 +93,34 @@ function addEvents($classesToday){
 
     // debug($events);
     //Hidding this array to then access it from js
-    echo"<div id='timeLine'>
-            <input type='hidden' id='hiddenCurrentTime' value='$currentTime'>
-        </div>   
-    <div id='events'>  
-        <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
-    </div>
-</div>";    
+    echo"  
+        <div id='timeLine'></div> 
+        <div id='events'></div>
+        <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">";      
 }  
+
+//fucntion to add a line in the current time in the day calendar
+//Here I just do a similar calculation to what I did to place the events 
+// --------------------------------------------------------------------------
+function addCurrentTime(){
+    $currentTime = date('H:i');   
+    $timeArray = [];
+    $hour = formatDate($currentTime, 'H');  
+    $minutes = formatDate($currentTime, 'i');  
+
+    if($hour > 7 &&                                            //because I just want to show it in the timeframe of my calendar 8:00-23:00
+       $hour < 24){
+
+        $top = (60 * ($hour - 7)) + $minutes; 
+   
+        $timeArray[0]['start'] =  $top;  
+        $timeArray[0]['end'] =  $top + 0.5;
+        $timeArray[0]['currentTime'] =  $currentTime; 
+    }   
+    
+    echo" <input type='hidden' id='hiddenCurrentTime' value=";echo json_encode($timeArray);echo">
+    </div>";
+}
 
 //So here I echo this function but if there is no classes I set up default values
 //I do this because then I use JS to display the class info here when I click an event in the
