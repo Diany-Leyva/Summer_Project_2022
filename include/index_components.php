@@ -57,6 +57,25 @@ function echoDayViewCalendar(){
 //when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
 // --------------------------------------------------------------------------
 function addEvents($classesToday){  
+    $currentTime = date('H:i');   
+
+    $h = formatDate($class['StartDate'], 'H');            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // debug($currentTime);
+    // die();
     $events = [];                                                                         //Array to hold the start/end of every class today
      
     $i = 0;                                                                               
@@ -92,12 +111,12 @@ function addEvents($classesToday){
 
     // debug($events);
     //Hidding this array to then access it from js
-    echo"
-   
+    echo"<div id='timeLine'>
+            <input type='hidden' id='hiddenCurrentTime' value='$currentTime'>
+        </div>   
     <div id='events'>  
         <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">
-
-</div>
+    </div>
 </div>";    
 }  
 

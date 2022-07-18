@@ -52,8 +52,7 @@ for (let i = 0; i < timeArea.length; i++) {
 //To display events 
 const containerHeight = 901;                                             
 const containerWidth =  529;                                          
-const minutesinDay = 60 * 15;                                           //15 hours in the schedule
-let width = [];
+const minutesinDay = 60 * 15;                                                                       //15 hours in the schedule
 
   let layOutEvent = (events) => {
 
@@ -61,20 +60,16 @@ let width = [];
     let myNode = document.getElementById('events');
     myNode.innerHTML = '';   
     
-    events.forEach((event, id) => {
-    let height = (event.end - event.start) / minutesinDay * containerHeight;
-    let top = event.start / minutesinDay * containerHeight; 
-    let units = width[id];
-    if (!units) {units = 1};
-    let left = (containerWidth / width[id]) * 10;
-    if (!left || left < 0) {left = 10};
-    createEvent(height, top, left, units, event);
+    events.forEach((event) => {
+      let height = (event.end - event.start) / minutesinDay * containerHeight;                
+      let top = event.start / minutesinDay * containerHeight;    
+      createEvent(height, top, event);
     });
 }
 
 //I couln't figure out how to pass the whole event array to displayClassInfo(), or how to hide the whole 
 //event object here, so I just hide each element in hiddenEventObjectInfo and then I split it in the function
-let createEvent = (height, top, left, units, event) => {
+let createEvent = (height, top, event) => {
     let node = document.createElement('DIV');
     node.id = 'newEvent';
     node.className = 'event zoom';
@@ -85,14 +80,38 @@ let createEvent = (height, top, left, units, event) => {
     ";
 
     // Customized CSS to position each event
-    node.style.width = (containerWidth/units) + 'px';
+    node.style.width = containerWidth + 'px';
     node.style.height = height + 'px';
     node.style.top = top + 'px';
-    node.style.left = 10 + left + 'px';
+    node.style.left = 20 + 'px';
   
     document.getElementById('events').appendChild(node);
   }
 
+//To display currentTime line 
+  let layOutCurrentTimeLine = (currentTime) => {
 
+    // clear any existing nodes
+    let myNode = document.getElementById('timeLine');
+    myNode.innerHTML = '';   
+      
+    let height = (currentTime.end - currentTime.start) / minutesinDay * containerHeight;
+    let top = currentTime.start / minutesinDay * containerHeight;    
+    createCurrentTime(height, top);
+   
+}
+
+let createCurrentTime = (height, top) =>{
+  let node = document.createElement('DIV');
+  node.id = 'currentTimeLine';
+  node.className = 'currentTime';
+  node.innerHTML = 
+  "<span><hr></span>";
+
+   node.style.width = containerWidth + 'px';
+    node.style.height = height + 'px';
+    node.style.top = top + 'px';
+    node.style.left = 20 + 'px';
+}
 
 
