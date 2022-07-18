@@ -258,15 +258,15 @@ document.addEventListener('input', function (event) {
 
 });
 
-//when the user submit the classFormIndexPage form 
-// *********************************************************************************************************************************
+// //when the user submit the classFormIndexPage form 
+// // *********************************************************************************************************************************
 
-document.getElementById('classFormIndexPage').addEventListener('submit', function (event) {
-    //This look like a good place to check for the classes availability but I will wait for our next jog (maybe you
-    //are reading this and we already talked about it lol, to see what you recomend to handle classes conflict)
+// document.getElementById('classFormIndexPage').addEventListener('submit', function (event) {
+//     //This look like a good place to check for the classes availability but I will wait for our next jog (maybe you
+//     //are reading this and we already talked about it lol, to see what you recomend to handle classes conflict)
     
     
-}), false;
+// }), false;
 
 // *********************************************************************************************************************************
 

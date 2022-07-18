@@ -7,7 +7,12 @@ $allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassI
 $classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
 $allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {    
+
+    if(isset($_REQUEST['loginSubmitted'])){
+        debug($_REQUEST);
+        die();
+    }   
 
     if(isset($_REQUEST['AddClassesSubmitted'])){ 
                
@@ -64,7 +69,8 @@ if($size == 0){
     $headingInfo = 'No classes scheduled today';
 }
 
-echoPageLayout('Home', 'Welcome back, Yuniesky', $headingInfo);
+echoHeader('Home');
+echoPageLayout('Welcome back, Yuniesky', $headingInfo);
                                        
 echoNextClassSection($classesToday);                                                      
 
@@ -78,4 +84,5 @@ addEvents($classesToday);
 addCurrentTime();
 classFormIndexPage($allStudents);
 deleteClassForm();
+echoCommonJSFiles();
 echoFooter(); 

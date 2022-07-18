@@ -17,6 +17,8 @@ include_once('index_components.php');
 include_once('forms.php'); 
 include_once('students.php'); 
 include_once('classes.php'); 
+include_once('login_components.php'); 
+
 
 
 

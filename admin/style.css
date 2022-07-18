@@ -9,7 +9,8 @@
 }
 
 body{
-background-color: #eee;                                                          
+background-color: #eee; 
+/* background: linear-gradient(356deg,#0b0b0b, #f2ecf4);                                                          */
 }
 
 /* Grid layout */
@@ -67,6 +68,22 @@ ul li a {
 }
 
 /* Vertical Bar*/
+.vertical{
+    width: 270px;
+}
+
+.adminName{
+    position: absolute;
+    top: 126px;
+    left: 30px;
+}
+
+.logOutLink{
+    position: absolute;
+    top: 150px;
+    left: 62px;
+}
+
 .flex-container-verticalBar{
     display: flex;
     flex-direction: column;
@@ -83,10 +100,10 @@ ul li a {
     border-radius: 75px;  
 }
 
-h1 {
+/* h1 {
     font-size: 10px;
     padding-top: 10;
-}
+} */
 
 /* List_students.php 
 --------------------------------------------------------------------------- */
@@ -584,7 +601,7 @@ hr{
 
 .currentTime{ 
     background-color: #f443364d;    
-    padding-top: 3px;
+    padding-top: 2px;
     position: absolute;    
     border-radius: 10px;
 }
@@ -783,4 +800,3 @@ hr{
 }
 
 
-/* dayView Calendar */

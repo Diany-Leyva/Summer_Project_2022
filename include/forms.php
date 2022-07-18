@@ -246,3 +246,36 @@ function deleteClassForm(){
 }
 
 // -------------------------------------------------------------------------- 
+
+function loginForm($adminInfo){    
+    
+    echo"
+    <div id='loginFormId' class='center'>
+      <h1>Login</h1>
+      <form action='/admin/index.php' method='post'>
+        <div class='txtField'>
+          <input type='email' name='userEmail' id='userEmailId' required>          
+          <span></span>
+          <label for='userEmail'>Email</label>
+        </div>
+        <p class='emailErr' id='emailErr'>Error message goes here</p>
+
+        <div class='txtField'>
+          <input type='password' name='userPassword' id='userPasswId' required>
+          <span></span>
+          <label for='userPassword'>Password</label>
+        </div>
+        <p class='passwErr' id='passwErr'>Error message goes here</p>
+       
+        <div class='pass'>Forgot Password?</div>
+        <input type='submit' value='Login' name='loginSubmitted'>
+        <div class='signup_link'>
+          Not a user? <a href='#'>Signup</a>
+        </div>
+        <input type='hidden' id='hiddenAdminInfoArray' value=";echo json_encode($adminInfo);echo">   
+      </form>
+    </div>
+    ";     
+}
+
+// --------------------------------------------------------------------------

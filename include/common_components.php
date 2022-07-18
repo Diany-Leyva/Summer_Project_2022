@@ -1,23 +1,27 @@
 <?php
 // --------------------------------------------------------------------------
 
-function echoPageLayout($title, $heading, $subheading){
+function echoHeader($title){
     echo "<html>                                                                                                      
-            <head>              
-                <title>$title</title>  
-                <link href='style.css' rel='stylesheet'>                                                                        
-            </head>            
-            <body>
+    <head>              
+        <title>$title</title>  
+        <link href='style.css' rel='stylesheet'>                                                                        
+    </head> ";
+}
+
+function echoPageLayout($heading, $subheading){
+    echo "  <body>
                 <section class='wrapper'>
-                    <section>  
+                    <section class='vertical'>  
                         <div class='flex-container-verticalBar'>  
                             <div class='flex-item-verticalBarPicture'>
                                 <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                                <h1 >Yuniesky Quesada</h1>
+                                <p class='adminName' >Yuniesky Quesada</p>
+                                <p class='logOutLink'>LOG OUT</p>
                             </div>            
                         </div>  
                     </section>  
-                    <section>     
+                    <section class='horizontal'>     
                         <nav>
                             <header>$heading
                                 <p> $subheading</p>
@@ -36,18 +40,26 @@ function echoPageLayout($title, $heading, $subheading){
 
 // --------------------------------------------------------------------------
 
-function echoFooter(){
-    echo"  
-                    </section>
-                </section> 
-                <script src='/include/form_functions.js'></script> 
-                <script src='/include/dayViewCalendar.js'></script>
-                <script src='/include/events.js'></script>
-                <footer></footer>                            
-           </body>    
-        </html>
-";
+function echoCommonJSFiles(){
+    echo" 
+         
+        <script src='/include/form_functions.js'></script> 
+        <script src='/include/dayViewCalendar.js'></script>
+        <script src='/include/events.js'></script>
+    ";
 }
 
 // --------------------------------------------------------------------------
 
+function echoFooter(){
+    echo"   
+            
+    </section>
+    </section>    
+        <footer></footer>                            
+    </body>    
+</html>
+";
+}
+
+// --------------------------------------------------------------------------

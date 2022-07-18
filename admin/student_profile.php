@@ -74,7 +74,8 @@ if(isset($_REQUEST['studentId'])){
     }   
 
     $title = 'Student Profile';
-    echoPageLayout($title, $title, '');
+    echoHeader($title);
+    echoPageLayout($title, '');
 
     $studentId = $_REQUEST['studentId'];                               
     $student = getOneStudent($studentId);
@@ -113,6 +114,7 @@ if(isset($_REQUEST['studentId'])){
     deleteClassForm();
 }
 
+echoCommonJSFiles();
 echoFooter();    
          
 

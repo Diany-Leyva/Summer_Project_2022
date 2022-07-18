@@ -30,8 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();                                                             
     }  
 }
- 
-echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." students");
+
+echoHeader('Students');
+echoPageLayout('My Students', "You have ".sizeof($allStudents)." students");
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
@@ -54,5 +55,6 @@ else{
 
 studentForm();
 deleteStudentForm();
+echoCommonJSFiles();
 echoFooter();    
          
