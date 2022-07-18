@@ -45,8 +45,7 @@ if(isset($_REQUEST['studentId'])){
       updateClass($_REQUEST['classId'], $_REQUEST['ctype'], $_REQUEST['czoomLink'], $date);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");    
       exit(); 
-    }
-    
+    }    
 
     if(isset($_REQUEST['studentDeleted'])){
      

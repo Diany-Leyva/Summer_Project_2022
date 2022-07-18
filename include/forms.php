@@ -94,19 +94,22 @@ function classForm(){
                 <select name='classTime' id='clock'>";         
                          
                     for($i = 8; $i < 24; $i++){
-                        $meridiam = 'AM';                  
-                      
-                        if($i > 11){
-                            $meridiam = 'PM';
+                        //the format I have been using is with two digist so I'm just adding a 0 so, for instance,
+                        //we get 08:00 instead of 8:00
+                        if($i < 10){
+                            $hour = "0".$i.":00";
+                            $min = "0".$i.":30";
                         }
 
-                        $hour = $i.":00";
-                        $min = $i.":30";
+                        else{
+                            $hour = $i.":00";
+                            $min = $i.":30";
+                        }                      
                    
-                        echo"<option value=$hour>$hour $meridiam</option>";
+                        echo"<option value=$hour>$hour</option>";
 
                         if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
-                            echo"<option value=$min>$min $meridiam</option>";
+                            echo"<option value=$min>$min</option>";
                         }
                     }
                     echo"
@@ -130,8 +133,7 @@ function classForm(){
 
 function classFormIndexPage($students){
     $today = date('Y-m-d'); 
-
-    debug($students);
+   
     echo"          
         <div id='classFormIndexPage' class='modal'>
             <form action='' method='post' class='form-container animate'>  
@@ -152,36 +154,38 @@ function classFormIndexPage($students){
                 <label for='StdCreditAmount'><b>Remaining credits</b></label>
                 <input type='text' name='StdCreditAmount' id='StdCreditAmount' value='' readonly>
                 
-                <label>Add one credit</label>   
-                <input class='toggle' type='checkbox' id='toggle' required>   
-                <p id='messageCredits'><b style='color: red;'>Student without credits. Please add one credit</b></p>  
-
+                <label><b>Add one credit</b></label>   
+                <input class='toggle' type='checkbox' id='toggle' name='StdToggle' required> 
+                <br>
+              
                 <label for='ctype'><b>Class Type</b></label>
                 <select id='dropdownIndexPage' name='ctype'>                   
                     <option value='Online'>Online</option>
                     <option value='In-Person'>In-Person</option>                  
                 </select>   
 
-                <label for='classDate'>Class Date</label>
+                <label for='classDate'><b>Class Date</b></label>
                 <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
 
-                <label for='classTime'>Class Time</label>
+                <label for='classTime'><b>Class Time</b></label>
                 <select name='classTime' id='clockIndexPage'>";         
                          
-                    for($i = 8; $i < 24; $i++){
-                        $meridiam = 'AM';                  
-                      
-                        if($i > 11){
-                            $meridiam = 'PM';
+                    for($i = 8; $i < 24; $i++){                     
+
+                        if($i < 10){
+                            $hour = "0".$i.":00";
+                            $min = "0".$i.":30";
                         }
 
-                        $hour = $i.":00";
-                        $min = $i.":30";
-                   
-                        echo"<option id=$hour value=$hour>$hour $meridiam</option>";
+                        else{
+                            $hour = $i.":00";
+                            $min = $i.":30";
+                        }                        
+                                        
+                        echo"<option id=$hour value=$hour>$hour</option>";
 
                         if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
-                            echo"<option id=$min value=$min>$min $meridiam</option>";
+                            echo"<option id=$min value=$min>$min</option>";
                         }
                     }
                     echo"

@@ -209,15 +209,36 @@ ol li {
 
 .deleteButton.onProfile{
     position: absolute;
-    margin: 40px 24px;
+    top: 312px;
+    left: 437px;
 }
      
 .deleteButton.onClassSession{
     position: absolute;
-    margin: -16px -32px;
+    top: 110px;
+    left: 203px;
 }
 
 
+.editButton{  
+    background-color: inherit;
+    width: fit-content;
+    /* cursor: pointer; */
+    font-size: 20px;
+}
+
+
+.editButton.onProfile{
+    position: absolute;
+    top: 312px;
+    left: 385px;
+}
+
+.editButton.onClassSession{
+    position: absolute;
+    top: 110px;
+    left: 141px;
+}
   /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
     display: block;    
   } */

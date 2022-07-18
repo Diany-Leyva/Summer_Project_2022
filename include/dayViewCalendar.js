@@ -43,11 +43,9 @@ for (let i = 0; i < timeArea.length; i++) {
                     i--;                                            //Need to decrease the counter because on option was remove            
                 }                
             }
-        }  
-    
+        }     
 
     openIndexPageClassForm('');
-
 });
 }
 
@@ -81,7 +79,7 @@ let createEvent = (height, top, left, units, event) => {
     node.id = 'newEvent';
     node.className = 'event zoom';
     node.innerHTML = 
-    "<div onclick='displayClassInfo(\""+event.FirstName+"\", \""+event.LastName+"\", \""+event.StartTime+"\", \""+event.Email+"\", \""+event.LichessLink+"\", \""+event.ZoomLink+"\", \""+event.ClassId+"\")'><span class='title'>"+event.Type+" Class</span>\
+    "<div onclick='displayClassInfo(\""+event.ClassId+"\",\""+event.Type+"\",\""+event.StartDate+"\",\""+event.StartTime+"\",\""+event.LichessLink+"\",\""+event.ZoomLink+"\",\""+event.StudentId+"\",\""+event.FirstName+"\",\""+event.LastName+"\",\""+event.Email+"\")'><span class='title'>"+event.Type+" Class</span>\
     <br><span class='event-name'>"+event.FirstName+" "+event.LastName+"</span>\
     <br><span class='event-time'>"+event.StartTime+"</span></div>\
     ";

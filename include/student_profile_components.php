@@ -23,7 +23,6 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['Phone']."</li>    
                     <li>ELO ".$student['ELO']."</li>
                     <li>".$student['LichessLink']."</li>
-                    <button class='zoom' onclick='openStudentForm($studentId)'>Edit</button>
                     <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
                 </ol>
                 <div class='picturePosition'>
@@ -32,8 +31,9 @@ function echoProfileInfo($student, $picture){
 
             </div>            
             
+            <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
             <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>       
-      
+            
 ";
 }
 
@@ -86,7 +86,7 @@ function echoFutureClassesInfo($classes, $heading){
                                 echo"                  
                                     <li class='info-table-row zoom'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
                                     <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."</span>                     
-                                    <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo"                                     
+                                    <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo">                                     
                                     </li>
                                 ";        
                             }    

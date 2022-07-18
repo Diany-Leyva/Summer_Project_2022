@@ -16,27 +16,36 @@ function echoDayViewCalendar(){
                 $currentTop = 60;            
                                                                                         
                 for($i = 8; $i < 24; $i++){
-                    $meridiem = 'AM';
+                    // $meridiem = 'AM';
 
-                    if($i > 11){
-                        $meridiem = 'PM';
+                    // if($i > 11){
+                    //     $meridiem = 'PM';
+                    // }
+
+                    if($i < 10){
+                        $hour = "0".$i.":00";
+                        $min = "0".$i.":30";
                     }
 
-                    $hour = $i.":00 $meridiem";
-                    $min = $i.":30 $meridiem";
+                    else{
+                        $hour = $i.":00";
+                        $min = $i.":30";
+                    }    
+                    // $hour = $i.":00";
+                    // $min = $i.":30";
 
                     echo"
                         <div id='timeArea$i'>
-                            <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$i:00 $meridiem</time></div><br></br>"; 
+                            <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
                             $tempTop = $currentTop + 30;
-                        echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$i:30 $meridiem</small></time></div> 
+                        echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
                         </div>";                              
                                 
                     $currentTop+=$topPosition;                  
                 } 
                      
 }
-// onclick=\"openClassForm('')\"
+
 // --------------------------------------------------------------------------
 //I'm sure this is not what you had in mind haha since you were talking about a function to pass
 //starting date and ending date and I'm sure involves js. But this is what I came up with in php
@@ -66,19 +75,22 @@ function addEvents($classesToday){
         //I'm storing all the information beacuse I use it to display the class Info in js later on
         //and this is the source 
         $events[$i]['start'] =  $topPosition;  
-        $events[$i]['end'] =  $topPosition + 60;       
+        $events[$i]['end'] =  $topPosition + 60;  
+        $events[$i]['ClassId'] = $class['ClassId'];  
         $events[$i]['Type'] = $class['Type'];
-        $events[$i]['FirstName'] = $class['FirstName'];
-        $events[$i]['LastName'] = $class['LastName'];
-        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:iA');
-        $events[$i]['Email'] = $class['Email'];
+        $events[$i]['StartDate'] = formatDate($class['StartDate'], 'Y-m-d');
+        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:i');
         $events[$i]['LichessLink'] = $class['LichessLink'];
         $events[$i]['ZoomLink'] = $class['ZoomLink']; 
-        $events[$i]['ClassId'] = $class['ClassId'];   
+        $events[$i]['StudentId'] = $class['StudentId'];  
+        $events[$i]['FirstName'] = $class['FirstName'];
+        $events[$i]['LastName'] = $class['LastName'];       
+        $events[$i]['Email'] = $class['Email'];    
        
         $i++;     
     }
 
+    // debug($events);
     //Hidding this array to then access it from js
     echo"
    
@@ -96,31 +108,46 @@ function addEvents($classesToday){
 //echo "No pending classes", but that aproach does not work with my js changes 
 // --------------------------------------------------------------------------
 
-function echoNextClassSection($nextClass){    
+function echoNextClassSection($classesToday){    
     
-    if($nextClass){
-        $heading = 'Next Class';
-        $id = $nextClass['ClassId'];
-        $name = $nextClass['FirstName']." ".$nextClass['LastName'];
-        $classDate = formatDate($nextClass['StartDate'], 'd M');
-        $classTime = formatDate($nextClass['StartDate'], 'H:i A');
-        $email = $nextClass['Email'];
-        $lichess = $nextClass['LichessLink'];
-        $zoom = $nextClass['ZoomLink'];
-        $hour = '1 hour';     
-        $class = 'enableAnchor';
-        $deleteButtonVisibility = "style='visibility: visible';";
-    }
+    $pendingClasses = calcFutureClasses($classesToday); 
+    $nextClass = [];
 
+    if(!empty($pendingClasses)){                                                              
+        $nextClass = calcNextClass($pendingClasses);
+
+        if($nextClass){
+            $heading = 'Next Class';
+            $id = $nextClass['ClassId'];
+            $name = $nextClass['FirstName']." ".$nextClass['LastName'];
+            $classDate = formatDate($nextClass['StartDate'], 'd M');
+            $classTime = formatDate($nextClass['StartDate'], 'H:i A');
+            $email = $nextClass['Email'];
+            $lichess = $nextClass['LichessLink'];
+            $zoom = $nextClass['ZoomLink'];
+            $hour = '1 hour';     
+            $class = 'enableAnchor';
+            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"; 
+            
+             //This time instead that hidding an array and using jason_encode to pass it to js I did it by passing an string and then I turn it into an array. Which way should be better?
+            $date = formatDate($nextClass['StartDate'], 'Y-m-d');
+            $time = formatDate($nextClass['StartDate'], 'H:i');  
+        
+            $classString = "ClassId:".$nextClass['ClassId'].",Type:".$nextClass['Type'].",ClassDate:$date,ClassTime:$time,ZoomLink:".$nextClass['ZoomLink'].",StudentId:".$nextClass['StudentId']; 
+        }
+    }  
+    
     else{
         $heading = 'No pending <br>Classes';
         $id = $name = $classDate = $classTime = $email = $lichess = $zoom = $hour = '';
         $class = 'disableAnchor';
-        $deleteButtonVisibility = "style='visibility: hidden';";
+        $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";
+        $classString = '';
     }
 
-    $showButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
-    
+    $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
+    $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='EditButton onClassSession zoom' onclick=\"openIndexPageClassForm($id)\">✏️</button>";
+         
     echo"        
         <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>     
@@ -147,11 +174,14 @@ function echoNextClassSection($nextClass){
                         </div>
                     </div>
                     <div class='nextClassPicturePosition'>
-                        <span id='showDeleteButton'> $showButton </span>
+                        <span id='showDeleteButton'> $showDeleteButton </span>
+                        <span id='showEditButton'> $showEditButton </span>
                         <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
+                        <input type='hidden' id='hiddenClass-Edit-IndexPage' value='$classString'>             
                     </div>
                 </div>      
             </div>";
+            
 }
 
 // --------------------------------------------------------------------------
