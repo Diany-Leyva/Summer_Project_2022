@@ -29,5 +29,9 @@ echo "<html>
 </head> "; 
 
 loginForm(getAdmin());
-echoLoginJSFiles();
-echoFooter(); 
+
+$jsFiles = "
+    <script src='/include/login.js'></script>
+    ";
+
+echoFooter($jsFiles); 
