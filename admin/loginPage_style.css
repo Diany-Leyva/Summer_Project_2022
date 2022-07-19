@@ -103,6 +103,7 @@ body{
   .txtField input:valid ~ span::before{
     width: 100%;
   }
+
   .pass{
     margin: -5px 0 20px 5px;
     color: #606264;;

@@ -240,7 +240,7 @@ ol li {
 .editButton{  
     background-color: inherit;
     width: fit-content;
-    /* cursor: pointer; */
+    cursor: pointer;
     font-size: 20px;
 }
 
