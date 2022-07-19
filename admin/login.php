@@ -1,6 +1,6 @@
 <?php
 include('../include/initialize.php'); 
-logout();
+checkLogout();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {    
 

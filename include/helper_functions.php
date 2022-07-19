@@ -88,7 +88,7 @@ function checkAdmin(){
 //This is me handling the logout 
 // *********************************************************************************************************************************
 
-function logout(){
+function checkLogout(){
     if(isset($_SESSION['IsAdmin'])) { 
         session_destroy();
         header('Location:login.php');
