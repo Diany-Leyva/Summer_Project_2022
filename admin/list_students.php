@@ -57,6 +57,10 @@ else{
 
 studentForm();
 deleteStudentForm();
-echoCommonJSFiles();
-echoFooter();    
-         
+
+$jsFiles = "
+    <script src='/include/forms.js'></script>
+    <script src='/include/list_students.js'></script>
+    ";
+
+echoFooter($jsFiles); 
