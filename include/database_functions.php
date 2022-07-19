@@ -21,6 +21,9 @@ function getAllStudents(){
 }
 
 // *********************************************************************************************************************************
+//I will ask this in next jog but do I need to clean studentid here to prevent sql injection as well?
+//even though this wasn't entered bu the user in the form? My guess is that yes we do, since someone could try to 
+//manipulated in the URL or something like that
 
 function getOneStudent($studentId){
     return dbQuery("
