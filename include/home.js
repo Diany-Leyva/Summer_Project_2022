@@ -216,14 +216,14 @@ function closeIndexPageClassForm() {
 //Delete class form
 // --------------------------------------------------------------------------
 
-function openDeleteClass(classId) {
-    document.getElementById('hiddenClassId-Delete').value = classId;
-    document.getElementById('deleteClass').style.display = 'block';
- }
+// function openDeleteClass(classId) {
+//     document.getElementById('hiddenClassId-Delete').value = classId;
+//     document.getElementById('deleteClass').style.display = 'block';
+//  }
  
- function closeDeleteClass() {
-     document.getElementById('deleteClass').style.display = 'none';
- }  
+//  function closeDeleteClass() {
+//      document.getElementById('deleteClass').style.display = 'none';
+//  }  
 
  
 // When the user clicks anywhere outside of the modal, close it

@@ -21,3 +21,34 @@ function searchStudent() {
     }       
   }
 }
+
+// When the user clicks anywhere outside of the modal, close it
+// --------------------------------------------------------------------------
+let studentFormModal = document.getElementById('studentForm');
+let deleteStudentModal = document.getElementById('deleteStudent');
+
+window.onclick = function(event) {
+
+    if (event.target == studentFormModal) {
+        studentFormModal.style.display = 'none';
+    }
+
+    if (event.target == deleteStudentModal) {
+        deleteStudentModal.style.display = 'none';
+    }
+}
+
+// --------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

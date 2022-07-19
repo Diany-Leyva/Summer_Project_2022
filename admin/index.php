@@ -82,6 +82,7 @@ classFormIndexPage($allStudents);
 deleteClassForm();
 
 $jsFiles = "
+    <script src='/include/forms.js'></script>   
     <script src='/include/home.js'></script>
     <script src='/include/dayViewCalendar.js'></script>
     <script src='/include/events.js'></script>

@@ -115,9 +115,12 @@ if(isset($_REQUEST['studentId'])){
     deleteClassForm();
 }
 
-echoCommonJSFiles();
-echoFooter();    
-         
+$jsFiles = "
+    <script src='/include/forms.js'></script>
+    <script src='/include/student_profile.js'></script>
+    ";
+
+echoFooter($jsFiles); 
 
 
 
