@@ -63,13 +63,13 @@ if(isset($_REQUEST['studentId'])){
 
     if(isset($_REQUEST['privNotesSaveButtonSubmitted'])){   
        
-      updateNotes($_REQUEST['studentId'], $_REQUEST['privateNotes'], 'PrivateNotes');                                                                    
+      updatePrivateNotes($_REQUEST['studentId'], $_REQUEST['privateNotes']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}"); 
       exit();         
     } 
 
     if(isset($_REQUEST['publicNotesSaveButtonSubmitted'])){  
-      updateNotes($_REQUEST['studentId'], $_REQUEST['publicNotes'], 'PublicNotes');                                                                   
+      updatePublicNotes($_REQUEST['studentId'], $_REQUEST['publicNotes']);                                                                   
       header("location:? studentId={$_REQUEST['studentId']}"); 
       exit();         
     }   

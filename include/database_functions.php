@@ -165,27 +165,42 @@ function getOneStudentRefundAmount($student_Id){
 
 function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
     dbQuery("
-    INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
-    VALUES ('$fName', '$lName', '$email', '$phone', '$rating', '$lichess')
-");
+        INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
+        VALUES(:cleanedfName, :cleanedlName, :cleanedemail, :cleanedphone, :cleanedrating, :cleanedlichess)
+    ",  [
+        'cleanedfName' => $fName,
+        'cleanedlName' => $lName,
+        'cleanedemail' => $email,
+        'cleanedphone' => $phone,
+        'cleanedrating' => $rating,
+        'cleanedlichess' => $lichess
+    ]);
 }
 
 // *********************************************************************************************************************************
 
 function insertCredit($amount, $studentId){    
     dbQuery("
-    INSERT INTO credits(Amount, StudentId)
-    VALUES ('$amount', '$studentId')
-");
+        INSERT INTO credits(Amount, StudentId)
+        VALUES (:cleanedAmount, :cleanedStudentId)
+    ", [
+        'cleanedAmount' => $amount,
+        'cleanedStudentId' => $studentId
+    ]);
 }
 
 // *********************************************************************************************************************************
 
 function insertClass($type, $link, $classDate, $studentId){    
     dbQuery("
-    INSERT INTO classes(Type, ZoomLink, StartDate, StudentId)
-    VALUES ('$type', '$link', '$classDate', '$studentId')   
-");
+        INSERT INTO classes(Type, ZoomLink, StartDate, StudentId)
+        VALUES (:cleanedType, :cleanedLink, :cleanedClassDate, :cleanedStudentId)   
+    ",  [
+        'cleanedType' => $type,
+        'cleanedLink' => $link,
+        'cleanedClassDate' => $classDate,
+        'cleanedStudentId' => $studentId       
+    ]);
 }
 
 // *********************************************************************************************************************************
@@ -198,9 +213,12 @@ function insertClass($type, $link, $classDate, $studentId){
 
 function insertRefund($amount, $studentId){    
     dbQuery("
-    INSERT INTO refunds(Amount, StudentId)
-    VALUES ('$amount', '$studentId')
-");
+        INSERT INTO refunds(Amount, StudentId)
+        VALUES (:cleanedAmount, :cleanedStudentId)
+    ",  [
+        'cleanedAmount' => $amount,
+        'cleanedStudentId' => $studentId        
+    ]);
 }
 
 // *********************************************************************************************************************************
@@ -209,16 +227,20 @@ function insertRefund($amount, $studentId){
 
 function deleteStudent($studentId){    
     dbQuery("
-        DELETE FROM students WHERE StudentId = $studentId
-");
+        DELETE FROM students WHERE StudentId = :cleanedStudentId
+    ",  [       
+        'cleanedStudentId' => $studentId        
+    ]);
 }
 
 // *********************************************************************************************************************************
 
 function deleteClass($classId){    
     dbQuery("
-        DELETE FROM classes WHERE ClassId = $classId
-");
+        DELETE FROM classes WHERE ClassId = :cleanedClassId
+    ",  [       
+        'cleanedClassId' => $classId        
+    ]);
 }
 
 // *********************************************************************************************************************************
@@ -227,30 +249,59 @@ function deleteClass($classId){
 
 function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $studentId){
     dbQuery("
-    UPDATE students
-    SET FirstName ='$fName', LastName='$lName', Email='$email', Phone='$phone', ELO='$rating', LichessLink ='$lichess' 
-    WHERE StudentId = '$studentId'
-");
+        UPDATE students
+        SET FirstName=:cleanedFName, LastName=:cleanedLName, Email=:cleanedEmail, Phone=:cleanedPhone, ELO=:cleanedRating, LichessLink=:cleanedLichess
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedFName' => $fName,
+        'cleanedLName' => $lName,
+        'cleanedEmail' => $email,
+        'cleanedPhone' => $phone,
+        'cleanedRating' => $rating,
+        'cleanedLichess' => $lichess,
+        'cleanedStudentId' => $studentId
+    ]);
 }
 
 // *********************************************************************************************************************************
 
-function updateNotes($studentId, $notes, $attribute){
+function updatePrivateNotes($studentId, $notes){
     dbQuery("
-    UPDATE students
-    SET $attribute ='$notes' 
-    WHERE StudentId = '$studentId'
-");
+        UPDATE students
+        SET PrivateNotes = :cleanedNotes
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedStudentId' => $studentId,
+        'cleanedNotes' => $notes       
+    ]);
 }
 
 // *********************************************************************************************************************************
 
-function updateClass($classId, $type, $zoom, $date){
+function updatePublicNotes($studentId, $notes){
     dbQuery("
-    UPDATE classes
-    SET Type ='$type', ZoomLink ='$zoom', StartDate ='$date' 
-    WHERE ClassId = '$classId'
-");
+        UPDATE students
+        SET PublicNotes = :cleanedNotes
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedStudentId' => $studentId,
+        'cleanedNotes' => $notes       
+    ]);
+}
+
+// *********************************************************************************************************************************
+
+function updateClass($classId, $type, $zoomLink, $classDate){
+    dbQuery("
+        UPDATE classes
+        SET Type =:cleanedType, ZoomLink =:cleanedZoomLink, StartDate =:cleanedClassDate
+        WHERE ClassId = :cleanedClassId
+    ",  [
+        'cleanedClassId' => $classId ,
+        'cleanedType' => $type,
+        'cleanedZoomLink' => $zoomLink,
+        'cleanedClassDate' => $classDate           
+    ]);
 }
 
 // *********************************************************************************************************************************
