@@ -1,4 +1,20 @@
 
+//when the user changes something in the login form 
+// *********************************************************************************************************************************
+document.addEventListener('input', function (event) {
+
+    // to hide the error message once the user starts typing
+    if (event.target.id === 'userEmailId'){
+        document.getElementById('emailErr').style.visibility = 'hidden';
+    }
+
+    if (event.target.id === 'userPasswId'){
+               document.getElementById('passwErr').style.visibility = 'hidden';
+    }
+
+});
+
+
 //when the user submit the the login form 
 // *********************************************************************************************************************************
 document.getElementById('loginFormId').addEventListener('submit', function (event) {
@@ -12,8 +28,7 @@ document.getElementById('loginFormId').addEventListener('submit', function (even
     if(document.getElementById('userEmailId').value != adminInfo.Email){
         document.getElementById('emailErr').innerHTML = "The email you've entered is incorrect.";
         document.getElementById('emailErr').style.visibility = 'visible';
-        document.getElementById('userEmailId').focus();
-        document.getElementById('userEmailId').value = '';      
+        document.getElementById('userEmailId').focus();     
         event.preventDefault();      
     }
 
@@ -27,18 +42,3 @@ document.getElementById('loginFormId').addEventListener('submit', function (even
     
 }), false;
 
-//when the user changes something in the login form 
-// *********************************************************************************************************************************
-document.addEventListener('input', function (event) {
-
-    // to hide the error message once the user starts typing
-    if (event.target.id === 'userEmailId'){
-        document.getElementById('emailErr').style.visibility = 'hidden';
-    }
-
-    if (event.target.id === 'userPasswId'){
-        document.getElementById('emailErr').style.visibility = 'hidden';
-        document.getElementById('passwErr').style.visibility = 'hidden';
-    }
-
-});

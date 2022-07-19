@@ -80,5 +80,11 @@ addEvents($classesToday);
 addCurrentTime();
 classFormIndexPage($allStudents);
 deleteClassForm();
-echoCommonJSFiles();
-echoFooter(); 
+
+$jsFiles = "
+    <script src='/include/home.js'></script>
+    <script src='/include/dayViewCalendar.js'></script>
+    <script src='/include/events.js'></script>
+    ";
+
+echoFooter($jsFiles); 

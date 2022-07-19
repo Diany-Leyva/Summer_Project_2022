@@ -41,23 +41,24 @@ function echoPageLayout($heading, $subheading, $adminInfo){
 
 // --------------------------------------------------------------------------
 
-function echoCommonJSFiles(){
-    echo" 
+// function echoCommonJSFiles(){
+//     echo" 
          
-        <script src='/include/form_functions.js'></script> 
-        <script src='/include/dayViewCalendar.js'></script>
-        <script src='/include/events.js'></script>
-    ";
-}
+//         <script src='/include/form_functions.js'></script> 
+//         <script src='/include/dayViewCalendar.js'></script>
+//         <script src='/include/events.js'></script>
+//     ";
+// }
 
 // --------------------------------------------------------------------------
 
-function echoFooter(){
+function echoFooter($jsFiles){
     echo"   
             
     </section>
     </section>    
-        <footer></footer>                            
+        <footer></footer> 
+        $jsFiles                           
     </body>    
 </html>
 ";
