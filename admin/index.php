@@ -1,19 +1,9 @@
 <?php
 include('../include/initialize.php'); 
-
-//get all the students with classes including the student information (join query), 
-//and then calc today classes on the fly
-$allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassId');
-$classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
-$allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {    
-
-    if(isset($_REQUEST['loginSubmitted'])){
-        debug($_REQUEST);
-        die();
-    }   
-
+checkAdmin();
+ 
+if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    
     if(isset($_REQUEST['AddClassesSubmitted'])){ 
                
         $studentId = $_REQUEST['listStudentId'];       
@@ -55,6 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       } 
 }
 
+//get all the students with classes including the student information (join query), 
+//and then calc today classes on the fly
+$allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassId');
+$classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
+$allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
+
 $size = sizeof($classesToday);
 
 //just to handle singular and plural for the classes message
@@ -70,7 +66,7 @@ if($size == 0){
 }
 
 echoHeader('Home');
-echoPageLayout('Welcome back, Yuniesky', $headingInfo);
+echoPageLayout('Welcome back, Yuniesky', $headingInfo, getAdmin());
                                        
 echoNextClassSection($classesToday);                                                      
 

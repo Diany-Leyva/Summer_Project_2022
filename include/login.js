@@ -10,7 +10,7 @@ document.getElementById('loginFormId').addEventListener('submit', function (even
     //show the correct error messages
     //I know there will only be one admin now so I won't loop
     if(document.getElementById('userEmailId').value != adminInfo.Email){
-        document.getElementById('emailErr').innerHTML = 'Incorrect email address';
+        document.getElementById('emailErr').innerHTML = "The email you've entered is incorrect.";
         document.getElementById('emailErr').style.visibility = 'visible';
         document.getElementById('userEmailId').focus();
         document.getElementById('userEmailId').value = '';      
@@ -18,7 +18,7 @@ document.getElementById('loginFormId').addEventListener('submit', function (even
     }
 
     else if(document.getElementById('userPasswId').value != adminInfo.Password){
-        document.getElementById('passwErr').innerHTML = 'Incorrect password';
+        document.getElementById('passwErr').innerHTML = "The password you've entered is incorrect.";
         document.getElementById('passwErr').style.visibility = 'visible';
         document.getElementById('userPasswId').focus();
         document.getElementById('userPasswId').value = '';      

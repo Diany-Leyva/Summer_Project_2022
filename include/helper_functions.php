@@ -75,3 +75,22 @@ function compareDate($firstElement, $secondElement) {
 } 
 
 // --------------------------------------------------------------------------
+
+function checkAdmin(){
+
+    if(!isset($_SESSION['IsAdmin'])){       
+        header('location:login.php');
+		exit();
+    }    
+}
+
+//This is me handling the logout 
+// --------------------------------------------------------------------------
+
+function logout(){
+    if(isset($_SESSION['IsAdmin'])) { 
+        session_destroy();
+        header('Location:login.php');
+        exit;
+    }
+}

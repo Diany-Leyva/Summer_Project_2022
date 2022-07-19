@@ -9,15 +9,16 @@ function echoHeader($title){
     </head> ";
 }
 
-function echoPageLayout($heading, $subheading){
+function echoPageLayout($heading, $subheading, $adminInfo){
+
     echo "  <body>
                 <section class='wrapper'>
                     <section class='vertical'>  
                         <div class='flex-container-verticalBar'>  
                             <div class='flex-item-verticalBarPicture'>
                                 <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                                <p class='adminName' >Yuniesky Quesada</p>
-                                <p class='logOutLink'>LOG OUT</p>
+                                <p class='adminName' >".$adminInfo['FirstName']." ".$adminInfo['LastName']."</p>
+                                <a href='login.php' class='logOutLink' name='logOutLink'>Log Out</a>
                             </div>            
                         </div>  
                     </section>  

@@ -1,5 +1,6 @@
 <?php
 include('../include/initialize.php');
+checkAdmin();
 
 if(isset($_REQUEST['studentId'])){
 
@@ -75,7 +76,7 @@ if(isset($_REQUEST['studentId'])){
 
     $title = 'Student Profile';
     echoHeader($title);
-    echoPageLayout($title, '');
+    echoPageLayout($title, '', getAdmin());
 
     $studentId = $_REQUEST['studentId'];                               
     $student = getOneStudent($studentId);

@@ -1,4 +1,10 @@
 <?php
+// Admin (this will be a query in the future)
+// --------------------------------------------------------------------------
+
+function getAdmin(){
+   return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123');
+}
 
 //Students Table
 // --------------------------------------------------------------------------
