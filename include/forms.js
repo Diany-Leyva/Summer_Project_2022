@@ -1,10 +1,11 @@
 
-
+// *********************************************************************************************************************************
 //Add student form   
 //here I use this form for both creating and editing a student. So, when creating a student
 //I don't pass the id and when editing I pass the id and thats how I diff it here. Id the studentId was passed 
 //Then I assign the values to the hidden fields in the form
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+
 function openStudentForm(studentId){
 
     if(studentId){
@@ -23,13 +24,16 @@ function openStudentForm(studentId){
     document.getElementById('studentForm').style.display = 'block';
 }
 
+// *********************************************************************************************************************************
 
 function closeStudentForm(){
     document.getElementById('studentForm').style.display = 'none';
 }
 
+// *********************************************************************************************************************************
 //Add credits form   
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+
 function openCreditForm(buttonclicked, credits){ 
     document.getElementById('hiddenValue').value = buttonclicked;                             //I'm setting the id parameter to the type hidden field so I can know wich button was clicked in the Request
     
@@ -46,10 +50,13 @@ function openCreditForm(buttonclicked, credits){
     document.getElementById('creditsForm').style.display = 'block';             //I'm just using what I know if there a better way to do this please let me know :)
 }
     
+// *********************************************************************************************************************************
+
 function closeCreditForm(){ 
     document.getElementById('creditsForm').style.display = 'none';
 }
 
+// *********************************************************************************************************************************
 //AddClass Form
 //Here I use the form for creating a new class and for editing a new class 
 //when is for creating I pass an empty string, whn editing I pass the classId and then 
@@ -57,7 +64,7 @@ function closeCreditForm(){
 //that is hidden. I didn't know how to pass and array as parameter from php
 //to js and the only thing that worked was hidding the array using json_encode
 //and then accessing it from here 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function openClassForm(classId) { 
   
@@ -92,33 +99,41 @@ function openClassForm(classId) {
     document.getElementById('classForm').style.display = 'block';
 }
 
+// *********************************************************************************************************************************
+
 function closeClassForm() {
     document.getElementById('classForm').style.display = 'none';
 }
 
-
+// *********************************************************************************************************************************
 //Delete student form
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function openDeleteStudent(studentId) {
    document.getElementById('hiddenStudentId').value = studentId;
    document.getElementById('deleteStudent').style.display = 'block';
 }
 
+// *********************************************************************************************************************************
+
 function closeDeleteStudent() {
     document.getElementById('deleteStudent').style.display = 'none';
 }  
 
+// *********************************************************************************************************************************
 //Delete class form
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function openDeleteClass(classId) {
     document.getElementById('hiddenClassId-Delete').value = classId;
     document.getElementById('deleteClass').style.display = 'block';
  }
  
+// *********************************************************************************************************************************
+
  function closeDeleteClass() {
      document.getElementById('deleteClass').style.display = 'none';
  }  
 
+// *********************************************************************************************************************************
  

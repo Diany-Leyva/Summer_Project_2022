@@ -1,5 +1,9 @@
- //When the user clicks an available spot in the calendar book a class
- //the array holds each hour and then the loop creates the eventlistener             
+
+// *********************************************************************************************************************************
+//When the user clicks an available spot in the calendar book a class
+//the array holds each hour and then the loop creates the eventlistener  
+// *********************************************************************************************************************************
+
  const timeArea = [document.getElementById('timeArea8'), 
  document.getElementById('timeArea9'),
  document.getElementById('timeArea10'),
@@ -49,7 +53,10 @@ for (let i = 0; i < timeArea.length; i++) {
 });
 }
 
+// *********************************************************************************************************************************
 //To display events 
+// *********************************************************************************************************************************
+
 const containerHeight = 901;                                             
 const containerWidth =  529;                                          
 const minutesinDay = 60 * 15;                                                                       //15 hours in the schedule
@@ -88,7 +95,9 @@ let createEvent = (height, top, event) => {
     document.getElementById('events').appendChild(node);
   }
 
+// *********************************************************************************************************************************
 //To display currentTime line 
+// *********************************************************************************************************************************
 
   let layOutCurrentTimeLine = (currentTime) => {
 
@@ -120,4 +129,5 @@ let createCurrentTime = (height, top) =>{
     document.getElementById('timeLine').appendChild(node);
 }
 
+// *********************************************************************************************************************************
 

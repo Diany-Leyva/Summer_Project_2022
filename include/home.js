@@ -1,6 +1,7 @@
+// ********************************************************************************************************************************
 // I hide the next class when displaying the next class info so I can access it
 //from here and I use it to display the values in the class form to edit a class
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function openIndexPageClassForm(classId){  
 
@@ -108,13 +109,15 @@ function openIndexPageClassForm(classId){
         document.getElementById('classFormIndexPage').style.display = 'block';
 }
 
+// ********************************************************************************************************************************
 // This functions allows us to click an event in the calendar and it will display the
 //class info in the clss info session. I couln't figure out how to pass the whole object
 //by just passing the object name, so I just passed a each element separated by a comma.
 //Also I need to also hide the whole class here to be able to edit it when clicking the 
 //edit button. Previusly what I have hidden there is the class, or not class at all if
 //there is not pedning class so I need to update that value here
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
+
 function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, studentId, fName, lName, Email){ 
 
     document.getElementById('deletButtonInfoClass').style.visibility = 'visible';
@@ -140,6 +143,7 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     
     }
 
+    // ********************************************************************************************************************************
 //Event listener for input
 // *********************************************************************************************************************************
 
@@ -191,15 +195,16 @@ document.addEventListener('input', function (event) {
 
 });
 
-// //when the user submit the classFormIndexPage form 
-// // *********************************************************************************************************************************
+// ********************************************************************************************************************************
+//When the user submit the classFormIndexPage form 
+//*********************************************************************************************************************************
 
-// document.getElementById('classFormIndexPage').addEventListener('submit', function (event) {
-//     //This look like a good place to check for the classes availability but I will wait for our next jog (maybe you
-//     //are reading this and we already talked about it lol, to see what you recomend to handle classes conflict)
+document.getElementById('classFormIndexPage').addEventListener('submit', function (event) {
+    //This look like a good place to check for the classes availability but I will wait for our next jog (maybe you
+    //are reading this and we already talked about it lol, to see what you recomend to handle classes conflict)
     
     
-// }), false;
+}), false;
 
 // *********************************************************************************************************************************
 
@@ -213,21 +218,9 @@ function closeIndexPageClassForm() {
     exit();                                                     
 }
 
-//Delete class form
-// --------------------------------------------------------------------------
-
-// function openDeleteClass(classId) {
-//     document.getElementById('hiddenClassId-Delete').value = classId;
-//     document.getElementById('deleteClass').style.display = 'block';
-//  }
- 
-//  function closeDeleteClass() {
-//      document.getElementById('deleteClass').style.display = 'none';
-//  }  
-
- 
+// ******************************************************************************************************************************** 
 // When the user clicks anywhere outside of the modal, close it
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 let classFormIndexPage = document.getElementById('classFormIndexPage');
 let deleteClassModal = document.getElementById('deleteClass');
@@ -244,4 +237,4 @@ window.onclick = function(event) {
  
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************

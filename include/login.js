@@ -1,4 +1,5 @@
 
+// ********************************************************************************************************************************
 //when the user changes something in the login form 
 // *********************************************************************************************************************************
 document.addEventListener('input', function (event) {
@@ -14,9 +15,10 @@ document.addEventListener('input', function (event) {
 
 });
 
-
+// ********************************************************************************************************************************
 //when the user submit the the login form 
 // *********************************************************************************************************************************
+
 document.getElementById('loginFormId').addEventListener('submit', function (event) {
 
     let hiddenAdminInfoArray = document.getElementById('hiddenAdminInfoArray').value;
@@ -42,3 +44,4 @@ document.getElementById('loginFormId').addEventListener('submit', function (even
     
 }), false;
 
+// ********************************************************************************************************************************

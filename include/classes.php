@@ -1,8 +1,9 @@
 <?php
 
+// *********************************************************************************************************************************
 //This function takes all the classes as parameter and it returns an array
 //with only the classes scheduled in the future 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function calcFutureClasses($classes){
 
@@ -17,9 +18,10 @@ function calcFutureClasses($classes){
     return $futureClasses;
 }
 
+// *********************************************************************************************************************************
 //This function takes all the classes as parameter and it returns an array
 //with only the classes scheduled in the past 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function calcPastClasses($classes){
 
@@ -34,12 +36,11 @@ function calcPastClasses($classes){
     return $pastClasses;
 }
 
-
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 // This function takes the array with classes and it compares the dates
 // acording to a format passed as parameter and return an array with the classes 
 //scheduled. It can be used to calc classes today, this month, this year etc
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function calcClasses($classes, $format){
     $classesToday = []; 
@@ -53,11 +54,11 @@ function calcClasses($classes, $format){
     return $classesToday; 
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 //This function calls the compareDate function through the usort method to
 //sort the array by date, and then the function returns the first element 
 //since is the next class
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function calcNextClass($nextClasses){
     
@@ -75,4 +76,5 @@ function calcNextClass($nextClasses){
  
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+

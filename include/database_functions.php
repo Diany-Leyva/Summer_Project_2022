@@ -1,13 +1,16 @@
 <?php
+
+// *********************************************************************************************************************************
 // Admin (this will be a query in the future)
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAdmin(){
    return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123');
 }
 
+// *********************************************************************************************************************************
 //Students Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllStudents(){
     return dbQuery("
@@ -17,6 +20,8 @@ function getAllStudents(){
     ")->fetchAll();   
 }
 
+// *********************************************************************************************************************************
+
 function getOneStudent($studentId){
     return dbQuery("
         SELECT *
@@ -25,8 +30,9 @@ function getOneStudent($studentId){
     ")->fetch();  
 }
 
+// *********************************************************************************************************************************
 //Classes Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllClasses(){
     return dbQuery("
@@ -35,6 +41,8 @@ function getAllClasses(){
             ORDER BY StudentId, StartDate        
     ")->fetchAll();  
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentClasses($studentId){
     return dbQuery("
@@ -45,6 +53,8 @@ function getOneStudentClasses($studentId){
     ")->fetchAll();  
 }
 
+// *********************************************************************************************************************************
+
 function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
@@ -53,6 +63,8 @@ function getAllClassesAmount(){
     ORDER BY StudentId   
 ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentClassesAmount($studentId){
     return dbQuery("
@@ -63,6 +75,8 @@ function getOneStudentClassesAmount($studentId){
 ")->fetch();
 }
 
+// *********************************************************************************************************************************
+
 function getAllStudentsWithClasses(){
     return dbQuery("
         SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink, Type
@@ -72,7 +86,10 @@ function getAllStudentsWithClasses(){
     ")->fetchAll();   
 }
 
+// *********************************************************************************************************************************
 //I'm keeping this one for now but I might get rid of it later on
+// *********************************************************************************************************************************
+
 function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
@@ -83,8 +100,9 @@ function getFutureClassesAmount(){
 ")->fetchAll();
 }
 
+// *********************************************************************************************************************************
 //Credits Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllCredits(){
     return dbQuery("
@@ -92,6 +110,8 @@ function getAllCredits(){
         FROM  credits       
         ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getAllCreditsAmount(){
     return dbQuery("
@@ -101,6 +121,8 @@ function getAllCreditsAmount(){
         ORDER BY StudentId
     ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentCreditAmount($student_Id){
     return dbQuery("
@@ -112,8 +134,10 @@ function getOneStudentCreditAmount($student_Id){
     ")->fetch();
 }
 
+// *********************************************************************************************************************************
 //Refunds Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+
 function getAllRefundsAmount(){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as RefundAmount
@@ -122,6 +146,8 @@ function getAllRefundsAmount(){
         ORDER BY StudentId
     ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentRefundAmount($student_Id){
     return dbQuery("
@@ -133,8 +159,9 @@ function getOneStudentRefundAmount($student_Id){
     ")->fetch();
 }
 
+// *********************************************************************************************************************************
 // Inserts
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
     dbQuery("
@@ -143,12 +170,16 @@ function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
 ");
 }
 
+// *********************************************************************************************************************************
+
 function insertCredit($amount, $studentId){    
     dbQuery("
     INSERT INTO credits(Amount, StudentId)
     VALUES ('$amount', '$studentId')
 ");
 }
+
+// *********************************************************************************************************************************
 
 function insertClass($type, $link, $classDate, $studentId){    
     dbQuery("
@@ -157,10 +188,14 @@ function insertClass($type, $link, $classDate, $studentId){
 ");
 }
 
+// *********************************************************************************************************************************
+
 //If there is a better way to handle this please let me know. So, I have a credits table (Every row in that table in actually a purchase the student made).If
 //we subtract a credit means we are returning money to the person which is a refund. So, I have a refund table whith the date of the refund and the amount. 
 //The value will only be inserted in the table if the student has a remaing credit. So, before this query happens I need to check if the student has remaining credits
 //But also, to calculate the remaining credits I need to check if there is any refund in the table for that student. 
+// *********************************************************************************************************************************
+
 function insertRefund($amount, $studentId){    
     dbQuery("
     INSERT INTO refunds(Amount, StudentId)
@@ -168,8 +203,9 @@ function insertRefund($amount, $studentId){
 ");
 }
 
+// *********************************************************************************************************************************
 // Deletions
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function deleteStudent($studentId){    
     dbQuery("
@@ -177,15 +213,17 @@ function deleteStudent($studentId){
 ");
 }
 
+// *********************************************************************************************************************************
+
 function deleteClass($classId){    
     dbQuery("
         DELETE FROM classes WHERE ClassId = $classId
 ");
 }
 
-
+// *********************************************************************************************************************************
 // Updates
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $studentId){
     dbQuery("
@@ -195,6 +233,8 @@ function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $stude
 ");
 }
 
+// *********************************************************************************************************************************
+
 function updateNotes($studentId, $notes, $attribute){
     dbQuery("
     UPDATE students
@@ -203,6 +243,8 @@ function updateNotes($studentId, $notes, $attribute){
 ");
 }
 
+// *********************************************************************************************************************************
+
 function updateClass($classId, $type, $zoom, $date){
     dbQuery("
     UPDATE classes
@@ -210,6 +252,8 @@ function updateClass($classId, $type, $zoom, $date){
     WHERE ClassId = '$classId'
 ");
 }
+
+// *********************************************************************************************************************************
 
 
 

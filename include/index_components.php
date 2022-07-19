@@ -1,9 +1,9 @@
 <?php
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //To place the times I did what you recomended me. Each element position is
 //absolute and en event has height: 50px. So I just loop and add 50 to the 
 //counter as needed. I also add a timeframe for the half hours (tempTop) 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
@@ -47,7 +47,7 @@ function echoDayViewCalendar(){
                      
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //I'm sure this is not what you had in mind haha since you were talking about a function to pass
 //starting date and ending date and I'm sure involves js. But this is what I came up with in php
 //and so far is doing the job (I finally calculated the half hour too) 
@@ -56,7 +56,8 @@ function echoDayViewCalendar(){
 //I store the hour and min. Then I multiply the height(50) times the class hour (-7 because my schedule starts at 8)
 //and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
 //when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
+
 function addEvents($classesToday){
     $events = [];                                                                         //Array to hold the start/end of every class today
      
@@ -99,9 +100,11 @@ function addEvents($classesToday){
         <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">";      
 }  
 
+// ********************************************************************************************************************************
 //fucntion to add a line in the current time in the day calendar
 //Here I just do a similar calculation to what I did to place the events 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
+
 function addCurrentTime(){
     $currentTime = date('H:i');   
     $timeArray = [];
@@ -122,12 +125,13 @@ function addCurrentTime(){
     </div>";
 }
 
+// ********************************************************************************************************************************
 //So here I echo this function but if there is no classes I set up default values
 //I do this because then I use JS to display the class info here when I click an event in the
 //calendar and I'm doing so by using document.getElementbyId('...').value so I need this
 //to have a previus value. Initialy I did if nextclass is not empty echo the stuff otherwise just
 //echo "No pending classes", but that aproach does not work with my js changes 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoNextClassSection($classesToday){    
     
@@ -205,7 +209,7 @@ function echoNextClassSection($classesToday){
             
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoIndexTotalSection($totalClasses){
     echo"
@@ -227,4 +231,4 @@ function echoIndexTotalSection($totalClasses){
 ";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************

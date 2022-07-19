@@ -1,13 +1,13 @@
 <?php
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //In this function several things are happening. In line 21 I attempted to pass the student php array ar parameter to
 //the openStudentForm() js function but that wasn't working, so I hid an array and then
 //got that value wihtin the js function.I was also having trouble when encodig the student array because
 //when I tried to parse it in the js function it had missing elements so I had to make it smaller in line 14 and I'm passing
 //only the elements I need in the form.  In line 35 I do something similar but passing the variable
 //to the function to then delete the student. 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoProfileInfo($student, $picture){
     $studentId = $student['StudentId'];   
@@ -37,10 +37,11 @@ function echoProfileInfo($student, $picture){
 ";
 }
 
-// --------------------------------------------------------------------------
-
+// ********************************************************************************************************************************
 //Since I'm using the same form for both add and subtract, then I'm passing Add or Subtract
 //to the js function to indicate which button was clicked
+// ********************************************************************************************************************************
+
 function echoAddClassAndAddCreditsButtons($credits){ 
    
     $buttonState = "enabled class='zoom'";
@@ -62,12 +63,13 @@ function echoAddClassAndAddCreditsButtons($credits){
 ";
 }
 
+// ********************************************************************************************************************************
 //Here I'm giiving the ability to edit a class by clicking the class
 //to do this I hide the class array in a hidden field and then I access
 //the array from the js function. I pass the classId to identify when 
 //I'm editing and when creating a class. When I create a class in a different session 
 //here I pass an empty string, but when editing I pass the classId.
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoFutureClassesInfo($classes, $heading){
     echo"
@@ -101,7 +103,7 @@ function echoFutureClassesInfo($classes, $heading){
             </div>";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoPastClassesInfo($classes, $heading){
     echo"
@@ -127,11 +129,11 @@ function echoPastClassesInfo($classes, $heading){
             </div>";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //these two function are very similar so I will combine them but I was getting 
 //unexpected behavior when I had only one function so I will keep it like
 //this for now and then combine them
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoPrivateNotes($notes){   
     $message;
@@ -146,7 +148,7 @@ function echoPrivateNotes($notes){
             </div>";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoPublicNotes($notes){   
     $message; 
@@ -161,7 +163,7 @@ function echoPublicNotes($notes){
             </div>";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoTotalClassesSection($totalClasses){
     echo"
@@ -183,4 +185,4 @@ function echoTotalClassesSection($totalClasses){
 ";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************

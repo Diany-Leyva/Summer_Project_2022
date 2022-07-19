@@ -1,10 +1,9 @@
 <?php
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //This function calculates the remaining credits each student has (all at once)
 //considering the refunds and also the classes booked.
-// --------------------------------------------------------------------------
-
+// ********************************************************************************************************************************
 
 function calcRemainingCredits(){   
 
@@ -26,9 +25,10 @@ function calcRemainingCredits(){
     return $creditsAmount;
 } 
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //This function is used to calculate the remaing credits based of the amountToSubtractArray
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
+
 function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $keyTosubtract){
     
     $creditsAmountUpdated = $creditsAmount;                                      
@@ -45,11 +45,11 @@ function updateCreditsAmountArray($creditsAmount, $amountToSubtractArray, $keyTo
     return $creditsAmountUpdated;
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //I'm doing all of these because there are students with no credits so they are no in 
 //the credits table. My strategy here is to add a credits key to the students array with 0 credits
 //and then update the credits amount. This is the remaining credits they have (not the total of credits)
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function addRemainingCredits($remainingCredits, $allStudents){ 
     
@@ -66,10 +66,10 @@ function addRemainingCredits($remainingCredits, $allStudents){
     return $allStudentsUpdated;
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //The strategy for classes in this function is very similar to what I did with credits. 
 //I think I will combine these into one and just pass the correct parameters 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function addFutureClassesAmount($futureClassesAmount, $allStudents){
 
@@ -86,10 +86,10 @@ function addFutureClassesAmount($futureClassesAmount, $allStudents){
     return $allStudentsUpdated;
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //Same strategy but slightly different at the end. So I'm adding a DaysToNextCLass
 //key to each element its the corresponding values  
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function addDaysToNextClass($allStudents){
     $allStudentsUpdated = $allStudents;
@@ -111,12 +111,11 @@ function addDaysToNextClass($allStudents){
     return $allStudentsUpdated;
 }
 
-
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 // Here the strategy for one student is similar to what I did for all the students
 // but simpler since it is just for one. Get the total credits and subtract any
 // refund and any classes to get the remaining credits.
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function calcStudentRemainingCredits($studentId){
     
@@ -144,11 +143,11 @@ function calcStudentRemainingCredits($studentId){
     return $remainingCredits; 
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //This function calculates the total classes a students has. It takes a format
 //parameter that it will indicate what total to calc. This can be used for years, 
 //months, days etc.
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function calcTotalClasses($classes, $format){
     $amount = 0;
@@ -162,5 +161,5 @@ function calcTotalClasses($classes, $format){
     return $amount;
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
