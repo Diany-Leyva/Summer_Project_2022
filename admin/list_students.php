@@ -16,14 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = validateName($_REQUEST['ulname']); 
         
        if(sizeof($errors) == 0){
-            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess']);                                                                    
+
+            $lichesslink = "https://lichess.org/@/".$_REQUEST['ulichess'];                                  //The user shoul type the username only, and this will concatinate that username to the link
+            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $lichesslink);                                                                    
             header("location:?"); 
             exit();                                                                     
-       }   
-       
-       else{
-       //debug($errors);                                                                        //This is just to try I will display correct message in the form
-       }
+       }        
+   
     }  
 
     if(isset($_REQUEST['studentDeleted'])){

@@ -26,9 +26,10 @@ function studentForm(){
                 <label for='urating'><b>ELO Rating</b></label>
                 <input type='number' min='0' max='3000'placeholder='ELO' name='urating' id='rating' value='' required>
                 
-                <label for='ulichess'><b>Username</b></label>
-                <input type='text' placeholder='Lichess Username' name='ulichess' id='lichess' value='' required>
-            </div>
+                <label for='ulichess'><b>Lichess Username</b></label>
+                <input type='text' placeholder='Username' name='ulichess' id='lichess' value='' required>              
+                     
+                </div>
         
             <div class='buttons-container' style='background-color:#f1f1f1'>
                 <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>

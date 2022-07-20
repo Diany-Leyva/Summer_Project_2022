@@ -45,13 +45,18 @@ function echoStudentTable($students){
 "; 
 
     foreach($students as $student){ 
-        $studentId = $student['StudentId'];                                                       
+        $studentId = $student['StudentId']; 
+        
+        //I want to show username only
+        $lichessLink = $student['LichessLink'];      
+        $lichessUsername = substr($lichessLink,22);
+        
         echo"
         <tr> 
             <td><a href='student_profile.php?studentId=".$student['StudentId']."'>".$student['FirstName']." ".$student['LastName']."</a></td>    
             <td>".$student['Email']."</td>
             <td>".$student['Phone']."</td>
-            <td>".$student['LichessLink']."</td>   
+            <td>$lichessUsername</td>   
             <td>".$student['Credits']."</td>   
             <td>".$student['Classes']."</td>";
 

@@ -10,7 +10,10 @@
 // ********************************************************************************************************************************
 
 function echoProfileInfo($student, $picture){
-    $studentId = $student['StudentId'];   
+    $studentId = $student['StudentId'];  
+    $lichessLink = $student['LichessLink'];      
+    $lichessUsername = substr($lichessLink,22); 
+    $email = $student['Email'];
     $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
     'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessLink']); 
    
@@ -18,23 +21,22 @@ function echoProfileInfo($student, $picture){
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
                 <ol>
-                    <li>".$student['FirstName']." ".$student['LastName']."</li>
-                    <li>".$student['Email']."</li>
-                    <li>".$student['Phone']."</li>    
-                    <li>ELO ".$student['ELO']."</li>
-                    <li>".$student['LichessLink']."</li>
+                    <li>👤 ".$student['FirstName']." ".$student['LastName']."</li>
+                    <li>🏁 ".$student['ELO']."</li>
+                    <li>☎️ ".$student['Phone']."</li>    
+                    <li class='zoom'><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
+                    <li class='zoom'><a href='mailto:$email'>✉️ ".$student['Email']."</a></li>
                     <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
                 </ol>
+                
                 <div class='picturePosition'>
                    <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
                 </div>
-
-            </div>            
+        </div>            
             
-            <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
-            <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>       
-            
-";
+        <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
+        <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>     
+    ";
 }
 
 // ********************************************************************************************************************************

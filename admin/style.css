@@ -199,7 +199,8 @@ li{
 }
 
 ol li {      
-    font-size: 20px;                                                                                                                                                
+    font-size: 20px;  
+    padding: 3px;                                                                                                                                              
 }
 
 .profilePicture {    
@@ -226,8 +227,8 @@ ol li {
 
 .deleteButton.onProfile{
     position: absolute;
-    top: 312px;
-    left: 437px;
+    top: 336px;
+    left: 308px;
 }
      
 .deleteButton.onClassSession{
@@ -247,8 +248,8 @@ ol li {
 
 .editButton.onProfile{
     position: absolute;
-    top: 312px;
-    left: 385px;
+    top: 337px;
+    left: 249px;
 }
 
 .editButton.onClassSession{
@@ -259,6 +260,7 @@ ol li {
   /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
     display: block;    
   } */
+
 
 /*Classes section */
 .flex-container-classesInfo{
@@ -663,37 +665,12 @@ hr{
     border-radius: 11px;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* .class-content{
     position: absolute;
     right: 210px;
 } */
+
+
 
 /* Next class info */
 .next-class-info{

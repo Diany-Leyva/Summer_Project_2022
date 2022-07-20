@@ -17,7 +17,12 @@ function openStudentForm(studentId){
         document.getElementById('email').value = myStudent.Email;
         document.getElementById('phone').value = myStudent.Phone;
         document.getElementById('rating').value = myStudent.Rating;
-        document.getElementById('lichess').value = myStudent.Lichess;     
+
+        //I dont want to show the whole link, only username so I'm getting a substring, position 22 because
+        //each link starts as https://lichess.org/@/ followed by the username and we only want the username now
+        let lichessLink = myStudent.Lichess;
+        let lichessUsername = lichessLink.substr(22);      
+        document.getElementById('lichess').value = lichessUsername;    
                      
     } 
       

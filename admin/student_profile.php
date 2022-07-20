@@ -13,11 +13,7 @@ if(isset($_REQUEST['studentId'])){
       updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess'], $_REQUEST['studentId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");    
       exit();                                                                
-    }   
-     
-    else{
-    //debug($errors);                                                                                         //This is just to try I will display correct message in the form
-    }
+    }  
   }     
 
     if(isset($_REQUEST['changeCreditsSubmitted'])){
