@@ -295,7 +295,7 @@ ol li {
 }
 
 textarea{
-    padding: 10%;
+    padding: 68px 34px;
     resize: none;
     font-size: 16px;
 }
@@ -355,28 +355,28 @@ textarea{
 
 .privNotesHeading{
     position: absolute;
-    top: 10px;
-    left: 47px;
+    top: 9px;
+    left: 63px;
     font-size: 25px;
     z-index: 3;
 }
 
 .headingBackgraound.privNotes{
-    top: -46px;
-    left: 45px;    
+    top: 381px;
+    left: 86px; 
 }
 
 .publNotesHeading{
     position: absolute;
     top: 10px;
-    left: 47px;
+    left: 72px;
     font-size: 25px;
     z-index: 3;
 }
 
 .headingBackgraound.publNotes{
-    top: -46px;
-    left: 45px;    
+    top: 381px;
+    left: 544px;  
 }
 
 
@@ -840,3 +840,27 @@ hr{
 }
 
 
+/* Scroll Bar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: 383938; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4c4d4c; 
+    cursor: pointer;
+  }

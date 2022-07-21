@@ -142,21 +142,20 @@ function echoPastClassesInfo($classes, $heading){
 
 function echoPrivateNotes($notes){   
     $message;
-
-    echo"<div class='flex-item-classesInfo'>
+    echo"<div>
             <div class='headingBackgraound privNotes'>
                 <p class='privNotesHeading'>Private Notes</p>
             </div>
-        <div>";
+        ";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
-        echo"
+            echo"
             
-        <form action='' method='post'>
-            <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
-        </form>
-            </div>
-            </div>";
+            <form action='' method='post'>
+                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
+                <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
+            </form>
+        </div>
+           ";
 }
 
 // ********************************************************************************************************************************
@@ -165,17 +164,18 @@ function echoPublicNotes($notes){
     $message; 
 
     echo"
+        <div>
             <div class='headingBackgraound publNotes'>
                 <p class='publNotesHeading'>Public Notes</p>
             </div>
-    <div>";
+    ";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"
         <form action='' method='post'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
             <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>
         </form>
-            </div>";
+    </div>";
 }
 
 // ********************************************************************************************************************************
