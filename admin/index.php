@@ -78,10 +78,11 @@ echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 addEvents($classesToday);
 addCurrentTime();
-classFormIndexPage($allStudents);
+classFormIndexPage($allStudents, getAdmin());
 deleteClassForm();
 
 $jsFiles = "
+    <script src='/include/helper_functions.js'></script> 
     <script src='/include/forms.js'></script>   
     <script src='/include/home.js'></script>
     <script src='/include/dayViewCalendar.js'></script>
@@ -89,3 +90,4 @@ $jsFiles = "
     ";
 
 echoFooter($jsFiles); 
+

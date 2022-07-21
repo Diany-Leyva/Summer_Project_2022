@@ -77,7 +77,9 @@ function echoFutureClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                    <p class='classInfoHeading'>$heading</p>";
+                 <div class='headingBackgraound futureClasses'>
+                    <p class='futureClassesHeading'>$heading</p>
+                </div>";
             
                         if(!empty($classes)){                            
                             foreach($classes as $class){
@@ -89,7 +91,7 @@ function echoFutureClassesInfo($classes, $heading){
                                                            
                                 echo"                  
                                     <li class='info-table-row zoom'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
-                                    <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."</span>                     
+                                    <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
                                     <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo">                                     
                                     </li>
                                 ";        
@@ -111,12 +113,13 @@ function echoPastClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                    <p class='classInfoHeading'>$heading</p>";
-            
+                    <div class='headingBackgraound pastClasses'>
+                         <p class='pastClassesHeanding'>$heading</p>
+                    </div>";
                         if(!empty($classes)){                            
                             foreach($classes as $class){                                                                                              
                                 echo"                  
-                                    <li class='info-table-row'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."                      
+                                    <li class='info-table-row'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."                      
                                     </li>
                                 ";        
                             }    
@@ -140,13 +143,19 @@ function echoPastClassesInfo($classes, $heading){
 function echoPrivateNotes($notes){   
     $message;
 
-    echo"<div>";
+    echo"<div class='flex-item-classesInfo'>
+            <div class='headingBackgraound privNotes'>
+                <p class='privNotesHeading'>Private Notes</p>
+            </div>
+        <div>";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
-        echo"<p class='classInfoHeading'>Private Notes</p>
+        echo"
+            
         <form action='' method='post'>
             <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
             <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
         </form>
+            </div>
             </div>";
 }
 
@@ -155,9 +164,13 @@ function echoPrivateNotes($notes){
 function echoPublicNotes($notes){   
     $message; 
 
-    echo"<div>";
+    echo"
+            <div class='headingBackgraound publNotes'>
+                <p class='publNotesHeading'>Public Notes</p>
+            </div>
+    <div>";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
-        echo"<p class='classInfoHeading'>Public Notes</p>
+        echo"
         <form action='' method='post'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
             <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>

@@ -70,9 +70,10 @@ if(isset($_REQUEST['studentId'])){
       exit();         
     }   
 
+    $admin = getAdmin();
     $title = 'Student Profile';
     echoHeader($title);
-    echoPageLayout($title, '', getAdmin());
+    echoPageLayout($title, '', $admin);
 
     $studentId = $_REQUEST['studentId'];                               
     $student = getOneStudent($studentId);
@@ -104,7 +105,7 @@ if(isset($_REQUEST['studentId'])){
     $totalClasses['YearTotal'] = calcTotalClasses($studentClassess, 'Y');
     echoTotalClassesSection($totalClasses);   
       
-    classForm();
+    classForm($admin);
     creditsForm();
     deleteStudentForm();
     studentForm();

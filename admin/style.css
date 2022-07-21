@@ -316,6 +316,70 @@ textarea{
     text-align: center;
 }
 
+.headingBackgraound{ 
+    background-color: #e5e2e2;
+    position: absolute;
+    width: 287px;
+    height: 43px;
+    z-index: 3;
+    border-bottom: 1px solid silver;
+}
+
+.pastClassesHeanding{
+    position: absolute;
+    top: 7px;
+    left: 55px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.pastClasses{
+    top: -46px;
+    left: 508px;
+    width: 287px;
+    height: 43px;
+}
+
+.futureClassesHeading{
+    position: absolute;
+    top: 10px;
+    left: 47px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.futureClasses{
+    top: -46px;
+    left: 45px;    
+}
+
+.privNotesHeading{
+    position: absolute;
+    top: 10px;
+    left: 47px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.privNotes{
+    top: -46px;
+    left: 45px;    
+}
+
+.publNotesHeading{
+    position: absolute;
+    top: 10px;
+    left: 47px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.publNotes{
+    top: -46px;
+    left: 45px;    
+}
+
+
 .info-table-row{
     display: flex;
     align-items: baseline;
@@ -465,7 +529,6 @@ button:hover {
     width: 40%;
     border-radius: 50%;
   }
-
 
   
 /* toggle switch in class form */

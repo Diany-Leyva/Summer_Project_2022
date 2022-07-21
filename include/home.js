@@ -35,10 +35,15 @@ function openIndexPageClassForm(classId){
         let tempArray;       
         let size = hiddenClassIndexedArray.length;
         for(i = 0; i < size; i++){
+            
             tempArray = hiddenClassIndexedArray[i].split(':');  
             
             if(tempArray[0] == 'ClassTime'){                              //because the time has (:) I need to handle it differently 
                 myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] ; 
+            }
+
+            else if(tempArray[0] == 'ZoomLink'){                          //because links have two instances of :, this is just a temp solution
+                myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] + tempArray[3]; 
             }
 
             else{
@@ -120,12 +125,16 @@ function openIndexPageClassForm(classId){
 
 function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, studentId, fName, lName, Email){ 
 
+    let date = new Date(StartDate);
+    let day = date.getDate();
+    let month = getMonthShortName(date.getMonth());
+   
     document.getElementById('deletButtonInfoClass').style.visibility = 'visible';
     document.getElementById('showDeleteButton').innerHTML = "<button id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass("+classId+")\">🗑</button>";
     document.getElementById('showEditButton').innerHTML = "<button id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openIndexPageClassForm("+classId+")\">✏️</button>";
     document.getElementById('classInfoHeading').innerHTML = 'Class Info';
     document.getElementById('classInfoName').innerHTML = fName+" "+lName;
-    document.getElementById('classInfoTime').innerHTML = StartTime;
+    document.getElementById('classInfoDate').innerHTML = day+" "+month+" "+StartTime;
     document.getElementById('classInfoDuration').innerHTML = '1 hour';
     document.getElementById('classInfoEmail').className = 'enableAnchor';
     document.getElementById('classInfoEmail').href = Email;
@@ -139,9 +148,8 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     //Here I need to pass the array from js to php, and I spent more time that what I planned trying to figure that out, so I decided to 
     //pass a string instead and then create the object I need by manipulation the string. I used const just to emphasy that it should not be changed here  
     const classArray = "ClassId:"+classId+",Type:"+Type+",ClassDate:"+StartDate+",ClassTime:"+StartTime+",ZoomLink:"+Zoom+",StudentId:"+studentId;
-    document.getElementById('hiddenClass-Edit-IndexPage').value = classArray;
-    
-    }
+    document.getElementById('hiddenClass-Edit-IndexPage').value = classArray;    
+}
 
     // ********************************************************************************************************************************
 //Event listener for input
@@ -154,7 +162,9 @@ document.addEventListener('input', function (event) {
 
     //uncheck the toggle, in case was checked previusly
     document.getElementById('toggle').checked = false;
+    document.getElementById('ZoomLinktoggleHomePage').checked = false;
     document.getElementById('zoomLinkIndexPage').value = '';
+    document.getElementById('zoomLinkIndexPage').placeholder = '';
 
     //update the remaing credits
     let studentId = document.getElementById('studentListIndexPage').value;
@@ -189,9 +199,23 @@ document.addEventListener('input', function (event) {
             let amount = document.getElementById('StdCreditAmount').value;
             document.getElementById('StdCreditAmount').value = --amount;
             document.getElementById('StdCreditAmount').placeholder = document.getElementById('StdCreditAmount').value;           
-        }
-      
+        }      
     }
+
+    // Only run for #ZoomLinktoggleHomePage changed
+    if (event.target.id === 'ZoomLinktoggleHomePage'){
+        
+        if(document.getElementById('ZoomLinktoggleHomePage').checked == true){
+            let defaultLink = document.getElementById('hiddendefaultZoomLinkHomePage').value;
+            document.getElementById('zoomLinkIndexPage').value = defaultLink;
+            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;           
+        }
+
+        else{           
+            document.getElementById('zoomLinkIndexPage').value = '';
+            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;           
+        }      
+    }   		
 
 });
 

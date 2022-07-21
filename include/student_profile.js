@@ -7,6 +7,30 @@ function showSaveButton(heading){
     document.getElementById(heading).style.visibility = 'visible';
 }
 
+   // ********************************************************************************************************************************
+//Event listener for input
+// *********************************************************************************************************************************
+
+document.addEventListener('input', function (event) {
+
+		// Only run for #toggle changed
+    if (event.target.id === 'ZoomLinktoggle'){
+        
+        if(document.getElementById('ZoomLinktoggle').checked == true){
+            let defaultLink = document.getElementById('hiddendefaultZoomLink').value;
+            document.getElementById('zoomLink').value = defaultLink;
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value;           
+        }
+
+        else{           
+            document.getElementById('zoomLink').value = '';
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value;           
+        }      
+    }
+
+});
+
+
 // ********************************************************************************************************************************
 // When the user clicks anywhere outside of the modal, close it
 // ********************************************************************************************************************************

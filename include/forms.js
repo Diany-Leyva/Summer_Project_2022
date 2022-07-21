@@ -94,8 +94,7 @@ function openClassForm(classId) {
     else{      
 
         document.getElementById('dropdown').value = 'Online';    
-        document.getElementById('ClassDate').value = today;
-        // document.getElementById('clock').value = document.getElementById('8:00').value
+        document.getElementById('ClassDate').value = today;       
         document.getElementById('zoomLink').value = '';
         document.getElementById('hiddenClassId-Edit').value = '';
         document.getElementById('submitButton').name = 'AddClassesSubmitted';   

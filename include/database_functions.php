@@ -5,7 +5,8 @@
 // *********************************************************************************************************************************
 
 function getAdmin(){
-   return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123');
+   return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123', 
+                'DefaultZoomLink'=> 'https://us04web.zoom.us/j/71496093045?pwd=0iK6fbyTepkzYecBug_aeZdGSNny2O.1');
 }
 
 // *********************************************************************************************************************************

@@ -73,8 +73,10 @@ function creditsForm(){
 // :30 as an option 
 // *********************************************************************************************************************************
 
-function classForm(){
+function classForm($admin){
     $today = date('Y-m-d');
+    $defaultZoomLink = $admin['DefaultZoomLink'];
+
     echo"          
         <div id='classForm' class='modal'>
             <form action='' method='post' class='form-container animate'>  
@@ -118,7 +120,10 @@ function classForm(){
                 </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>            
+                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>  
+                <label><b>Use default link</b></label>   
+                <input class='toggle' type='checkbox' id='ZoomLinktoggle' name='classToggle' required> 
+                <input type='hidden' id='hiddendefaultZoomLink' value='$defaultZoomLink'></input>                         
                 </div>        
                                 
                 <div class='buttons-container'>
@@ -133,8 +138,9 @@ function classForm(){
 
 // *********************************************************************************************************************************
 
-function classFormIndexPage($students){
+function classFormIndexPage($students, $admin){
     $today = date('Y-m-d'); 
+    $defaultZoomLink = $admin['DefaultZoomLink'];
    
     echo"          
         <div id='classFormIndexPage' class='modal'>
@@ -194,7 +200,10 @@ function classFormIndexPage($students){
                 </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' id='zoomLinkIndexPage' placeholder='Link' name='czoomLink' required>            
+                <input type='text' id='zoomLinkIndexPage' placeholder='Link' name='czoomLink' required>
+                <label><b>Use default link</b></label>   
+                <input class='toggle' type='checkbox' id='ZoomLinktoggleHomePage' name='classToggle' required> 
+                <input type='hidden' id='hiddendefaultZoomLinkHomePage' value='$defaultZoomLink'></input>                
                 </div>        
                                 
                 <div class='buttons-container'>

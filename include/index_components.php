@@ -128,8 +128,7 @@ function echoNextClassSection($classesToday){
             $heading = 'Next Class';
             $id = $nextClass['ClassId'];
             $name = $nextClass['FirstName']." ".$nextClass['LastName'];
-            $classDate = formatDate($nextClass['StartDate'], 'd M');
-            $classTime = formatDate($nextClass['StartDate'], 'H:i A');
+            $classDate = formatDate($nextClass['StartDate'], 'd M H:i');           
             $email = $nextClass['Email'];
             $lichess = $nextClass['LichessLink'];
             $zoom = $nextClass['ZoomLink'];
@@ -147,7 +146,7 @@ function echoNextClassSection($classesToday){
     
     else{
         $heading = 'No pending <br>Classes';
-        $id = $name = $classDate = $classTime = $email = $lichess = $zoom = $hour = '';
+        $id = $name = $classDate = $email = $lichess = $zoom = $hour = '';
         $class = 'disableAnchor';
         $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";
         $classString = '';
@@ -162,8 +161,7 @@ function echoNextClassSection($classesToday){
                 <p id='classInfoHeading' class='nextClassheader'>$heading</p>
                     <ol>
                         <li id='classInfoName'>$name</li>
-                        <li id='classInfoDate'>$classDate</li>
-                        <li id='classInfoTime'>$classTime</li>    
+                        <li id='classInfoDate' value='$classDate'>$classDate</li>                    
                         <li id='classInfoDuration'>$hour</li>                               
                     </ol>
 
