@@ -13,14 +13,14 @@ function echoHeader($title){
 // *********************************************************************************************************************************
 
 function echoPageLayout($heading, $subheading, $adminInfo){
-
+ 
     echo "  <body>
                 <section class='wrapper'>
                     <section class='vertical'>  
                         <div class='flex-container-verticalBar'>  
                             <div class='flex-item-verticalBarPicture'>
                                 <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                                <p class='adminName' >".$adminInfo['FirstName']." ".$adminInfo['LastName']."</p>
+                                <p class='adminName' >".htmlspecialchars($adminInfo['FirstName'])." ".htmlspecialchars($adminInfo['LastName'])."</p>
                                 <a href='login.php' class='logOutLink' name='logOutLink'>Log Out</a>
                             </div>            
                         </div>  

@@ -45,25 +45,25 @@ function echoStudentTable($students){
 "; 
 
     foreach($students as $student){ 
-        $studentId = $student['StudentId']; 
+        $studentId = htmlspecialchars($student['StudentId']); 
         
         //I want to show username only
-        $lichessLink = $student['LichessLink'];      
+        $lichessLink = htmlspecialchars($student['LichessLink']);      
         $lichessUsername = substr($lichessLink,22);
         
         echo"
         <tr> 
-            <td><a href='student_profile.php?studentId=".$student['StudentId']."'>".$student['FirstName']." ".$student['LastName']."</a></td>    
-            <td>".$student['Email']."</td>
-            <td>".$student['Phone']."</td>
+            <td><a href='student_profile.php?studentId=".htmlspecialchars($student['StudentId'])."'>".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</a></td>    
+            <td>".htmlspecialchars($student['Email'])."</td>
+            <td>".htmlspecialchars($student['Phone'])."</td>
             <td>$lichessUsername</td>   
-            <td>".$student['Credits']."</td>   
-            <td>".$student['Classes']."</td>";
+            <td>".htmlspecialchars($student['Credits'])."</td>   
+            <td>".htmlspecialchars($student['Classes'])."</td>";
 
-            $daysToNextCLass = $student['DaysToNextClass']['Days']." days";
+            $daysToNextCLass = htmlspecialchars($student['DaysToNextClass']['Days'])." days";
             
             if($student['DaysToNextClass']['Months'] != 0){
-                $daysToNextCLass = $student['DaysToNextClass']['Months']." months and ".$student['DaysToNextClass']['Days']. " days";
+                $daysToNextCLass = htmlspecialchars($student['DaysToNextClass']['Months'])." months and ".htmlspecialchars($student['DaysToNextClass']['Days']). " days";
             }
         echo"
             <td>$daysToNextCLass</td> 

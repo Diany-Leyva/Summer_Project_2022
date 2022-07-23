@@ -27,6 +27,7 @@ function checkIfAdminLoginIsValid($email, $password){
 
 // ********************************************************************************************************************************
 
+//This is a self-note: I will come back here and see if i need to clean the elements in this array using htmlspecialchars() 
 function loginForm($adminInfo){    
     
     echo"

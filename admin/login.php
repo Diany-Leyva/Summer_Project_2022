@@ -14,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        // I wonder if I need to show a message here or something. So far I'm just reloading the page
+        //Self-Note: Conversation with tyler about email and passw. We do not check for that in the front end because then that information 
+        //its accessiblel, we only check for this in the back end. Change this and review it in other ocassions when I do that
         else {
             header("location:?"); 
             exit();  

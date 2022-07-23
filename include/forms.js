@@ -84,8 +84,7 @@ function openClassForm(classId) {
         document.getElementById('clock').value = myClass.ClassTime;
         document.getElementById('zoomLink').value = myClass.ZoomLink;
         document.getElementById('hiddenClassId-Edit').value = myClass.ClassId;
-        document.getElementById('submitButton').name = 'EditClassesSubmitted';      
-      
+        document.getElementById('submitButton').name = 'EditClassesSubmitted';       
     }
 
     //Since these add/edit are used in the same page, I need to reset the values because

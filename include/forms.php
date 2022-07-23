@@ -75,7 +75,7 @@ function creditsForm(){
 
 function classForm($admin){
     $today = date('Y-m-d');
-    $defaultZoomLink = $admin['DefaultZoomLink'];
+    $defaultZoomLink = htmlspecialchars($admin['DefaultZoomLink']);
 
     echo"          
         <div id='classForm' class='modal'>
@@ -140,8 +140,8 @@ function classForm($admin){
 
 function classFormIndexPage($students, $admin){
     $today = date('Y-m-d'); 
-    $defaultZoomLink = $admin['DefaultZoomLink'];
-   
+    $defaultZoomLink = htmlspecialchars($admin['DefaultZoomLink']);                                 //There was a syntax issue when placing this in the value so 
+                                                                                                    //I stored it in a variable for now and it works 
     echo"          
         <div id='classFormIndexPage' class='modal'>
             <form action='' method='post' class='form-container animate'>  
@@ -153,7 +153,7 @@ function classFormIndexPage($students, $admin){
                 <select name='listStudentId' id='studentListIndexPage'>";         
                     foreach($students as $key=>$student){
                         $credit = calcStudentRemainingCredits($key);                         
-                        echo"<option id='studentId$key' value=$key>".$student['FirstName']." ".$student['LastName']."</option>
+                        echo"<option id='studentId$key' value=$key>".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</option>
                             <option hidden id='credits$key' value='$credit'></option>";                     
                     } 
                 echo"     

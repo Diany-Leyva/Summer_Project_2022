@@ -48,8 +48,8 @@ function addEvents($classesToday){
     $i = 0;                                                                               
     foreach($classesToday as $class){
       
-        $hour = formatDate($class['StartDate'], 'H');            
-        $min = formatDate($class['StartDate'], 'i');  
+        $hour = formatDate(htmlspecialchars($class['StartDate']), 'H');            
+        $min = formatDate(htmlspecialchars($class['StartDate']), 'i');  
         $halfhour = 0;
 
         if($min == 30){
@@ -62,16 +62,16 @@ function addEvents($classesToday){
         //and this is the source 
         $events[$i]['start'] =  $topPosition;  
         $events[$i]['end'] =  $topPosition + 60;  
-        $events[$i]['ClassId'] = $class['ClassId'];  
-        $events[$i]['Type'] = $class['Type'];
-        $events[$i]['StartDate'] = formatDate($class['StartDate'], 'Y-m-d');
-        $events[$i]['StartTime'] = formatDate($class['StartDate'], 'H:i');
-        $events[$i]['LichessLink'] = $class['LichessLink'];
-        $events[$i]['ZoomLink'] = $class['ZoomLink']; 
-        $events[$i]['StudentId'] = $class['StudentId'];  
-        $events[$i]['FirstName'] = $class['FirstName'];
-        $events[$i]['LastName'] = $class['LastName'];       
-        $events[$i]['Email'] = $class['Email'];    
+        $events[$i]['ClassId'] = htmlspecialchars($class['ClassId']);  
+        $events[$i]['Type'] = htmlspecialchars($class['Type']);
+        $events[$i]['StartDate'] = formatDate(htmlspecialchars($class['StartDate']), 'Y-m-d');
+        $events[$i]['StartTime'] = formatDate(htmlspecialchars($class['StartDate']), 'H:i');
+        $events[$i]['LichessLink'] = htmlspecialchars($class['LichessLink']);
+        $events[$i]['ZoomLink'] = htmlspecialchars($class['ZoomLink']); 
+        $events[$i]['StudentId'] = htmlspecialchars($class['StudentId']);  
+        $events[$i]['FirstName'] = htmlspecialchars($class['FirstName']);
+        $events[$i]['LastName'] = htmlspecialchars($class['LastName']);       
+        $events[$i]['Email'] = htmlspecialchars($class['Email']);    
        
         $i++;     
     }
@@ -126,21 +126,21 @@ function echoNextClassSection($classesToday){
 
         if($nextClass){
             $heading = 'Next Class';
-            $id = $nextClass['ClassId'];
-            $name = $nextClass['FirstName']." ".$nextClass['LastName'];
-            $classDate = formatDate($nextClass['StartDate'], 'd M H:i');           
-            $email = $nextClass['Email'];
-            $lichess = $nextClass['LichessLink'];
-            $zoom = $nextClass['ZoomLink'];
+            $id = htmlspecialchars($nextClass['ClassId']);
+            $name = htmlspecialchars($nextClass['FirstName'])." ".htmlspecialchars($nextClass['LastName']);
+            $classDate = formatDate(htmlspecialchars($nextClass['StartDate']), 'd M H:i');           
+            $email = htmlspecialchars($nextClass['Email']);
+            $lichess = htmlspecialchars($nextClass['LichessLink']);
+            $zoom = htmlspecialchars($nextClass['ZoomLink']);
             $hour = '1 hour';     
             $class = 'enableAnchor';
             $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"; 
             
              //This time instead that hidding an array and using jason_encode to pass it to js I did it by passing an string and then I turn it into an array. Which way should be better?
-            $date = formatDate($nextClass['StartDate'], 'Y-m-d');
-            $time = formatDate($nextClass['StartDate'], 'H:i');  
+            $date = formatDate(htmlspecialchars($nextClass['StartDate']), 'Y-m-d');
+            $time = formatDate(htmlspecialchars($nextClass['StartDate']), 'H:i');  
         
-            $classString = "ClassId:".$nextClass['ClassId'].",Type:".$nextClass['Type'].",ClassDate:$date,ClassTime:$time,ZoomLink:".$nextClass['ZoomLink'].",StudentId:".$nextClass['StudentId']; 
+            $classString = "ClassId:$id,Type:".htmlspecialchars($nextClass['Type']).",ClassDate:$date,ClassTime:$time,ZoomLink:$zoom,StudentId:".htmlspecialchars($nextClass['StudentId']); 
         }
     }  
     
@@ -198,14 +198,14 @@ function echoIndexTotalSection($totalClasses){
             <div class='item-total'>
                 <p class='totalSectionHeader'>Month</p>         
                 <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".$totalClasses['MonthTotal']."</p>
+                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
                 </div>
             </div>
 
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Year</p>  
                 <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".$totalClasses['YearTotal']."</p>
+                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
                 </div>
             </div>
         </div>

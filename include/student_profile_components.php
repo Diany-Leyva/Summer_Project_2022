@@ -10,22 +10,23 @@
 // ********************************************************************************************************************************
 
 function echoProfileInfo($student, $picture){
-    $studentId = $student['StudentId'];  
-    $lichessLink = $student['LichessLink'];      
+    $studentId = htmlspecialchars($student['StudentId']);  
+    $lichessLink = htmlspecialchars($student['LichessLink']);      
     $lichessUsername = substr($lichessLink,22); 
-    $email = $student['Email'];
-    $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
-    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessLink']); 
+    $email = htmlspecialchars($student['Email']);
+    $studentArray = array('StudentId'=>htmlspecialchars($student['StudentId']), 'FirstName'=>htmlspecialchars($student['FirstName']), 
+    'LastName'=>htmlspecialchars($student['LastName']), 'Email'=>$email, 'Phone'=>htmlspecialchars($student['Phone']), 
+    'Rating'=>htmlspecialchars($student['ELO']), 'Lichess'=>$lichessLink); 
    
     echo"
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
                 <ol>
-                    <li>👤 ".$student['FirstName']." ".$student['LastName']."</li>
-                    <li>🏁 ".$student['ELO']."</li>
-                    <li>☎️ ".$student['Phone']."</li>    
+                    <li>👤 ".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</li>
+                    <li>🏁 ".htmlspecialchars($student['ELO'])."</li>
+                    <li>☎️ ".htmlspecialchars($student['Phone'])."</li>    
                     <li class='zoom'><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
-                    <li class='zoom'><a href='mailto:$email'>✉️ ".$student['Email']."</a></li>
+                    <li class='zoom'><a href='mailto:$email'>✉️ $email</a></li>
                     <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
                 </ol>
                 

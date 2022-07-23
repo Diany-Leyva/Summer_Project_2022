@@ -1,7 +1,7 @@
 <?php
 include('../include/initialize.php'); 
 checkAdmin();
- 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     
     if(isset($_REQUEST['AddClassesSubmitted'])){ 
