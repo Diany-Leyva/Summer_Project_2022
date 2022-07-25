@@ -2,22 +2,23 @@
 
 //Add student form   
 //here I use this form for both creating and editing a student. So, when creating a student
-//I don't pass the id and when editing I pass the id and thats how I diff it here. Id the studentId was passed 
-//Then I assign the values to the hidden fields in the form
-// --------------------------------------------------------------------------
+//I don't pass the id and when editing I pass the id and thats how I diff it here. If the studentId was passed 
+//Then I assign the values to the hidden fields in the formmake a AJAX request to load the info need it without having to
+//reload the page and without using the hiding array weird thing I was doing
+//----------------------------------------------------------------------
 function openAddStudentForm(studentId){
 
     if(studentId){
-        const student = document.getElementById('hiddenStudent').value;
-        const myStudent = JSON.parse(student);
 
-        document.getElementById('fname').value = myStudent.FirstName;
-        document.getElementById('lname').value = myStudent.LastName;
-        document.getElementById('email').value = myStudent.Email;
-        document.getElementById('phone').value = myStudent.Phone;
-        document.getElementById('rating').value = myStudent.Rating;
-        document.getElementById('lichess').value = myStudent.Lichess;     
-                     
+        //AJAX request to get the student from the DB
+        fetch("/include/AJAX_Requests.php?StudentId="+studentId)
+        .then(response => response.json())
+        .then(data => {document.getElementById('fname').value = data.FirstName,
+            document.getElementById('lname').value = data.LastName,
+            document.getElementById('email').value = data.Email,
+            document.getElementById('phone').value = data.Phone,
+            document.getElementById('rating').value = data.ELO,
+            document.getElementById('lichess').value = data.LichessLink})                    
     } 
       
     document.getElementById('addStudentForm').style.display = 'block';
@@ -31,8 +32,18 @@ function closeAddStudentForm(){
 //Add credits form   
 // --------------------------------------------------------------------------
 function openCreditForm(buttonclicked, credits){ 
-    document.getElementById('hiddenValue').value = buttonclicked;                             //I'm setting the id parameter to the type hidden field so I can know wich button was clicked in the Request
+    document.getElementById('hiddenButtonName').value = buttonclicked;                             //I'm setting the id parameter to the type hidden field so I can know wich button was clicked in the Request
     
+    //AJAX request to get the student from the DB
+    fetch("/include/AJAX_Requests.php?StudentId="+studentId)
+    .then(response => response.json())
+    .then(data => {document.getElementById('fname').value = data.FirstName,
+        document.getElementById('lname').value = data.LastName,
+        document.getElementById('email').value = data.Email,
+        document.getElementById('phone').value = data.Phone,
+        document.getElementById('rating').value = data.ELO,
+        document.getElementById('lichess').value = data.LichessLink})   
+        
     if(buttonclicked == 'Subtract'){                                                 //What's happening here is that if subtract was clicked I want the max to be set to remaining credits amount
         document.getElementById('maxCredit').max = credits;                          //so the user cannot subtract more credits that the remaining ones. So if a user has 2 credits left a refund of more than
         document.getElementById('maxCredit').placeholder = '1 - ' + credits;         //2 credits cannot be done.This ensure that only students with remaining credits can get a refund

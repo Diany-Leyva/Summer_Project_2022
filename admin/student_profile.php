@@ -21,11 +21,11 @@ if(isset($_REQUEST['studentId'])){
 
     if(isset($_REQUEST['changeCreditsSubmitted'])){
      
-      if($_REQUEST['hiddenValue'] == 'Add'){                                                                  //Since I'm using the same form to add and subtract credits
+      if($_REQUEST['hiddenButtonName'] == 'Add'){                                                                  //Since I'm using the same form to add and subtract credits
           insertCredit($_REQUEST['camount'], $_REQUEST['studentId']);                                         //I set a hidden value that will indicate whether add or subtract was clicked
       }  
 
-      else if($_REQUEST['hiddenValue'] == 'Subtract'){
+      else if($_REQUEST['hiddenButtonName'] == 'Subtract'){
         insertRefund($_REQUEST['camount'], $_REQUEST['studentId']);                                          //Comments about why I'm inserting to a refund table are in the function definition
       }     
                                   
@@ -43,7 +43,7 @@ if(isset($_REQUEST['studentId'])){
 
     if(isset($_REQUEST['studentDeleted'])){
      
-      deleteStudent($_REQUEST['stdId']);                                                                    
+      deleteStudent($_REQUEST['studentId']);                                                                    
       header("location:/admin/list_students.php"); 
       exit();      
     } 

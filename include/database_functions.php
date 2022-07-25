@@ -6,7 +6,8 @@
 function getAllStudents(){
     return dbQuery("
             SELECT *
-            FROM students 
+            FROM students
+            WHERE DateArchived is NULL 
             ORDER BY StudentId     
     ")->fetchAll();   
 }
@@ -15,7 +16,8 @@ function getOneStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
-        WHERE StudentId = $studentId;   
+        WHERE StudentId = $studentId
+        AND DateArchived is NULL  
     ")->fetch();  
 }
 
@@ -26,6 +28,7 @@ function getAllClasses(){
     return dbQuery("
             SELECT *
             FROM classes
+            WHERE DateArchived is NULL 
             ORDER BY StudentId, StartDate        
     ")->fetchAll();  
 }
@@ -34,7 +37,8 @@ function getOneStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
-        WHERE StudentId = $studentId  
+        WHERE StudentId = $studentId 
+        AND DateArchived is NULL      
         ORDER BY StartDate
     ")->fetchAll();  
 }
@@ -42,7 +46,8 @@ function getOneStudentClasses($studentId){
 function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
-    FROM classes   
+    FROM classes 
+    WHERE DateArchived is NULL     
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
@@ -53,6 +58,7 @@ function getOneStudentClassesAmount($studentId){
         SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
         WHERE StudentId =  $studentId
+        AND DateArchived is NULL   
         ORDER BY StudentId   
 ")->fetch();
 }
@@ -61,7 +67,8 @@ function getAllStudentsWithClasses(){
     return dbQuery("
         SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
         FROM classes, students
-        WHERE classes.StudentId = students.StudentId      
+        WHERE classes.StudentId = students.StudentId  
+        AND (students.DateArchived is NULL AND classes.DateArchived is NULL)   
         ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
@@ -71,7 +78,8 @@ function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
     FROM classes 
-    WHERE StartDate > CURRENT_DATE        
+    WHERE StartDate > CURRENT_DATE  
+    AND DateArchived is NULL         
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
@@ -167,13 +175,13 @@ function insertRefund($amount, $studentId){
 
 function deleteStudent($studentId){    
     dbQuery("
-        DELETE FROM students WHERE StudentId = $studentId
+        UPDATE students SET DateArchived = CURRENT_DATE WHERE StudentId = $studentId
 ");
 }
 
 function deleteClass($classId){    
     dbQuery("
-        DELETE FROM classes WHERE ClassId = $classId
+        UPDATE CLASSES SET DateArchived = CURRENT_DATE WHERE ClassId = $classId
 ");
 }
 

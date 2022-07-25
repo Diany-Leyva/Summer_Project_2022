@@ -11,9 +11,7 @@
 
 function echoProfileInfo($student, $picture){
     $studentId = $student['StudentId'];   
-    $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
-    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessLink']); 
-   
+      
     echo"
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
@@ -23,8 +21,7 @@ function echoProfileInfo($student, $picture){
                     <li>".$student['Phone']."</li>    
                     <li>ELO ".$student['ELO']."</li>
                     <li>".$student['LichessLink']."</li>
-                    <button class='zoom' onclick='openAddStudentForm($studentId)'>Edit</button>
-                    <input type='hidden' id='hiddenStudent' value=";echo json_encode($studentArray);echo"       
+                    <button class='zoom' onclick='openAddStudentForm($studentId)'>Edit</button>                      
                 </ol>
                 <div class='picturePosition'>
                    <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
@@ -32,7 +29,7 @@ function echoProfileInfo($student, $picture){
 
             </div>            
             
-            <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>       
+            <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>     
       
 ";
 }

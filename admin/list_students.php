@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }  
 
     if(isset($_REQUEST['studentDeleted'])){
-        deleteStudent($_REQUEST['stdId']);                                                                    
+        deleteStudent($_REQUEST['studentId']);                                                                    
         header("location:?");  
         exit();                                                             
     }  
