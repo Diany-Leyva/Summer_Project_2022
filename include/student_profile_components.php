@@ -28,7 +28,7 @@ function echoProfileInfo($student, $picture){
                 
                 <div class='picturePosition'>
                    <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
-                </div>
+            </div>
         </div>            
             
         <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
