@@ -15,9 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         //Self-Note: Conversation with tyler about email and passw. We do not check for that in the front end because then that information 
-        //its accessiblel, we only check for this in the back end. Change this and review it in other ocassions when I do that
+        //its accessible, we only check for this in the back end. Change this and review it in other ocassions when I do that
         else {
-            header("location:?"); 
+            header("location:index.php");
             exit();  
         }   
     } 
@@ -29,7 +29,7 @@ echo "<html>
     <link href='loginPage_style.css' rel='stylesheet'>
 </head> "; 
 
-loginForm(getAdmin());
+loginForm();
 
 $jsFiles = "
     <script src='/include/login.js'></script>

@@ -28,7 +28,7 @@ function checkIfAdminLoginIsValid($email, $password){
 // ********************************************************************************************************************************
 
 //This is a self-note: I will come back here and see if i need to clean the elements in this array using htmlspecialchars() 
-function loginForm($adminInfo){    
+function loginForm(){    
     
     echo"
     <div id='loginFormId' class='center'>
@@ -52,8 +52,7 @@ function loginForm($adminInfo){
         <input type='submit' value='Login' name='loginSubmitted'>
         <div class='signup_link'>
           Not a user? <a href='#'>Signup</a>
-        </div>
-        <input type='hidden' id='hiddenAdminInfoArray' value=";echo json_encode($adminInfo);echo">   
+        </div>         
       </form>
     </div>
     ";     

@@ -18,6 +18,7 @@ document.addEventListener('input', function (event) {
 // ********************************************************************************************************************************
 //when the user submit the the login form 
 // *********************************************************************************************************************************
+//see if I can do AJAX request from here?
 
 document.getElementById('loginFormId').addEventListener('submit', function (event) {
 
