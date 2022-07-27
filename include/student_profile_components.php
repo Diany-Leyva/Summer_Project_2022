@@ -14,10 +14,7 @@ function echoProfileInfo($student, $picture){
     $lichessLink = htmlspecialchars($student['LichessLink']);      
     $lichessUsername = substr($lichessLink,22); 
     $email = htmlspecialchars($student['Email']);
-    $studentArray = array('StudentId'=>htmlspecialchars($student['StudentId']), 'FirstName'=>htmlspecialchars($student['FirstName']), 
-    'LastName'=>htmlspecialchars($student['LastName']), 'Email'=>$email, 'Phone'=>htmlspecialchars($student['Phone']), 
-    'Rating'=>htmlspecialchars($student['ELO']), 'Lichess'=>$lichessLink); 
-   
+      
     echo"
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
@@ -26,8 +23,7 @@ function echoProfileInfo($student, $picture){
                     <li>🏁 ".htmlspecialchars($student['ELO'])."</li>
                     <li>☎️ ".htmlspecialchars($student['Phone'])."</li>    
                     <li class='zoom'><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
-                    <li class='zoom'><a href='mailto:$email'>✉️ $email</a></li>
-                    <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
+                    <li class='zoom'><a href='mailto:$email'>✉️ $email</a></li>                         
                 </ol>
                 
                 <div class='picturePosition'>
@@ -136,12 +132,10 @@ function echoPastClassesInfo($classes, $heading){
 }
 
 // ********************************************************************************************************************************
-//these two function are very similar so I will combine them but I was getting 
-//unexpected behavior when I had only one function so I will keep it like
-//this for now and then combine them
+////I added return false because I'm submiting this with AJAX request
 // ********************************************************************************************************************************
 
-function echoPrivateNotes($notes){   
+function echoPrivateNotes($notes, $studentId){  
     $message;
     echo"<div>
             <div class='headingBackgraound privNotes'>
@@ -151,17 +145,16 @@ function echoPrivateNotes($notes){
             (!empty($notes))? $message = $notes : $message = 'No notes';  
             echo"
             
-            <form action='' method='post'>
-                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
-                <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
+            <form onsubmit='return false;'>
+                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
+                <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
             </form>
-        </div>
-           ";
+        </div>";
 }
 
 // ********************************************************************************************************************************
 
-function echoPublicNotes($notes){   
+function echoPublicNotes($notes, $studentId){  
     $message; 
 
     echo"
@@ -172,11 +165,11 @@ function echoPublicNotes($notes){
     ";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"
-        <form action='' method='post'>
+        <form onsubmit='return false;'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>
-        </form>
-    </div>";
+            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
+            </form>
+                </div>";
 }
 
 // ********************************************************************************************************************************

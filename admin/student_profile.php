@@ -18,11 +18,11 @@ if(isset($_REQUEST['studentId'])){
 
     if(isset($_REQUEST['changeCreditsSubmitted'])){
      
-      if($_REQUEST['hiddenValue'] == 'Add'){                                                                  //Since I'm using the same form to add and subtract credits
+      if($_REQUEST['hiddenButtonName'] == 'Add'){                                                                  //Since I'm using the same form to add and subtract credits
           insertCredit($_REQUEST['camount'], $_REQUEST['studentId']);                                         //I set a hidden value that will indicate whether add or subtract was clicked
       }  
 
-      else if($_REQUEST['hiddenValue'] == 'Subtract'){
+      else if($_REQUEST['hiddenButtonName'] == 'Subtract'){
         insertRefund($_REQUEST['camount'], $_REQUEST['studentId']);                                          //Comments about why I'm inserting to a refund table are in the function definition
       }     
                                   
@@ -46,7 +46,7 @@ if(isset($_REQUEST['studentId'])){
 
     if(isset($_REQUEST['studentDeleted'])){
      
-      deleteStudent($_REQUEST['stdId']);                                                                    
+      deleteStudent($_REQUEST['studentId']);                                                                    
       header("location:/admin/list_students.php"); 
       exit();      
     } 
@@ -55,20 +55,7 @@ if(isset($_REQUEST['studentId'])){
       deleteClass($_REQUEST['classId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");   
       exit();       
-    } 
-
-    if(isset($_REQUEST['privNotesSaveButtonSubmitted'])){   
-       
-      updatePrivateNotes($_REQUEST['studentId'], $_REQUEST['privateNotes']);                                                                    
-      header("location:? studentId={$_REQUEST['studentId']}"); 
-      exit();         
-    } 
-
-    if(isset($_REQUEST['publicNotesSaveButtonSubmitted'])){  
-      updatePublicNotes($_REQUEST['studentId'], $_REQUEST['publicNotes']);                                                                   
-      header("location:? studentId={$_REQUEST['studentId']}"); 
-      exit();         
-    }   
+    }  
 
     $admin = getAdmin();
     $title = 'Student Profile';
@@ -94,8 +81,8 @@ if(isset($_REQUEST['studentId'])){
         $studentPastClasses = calcPastClasses($studentClassess);
         echoPastClassesInfo($studentPastClasses, 'Recent Classes');
 
-        echoPrivateNotes($student['PrivateNotes']);
-        echoPublicNotes($student['PublicNotes']);
+        echoPrivateNotes($student['PrivateNotes'], $studentId );
+        echoPublicNotes($student['PublicNotes'], $studentId);
     echo"</div>";       
            
     //Now I call the calcTotalClasses to calc the student total. I tried to make the 

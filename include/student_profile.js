@@ -7,7 +7,50 @@ function showSaveButton(heading){
     document.getElementById(heading).style.visibility = 'visible';
 }
 
-   // ********************************************************************************************************************************
+// ********************************************************************************************************************************
+//Saving the notes using AJAX seems like a good idea to me since I want that to be
+//saved without reloading the page
+// ********************************************************************************************************************************
+
+function savePrivateNotes(studentId){
+
+    let note = {       
+        StudentId: studentId,
+        Notes: document.getElementById('privateNotesTextarea').value
+    };
+
+    let notes = new FormData();
+    notes.append( "SavePrivateNotes", JSON.stringify(note));     
+
+    //So here I'm trusting that the DB was updated, in the future I could return a flag from
+    //the backend or something to indicate that the DB was update it 
+    fetch("/include/AJAX_Requests.php", {
+    method: 'post',
+    body: notes
+    })    
+}
+
+// ********************************************************************************************************************************
+
+function savePublicNotes(studentId){
+
+    let note = {       
+        StudentId: studentId,
+        Notes: document.getElementById('publicNotesTextarea').value
+    };
+
+    let notes = new FormData();
+    notes.append( "SavePublicNotes", JSON.stringify(note));     
+
+    //So here I'm trusting that the DB was updated, in the future I could return a flag from
+    //the backend or something to indicate that the DB was update it 
+    fetch("/include/AJAX_Requests.php", {
+    method: 'post',
+    body: notes
+    })    
+}
+
+// ********************************************************************************************************************************
 //Event listener for input
 // *********************************************************************************************************************************
 

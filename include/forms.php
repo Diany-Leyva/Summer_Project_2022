@@ -57,7 +57,7 @@ function creditsForm(){
                 </div> 
 
                 <div class='buttons-container'>
-                    <input type='hidden' id='hiddenValue' name='hiddenValue' value=''>
+                    <input type='hidden' id='hiddenButtonName' name='hiddenButtonName' value=''>
                     <button type='submit' class='submit' name='changeCreditsSubmitted'>Submit</button>               
                     <button type='button' class='cancel' onclick='closeCreditForm()'>Cancel</button>
                 </div>
@@ -227,7 +227,7 @@ function deleteStudentForm(){
                         <p>Are you sure you want to delete this student?</p>
                     </header> 
                     <div class='buttons-container'>
-                            <input type='hidden' id='hiddenStudentId' name='stdId' value=''>
+                            <input type='hidden' id='hiddenStudentId' name='studentId' value=''>
                             <button type='submit' class='submit' name='studentDeleted'>Delete</button>                      
                             <button type='button' class='cancel' onclick='closeDeleteStudent()'>Cancel</button>
                     </div>                  
