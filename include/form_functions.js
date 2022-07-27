@@ -11,7 +11,7 @@ function openAddStudentForm(studentId){
     if(studentId){
 
         //AJAX request to get the student from the DB
-        fetch("/include/AJAX_Requests.php?StudentId="+studentId)
+        fetch("/include/AJAX_Requests.php?StudentIdToEdit="+studentId)
         .then(response => response.json())
         .then(data => {document.getElementById('fname').value = data.FirstName,
             document.getElementById('lname').value = data.LastName,
@@ -34,16 +34,6 @@ function closeAddStudentForm(){
 function openCreditForm(buttonclicked, credits){ 
     document.getElementById('hiddenButtonName').value = buttonclicked;                             //I'm setting the id parameter to the type hidden field so I can know wich button was clicked in the Request
     
-    //AJAX request to get the student from the DB
-    fetch("/include/AJAX_Requests.php?StudentId="+studentId)
-    .then(response => response.json())
-    .then(data => {document.getElementById('fname').value = data.FirstName,
-        document.getElementById('lname').value = data.LastName,
-        document.getElementById('email').value = data.Email,
-        document.getElementById('phone').value = data.Phone,
-        document.getElementById('rating').value = data.ELO,
-        document.getElementById('lichess').value = data.LichessLink})   
-        
     if(buttonclicked == 'Subtract'){                                                 //What's happening here is that if subtract was clicked I want the max to be set to remaining credits amount
         document.getElementById('maxCredit').max = credits;                          //so the user cannot subtract more credits that the remaining ones. So if a user has 2 credits left a refund of more than
         document.getElementById('maxCredit').placeholder = '1 - ' + credits;         //2 credits cannot be done.This ensure that only students with remaining credits can get a refund
@@ -98,8 +88,48 @@ function openDeleteClass(classId) {
 
  //Save notes
 // --------------------------------------------------------------------------
-function showSaveButton(heading){   
+function showSaveButton(heading){  
+
     document.getElementById(heading).style.visibility = 'visible';
+}
+
+//Saving the notes using AJAX seems like a good idea to me since I want that to be
+//saved without reloading the page
+
+function savePrivateNotes(studentId){
+
+    let note = {       
+        StudentId: studentId,
+        Notes: document.getElementById('privateNotesTextarea').value
+    };
+
+    let notes = new FormData();
+    notes.append( "SavePrivateNotes", JSON.stringify(note));     
+
+    //So here I'm trusting that the DB was updated, in the future I could return a flag from
+    //the backend or something to indicate that the DB was update it 
+    fetch("/include/AJAX_Requests.php", {
+    method: 'post',
+    body: notes
+    })    
+}
+
+function savePublicNotes(studentId){
+
+    let note = {       
+        StudentId: studentId,
+        Notes: document.getElementById('publicNotesTextarea').value
+    };
+
+    let notes = new FormData();
+    notes.append( "SavePublicNotes", JSON.stringify(note));     
+
+    //So here I'm trusting that the DB was updated, in the future I could return a flag from
+    //the backend or something to indicate that the DB was update it 
+    fetch("/include/AJAX_Requests.php", {
+    method: 'post',
+    body: notes
+    })    
 }
 
 //Search Bar

@@ -114,35 +114,33 @@ function echoPastClassesInfo($classes, $heading){
 }
 
 // --------------------------------------------------------------------------
-//these two function are very similar so I will combine them but I was getting 
-//unexpected behavior when I had only one function so I will keep it like
-//this for now and then combine them
+//I added return false because I'm submiting this with AJAX request
 // --------------------------------------------------------------------------
 
-function echoPrivateNotes($notes){   
+function echoPrivateNotes($notes, $studentId){   
     $message;
 
     echo"<div>";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"<p class='classInfoHeading'>Private Notes</p>
-        <form action='' method='post'>
-            <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
+        <form onsubmit='return false;'>
+            <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
+            <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
         </form>
             </div>";
 }
 
 // --------------------------------------------------------------------------
 
-function echoPublicNotes($notes){   
+function echoPublicNotes($notes, $studentId){   
     $message; 
 
     echo"<div>";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"<p class='classInfoHeading'>Public Notes</p>
-        <form action='' method='post'>
+        <form onsubmit='return false;'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>
+            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
         </form>
             </div>";
 }

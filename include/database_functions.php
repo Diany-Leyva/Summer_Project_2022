@@ -197,14 +197,23 @@ function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $stude
 ");
 }
 
-function updateNotes($studentId, $notes, $attribute){
+function updatePrivateNotes($studentId, $notes){
+    dbQuery("
+        UPDATE students
+        SET PrivateNotes = '$notes'
+        WHERE StudentId = '$studentId'
+    ");
+}
+
+// *********************************************************************************************************************************
+
+function updatePublicNotes($studentId, $notes){
     dbQuery("
     UPDATE students
-    SET $attribute ='$notes' 
+    SET PublicNotes = '$notes'
     WHERE StudentId = '$studentId'
 ");
 }
-
 
 
 

@@ -52,20 +52,7 @@ if(isset($_REQUEST['studentId'])){
       deleteClass($_REQUEST['classId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");   
       exit();       
-    } 
-
-    if(isset($_REQUEST['privNotesSaveButtonSubmitted'])){   
-       
-      updateNotes($_REQUEST['studentId'], $_REQUEST['privateNotes'], 'PrivateNotes');                                                                    
-      header("location:? studentId={$_REQUEST['studentId']}"); 
-      exit();         
-    } 
-
-    if(isset($_REQUEST['publicNotesSaveButtonSubmitted'])){  
-      updateNotes($_REQUEST['studentId'], $_REQUEST['publicNotes'], 'PublicNotes');                                                                   
-      header("location:? studentId={$_REQUEST['studentId']}"); 
-      exit();         
-    }   
+    }  
 
     $title = 'Student Profile';
     echoPageLayout($title, $title, '');
@@ -89,8 +76,8 @@ if(isset($_REQUEST['studentId'])){
         $studentPastClasses = calcPastClasses($studentClassess);
         echoPastClassesInfo($studentPastClasses, 'Recent Classes');
 
-        echoPrivateNotes($student['PrivateNotes']);
-        echoPublicNotes($student['PublicNotes']);
+        echoPrivateNotes($student['PrivateNotes'], $studentId );
+        echoPublicNotes($student['PublicNotes'], $studentId);
     echo"</div>";       
            
     //Now I call the calcTotalClasses to calc the student total. I tried to make the 
