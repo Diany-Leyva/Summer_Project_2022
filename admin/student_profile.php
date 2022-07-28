@@ -100,8 +100,8 @@ if(isset($_REQUEST['studentId'])){
 }
 
 $jsFiles = "
-    <script src='/include/forms.js'></script>
-    <script src='/include/student_profile.js'></script>
+    <script src='/include/JS/common_forms.js'></script>
+    <script src='/include/JS/student_profile.js'></script>
     ";
 
 echoFooter($jsFiles); 

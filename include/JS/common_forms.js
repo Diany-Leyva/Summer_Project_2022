@@ -50,6 +50,7 @@ function openCreditForm(buttonclicked, credits){
     }  
     
     if(buttonclicked == 'Add'){                                                 //Trying out I see that id I click subtract first and then add the placeholder and max values
+        document.getElementById('maxCredit').focus();       
         document.getElementById('maxCredit').max = '100';                            //do not go back to normal and stay with the values I set above so I'm setting them here
         document.getElementById('maxCredit').placeholder = '1 - 100';
     }
@@ -94,8 +95,9 @@ function openClassForm(classId) {
     //the values set above, so we need to re-set this
     else{      
 
-        document.getElementById('dropdown').value = 'Online';    
-        document.getElementById('ClassDate').value = today;       
+        document.getElementById('dropdown').value = '';    
+        document.getElementById('ClassDate').value = '';  
+        document.getElementById('clock').value = '';    
         document.getElementById('zoomLink').value = '';
         document.getElementById('hiddenClassId-Edit').value = '';
         document.getElementById('submitButton').name = 'AddClassesSubmitted';   

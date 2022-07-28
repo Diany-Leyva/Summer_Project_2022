@@ -70,7 +70,6 @@ document.addEventListener('input', function (event) {
             document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value;           
         }      
     }
-
 });
 
 
@@ -114,8 +113,7 @@ window.onclick = function(event) {
 
     if (event.target == deleteClassModal) {
         deleteClassModal.style.display = 'none';
-    }
- 
+    } 
 }
 
 // ********************************************************************************************************************************

@@ -82,11 +82,11 @@ classFormIndexPage($allStudents, getAdmin());
 deleteClassForm();
 
 $jsFiles = "
-    <script src='/include/helper_functions.js'></script> 
-    <script src='/include/forms.js'></script>   
-    <script src='/include/home.js'></script>
-    <script src='/include/dayViewCalendar.js'></script>
-    <script src='/include/events.js'></script>
+    <script src='/include/JS/helper_functions.js'></script> 
+    <script src='/include/JS/common_forms.js'></script>   
+    <script src='/include/JS/home.js'></script>
+    <script src='/include/JS/dayViewCalendar.js'></script>
+    <script src='/include/JS/events.js'></script>
     ";
 
 echoFooter($jsFiles); 

@@ -15,7 +15,7 @@ include_once('validation_functions.php');
 include_once('list_students_components.php'); 
 include_once('student_profile_components.php'); 
 include_once('index_components.php'); 
-include_once('forms.php'); 
+include_once('common_forms.php'); 
 include_once('students.php'); 
 include_once('classes.php'); 
 include_once('login_components.php'); 

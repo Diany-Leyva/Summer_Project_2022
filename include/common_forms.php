@@ -5,33 +5,50 @@
 function studentForm(){
     echo"         
     <div id='studentForm' class='modal'> 
-        <form action='' method='post' class='form-container animate'>
+        <form action='' method='post' class='form-container students animate'>
             <div class='imgcontainer'>
                 <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
             </div>
         
-            <div class='container input-container'>
-                <label for='ufname'><b>First Name</b></label>
-                <input type='text' placeholder='First Name' name='ufname' id='fname' value='' required>
-        
-                <label for='ulname'><b>Last Name</b></label>
-                <input type='text' placeholder='Last Name' name='ulname' id='lname' value='' required>
-                    
-                <label for='uemail'><b>Email</b></label>
-                <input type='email' placeholder='Email' name='uemail' id='email' value='' required>
-            
-                <label for='uphone'><b>Phone</b></label>
-                <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' id='phone' value='' required>
-
-                <label for='urating'><b>ELO Rating</b></label>
-                <input type='number' min='0' max='3000'placeholder='ELO' name='urating' id='rating' value='' required>
-                
-                <label for='ulichess'><b>Lichess Username</b></label>
-                <input type='text' placeholder='Username' name='ulichess' id='lichess' value='' required>              
-                     
+            <h1>Student</h1>         
+                <div class='txtField student'>          
+                        <input type='text' name='ufname' id='fname' value='' required>
+                        <span></span>
+                        <label for='ufname'>First Name</label>   
                 </div>
+                
+                <div class='txtField student'>          
+                    <input type='text' name='ulname' id='lname' value='' required>
+                    <span></span>
+                    <label for='ulname'>Last Name</label> 
+                </div>
+
+                <div class='txtField student'>          
+                    <input type='email' name='uemail' id='email' value='' required>
+                    <span></span>
+                    <label for='uemail'>Email</label>
+                </div>
+
+                <div class='txtField student'>          
+                    <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' id='phone' value='' required>
+                    <span></span>
+                    <label for='uphone'>Phone</label>
+                </div>
+
+                <div class='txtField student'>          
+                    <input type='number' min='0' max='3000' name='urating' id='rating' value='' required>
+                    <span></span>
+                    <label for='urating'>ELO Rating</label>
+                </div>
+                    
+                <div class='txtField student'>          
+                    <input type='text' name='ulichess' id='lichess' value='' required>              
+                    <span></span>
+                    <label for='ulichess'>Lichess Username</label>
+                </div>                
+          
         
-            <div class='buttons-container' style='background-color:#f1f1f1'>
+            <div class='buttons-container student'>
                 <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>
                 <button type='button' class='cancel' onclick= 'closeStudentForm()'>Cancel</button>
             </div>
@@ -46,17 +63,15 @@ function creditsForm(){
 
     echo"          
         <div id='creditsForm' class='modal'>
-            <form action='' method='post' class='form-container animate'> 
-                <header class='container'>
-                Credits              
-                </header>  
+            <form action='' method='post' class='form-container credits animate'> 
+            <h1 class='creditsForm'>Credits</h1>
 
-                <div class='container input-container'>
-                    <label for='camount'><b>Credits Amount</b></label>
-                    <input id='maxCredit' type='number' min='1' max='100' placeholder='1 - 100' name='camount' required>
-                </div> 
+            <div class='txtField credit'>          
+            <input id='maxCredit' type='number' min='1' max='100' placeholder='1 - 100' name='camount' required>
+            <label for='camount'>Credits Amount</label>
+            </div>                    
 
-                <div class='buttons-container'>
+                <div class='buttons-container credits'>
                     <input type='hidden' id='hiddenButtonName' name='hiddenButtonName' value=''>
                     <button type='submit' class='submit' name='changeCreditsSubmitted'>Submit</button>               
                     <button type='button' class='cancel' onclick='closeCreditForm()'>Cancel</button>
@@ -79,24 +94,28 @@ function classForm($admin){
 
     echo"          
         <div id='classForm' class='modal'>
-            <form action='' method='post' class='form-container animate'>  
-                <header class='container'>
-                        Book Class                
-                </header> 
+            <form action='' method='post' class='form-container class animate'>  
+                <h1 class='classForm'>Class</h1>                 
 
-                <div class='container input-container'>
-                <label for='ctype'>Class Type</label>
-                <select id='dropdown' name='ctype'>                   
-                    <option value='Online'>Online</option>
-                    <option value='In-Person'>In-Person</option>                  
-                </select>   
+                <div class='txtField class'> 
+                        <select id='dropdown' name='ctype' required>
+                        <option hidden></option>                              
+                        <option value='Online'>Online</option>
+                        <option value='In-Person'>In-Person</option>                  
+                    </select> 
+                    <span></span>        
+                    <label for='ctype'>Class Type</label>
+                </div>
 
+                <div class='txtField class'>          
+                <input type='date' id='ClassDate' name='classDate' min='$today' required>
+                <span></span>
                 <label for='classDate'>Class Date</label>
-                <input type='date' id='ClassDate' name='classDate' value='$today' min='$today' required>
-
-                <label for='classTime'>Class Time</label>
-                <select name='classTime' id='clock'>";         
-                         
+                </div>
+              
+                <div class='txtField class'>  
+                <select name='classTime' id='clock' required>         
+                        <option hidden></option>";  
                     for($i = 8; $i < 24; $i++){
                         //the format I have been using is with two digist so I'm just adding a 0 so, for instance,
                         //we get 08:00 instead of 8:00
@@ -117,16 +136,22 @@ function classForm($admin){
                         }
                     }
                     echo"
-                </select>        
-
-                <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' id='zoomLink' placeholder='Link' name='czoomLink' required>  
-                <label><b>Use default link</b></label>   
-                <input class='toggle' type='checkbox' id='ZoomLinktoggle' name='classToggle' required> 
-                <input type='hidden' id='hiddendefaultZoomLink' value='$defaultZoomLink'></input>                         
+                </select>
+                <span></span> 
+                <label for='classTime'>Class Time</label>
+                </div>     
+               
+                <div class='txtField class'>
+                <input type='text' id='zoomLink' name='czoomLink' required>  
+                <span></span>
+                <label for='czoomLink'>Zoom Link</label>
                 </div>        
-                                
-                <div class='buttons-container'>
+                          
+                <input class='toggle class' type='checkbox' id='ZoomLinktoggle' name='classToggle' required> 
+                <input type='hidden' id='hiddendefaultZoomLink' value='$defaultZoomLink'></input>                         
+                <label class='toggleheading'>Default Link</label>   
+                                                
+                <div class='buttons-container class'>
                     <button type='submit' id='submitButton' class='submit' name='AddClassesSubmitted'>Book</button>
                     <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>  
                     <input type='hidden' id='hiddenClassId-Edit' name='classId' value=''>                                 
@@ -172,10 +197,10 @@ function classFormIndexPage($students, $admin){
                     <option value='In-Person'>In-Person</option>                  
                 </select>   
 
-                <label for='classDate'><b>Class Date</b></label>
+                <label for='classDate'>Class Date</label>
                 <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
 
-                <label for='classTime'><b>Class Time</b></label>
+                <label for='classTime'>Class Time</label>
                 <select name='classTime' id='clockIndexPage'>";         
                          
                     for($i = 8; $i < 24; $i++){                     
@@ -221,16 +246,15 @@ function classFormIndexPage($students, $admin){
 function deleteStudentForm(){    
     echo"
         <div id='deleteStudent' class='modal'>
-                <form action='' method='post' class='form-container animate'>
-                    <header class='container'>
-                        Delete Student                  
-                        <p>Are you sure you want to delete this student?</p>
-                    </header> 
-                    <div class='buttons-container'>
-                            <input type='hidden' id='hiddenStudentId' name='studentId' value=''>
-                            <button type='submit' class='submit' name='studentDeleted'>Delete</button>                      
-                            <button type='button' class='cancel' onclick='closeDeleteStudent()'>Cancel</button>
-                    </div>                  
+                <form action='' method='post' class='form-container delete animate'>
+                <h1 class='deleteForm'>Delete Student</h1>  
+                <p>Are you sure you want to delete this student?</p>  
+                                
+                <div class='buttons-container delete'>
+                    <input type='hidden' id='hiddenStudentId' name='studentId' value=''>
+                    <button type='submit' class='submit' name='studentDeleted'>Delete</button>                      
+                    <button type='button' class='cancel' onclick='closeDeleteStudent()'>Cancel</button>
+                </div>                  
                 </form>
         </div>
     ";
@@ -240,20 +264,19 @@ function deleteStudentForm(){
 
 function deleteClassForm(){    
     echo"
-        <div id='deleteClass' class='modal'>
-                <form action='' method='post' class='form-container animate'>
-                    <header class='container'>
-                        Delete Class                  
-                        <p>Are you sure you want to delete this class?</p>
-                    </header> 
-                    <div class='buttons-container'>
-                            <input type='hidden' id='hiddenClassId-Delete' name='classId' value=''>
-                            <button type='submit' class='submit' name='classDeleted'>Delete</button>                      
-                            <button type='button' class='cancel' onclick='closeDeleteClass()'>Cancel</button>
-                    </div>                  
-                </form>
-        </div>
-    ";
+    <div id='deleteClass' class='modal'>
+            <form action='' method='post' class='form-container delete animate'>
+            <h1 class='deleteForm'>Delete Class</h1>  
+            <p>Are you sure you want to delete this class?</p>  
+                            
+            <div class='buttons-container delete'>
+                <input type='hidden' id='hiddenClassId-Delete' name='classId' value=''>
+                <button type='submit' class='submit' name='classDeleted'>Delete</button>                    
+                <button type='button' class='cancel' onclick='closeDeleteClass()'>Cancel</button>
+            </div>                  
+            </form>
+    </div>
+";   
 }
 
 // *********************************************************************************************************************************

@@ -32,7 +32,7 @@ echo "<html>
 loginForm();
 
 $jsFiles = "
-    <script src='/include/login.js'></script>
+    <script src='/include/JS/login.js'></script>
     ";
 
 echoFooter($jsFiles); 

@@ -58,8 +58,8 @@ studentForm();
 deleteStudentForm();
 
 $jsFiles = "
-    <script src='/include/forms.js'></script>
-    <script src='/include/list_students.js'></script>
+    <script src='/include/JS/common_forms.js'></script>
+    <script src='/include/JS/list_students.js'></script>
     ";
 
 echoFooter($jsFiles); 
