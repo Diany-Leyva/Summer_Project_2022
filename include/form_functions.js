@@ -11,7 +11,7 @@ function openAddStudentForm(studentId){
     if(studentId){
 
         //AJAX request to get the student from the DB
-        fetch("/include/AJAX_Requests.php?StudentIdToEdit="+studentId)
+        fetch("/ajax/get_student.php?StudentIdToEdit="+studentId)
         .then(response => response.json())
         .then(data => {document.getElementById('fname').value = data.FirstName,
             document.getElementById('lname').value = data.LastName,
@@ -108,7 +108,7 @@ function savePrivateNotes(studentId){
 
     //So here I'm trusting that the DB was updated, in the future I could return a flag from
     //the backend or something to indicate that the DB was update it 
-    fetch("/include/AJAX_Requests.php", {
+    fetch("/ajax/save_private_notes.php", {
     method: 'post',
     body: notes
     })    
@@ -126,7 +126,7 @@ function savePublicNotes(studentId){
 
     //So here I'm trusting that the DB was updated, in the future I could return a flag from
     //the backend or something to indicate that the DB was update it 
-    fetch("/include/AJAX_Requests.php", {
+    fetch("/ajax/save_public_notes.php", {
     method: 'post',
     body: notes
     })    
