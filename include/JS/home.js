@@ -7,86 +7,86 @@ function openIndexPageClassForm(classId){
 
     let today = document.getElementById('ClassDateIndexPage').value;
 
-    //when editing a class
-    if(classId){
+    // //when editing a class
+    // if(classId){
  
-        //When I used the class form to edit in student profile, I passed an array from php to js using JSON_encode and then parsing 
-        //the text to object in js. But in the home page, the next class (array) goes from php to js to be displayed in the next-class block,
-        //but then when you click a class in the day calendar I use js to display that class in the next-class block by calling the displayClassInfo
-        //function. But there I have to update the hidden class with the one I'm displaying to be able to delete/update that class there. I did so
-        //hidding the array as string.. I couldn't pass an array from js to php, so I passed the array as string.
-        //So now here I'm creating the object I wanted to pass in the first place. 
+    //     //When I used the class form to edit in student profile, I passed an array from php to js using JSON_encode and then parsing 
+    //     //the text to object in js. But in the home page, the next class (array) goes from php to js to be displayed in the next-class block,
+    //     //but then when you click a class in the day calendar I use js to display that class in the next-class block by calling the displayClassInfo
+    //     //function. But there I have to update the hidden class with the one I'm displaying to be able to delete/update that class there. I did so
+    //     //hidding the array as string.. I couldn't pass an array from js to php, so I passed the array as string.
+    //     //So now here I'm creating the object I wanted to pass in the first place. 
         
-        let hiddenClassString = document.getElementById('hiddenClass-Edit-IndexPage').value; 
-        let hiddenClassIndexedArray = hiddenClassString.split(',');
-        let myClass = {
-            ClassId: null,
-            Type: null,
-            ClassDate: null,
-            ClassTime: null,
-            ZoomLink: null,
-            StudentId: null,           
-         }       
+    //     let hiddenClassString = document.getElementById('hiddenClass-Edit-IndexPage').value; 
+    //     let hiddenClassIndexedArray = hiddenClassString.split(',');
+    //     let myClass = {
+    //         ClassId: null,
+    //         Type: null,
+    //         ClassDate: null,
+    //         ClassTime: null,
+    //         ZoomLink: null,
+    //         StudentId: null,           
+    //      }       
 
-        //for the same reason I explained above here I'm just trying to populate the object myClass
-        //from the string. To do that I split the string first by (,), which will give me an array where first element
-        //is like "ClassId: 42", so inside the loop I split each element by (:) and I use it to populate the object on each
-        //iteration. Maybe is not very efficient but at the end I haver the object i need lol
-        let tempArray;       
-        let size = hiddenClassIndexedArray.length;
-        for(i = 0; i < size; i++){
+    //     //for the same reason I explained above here I'm just trying to populate the object myClass
+    //     //from the string. To do that I split the string first by (,), which will give me an array where first element
+    //     //is like "ClassId: 42", so inside the loop I split each element by (:) and I use it to populate the object on each
+    //     //iteration. Maybe is not very efficient but at the end I haver the object i need lol
+    //     let tempArray;       
+    //     let size = hiddenClassIndexedArray.length;
+    //     for(i = 0; i < size; i++){
             
-            tempArray = hiddenClassIndexedArray[i].split(':');  
+    //         tempArray = hiddenClassIndexedArray[i].split(':');  
             
-            if(tempArray[0] == 'ClassTime'){                              //because the time has (:) I need to handle it differently 
-                myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] ; 
-            }
+    //         if(tempArray[0] == 'ClassTime'){                              //because the time has (:) I need to handle it differently 
+    //             myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] ; 
+    //         }
 
-            else if(tempArray[0] == 'ZoomLink'){                          //because links have two instances of :, this is just a temp solution
-                myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] + tempArray[3]; 
-            }
+    //         else if(tempArray[0] == 'ZoomLink'){                          //because links have two instances of :, this is just a temp solution
+    //             myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] + tempArray[3]; 
+    //         }
 
-            else{
-                myClass[tempArray[0]] = tempArray[1]; 
-            }                         
-        }
+    //         else{
+    //             myClass[tempArray[0]] = tempArray[1]; 
+    //         }                         
+    //     }
    
-        id = "studentId"+myClass.StudentId;                                                                 //This is to get the desired id of the option 
-        document.getElementById('studentListIndexPage').value = document.getElementById(id).value;
-        document.getElementById('studentListIndexPage').disabled = true;  
-        document.getElementById('toggle').disabled = true;
-        document.getElementById('dropdownIndexPage').value = myClass.Type;
-        document.getElementById('ClassDateIndexPage').value = myClass.ClassDate;
-        document.getElementById('clockIndexPage').value = myClass.ClassTime; 
-        document.getElementById('zoomLinkIndexPage').value = myClass.ZoomLink;
-        document.getElementById('hiddenClassId-Edit-IndexPage').value = myClass.ClassId;
-        document.getElementById('submitButtonIndexPage').name = 'EditClassesSubmitted'; 
+    //     id = "studentId"+myClass.StudentId;                                                                 //This is to get the desired id of the option 
+    //     document.getElementById('studentListIndexPage').value = document.getElementById(id).value;
+    //     document.getElementById('studentListIndexPage').disabled = true;  
+    //     document.getElementById('toggle').disabled = true;
+    //     document.getElementById('dropdownIndexPage').value = myClass.Type;
+    //     document.getElementById('ClassDateIndexPage').value = myClass.ClassDate;
+    //     document.getElementById('clockIndexPage').value = myClass.ClassTime; 
+    //     document.getElementById('zoomLinkIndexPage').value = myClass.ZoomLink;
+    //     document.getElementById('hiddenClassId-Edit-IndexPage').value = myClass.ClassId;
+    //     document.getElementById('submitButtonIndexPage').name = 'EditClassesSubmitted'; 
 
-         //get the studentId and the remaining credits that were hidden in the options
-         let studentId = document.getElementById('studentListIndexPage').value;
-         let remainingCredits = document.getElementById("credits"+studentId).value;
+    //      //get the studentId and the remaining credits that were hidden in the options
+    //      let studentId = document.getElementById('studentListIndexPage').value;
+    //      let remainingCredits = document.getElementById("credits"+studentId).value;
 
-         //This is to show the remaing credits of each student because if it is zero the 
-         //user will need to add a credit before booking the class
-         if(remainingCredits > 0){
-             document.getElementById('StdCreditAmount').value = remainingCredits;
-             document.getElementById('StdCreditAmount').placeholder = remainingCredits;           
-         }
+    //      //This is to show the remaing credits of each student because if it is zero the 
+    //      //user will need to add a credit before booking the class
+    //      if(remainingCredits > 0){
+    //          document.getElementById('StdCreditAmount').value = remainingCredits;
+    //          document.getElementById('StdCreditAmount').placeholder = remainingCredits;
+    //      }
          
-         else{
-             document.getElementById('StdCreditAmount').value = 0;
-             document.getElementById('StdCreditAmount').placeholder = 0;            
-         }   
+    //      else{
+    //          document.getElementById('StdCreditAmount').value = 0;
+    //          document.getElementById('StdCreditAmount').placeholder = 0;            
+    //      }   
               
-    }
+    // }
 
-    //Since these add/edit are used in the same page, I need to reset the values because
-    //when I use edit and I want to add a class right after, the add form shows up with
-    //the values set above, so we need to re-set this
-    else{         
+    // //Since these add/edit are used in the same page, I need to reset the values because
+    // //when I use edit and I want to add a class right after, the add form shows up with
+    // //the values set above, so we need to re-set this
+    // else{         
             document.getElementById('toggle').disabled = false;
             document.getElementById('studentListIndexPage').disabled = false;
-            document.getElementById('dropdownIndexPage').value = 'Online';    
+            // document.getElementById('dropdownIndexPage').value = 'Online';    
             document.getElementById('ClassDateIndexPage').value = today;
             document.getElementById('zoomLinkIndexPage').value = '';
             document.getElementById('hiddenClassId-Edit-IndexPage').value = '';
@@ -109,7 +109,7 @@ function openIndexPageClassForm(classId){
                 document.getElementById('StdCreditAmount').placeholder = 0;
                 document.getElementById('toggle').required = true;
             }
-        }
+        // }
 
         document.getElementById('classFormIndexPage').style.display = 'block';
 }

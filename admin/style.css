@@ -257,10 +257,6 @@ ol li {
     top: 110px;
     left: 141px;
 }
-  /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
-    display: block;    
-  } */
-
 
 /*Classes section */
 .flex-container-classesInfo{
@@ -515,6 +511,11 @@ button:hover {
     top: 45px;
   }
 
+  .indexPageClassForm{
+    position: relative;
+    top: 45px;
+  }
+
   .modal p{
     position: relative;
     top: 56px;
@@ -526,9 +527,49 @@ button:hover {
     box-sizing: border-box;
   }
 
+  /* Add styles to the form container */
+.form-container {
+  padding: 5px;
+  background-color: #fefefe;
+  border-radius: 25px;
+  margin: 5% auto 15% auto;
+} 
+
+.form-container.students{
+  width: 484px;
+  height: 869px;
+}
+
+.form-container.credits{
+  width: 376px;
+  height: 318px;
+}
+
+.form-container.class{
+  width: 423px;
+  height: 630px;
+}
+
+.form-container.delete{
+  width: 429px;
+  height: 248px;
+}
+
+.form-container.classIndexPage{
+  width: 437px;
+  height: 821px;
+}
+
   .txtField{
     position: relative;
     border-bottom: 2px solid #adadad;
+   
+  }
+
+  
+  .txtField2{
+    position: relative;
+    border-bottom: 2px solid  #2691d9;
    
   }
 
@@ -548,7 +589,23 @@ button:hover {
     width: 350px;
   }
 
-  .txtField input, .txtField select{
+  .txtField.classIndexPage, .txtField2.classIndexPage{
+    position: relative;
+    top: 46px;
+    left: -18px;
+    margin: 32px 50px;
+    width: 350px;
+  }
+
+  .txtField.classIndexPageSecondHalf{
+    position: relative;
+    top: 69px;
+    left: -18px;
+    margin: 32px 50px;
+    width: 350px;
+  }
+
+  .txtField input, .txtField select, .txtField2 input{
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -569,6 +626,13 @@ button:hover {
     transition: .5s;
   }
 
+  .txtField2 label{
+    position: absolute;
+    top: -13px;
+    left: 5px;
+    color: #2691d9;
+  }
+
   .txtField span::before{
     content: '';
     position: absolute;
@@ -579,6 +643,7 @@ button:hover {
     background: #2691d9;
     transition: .5s;
   }
+
 
   .txtField input:focus ~ label,
   .txtField input:valid ~ label, 
@@ -630,33 +695,7 @@ button:hover {
     transition: .5s;
   }
 
-/* Add styles to the form container */
-.form-container {
-    padding: 5px;
-    background-color: #fefefe;
-    border-radius: 25px;
-    margin: 5% auto 15% auto;
-  } 
 
-  .form-container.students{
-    width: 484px;
-    height: 869px;
-  }
-
-  .form-container.credits{
-    width: 376px;
-    height: 318px;
-  }
-
-  .form-container.class{
-    width: 423px;
-    height: 630px;
-  }
-
-  .form-container.delete{
-    width: 429px;
-    height: 248px;
-  }
 
   .buttons-container{
     display: flex;
@@ -681,6 +720,11 @@ button:hover {
    
   }
 
+  .buttons-container.classIndexPageSecondHalf{
+    margin: 91px 25px;
+  }
+
+  
   /* Center the image and position the close button */
   .imgcontainer {
     text-align: center;
@@ -719,11 +763,38 @@ button:hover {
     left: 33px;
   }
 
+  .toggle.classIndexPageSecondHalf{
+    position: relative;
+    top: 86px;
+    left: 33px;
+  }
+  
+
+  .toggle.credit{
+    position: relative;
+    top: 68px;
+    left: 33px;
+  }
+
   .toggleHeading{
     position: relative;
     top: 12px;
     left: -31px;
     color:#606264;
+  }
+
+  .toggleheadingClassIndexPage{
+    position: relative;
+    top: 44px;
+    left: -31px;
+    color: #606264;
+  }
+
+  .creditLabel{
+    position: relative;
+    top: 24px;
+    left: -31px;
+    color: #606264;
   }
 
   .toggle:before {
@@ -756,40 +827,6 @@ button:hover {
   .toggle:checked:before {
     left: 32px;
   }
-
-  /* input fields */
-
-/* .container input[type="date" i], .container #clock, .container #clockIndexPage,
- .container #dropdown, .container #dropdownIndexPage, .container #studentListIndexPage {
-    width: 400px;
-    padding: 10px 0px;
-    margin: 2px 0 16px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    background: #f1f1f1;
-}  */
-
-
-  /* When the inputs get focus, do something */
-    
-  
-/* .container input[type="date" i]:focus, .container #clock:focus, 
-  .container #clockIndexPage:focus, .container #dropdown:focus, .container #dropdownIndexPage:focus, 
-  .container #studentListIndexPage:focus {
-    background-color: #ddd;
-    outline: none;
-}       
-
-
- .submit {
-    background-color: #04AA6D;   
-  }  
-
-
-  .cancel {
-    background-color: #f44336;
-  } */
   
   /* Add Zoom Animation */
   .animate {

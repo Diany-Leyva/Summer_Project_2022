@@ -3,7 +3,7 @@
 // *********************************************************************************************************************************
 
 function echoHeader($title){
-    echo "<html>                                                                                                      
+    echo "<!DOCTYPE html>                                                                                                    
     <head>              
         <title>$title</title>  
         <link href='style.css' rel='stylesheet'>                                                                        

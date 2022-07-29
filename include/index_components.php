@@ -32,7 +32,7 @@ function echoDayViewCalendar(){
                             <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
                             $tempTop = $currentTop + 30;
                         echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
-                        </div>";                      
+                        </div>";                     
                                                  
                                 
                     $currentTop+=$topPosition;                  
@@ -153,7 +153,7 @@ function echoNextClassSection($classesToday){
     }
 
     $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
-    $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='EditButton onClassSession zoom' onclick=\"openIndexPageClassForm($id)\">✏️</button>";
+    $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm($id)\">✏️</button>";
          
     echo"        
         <div id='nextClassInfo' class='next-class-info'> 
@@ -183,7 +183,7 @@ function echoNextClassSection($classesToday){
                         <span id='showDeleteButton'> $showDeleteButton </span>
                         <span id='showEditButton'> $showEditButton </span>
                         <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
-                        <input type='hidden' id='hiddenClass-Edit-IndexPage' value='$classString'>             
+                        <input type='hidden' id='hiddenClass-Edit' value='$classString'>             
                     </div>
                 </div>      
             </div>";

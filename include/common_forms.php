@@ -168,74 +168,94 @@ function classFormIndexPage($students, $admin){
     $defaultZoomLink = htmlspecialchars($admin['DefaultZoomLink']);                                 //There was a syntax issue when placing this in the value so 
                                                                                                     //I stored it in a variable for now and it works 
     echo"          
-        <div id='classFormIndexPage' class='modal'>
-            <form action='' method='post' class='form-container animate'>  
-                <header class='container'>
-                        Book Class                
-                </header>
-                <div class='container input-container'>
-                <label for='listStudentId'><b>Students</b></label>
-                <select name='listStudentId' id='studentListIndexPage'>";         
-                    foreach($students as $key=>$student){
-                        $credit = calcStudentRemainingCredits($key);                         
-                        echo"<option id='studentId$key' value=$key>".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</option>
-                            <option hidden id='credits$key' value='$credit'></option>";                     
-                    } 
-                echo"     
-                </select>
+    <div id='classFormIndexPage' class='modal'>
+    <form action='' method='post' class='form-container classIndexPage animate'>  
+    <h1 class='indexPageClassForm'>Class</h1>                 
 
-                <label for='StdCreditAmount'><b>Remaining credits</b></label>
+    <div class='txtField classIndexPage'> 
+    <select name='listStudentId' id='studentListIndexPage'>";         
+        foreach($students as $key=>$student){
+            $credit = calcStudentRemainingCredits($key);                         
+            echo"<option id='studentId$key' value=$key>".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</option>
+                <option hidden id='credits$key' value='$credit'></option>";                     
+        } 
+        echo"     
+    </select>
+             <span></span>        
+                    <label for='listStudentId'>Students' List</label>
+                </div>
+
+                <div class='txtField2 classIndexPage'>
                 <input type='text' name='StdCreditAmount' id='StdCreditAmount' value='' readonly>
-                
-                <label><b>Add one credit</b></label>   
-                <input class='toggle' type='checkbox' id='toggle' name='StdToggle' required> 
-                <br>
-              
-                <label for='ctype'><b>Class Type</b></label>
-                <select id='dropdownIndexPage' name='ctype'>                   
-                    <option value='Online'>Online</option>
-                    <option value='In-Person'>In-Person</option>                  
-                </select>   
-
-                <label for='classDate'>Class Date</label>
-                <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
-
-                <label for='classTime'>Class Time</label>
-                <select name='classTime' id='clockIndexPage'>";         
-                         
-                    for($i = 8; $i < 24; $i++){                     
-
-                        if($i < 10){
-                            $hour = "0".$i.":00";
-                            $min = "0".$i.":30";
-                        }
-
-                        else{
-                            $hour = $i.":00";
-                            $min = $i.":30";
-                        }                        
-                                        
-                        echo"<option id=$hour value=$hour>$hour</option>";
-
-                        if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
-                            echo"<option id=$min value=$min>$min</option>";
-                        }
-                    }
-                    echo"
-                </select>        
-
-                <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' id='zoomLinkIndexPage' placeholder='Link' name='czoomLink' required>
-                <label><b>Use default link</b></label>   
-                <input class='toggle' type='checkbox' id='ZoomLinktoggleHomePage' name='classToggle' required> 
-                <input type='hidden' id='hiddendefaultZoomLinkHomePage' value='$defaultZoomLink'></input>                
+                <label for='StdCreditAmount'>Remaining credits</label>
                 </div>        
-                                
-                <div class='buttons-container'>
-                    <button type='submit' id='submitButtonIndexPage' class='submit' name='AddClassesSubmitted'>Book</button>
-                    <button type='button' class='cancel' onclick='closeIndexPageClassForm()'>Cancel</button>  
-                    <input type='hidden' id='hiddenClassId-Edit-IndexPage' name='classId' value=''>                                 
-                </div>      
+                          
+                <input class='toggle credit' type='checkbox' id='toggle' name='StdToggle' required> 
+                <label class='creditLabel'>Add one credit</label>   
+
+
+                <div class='txtField classIndexPageSecondHalf'> 
+                <select id='dropdownIndexPage' name='ctype' required>
+                <option hidden></option>                              
+                <option value='Online'>Online</option>
+                <option value='In-Person'>In-Person</option>                  
+            </select> 
+            <span></span>        
+            <label for='ctype'>Class Type</label>
+        </div>
+
+        <div class='txtField classIndexPageSecondHalf'>          
+        <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
+        <span></span>
+        <label for='classDate'>Class Date</label>
+        </div>
+
+        <div class='txtField classIndexPageSecondHalf'>  
+        <select name='classTime' id='clockIndexPage' required>         
+                <option hidden></option>";  
+            for($i = 8; $i < 24; $i++){
+                //the format I have been using is with two digist so I'm just adding a 0 so, for instance,
+                //we get 08:00 instead of 8:00
+                if($i < 10){
+                    $hour = "0".$i.":00";
+                    $min = "0".$i.":30";
+                }
+
+                else{
+                    $hour = $i.":00";
+                    $min = $i.":30";
+                }                      
+           
+                echo"<option id=$hour value=$hour>$hour</option>";
+
+                if($i < 23){                                                                  //because I don't want them to be able to schedule pass 23:00 
+                    echo"<option id=$min value=$min>$min</option>";
+                }
+            }
+            echo"
+        </select>
+        <span></span> 
+        <label for='classTime'>Class Time</label>
+        </div>     
+       
+        <div class='txtField classIndexPageSecondHalf'>
+        <input type='text' id='zoomLinkIndexPage' name='czoomLink' required>  
+        <span></span>
+        <label for='czoomLink'>Zoom Link</label>
+        </div>                            
+              
+        <input class='toggle classIndexPageSecondHalf' type='checkbox' id='ZoomLinktoggleHomePage' name='classToggle' required> 
+        <input type='hidden' id='hiddendefaultZoomLinkHomePage' value='$defaultZoomLink'></input>                         
+        <label class='toggleheadingClassIndexPage'>Default Link</label>   
+               
+        <div class='buttons-container classIndexPageSecondHalf'>
+        <button type='submit' id='submitButtonIndexPage' class='submit' name='AddClassesSubmitted'>Book</button>
+        <button type='button' class='cancel' onclick='closeIndexPageClassForm()'>Cancel</button>  
+        <input type='hidden' id='hiddenClassId-Edit-IndexPage' name='classId' value=''>                                 
+    </div>           
+                    
+            
+            
             </form>   
         </div>         
 ";

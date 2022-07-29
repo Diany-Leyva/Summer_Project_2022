@@ -79,6 +79,7 @@ echoDayViewCalendar();
 addEvents($classesToday);
 addCurrentTime();
 classFormIndexPage($allStudents, getAdmin());
+classForm(getAdmin());
 deleteClassForm();
 
 $jsFiles = "
