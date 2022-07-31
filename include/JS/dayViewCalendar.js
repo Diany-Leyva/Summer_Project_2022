@@ -44,12 +44,12 @@ for (let i = 0; i < timeArea.length; i++) {
             if (items[i].innerHTML != hourId){
                 if(items[i].innerHTML != halfHourId){              
                     clock.options[i] = null;
-                    i--;                                            //Need to decrease the counter because on option was remove            
+                    i--;                                                                        //Need to decrease the counter because on option was remove            
                 }                
             }
         }     
 
-    openIndexPageClassForm('');
+    openIndexPageClassForm();
 });
 }
 

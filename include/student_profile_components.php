@@ -151,42 +151,42 @@ function echoPrivateNotes($notes, $studentId){
 // ********************************************************************************************************************************
 
 function echoPublicNotes($notes, $studentId){  
-    $message; 
+    $message;
 
     echo"
-        <div>
-            <div class='headingBackgraound publNotes'>
-                <p class='publNotesHeading'>Public Notes</p>
-            </div>
+    <div>
+        <div class='headingBackgraound publNotes'>
+            <p class='publNotesHeading'>Public Notes</p>
+        </div>
     ";
-            (!empty($notes))? $message = $notes : $message = 'No notes';  
+        (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"
         <form onsubmit='return false;'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
             <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
-            </form>
-                </div>";
+        </form>
+    </div>";
 }
 
 // ********************************************************************************************************************************
 
 function echoTotalClassesSection($totalClasses){
     echo"
-        <div class='flex-container-totalClassesSection'>
-            <div class='flex-item-total'>
-                <p class='totalSectionHeader'>Month</p>         
-                <div class='profilePicture'>
-                    <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
-                </div>
-            </div>
-        
-            <div class='flex-item-total'>
-                <p class='totalSectionHeader'>Year</p>  
-                <div class='profilePicture'>
-                    <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
-                </div>
+    <div class='flex-container-totalClassesSection'>
+        <div class='flex-item-total'>
+            <p class='totalSectionHeader'>Month</p>         
+            <div class='profilePicture'>
+                <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
             </div>
         </div>
+        
+        <div class='flex-item-total'>
+            <p class='totalSectionHeader'>Year</p>  
+            <div class='profilePicture'>
+                <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
+            </div>
+        </div>
+    </div>
 ";
 }
 

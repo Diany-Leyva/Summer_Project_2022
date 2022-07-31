@@ -56,7 +56,7 @@ function savePublicNotes(studentId){
 
 document.addEventListener('input', function (event) {
 
-		// Only run for #toggle changed
+	// Only run for #toggle changed
     if (event.target.id === 'ZoomLinktoggle'){
         
         if(document.getElementById('ZoomLinktoggle').checked == true){

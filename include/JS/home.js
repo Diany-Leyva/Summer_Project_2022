@@ -5,37 +5,32 @@
 
 function openIndexPageClassForm(){  
 
-    let today = getToday();   
+    let today = getToday();
     
+    document.getElementById('ClassDateIndexPage').value = today;
+    document.getElementById('zoomLinkIndexPage').value = '';
+    document.getElementById('hiddenClassId-Edit-IndexPage').value = '';
+    document.getElementById('submitButtonIndexPage').name = 'AddClassesSubmitted';  
 
-            // document.getElementById('toggle').disabled = false;
-            // document.getElementById('studentListIndexPage').disabled = false;
-            // document.getElementById('dropdownIndexPage').value = 'Online';    
-            document.getElementById('ClassDateIndexPage').value = today;
-            document.getElementById('zoomLinkIndexPage').value = '';
-            document.getElementById('hiddenClassId-Edit-IndexPage').value = '';
-            document.getElementById('submitButtonIndexPage').name = 'AddClassesSubmitted';  
+    //get the studentId and the remaining credits that were hidden in the options
+    let studentId = document.getElementById('studentListIndexPage').value;
+    let remainingCredits = document.getElementById("credits"+studentId).value;
 
-            //get the studentId and the remaining credits that were hidden in the options
-            let studentId = document.getElementById('studentListIndexPage').value;
-            let remainingCredits = document.getElementById("credits"+studentId).value;
-
-            //This is to show the remaing credits of each student because if it is zero the 
-            //user will need to add a credit before booking the class
-            if(remainingCredits > 0){
-                document.getElementById('StdCreditAmount').value = remainingCredits;
-                document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
-                document.getElementById('toggle').required = false;
-            }
+    //This is to show the remaing credits of each student because if it is zero the 
+    //user will need to add a credit before booking the class
+    if(remainingCredits > 0){
+        document.getElementById('StdCreditAmount').value = remainingCredits;
+        document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
+        document.getElementById('toggle').required = false;
+    }
             
-            else{
-                document.getElementById('StdCreditAmount').value = 0;
-                document.getElementById('StdCreditAmount').placeholder = 0;
-                document.getElementById('toggle').required = true;
-            }
-        // }
-
-        document.getElementById('classFormIndexPage').style.display = 'block';
+    else{
+        document.getElementById('StdCreditAmount').value = 0;
+        document.getElementById('StdCreditAmount').placeholder = 0;
+        document.getElementById('toggle').required = true;
+    }
+      
+    document.getElementById('classFormIndexPage').style.display = 'block'; 
 }
 
 // ********************************************************************************************************************************
@@ -68,11 +63,6 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     document.getElementById('classInfoZoom').href = Zoom;
     document.getElementById('nextClassInfo').className = 'next-class-info nextClassInfoChanged';
     document.getElementById('horizontalMenu').scrollIntoView({behavior: 'smooth'});                        //to jump to that id in screen
-    
-    //Here I need to pass the array from js to php, and I spent more time that what I planned trying to figure that out, so I decided to 
-    //pass a string instead and then create the object I need by manipulation the string. I used const just to emphasy that it should not be changed here  
-    // const classArray = "ClassId:"+classId+",Type:"+Type+",ClassDate:"+StartDate+",ClassTime:"+StartTime+",ZoomLink:"+Zoom+",StudentId:"+studentId;
-    // document.getElementById('hiddenClass-Edit-IndexPage').value = classArray;    
 }
 
     // ********************************************************************************************************************************
@@ -84,31 +74,28 @@ document.addEventListener('input', function (event) {
 	// Only run for #studentListIndexPage select (this is the name selection in the class form on home page)
     if (event.target.id === 'studentListIndexPage'){
 
-    //uncheck the toggle, in case was checked previusly
-    document.getElementById('toggle').checked = false;
-    document.getElementById('ZoomLinktoggleHomePage').checked = false;
-    document.getElementById('zoomLinkIndexPage').value = '';
-    document.getElementById('zoomLinkIndexPage').placeholder = '';
+        //uncheck the toggle, in case was checked previusly
+        document.getElementById('toggle').checked = false;
+        document.getElementById('ZoomLinktoggleHomePage').checked = false;
+        document.getElementById('zoomLinkIndexPage').value = '';
+        document.getElementById('zoomLinkIndexPage').placeholder = '';
 
-    //update the remaing credits
-    let studentId = document.getElementById('studentListIndexPage').value;
-    let remainingCredits = document.getElementById("credits"+studentId).value;
-  
-    if(remainingCredits > 0){
-        document.getElementById('StdCreditAmount').value = remainingCredits;
-        document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
-        document.getElementById('toggle').required = false;
-    }
+        //update the remaing credits
+        let studentId = document.getElementById('studentListIndexPage').value;
+        let remainingCredits = document.getElementById("credits"+studentId).value;
+    
+        if(remainingCredits > 0){
+            document.getElementById('StdCreditAmount').value = remainingCredits;
+            document.getElementById('StdCreditAmount').placeholder = remainingCredits; 
+            document.getElementById('toggle').required = false;
+        }
 
-    else{
-        document.getElementById('StdCreditAmount').value = 0;
-        document.getElementById('StdCreditAmount').placeholder = 0;
-        document.getElementById('toggle').required = true;
+        else{
+            document.getElementById('StdCreditAmount').value = 0;
+            document.getElementById('StdCreditAmount').placeholder = 0;
+            document.getElementById('toggle').required = true;
+        }
     }
-  
-    //Update the element with the remaining credits
-    console.log(document.getElementById('StdCreditAmount').required);
-}
 
 	// Only run for #toggle changed
     if (event.target.id === 'toggle'){
@@ -149,25 +136,22 @@ document.addEventListener('input', function (event) {
         }      
     }  
     
-    	// Only run for #toggle changed
-        if (event.target.id === 'ZoomLinktoggle'){
+    // Only run for #toggle changed
+    if (event.target.id === 'ZoomLinktoggle'){
         
-            if(document.getElementById('ZoomLinktoggle').checked == true){
-                let defaultLink = document.getElementById('hiddendefaultZoomLink').value;
-                document.getElementById('zoomLink').value = defaultLink;
-                document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
-                document.getElementById('toggleLinkHeading').style.color = '#2691d9';         
-                
-            }
-    
-            else{           
-                document.getElementById('zoomLink').value = '';
-                document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
-                document.getElementById('toggleLinkHeading').style.color = '#606264';         
-    
-            }      
+        if(document.getElementById('ZoomLinktoggle').checked == true){
+            let defaultLink = document.getElementById('hiddendefaultZoomLink').value;
+            document.getElementById('zoomLink').value = defaultLink;
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+            document.getElementById('toggleLinkHeading').style.color = '#2691d9';         
         }
-
+    
+        else{           
+            document.getElementById('zoomLink').value = '';
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+            document.getElementById('toggleLinkHeading').style.color = '#606264';         
+        }      
+    }
 });
 
 // ********************************************************************************************************************************
@@ -189,8 +173,7 @@ function closeIndexPageClassForm() {
 
     //I'm reloading the page because I changed a lot of option within the class form (the time to show in the clock
     //for instance) so if I reload the page I get all the values back to when the form was created 
-    // location.reload();  
-    // exit();                                                     
+    location.reload();
 }
 
 // ******************************************************************************************************************************** 
@@ -209,12 +192,18 @@ window.onclick = function(event) {
     
     if (event.target == classFormIndexPage) {
         classFormIndexPage.style.display = 'none';
+        //I'm reloading the page because I changed a lot of option within the class form (the time to show in the clock
+        //for instance) so if I reload the page I get all the values back to when the form was created
+        //I might handle this differently in the future of course. Instead of reloading the page, I might
+        //do AJAX request to call a function in the endpoint that returns the defauklt clock options
+        //and then I asign the option in the front end instead of reloading the page, or I can also just display all the 
+        //clok option instead of just the one where the user clocked. Will work on this later 
+        location.reload();  
     }
 
     if (event.target == deleteClassModal) {
         deleteClassModal.style.display = 'none';
-    }
- 
+    } 
 }
 
 // ********************************************************************************************************************************

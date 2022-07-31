@@ -18,8 +18,7 @@ function checkIfAdminLoginIsValid($email, $password){
   //If the email is in the array then check for the correct passwrod
    if(in_array($email, array_column($admins, 'Email'))){ 
 
-      foreach($admins as $adminInfo){               
-        
+      foreach($admins as $adminInfo){             
           if($adminInfo['Email'] == $email &&
           $adminInfo['Password'] == $password){
 
@@ -28,8 +27,7 @@ function checkIfAdminLoginIsValid($email, $password){
           break;
         }    
           
-        else if($adminInfo['Password'] != $password){
-          
+        else if($adminInfo['Password'] != $password){          
           $checkAdmin = 'Incorrect Password';
         }
       }  
@@ -49,30 +47,32 @@ function loginForm(){
     
     echo"
     <div id='loginForm' class='center'>
-      <h1>Login</h1>
-      <form onsubmit='return false;'>
-        <div class='txtField'>
-          <input type='email' name='userEmail' id='userEmail' required>          
-          <span></span>
-          <label for='userEmail'>Email</label>
-        </div>
-        <p class='emailErr' id='emailErr'>Error message goes here</p>
+        <h1>Login</h1>
+        <form onsubmit='return false;'>
+            <div class='txtField'>
+                <input type='email' name='userEmail' id='userEmail' required>          
+                <span></span>
+                <label for='userEmail'>Email</label>
+            </div>
+            <p class='emailErr' id='emailErr'>Error message goes here</p>
 
-        <div class='txtField'>
-          <input type='password' name='userPassword' id='userPassw' required>
-          <span></span>
-          <label for='userPassword'>Password</label>
-        </div>
-        <p class='passwErr' id='passwErr'>Error message goes here</p>
+            <div class='txtField'>
+                <input type='password' name='userPassword' id='userPassw' required>
+                <span></span>
+                <label for='userPassword'>Password</label>
+            </div>
+
+            <p class='passwErr' id='passwErr'>Error message goes here</p>
        
-        <div class='pass'>Forgot Password?</div>
-        <input type='submit' value='Login' name='loginSubmitted'>
-        <div class='signup_link'>
-          Not a user? <a href='#'>Signup</a>
-        </div>         
-      </form>
+            <div class='pass'>Forgot Password?</div>
+            <input type='submit' value='Login' name='loginSubmitted'>
+
+            <div class='signup_link'>
+              Not a user? <a href='#'>Signup</a>
+            </div>         
+        </form>
     </div>
-    ";     
+  ";     
 }
 
 // ********************************************************************************************************************************

@@ -8,20 +8,16 @@ document.addEventListener('input', function (event) {
     if (event.target.id === 'userEmail'){
 
         if(document.getElementById('emailErr').style.visibility == 'visible'){
-            document.getElementById('emailErr').style.visibility = 'hidden';
-            // location.reload(); 
+            document.getElementById('emailErr').style.visibility = 'hidden';          
         }        
     }
 
     if (event.target.id === 'userPassw'){
               
         if(document.getElementById('passwErr').style.visibility == 'visible'){
-            document.getElementById('passwErr').style.visibility = 'hidden';
-            // location.reload(); 
-        }        
-       
+            document.getElementById('passwErr').style.visibility = 'hidden';           
+        }  
     }
-
 });
 
 // ********************************************************************************************************************************

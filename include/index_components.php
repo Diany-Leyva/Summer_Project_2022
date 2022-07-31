@@ -9,35 +9,30 @@ function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
         <h2>Daily Schedule</h2>
-        <div class='dayViewContainer'> 
-     
+        <div class='dayViewContainer'>     
             <h3><center> $day</h3>";
-                $topPosition = 60;
-                $currentTop = 60;            
+            $topPosition = 60;
+            $currentTop = 60;            
                                                                                         
-                for($i = 8; $i < 24; $i++){
-                
-                    if($i < 10){
-                        $hour = "0".$i.":00";
-                        $min = "0".$i.":30";
-                    }
+            for($i = 8; $i < 24; $i++){                
+                if($i < 10){
+                    $hour = "0".$i.":00";
+                    $min = "0".$i.":30";
+                }
 
-                    else{
-                        $hour = $i.":00";
-                        $min = $i.":30";
-                    }    
+                else{
+                    $hour = $i.":00";
+                    $min = $i.":30";
+                }    
                     
-                    echo"
-                        <div id='timeArea$i'>
-                            <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
-                            $tempTop = $currentTop + 30;
-                        echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
-                        </div>";                     
-                                                 
-                                
-                    $currentTop+=$topPosition;                  
-                } 
-                     
+            echo"
+            <div id='timeArea$i'>
+                <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
+                    $tempTop = $currentTop + 30;
+                echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
+                </div>";                     
+                $currentTop+=$topPosition;                  
+            }                   
 }
 
 // ********************************************************************************************************************************
@@ -46,8 +41,7 @@ function addEvents($classesToday){
     $events = [];                                                                         //Array to hold the start/end of every class today
      
     $i = 0;                                                                               
-    foreach($classesToday as $class){
-      
+    foreach($classesToday as $class){      
         $hour = formatDate(htmlspecialchars($class['StartDate']), 'H');            
         $min = formatDate(htmlspecialchars($class['StartDate']), 'i');  
         $halfhour = 0;
@@ -78,7 +72,7 @@ function addEvents($classesToday){
   
     //Hidding this array to then access it from js
     echo"  
-        <div id='timeLine'></div> 
+    <div id='timeLine'></div> 
         <div id='events'></div>
         <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">";      
 }  
@@ -104,7 +98,7 @@ function addCurrentTime(){
         $timeArray[0]['currentTime'] =  $currentTime; 
     }   
     
-    echo" <input type='hidden' id='hiddenCurrentTime' value=";echo json_encode($timeArray);echo">
+    echo"<input type='hidden' id='hiddenCurrentTime' value=";echo json_encode($timeArray);echo">
     </div>";
 }
 
@@ -134,13 +128,8 @@ function echoNextClassSection($classesToday){
             $zoom = htmlspecialchars($nextClass['ZoomLink']);
             $hour = '1 hour';     
             $class = 'enableAnchor';
-            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"; 
-            
-             //This time instead that hidding an array and using jason_encode to pass it to js I did it by passing an string and then I turn it into an array. Which way should be better?
-            // $date = formatDate(htmlspecialchars($nextClass['StartDate']), 'Y-m-d');
-            // $time = formatDate(htmlspecialchars($nextClass['StartDate']), 'H:i');  
-        
-            // $classString = "ClassId:$id,Type:".htmlspecialchars($nextClass['Type']).",ClassDate:$date,ClassTime:$time,ZoomLink:$zoom,StudentId:".htmlspecialchars($nextClass['StudentId']); 
+            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"
+          
         }
     }  
     
@@ -148,8 +137,7 @@ function echoNextClassSection($classesToday){
         $heading = 'No pending <br>Classes';
         $id = $name = $classDate = $email = $lichess = $zoom = $hour = '';
         $class = 'disableAnchor';
-        $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";
-        // $classString = '';
+        $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";   
     }
 
     $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
@@ -159,34 +147,33 @@ function echoNextClassSection($classesToday){
         <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>     
                 <p id='classInfoHeading' class='nextClassheader'>$heading</p>
-                    <ol>
-                        <li id='classInfoName'>$name</li>
-                        <li id='classInfoDate' value='$classDate'>$classDate</li>                    
-                        <li id='classInfoDuration'>$hour</li>                               
-                    </ol>
+                <ol>
+                    <li id='classInfoName'>$name</li>
+                    <li id='classInfoDate' value='$classDate'>$classDate</li>                    
+                    <li id='classInfoDuration'>$hour</li>                               
+                </ol>
 
-                    <div class='nextclass-buttons-container'>
-                        <div>
-                            <a id='classInfoEmail' class='$class' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
-                            <p>Message</p>
-                        </div>
-                        <div>
-                            <a id='classInfoLichess' class='$class' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
-                            <p>Lichess</p>
-                        </div>
-                        <div>
-                            <a id='classInfoZoom' class='$class' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
-                            <p>Zoom</p>
-                        </div>
+                <div class='nextclass-buttons-container'>
+                    <div>
+                        <a id='classInfoEmail' class='$class' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                        <p>Message</p>
                     </div>
-                    <div class='nextClassPicturePosition'>
-                        <span id='showDeleteButton'> $showDeleteButton </span>
-                        <span id='showEditButton'> $showEditButton </span>
-                        <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>                       
+                    <div>
+                        <a id='classInfoLichess' class='$class' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                        <p>Lichess</p>
                     </div>
-                </div>      
-            </div>";
-            
+                    <div>
+                        <a id='classInfoZoom' class='$class' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                        <p>Zoom</p>
+                    </div>
+                </div>
+                <div class='nextClassPicturePosition'>
+                    <span id='showDeleteButton'> $showDeleteButton </span>
+                    <span id='showEditButton'> $showEditButton </span>
+                    <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>                       
+                </div>
+            </div>      
+        </div>";            
 }
 
 // ********************************************************************************************************************************

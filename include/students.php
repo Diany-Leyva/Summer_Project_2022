@@ -136,8 +136,7 @@ function calcStudentRemainingCredits($studentId){
 
         if($classesAmount){
             $remainingCredits -= $classesAmount['ClassesAmount'];
-        }      
-        
+        }   
     }  
     
     return $remainingCredits; 

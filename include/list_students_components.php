@@ -68,7 +68,6 @@ function echoStudentTable($students){
         echo"
             <td>$daysToNextCLass</td> 
             <td class=''><button class='deleteButton zoom' onclick='openDeleteStudent($studentId)'>🗑</button></td>     
-
         </tr>
 ";     
 } 

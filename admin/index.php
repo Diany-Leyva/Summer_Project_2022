@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //If the toggle was on add one credit to the student 
         if(isset($_REQUEST['StdToggle'])){
             insertCredit(1, $studentId);
-        }       
+        }     
+          
         //when a class is submitted so far I'm not letting the students to be able to book a class
         //if they haven't paid. it happened in the past that when Yuni did not charged in advance
         //some people would not paid after the lesson, so unless is a student that has been with
