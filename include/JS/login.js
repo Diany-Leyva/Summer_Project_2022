@@ -5,12 +5,21 @@
 document.addEventListener('input', function (event) {
 
     // to hide the error message once the user starts typing
-    if (event.target.id === 'userEmailId'){
-        document.getElementById('emailErr').style.visibility = 'hidden';
+    if (event.target.id === 'userEmail'){
+
+        if(document.getElementById('emailErr').style.visibility == 'visible'){
+            document.getElementById('emailErr').style.visibility = 'hidden';
+            // location.reload(); 
+        }        
     }
 
-    if (event.target.id === 'userPasswId'){
-               document.getElementById('passwErr').style.visibility = 'hidden';
+    if (event.target.id === 'userPassw'){
+              
+        if(document.getElementById('passwErr').style.visibility == 'visible'){
+            document.getElementById('passwErr').style.visibility = 'hidden';
+            // location.reload(); 
+        }        
+       
     }
 
 });
@@ -20,29 +29,48 @@ document.addEventListener('input', function (event) {
 // *********************************************************************************************************************************
 //see if I can do AJAX request from here?
 
-document.getElementById('loginFormId').addEventListener('submit', function (event) {
+document.getElementById('loginForm').addEventListener('submit', function (event) {
 
-    let hiddenAdminInfoArray = document.getElementById('hiddenAdminInfoArray').value;
-    const adminInfo = JSON.parse(hiddenAdminInfoArray);
+    let input = {       
+        Email: document.getElementById('userEmail').value,
+        Password: document.getElementById('userPassw').value
+    };
 
-    //here I get the email and passwords the user entered and I check if it is correct, if is not, I
-    //show the correct error messages
-    //I know there will only be one admin now so I won't loop
-    if(document.getElementById('userEmailId').value != adminInfo.Email){
-        document.getElementById('emailErr').innerHTML = "The email you've entered is incorrect.";
-        document.getElementById('emailErr').style.visibility = 'visible';
-        document.getElementById('userEmailId').focus();     
-        event.preventDefault();      
-    }
+    let admin = new FormData();
+    admin.append( "CheckAdmin", JSON.stringify(input)); 
 
-    else if(document.getElementById('userPasswId').value != adminInfo.Password){
-        document.getElementById('passwErr').innerHTML = "The password you've entered is incorrect.";
-        document.getElementById('passwErr').style.visibility = 'visible';
-        document.getElementById('userPasswId').focus();
-        document.getElementById('userPasswId').value = '';      
-        event.preventDefault();   
-    }   
-    
+    //So here I'm sending a checkAdmin object with the input information to the endpoint so the 
+    //admin information can be checked in the backend. Then a flag is returned so I can handle 
+    //here what to do when email or passwords are wrong, and if they were correct I redirect 
+    //the page. For this to work I had to prevent the default submision (onsubmit='return false')
+    //it looks like adding event.preventdefault() also worked here for that. And, also in the back end
+    //if right email/password combination was entered a SESSION was created 
+    fetch("/ajax/login_admin.php", {
+    method: 'post',
+    body: admin
+    })
+    .then(response => response.text())
+    .then(data => {    
+
+        if(data == 'Incorrect Email'){
+            document.getElementById('emailErr').innerHTML = "The email you've entered is incorrect.";
+            document.getElementById('emailErr').style.visibility = 'visible';
+            document.getElementById('userEmail').focus();    
+        }
+
+        else if(data == 'Incorrect Password'){
+            document.getElementById('passwErr').innerHTML = "The password you've entered is incorrect.";
+            document.getElementById('passwErr').style.visibility = 'visible';
+            document.getElementById('userPassw').focus();
+            document.getElementById('userPassw').value = '';
+        }  
+        
+        else{                
+            window.location.href = "http://localhost/admin/index.php";      
+        }
+    })    
+        
 }), false;
 
 // ********************************************************************************************************************************
+

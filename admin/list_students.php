@@ -1,6 +1,8 @@
 <?php
 include('../include/initialize.php');
 checkAdmin();
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
 
 //All my select queries return an indexed array, but I'm updating my functions to work with 
 //arrays indexed by PK. So, I will call the getIndexByPKArray() that updates the array to be 
@@ -33,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 echoHeader('Students');
-echoPageLayout('My Students', "You have ".sizeof($allStudents)." students", getAdmin());
+echoPageLayout('My Students', "You have ".sizeof($allStudents)." students", $admin);
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 

@@ -49,17 +49,17 @@ function getDayDifference($futureDate, $today){
 }
 
 // *********************************************************************************************************************************
-//This function takes an indexed arrayWithDuplicates and its primary key name, and returns an 
-//arrayWithDuplicates that is indexed by the primary key. To make it more generic I passed the 
-//primary key name as parameter so it can be used for any arrayWithDuplicates. 
+//This function takes an indexed array and its primary key name, and returns an 
+//array that is indexed by the primary key. To make it more generic I passed the 
+//primary key name as parameter so it can be used for any array. 
 // *********************************************************************************************************************************
 
-function getIndexByPKArray($arrayWithDuplicatesToUpdate, $primaryKey){
+function getIndexByPKArray($arrayToUpdate, $primaryKey){
 
     $newArray = [];
   
-    foreach ($arrayWithDuplicatesToUpdate as $arrayWithDuplicates){
-        $newArray[$arrayWithDuplicates[$primaryKey]] = $arrayWithDuplicates;
+    foreach ($arrayToUpdate as $array){
+        $newArray[$array[$primaryKey]] = $array;
     } 
 
     return $newArray;
@@ -78,7 +78,7 @@ function compareDate($firstElement, $secondElement) {
 
 function checkAdmin(){
 
-    if(!isset($_SESSION['IsAdmin'])){       
+    if(!isset($_SESSION['AdminId'])){       
         header('location:login.php');
 		exit();
     }    
@@ -89,7 +89,7 @@ function checkAdmin(){
 // *********************************************************************************************************************************
 
 function checkLogout(){
-    if(isset($_SESSION['IsAdmin'])) { 
+    if(isset($_SESSION['AdminId'])) { 
         session_destroy();
         header('Location:login.php');
         exit;

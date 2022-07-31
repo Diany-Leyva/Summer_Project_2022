@@ -3,89 +3,13 @@
 //from here and I use it to display the values in the class form to edit a class
 // ********************************************************************************************************************************
 
-function openIndexPageClassForm(classId){  
+function openIndexPageClassForm(){  
 
-    let today = document.getElementById('ClassDateIndexPage').value;
+    let today = getToday();   
+    
 
-    // //when editing a class
-    // if(classId){
- 
-    //     //When I used the class form to edit in student profile, I passed an array from php to js using JSON_encode and then parsing 
-    //     //the text to object in js. But in the home page, the next class (array) goes from php to js to be displayed in the next-class block,
-    //     //but then when you click a class in the day calendar I use js to display that class in the next-class block by calling the displayClassInfo
-    //     //function. But there I have to update the hidden class with the one I'm displaying to be able to delete/update that class there. I did so
-    //     //hidding the array as string.. I couldn't pass an array from js to php, so I passed the array as string.
-    //     //So now here I'm creating the object I wanted to pass in the first place. 
-        
-    //     let hiddenClassString = document.getElementById('hiddenClass-Edit-IndexPage').value; 
-    //     let hiddenClassIndexedArray = hiddenClassString.split(',');
-    //     let myClass = {
-    //         ClassId: null,
-    //         Type: null,
-    //         ClassDate: null,
-    //         ClassTime: null,
-    //         ZoomLink: null,
-    //         StudentId: null,           
-    //      }       
-
-    //     //for the same reason I explained above here I'm just trying to populate the object myClass
-    //     //from the string. To do that I split the string first by (,), which will give me an array where first element
-    //     //is like "ClassId: 42", so inside the loop I split each element by (:) and I use it to populate the object on each
-    //     //iteration. Maybe is not very efficient but at the end I haver the object i need lol
-    //     let tempArray;       
-    //     let size = hiddenClassIndexedArray.length;
-    //     for(i = 0; i < size; i++){
-            
-    //         tempArray = hiddenClassIndexedArray[i].split(':');  
-            
-    //         if(tempArray[0] == 'ClassTime'){                              //because the time has (:) I need to handle it differently 
-    //             myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] ; 
-    //         }
-
-    //         else if(tempArray[0] == 'ZoomLink'){                          //because links have two instances of :, this is just a temp solution
-    //             myClass[tempArray[0]] = tempArray[1] +":"+ tempArray[2] + tempArray[3]; 
-    //         }
-
-    //         else{
-    //             myClass[tempArray[0]] = tempArray[1]; 
-    //         }                         
-    //     }
-   
-    //     id = "studentId"+myClass.StudentId;                                                                 //This is to get the desired id of the option 
-    //     document.getElementById('studentListIndexPage').value = document.getElementById(id).value;
-    //     document.getElementById('studentListIndexPage').disabled = true;  
-    //     document.getElementById('toggle').disabled = true;
-    //     document.getElementById('dropdownIndexPage').value = myClass.Type;
-    //     document.getElementById('ClassDateIndexPage').value = myClass.ClassDate;
-    //     document.getElementById('clockIndexPage').value = myClass.ClassTime; 
-    //     document.getElementById('zoomLinkIndexPage').value = myClass.ZoomLink;
-    //     document.getElementById('hiddenClassId-Edit-IndexPage').value = myClass.ClassId;
-    //     document.getElementById('submitButtonIndexPage').name = 'EditClassesSubmitted'; 
-
-    //      //get the studentId and the remaining credits that were hidden in the options
-    //      let studentId = document.getElementById('studentListIndexPage').value;
-    //      let remainingCredits = document.getElementById("credits"+studentId).value;
-
-    //      //This is to show the remaing credits of each student because if it is zero the 
-    //      //user will need to add a credit before booking the class
-    //      if(remainingCredits > 0){
-    //          document.getElementById('StdCreditAmount').value = remainingCredits;
-    //          document.getElementById('StdCreditAmount').placeholder = remainingCredits;
-    //      }
-         
-    //      else{
-    //          document.getElementById('StdCreditAmount').value = 0;
-    //          document.getElementById('StdCreditAmount').placeholder = 0;            
-    //      }   
-              
-    // }
-
-    // //Since these add/edit are used in the same page, I need to reset the values because
-    // //when I use edit and I want to add a class right after, the add form shows up with
-    // //the values set above, so we need to re-set this
-    // else{         
-            document.getElementById('toggle').disabled = false;
-            document.getElementById('studentListIndexPage').disabled = false;
+            // document.getElementById('toggle').disabled = false;
+            // document.getElementById('studentListIndexPage').disabled = false;
             // document.getElementById('dropdownIndexPage').value = 'Online';    
             document.getElementById('ClassDateIndexPage').value = today;
             document.getElementById('zoomLinkIndexPage').value = '';
@@ -131,7 +55,7 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
    
     document.getElementById('deletButtonInfoClass').style.visibility = 'visible';
     document.getElementById('showDeleteButton').innerHTML = "<button id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass("+classId+")\">🗑</button>";
-    document.getElementById('showEditButton').innerHTML = "<button id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openIndexPageClassForm("+classId+")\">✏️</button>";
+    document.getElementById('showEditButton').innerHTML = "<button id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm("+classId+")\">✏️</button>";
     document.getElementById('classInfoHeading').innerHTML = 'Class Info';
     document.getElementById('classInfoName').innerHTML = fName+" "+lName;
     document.getElementById('classInfoDate').innerHTML = day+" "+month+" "+StartTime;
@@ -147,8 +71,8 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     
     //Here I need to pass the array from js to php, and I spent more time that what I planned trying to figure that out, so I decided to 
     //pass a string instead and then create the object I need by manipulation the string. I used const just to emphasy that it should not be changed here  
-    const classArray = "ClassId:"+classId+",Type:"+Type+",ClassDate:"+StartDate+",ClassTime:"+StartTime+",ZoomLink:"+Zoom+",StudentId:"+studentId;
-    document.getElementById('hiddenClass-Edit-IndexPage').value = classArray;    
+    // const classArray = "ClassId:"+classId+",Type:"+Type+",ClassDate:"+StartDate+",ClassTime:"+StartTime+",ZoomLink:"+Zoom+",StudentId:"+studentId;
+    // document.getElementById('hiddenClass-Edit-IndexPage').value = classArray;    
 }
 
     // ********************************************************************************************************************************
@@ -192,13 +116,17 @@ document.addEventListener('input', function (event) {
         if(document.getElementById('toggle').checked == true){
             let amount = document.getElementById('StdCreditAmount').value;
             document.getElementById('StdCreditAmount').value = ++amount;
-            document.getElementById('StdCreditAmount').placeholder = document.getElementById('StdCreditAmount').value;           
+            document.getElementById('StdCreditAmount').placeholder = document.getElementById('StdCreditAmount').value; 
+            document.getElementById('creditLabel').style.color = '#2691d9';       
+                        
         }
 
         else{
             let amount = document.getElementById('StdCreditAmount').value;
             document.getElementById('StdCreditAmount').value = --amount;
-            document.getElementById('StdCreditAmount').placeholder = document.getElementById('StdCreditAmount').value;           
+            document.getElementById('StdCreditAmount').placeholder = document.getElementById('StdCreditAmount').value; 
+            document.getElementById('creditLabel').style.color = '#606264';      
+
         }      
     }
 
@@ -208,14 +136,37 @@ document.addEventListener('input', function (event) {
         if(document.getElementById('ZoomLinktoggleHomePage').checked == true){
             let defaultLink = document.getElementById('hiddendefaultZoomLinkHomePage').value;
             document.getElementById('zoomLinkIndexPage').value = defaultLink;
-            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;           
+            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;
+            document.getElementById('toggleheadingClassIndexPage').style.color = '#2691d9';         
+
         }
 
         else{           
             document.getElementById('zoomLinkIndexPage').value = '';
-            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;           
+            document.getElementById('zoomLinkIndexPage').placeholder = document.getElementById('zoomLinkIndexPage').value;  
+            document.getElementById('toggleheadingClassIndexPage').style.color = '#606264';         
+
         }      
-    }   		
+    }  
+    
+    	// Only run for #toggle changed
+        if (event.target.id === 'ZoomLinktoggle'){
+        
+            if(document.getElementById('ZoomLinktoggle').checked == true){
+                let defaultLink = document.getElementById('hiddendefaultZoomLink').value;
+                document.getElementById('zoomLink').value = defaultLink;
+                document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+                document.getElementById('toggleLinkHeading').style.color = '#2691d9';         
+                
+            }
+    
+            else{           
+                document.getElementById('zoomLink').value = '';
+                document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+                document.getElementById('toggleLinkHeading').style.color = '#606264';         
+    
+            }      
+        }
 
 });
 
@@ -238,19 +189,24 @@ function closeIndexPageClassForm() {
 
     //I'm reloading the page because I changed a lot of option within the class form (the time to show in the clock
     //for instance) so if I reload the page I get all the values back to when the form was created 
-    location.reload();  
-    exit();                                                     
+    // location.reload();  
+    // exit();                                                     
 }
 
 // ******************************************************************************************************************************** 
 // When the user clicks anywhere outside of the modal, close it
 // ********************************************************************************************************************************
 
+let classFormModal = document.getElementById('classForm');
 let classFormIndexPage = document.getElementById('classFormIndexPage');
 let deleteClassModal = document.getElementById('deleteClass');
 
 window.onclick = function(event) { 
 
+    if (event.target == classFormModal) {
+        classFormModal.style.display = 'none';
+    }
+    
     if (event.target == classFormIndexPage) {
         classFormIndexPage.style.display = 'none';
     }

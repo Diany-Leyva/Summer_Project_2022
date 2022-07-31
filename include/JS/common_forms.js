@@ -1,10 +1,6 @@
 
 // *********************************************************************************************************************************
-//Add student form   
-//here I use this form for both creating and editing a student. So, when creating a student
-//I don't pass the id and when editing I pass the id and thats how I diff it here. If the studentId was passed 
-//Then I assign the values to the hidden fields in the formmake a AJAX request to load the info need it without having to
-//reload the page and without using the hiding array weird thing I was doing
+//Add student form 
 // *********************************************************************************************************************************
 
 function openStudentForm(studentId){
@@ -12,21 +8,16 @@ function openStudentForm(studentId){
     if(studentId){
 
         //AJAX request to get the student from the DB
-        fetch("/include/AJAX_Requests.php?StudentIdToEdit="+studentId)
+        fetch("/ajax/get_student.php?StudentIdToEdit="+studentId)
         .then(response => response.json())
         .then(data => {document.getElementById('fname').value = data.FirstName,
             document.getElementById('lname').value = data.LastName,
             document.getElementById('email').value = data.Email,
             document.getElementById('phone').value = data.Phone,
-            document.getElementById('rating').value = data.ELO,
-            document.getElementById('lichess').value = data.LichessLink})                    
-    } 
-        //I dont want to show the whole link, only username so I'm getting a substring, position 22 because
-        //each link starts as https://lichess.org/@/ followed by the username and we only want the username now
-        // let lichessLink = myStudent.Lichess;
-        // let lichessUsername = lichessLink.substr(22);      
-        // document.getElementById('lichess').value = lichessUsername;                    
-   
+            document.getElementById('rating').value = data.ELO,         
+            document.getElementById('lichess').value = data.LichessLink.substr(22),
+            document.getElementById('submitStudentButton').name = 'EditStudentSubmitted'})                    
+    }                     
       
     document.getElementById('studentForm').style.display = 'block';
 }
@@ -50,11 +41,10 @@ function openCreditForm(buttonclicked, credits){
     }  
     
     if(buttonclicked == 'Add'){                                                 //Trying out I see that id I click subtract first and then add the placeholder and max values
-        document.getElementById('maxCredit').focus();       
         document.getElementById('maxCredit').max = '100';                            //do not go back to normal and stay with the values I set above so I'm setting them here
         document.getElementById('maxCredit').placeholder = '1 - 100';
     }
-    
+
     document.getElementById('creditsForm').style.display = 'block';             //I'm just using what I know if there a better way to do this please let me know :)
 }
     
@@ -66,41 +56,45 @@ function closeCreditForm(){
 
 // *********************************************************************************************************************************
 //AddClass Form
-//Here I use the form for creating a new class and for editing a new class 
-//when is for creating I pass an empty string, whn editing I pass the classId and then 
-//I set the hidden values in the form to the corrsponding values in the array 
-//that is hidden. I didn't know how to pass and array as parameter from php
-//to js and the only thing that worked was hidding the array using json_encode
-//and then accessing it from here 
 // *********************************************************************************************************************************
 
 function openClassForm(classId) { 
   
-    let today = document.getElementById('ClassDate').value;
+    let date, day, month, year, hours, min, today, startDate, startTime;
 
-    if(classId){
-        const hiddenClass = document.getElementById('hiddenClass-Edit').value;    
-        const myClass = JSON.parse(hiddenClass);
-      
-        document.getElementById('dropdown').value = myClass.Type;
-        document.getElementById('ClassDate').value = myClass.ClassDate;
-        document.getElementById('clock').value = myClass.ClassTime;
-        document.getElementById('zoomLink').value = myClass.ZoomLink;
-        document.getElementById('hiddenClassId-Edit').value = myClass.ClassId;
-        document.getElementById('submitButton').name = 'EditClassesSubmitted';       
-    }
+    if(classId){              
 
-    //Since these add/edit are used in the same page, I need to reset the values because
-    //when I use edit and I want to add a class right after, the add form shows up with
-    //the values set above, so we need to re-set this
-    else{      
+        //AJAX request to get the class from the DB
+        fetch("/ajax/get_class.php?ClassIdToEdit="+classId)
+        .then(response => response.json())
+        .then(data => {document.getElementById('dropdown').value = data.Type,
+        date = new Date(data.StartDate),
+        day = date.getDate().toString().padStart(2, "0"),
+        month = (date.getMonth() + 1).toString().padStart(2, "0"),
+        year = date.getFullYear(),
+        hours = date.getHours().toString().padStart(2, "0"),
+        min = date.getMinutes().toString().padStart(2, "0"),
+        startDate = year+"-"+month+"-"+day,
+        startTime = hours+":"+min,
+        document.getElementById('ClassDate').value = startDate,
+        document.getElementById('ClassDate').min = '',
+        document.getElementById('clock').value = startTime,
+        document.getElementById('zoomLink').value = data.ZoomLink,
+        document.getElementById('hiddenClassId-EditForm').value = classId,
+        document.getElementById('submitButtonClass').name = 'EditClassesSubmitted'})                    
+    } 
+
+    else{   
+               
+        today = getToday();
 
         document.getElementById('dropdown').value = '';    
-        document.getElementById('ClassDate').value = '';  
+        document.getElementById('ClassDate').value = ''; 
+        document.getElementById('ClassDate').min = today;
         document.getElementById('clock').value = '';    
-        document.getElementById('zoomLink').value = '';
-        document.getElementById('hiddenClassId-Edit').value = '';
-        document.getElementById('submitButton').name = 'AddClassesSubmitted';   
+        document.getElementById('zoomLink').value = '';        
+        document.getElementById('hiddenClassId-EditForm').value = '';     
+        document.getElementById('submitButtonClass').name = 'AddClassesSubmitted';   
     }
 
     document.getElementById('classForm').style.display = 'block';

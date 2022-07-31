@@ -1,6 +1,8 @@
 <?php
 include('../include/initialize.php'); 
 checkAdmin();
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     
@@ -66,7 +68,7 @@ if($size == 0){
 }
 
 echoHeader('Home');
-echoPageLayout('Welcome back, Yuniesky', $headingInfo, getAdmin());
+echoPageLayout("Welcome back, ".$admin['FirstName'], $headingInfo, $admin);
                                        
 echoNextClassSection($classesToday);                                                      
 
@@ -78,8 +80,8 @@ echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 addEvents($classesToday);
 addCurrentTime();
-classFormIndexPage($allStudents, getAdmin());
-classForm(getAdmin());
+classFormIndexPage($allStudents, $admin['DefaultZoomLink']);
+classForm($admin['DefaultZoomLink']);
 deleteClassForm();
 
 $jsFiles = "

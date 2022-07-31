@@ -137,10 +137,10 @@ function echoNextClassSection($classesToday){
             $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"; 
             
              //This time instead that hidding an array and using jason_encode to pass it to js I did it by passing an string and then I turn it into an array. Which way should be better?
-            $date = formatDate(htmlspecialchars($nextClass['StartDate']), 'Y-m-d');
-            $time = formatDate(htmlspecialchars($nextClass['StartDate']), 'H:i');  
+            // $date = formatDate(htmlspecialchars($nextClass['StartDate']), 'Y-m-d');
+            // $time = formatDate(htmlspecialchars($nextClass['StartDate']), 'H:i');  
         
-            $classString = "ClassId:$id,Type:".htmlspecialchars($nextClass['Type']).",ClassDate:$date,ClassTime:$time,ZoomLink:$zoom,StudentId:".htmlspecialchars($nextClass['StudentId']); 
+            // $classString = "ClassId:$id,Type:".htmlspecialchars($nextClass['Type']).",ClassDate:$date,ClassTime:$time,ZoomLink:$zoom,StudentId:".htmlspecialchars($nextClass['StudentId']); 
         }
     }  
     
@@ -149,7 +149,7 @@ function echoNextClassSection($classesToday){
         $id = $name = $classDate = $email = $lichess = $zoom = $hour = '';
         $class = 'disableAnchor';
         $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";
-        $classString = '';
+        // $classString = '';
     }
 
     $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
@@ -182,8 +182,7 @@ function echoNextClassSection($classesToday){
                     <div class='nextClassPicturePosition'>
                         <span id='showDeleteButton'> $showDeleteButton </span>
                         <span id='showEditButton'> $showEditButton </span>
-                        <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
-                        <input type='hidden' id='hiddenClass-Edit' value='$classString'>             
+                        <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>                       
                     </div>
                 </div>      
             </div>";

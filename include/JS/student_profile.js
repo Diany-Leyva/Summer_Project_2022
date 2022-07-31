@@ -24,7 +24,7 @@ function savePrivateNotes(studentId){
 
     //So here I'm trusting that the DB was updated, in the future I could return a flag from
     //the backend or something to indicate that the DB was update it 
-    fetch("/include/AJAX_Requests.php", {
+    fetch("/ajax/save_private_notes.php", {
     method: 'post',
     body: notes
     })    
@@ -44,7 +44,7 @@ function savePublicNotes(studentId){
 
     //So here I'm trusting that the DB was updated, in the future I could return a flag from
     //the backend or something to indicate that the DB was update it 
-    fetch("/include/AJAX_Requests.php", {
+    fetch("/ajax/save_public_notes.php", {
     method: 'post',
     body: notes
     })    
@@ -62,12 +62,16 @@ document.addEventListener('input', function (event) {
         if(document.getElementById('ZoomLinktoggle').checked == true){
             let defaultLink = document.getElementById('hiddendefaultZoomLink').value;
             document.getElementById('zoomLink').value = defaultLink;
-            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value;           
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+            document.getElementById('toggleLinkHeading').style.color = '#2691d9';         
+            
         }
 
         else{           
             document.getElementById('zoomLink').value = '';
-            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value;           
+            document.getElementById('zoomLink').placeholder = document.getElementById('zoomLink').value; 
+            document.getElementById('toggleLinkHeading').style.color = '#606264';         
+
         }      
     }
 });

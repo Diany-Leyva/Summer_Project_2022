@@ -1,12 +1,27 @@
 <?php
 
 // *********************************************************************************************************************************
-// Admin (this will be a query in the future)
+// Admins table
 // *********************************************************************************************************************************
 
-function getAdmin(){
-   return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123', 
-                'DefaultZoomLink'=> 'https://us04web.zoom.us/j/71496093045?pwd=0iK6fbyTepkzYecBug_aeZdGSNny2O.1');
+function getAllAdmins(){
+        return dbQuery("
+        SELECT *
+        FROM admins 
+        WHERE DateArchived is NULL 
+        ORDER BY AdminId     
+    ")->fetchAll(); 
+}
+
+// *********************************************************************************************************************************
+
+function getOneAdmin($adminId){
+    return dbQuery("
+        SELECT *
+        FROM admins
+        WHERE AdminId = $adminId
+        AND DateArchived is NULL     
+    ")->fetch(); 
 }
 
 // *********************************************************************************************************************************
@@ -47,6 +62,17 @@ function getAllClasses(){
             WHERE DateArchived is NULL
             ORDER BY StudentId, StartDate        
     ")->fetchAll();  
+}
+
+// *********************************************************************************************************************************
+
+function getOneClass($classId){
+    return dbQuery("
+        SELECT *
+        FROM classes
+        WHERE ClassId = $classId
+        AND DateArchived is NULL     
+    ")->fetch();  
 }
 
 // *********************************************************************************************************************************

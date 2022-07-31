@@ -1,10 +1,12 @@
 <?php
 include('../include/initialize.php');
 checkAdmin();
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
 
 if(isset($_REQUEST['studentId'])){
 
-  if(isset($_REQUEST['AddStudentSubmitted'])){
+  if(isset($_REQUEST['EditStudentSubmitted'])){
     $errors = [];
     $errors = validateName($_REQUEST['ufname']);                                                                       
     $errors = validateName($_REQUEST['ulname']); 
@@ -14,7 +16,7 @@ if(isset($_REQUEST['studentId'])){
       header("location:? studentId={$_REQUEST['studentId']}");    
       exit();                                                                
     }  
-  }     
+  }    
 
     if(isset($_REQUEST['changeCreditsSubmitted'])){
      
@@ -55,9 +57,8 @@ if(isset($_REQUEST['studentId'])){
       deleteClass($_REQUEST['classId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");   
       exit();       
-    }  
+    } 
 
-    $admin = getAdmin();
     $title = 'Student Profile';
     echoHeader($title);
     echoPageLayout($title, '', $admin);
@@ -92,7 +93,7 @@ if(isset($_REQUEST['studentId'])){
     $totalClasses['YearTotal'] = calcTotalClasses($studentClassess, 'Y');
     echoTotalClassesSection($totalClasses);   
       
-    classForm($admin);
+    classForm($admin['DefaultZoomLink']);
     creditsForm();
     deleteStudentForm();
     studentForm();
@@ -100,8 +101,9 @@ if(isset($_REQUEST['studentId'])){
 }
 
 $jsFiles = "
-    <script src='/include/JS/common_forms.js'></script>
-    <script src='/include/JS/student_profile.js'></script>
+        <script src='/include/JS/helper_functions.js'></script> 
+        <script src='/include/JS/common_forms.js'></script>
+        <script src='/include/JS/student_profile.js'></script>
     ";
 
 echoFooter($jsFiles); 

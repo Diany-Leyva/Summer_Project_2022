@@ -80,16 +80,12 @@ function echoFutureClassesInfo($classes, $heading){
             
                         if(!empty($classes)){                            
                             foreach($classes as $class){
-                                $classId = $class['ClassId']; 
-                                $date = formatDate($class['StartDate'], 'Y-m-d');
-                                $time = formatDate($class['StartDate'], 'H:i');
-
-                                $classArray = array('ClassId'=>$class['ClassId'], 'Type'=>$class['Type'], 'ClassDate'=>$date, 'ClassTime'=>$time, 'ZoomLink'=>$class['ZoomLink'], 'StudentId'=>$class['StudentId']); 
-                                                           
+                                $classId = $class['ClassId'];                   
+                                                                                      
                                 echo"                  
                                     <li class='info-table-row zoom'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
-                                    <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
-                                    <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo">                                     
+                                    <span onclick=\"openClassForm($classId)\">".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
+                                                               
                                     </li>
                                 ";        
                             }    

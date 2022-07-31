@@ -49,7 +49,7 @@ function studentForm(){
           
         
             <div class='buttons-container student'>
-                <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>
+                <button type='submit' class='submit' id='submitStudentButton' name='AddStudentSubmitted'>Add</button>
                 <button type='button' class='cancel' onclick= 'closeStudentForm()'>Cancel</button>
             </div>
         </form>
@@ -66,7 +66,7 @@ function creditsForm(){
             <form action='' method='post' class='form-container credits animate'> 
             <h1 class='creditsForm'>Credits</h1>
 
-            <div class='txtField credit'>          
+            <div class='txtField2 credit'>          
             <input id='maxCredit' type='number' min='1' max='100' placeholder='1 - 100' name='camount' required>
             <label for='camount'>Credits Amount</label>
             </div>                    
@@ -78,6 +78,13 @@ function creditsForm(){
                 </div>
             </form>
         </div>
+
+
+
+        <div class='txtField2 classIndexPage'>
+        <input type='text' name='StdCreditAmount' id='StdCreditAmount' value='' readonly>
+        <label for='StdCreditAmount'>Remaining credits</label>
+        </div>  
 ";
 }
 
@@ -88,9 +95,9 @@ function creditsForm(){
 // :30 as an option 
 // *********************************************************************************************************************************
 
-function classForm($admin){
+function classForm($defaultZoomLink){
     $today = date('Y-m-d');
-    $defaultZoomLink = htmlspecialchars($admin['DefaultZoomLink']);
+    $defaultZoomLink = htmlspecialchars($defaultZoomLink);
 
     echo"          
         <div id='classForm' class='modal'>
@@ -147,14 +154,14 @@ function classForm($admin){
                 <label for='czoomLink'>Zoom Link</label>
                 </div>        
                           
-                <input class='toggle class' type='checkbox' id='ZoomLinktoggle' name='classToggle' required> 
+                <input class='toggle class' type='checkbox' id='ZoomLinktoggle' name='classToggle'> 
                 <input type='hidden' id='hiddendefaultZoomLink' value='$defaultZoomLink'></input>                         
-                <label class='toggleheading'>Default Link</label>   
+                <label id='toggleLinkHeading' class='toggleLinkHeading'>Default Link</label>   
                                                 
                 <div class='buttons-container class'>
-                    <button type='submit' id='submitButton' class='submit' name='AddClassesSubmitted'>Book</button>
+                    <button type='submit' id='submitButtonClass' class='submit' name=''>Book</button>
                     <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>  
-                    <input type='hidden' id='hiddenClassId-Edit' name='classId' value=''>                                 
+                    <input type='hidden' id='hiddenClassId-EditForm' name='classId' value=''>                                 
                 </div>      
             </form>   
         </div>         
@@ -163,9 +170,9 @@ function classForm($admin){
 
 // *********************************************************************************************************************************
 
-function classFormIndexPage($students, $admin){
+function classFormIndexPage($students, $zoomLink){
     $today = date('Y-m-d'); 
-    $defaultZoomLink = htmlspecialchars($admin['DefaultZoomLink']);                                 //There was a syntax issue when placing this in the value so 
+    $defaultZoomLink = htmlspecialchars($zoomLink);                                 //There was a syntax issue when placing this in the value so 
                                                                                                     //I stored it in a variable for now and it works 
     echo"          
     <div id='classFormIndexPage' class='modal'>
@@ -191,20 +198,9 @@ function classFormIndexPage($students, $admin){
                 </div>        
                           
                 <input class='toggle credit' type='checkbox' id='toggle' name='StdToggle' required> 
-                <label class='creditLabel'>Add one credit</label>   
+                <label id='creditLabel' class='creditLabel'>Add one credit</label>   
 
-
-                <div class='txtField classIndexPageSecondHalf'> 
-                <select id='dropdownIndexPage' name='ctype' required>
-                <option hidden></option>                              
-                <option value='Online'>Online</option>
-                <option value='In-Person'>In-Person</option>                  
-            </select> 
-            <span></span>        
-            <label for='ctype'>Class Type</label>
-        </div>
-
-        <div class='txtField classIndexPageSecondHalf'>          
+                       <div class='txtField classIndexPageSecondHalf'>          
         <input type='date' id='ClassDateIndexPage' name='classDate' value='$today' min='$today' required>
         <span></span>
         <label for='classDate'>Class Date</label>
@@ -237,6 +233,16 @@ function classFormIndexPage($students, $admin){
         <span></span> 
         <label for='classTime'>Class Time</label>
         </div>     
+
+        <div class='txtField classIndexPageSecondHalf'> 
+        <select id='dropdownIndexPage' name='ctype' required>
+        <option hidden></option>                              
+        <option value='Online'>Online</option>
+        <option value='In-Person'>In-Person</option>                  
+    </select> 
+    <span></span>        
+    <label for='ctype'>Class Type</label>
+</div>
        
         <div class='txtField classIndexPageSecondHalf'>
         <input type='text' id='zoomLinkIndexPage' name='czoomLink' required>  
@@ -246,7 +252,7 @@ function classFormIndexPage($students, $admin){
               
         <input class='toggle classIndexPageSecondHalf' type='checkbox' id='ZoomLinktoggleHomePage' name='classToggle' required> 
         <input type='hidden' id='hiddendefaultZoomLinkHomePage' value='$defaultZoomLink'></input>                         
-        <label class='toggleheadingClassIndexPage'>Default Link</label>   
+        <label id='toggleheadingClassIndexPage' class='toggleheadingClassIndexPage'>Default Link</label>   
                
         <div class='buttons-container classIndexPageSecondHalf'>
         <button type='submit' id='submitButtonIndexPage' class='submit' name='AddClassesSubmitted'>Book</button>
