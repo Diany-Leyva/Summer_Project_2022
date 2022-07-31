@@ -1,18 +1,18 @@
 // *********************************************************************************************************************************
-//Access then hidden array from php and parse them to use in js
+//Ajax to get the events (classes)
 // *********************************************************************************************************************************
 
-const hiddenEvents = document.getElementById('hiddenEventsArray').value;
-const events = JSON.parse(hiddenEvents);
-
-layOutEvent(events);
+fetch("/ajax/get_events.php?Events="+true)
+.then(response => response.json())
+.then(data => {layOutEvent(data)})     
 
 // *********************************************************************************************************************************
-//Access then hidden current time from php and parse them to use in js
+//Display the currenttime in the dayView calendar. I need to check because I want the red line to move as the time changes
+//so I will come back and works on this in the futute but I will keep this just for now 
 // *********************************************************************************************************************************
 
-let currentTime = document.getElementById('hiddenCurrentTime').value;
-const timeLine = JSON.parse(currentTime);
-layOutCurrentTimeLine(timeLine);
+fetch("/ajax/get_current_time.php?CurrentTime="+true)
+.then(response => response.json())
+.then(data => {layOutCurrentTimeLine(data)})
 
 // *********************************************************************************************************************************

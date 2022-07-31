@@ -35,72 +35,15 @@ function echoDayViewCalendar(){
             }                   
 }
 
-// ********************************************************************************************************************************
+//********************************************************************************************************************************
+//I know this function is so tiny. But I will just keep it 
+//********************************************************************************************************************************
 
-function addEvents($classesToday){
-    $events = [];                                                                         //Array to hold the start/end of every class today
-     
-    $i = 0;                                                                               
-    foreach($classesToday as $class){      
-        $hour = formatDate(htmlspecialchars($class['StartDate']), 'H');            
-        $min = formatDate(htmlspecialchars($class['StartDate']), 'i');  
-        $halfhour = 0;
-
-        if($min == 30){
-            $halfhour = 30;
-        }
-      
-        $topPosition = (60 * ($hour - 7)) + $halfhour;    
-        
-        //I'm storing all the information beacuse I use it to display the class Info in js later on
-        //and this is the source 
-        $events[$i]['start'] =  $topPosition;  
-        $events[$i]['end'] =  $topPosition + 60;  
-        $events[$i]['ClassId'] = htmlspecialchars($class['ClassId']);  
-        $events[$i]['Type'] = htmlspecialchars($class['Type']);
-        $events[$i]['StartDate'] = formatDate(htmlspecialchars($class['StartDate']), 'Y-m-d');
-        $events[$i]['StartTime'] = formatDate(htmlspecialchars($class['StartDate']), 'H:i');
-        $events[$i]['LichessLink'] = htmlspecialchars($class['LichessLink']);
-        $events[$i]['ZoomLink'] = htmlspecialchars($class['ZoomLink']); 
-        $events[$i]['StudentId'] = htmlspecialchars($class['StudentId']);  
-        $events[$i]['FirstName'] = htmlspecialchars($class['FirstName']);
-        $events[$i]['LastName'] = htmlspecialchars($class['LastName']);       
-        $events[$i]['Email'] = htmlspecialchars($class['Email']);    
-       
-        $i++;     
-    }
-  
-    //Hidding this array to then access it from js
+function addEvents(){
     echo"  
     <div id='timeLine'></div> 
-        <div id='events'></div>
-        <input type='hidden' id='hiddenEventsArray' value=";echo json_encode($events);echo">";      
+        <div id='events'></div>";      
 }  
-
-// ********************************************************************************************************************************
-//fucntion to add a line in the current time in the day calendar
-//Here I just do a similar calculation to what I did to place the events 
-// ********************************************************************************************************************************
-
-function addCurrentTime(){
-    $currentTime = date('H:i');   
-    $timeArray = [];
-    $hour = formatDate($currentTime, 'H');  
-    $minutes = formatDate($currentTime, 'i');  
-
-    if($hour > 7 &&                                            //because I just want to show it in the timeframe of my calendar 8:00-23:00
-       $hour < 24){
-
-        $top = (60 * ($hour - 7)) + $minutes; 
-   
-        $timeArray[0]['start'] =  $top;  
-        $timeArray[0]['end'] =  $top + 0.5;
-        $timeArray[0]['currentTime'] =  $currentTime; 
-    }   
-    
-    echo"<input type='hidden' id='hiddenCurrentTime' value=";echo json_encode($timeArray);echo">
-    </div>";
-}
 
 // ********************************************************************************************************************************
 //So here I echo this function but if there is no classes I set up default values
@@ -128,8 +71,7 @@ function echoNextClassSection($classesToday){
             $zoom = htmlspecialchars($nextClass['ZoomLink']);
             $hour = '1 hour';     
             $class = 'enableAnchor';
-            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';"
-          
+            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';";          
         }
     }  
     
