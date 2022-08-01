@@ -192,12 +192,12 @@ window.onclick = function(event) {
     
     if (event.target == classFormIndexPage) {
         classFormIndexPage.style.display = 'none';
-        //I'm reloading the page because I changed a lot of option within the class form (the time to show in the clock
-        //for instance) so if I reload the page I get all the values back to when the form was created
+        //I'm reloading the page because I changed a lot of options within the class form (the time to show in the dropdpwn 
+        //selection #clockIndexPage for instance) so if I reload the page I get all the values back to when the form was created
         //I might handle this differently in the future of course. Instead of reloading the page, I might
         //do AJAX request to call a function in the endpoint that returns the defauklt clock options
-        //and then I asign the option in the front end instead of reloading the page, or I can also just display all the 
-        //clok option instead of just the one where the user clocked. Will work on this later 
+        //and then I assign the option in the front end instead of reloading the page, or I can also just display all the 
+        //clok option instead of just the one where the user clocked. Will work on this later but I won't reload the page here
         location.reload();  
     }
 
