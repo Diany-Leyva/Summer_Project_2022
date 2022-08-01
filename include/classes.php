@@ -72,9 +72,69 @@ function calcNextClass($nextClasses){
         $nextClass = $nextClasses[$key];                                       
     }   
 
-    return $nextClass;
- 
+    return $nextClass; 
 }
 
 // *********************************************************************************************************************************
 
+function getEvents(){
+
+    $allStudentsWithClasses = getIndexByPKArray(getAllStudentsWithClasses(), 'ClassId');
+    $classesToday = calcClasses($allStudentsWithClasses, 'Y/m/d');
+    $events = [];                                                                         //Array to hold the start/end of every class today
+     
+    $i = 0;                                                                               
+    foreach($classesToday as $class){      
+        $hour = formatDate(htmlspecialchars($class['StartDate']), 'H');            
+        $min = formatDate(htmlspecialchars($class['StartDate']), 'i');  
+        $halfhour = 0;
+
+        if($min == 30){
+            $halfhour = 30;
+        }
+      
+        $topPosition = (60 * ($hour - 7)) + $halfhour;    
+        
+        //I'm storing all the information beacuse I use it to display the class Info in js later on
+        //and this is the source 
+        $events[$i]['start'] =  $topPosition;  
+        $events[$i]['end'] =  $topPosition + 60;  
+        $events[$i]['ClassId'] = htmlspecialchars($class['ClassId']);  
+        $events[$i]['Type'] = htmlspecialchars($class['Type']);
+        $events[$i]['StartDate'] = formatDate(htmlspecialchars($class['StartDate']), 'Y-m-d');
+        $events[$i]['StartTime'] = formatDate(htmlspecialchars($class['StartDate']), 'H:i');
+        $events[$i]['LichessLink'] = htmlspecialchars($class['LichessLink']);
+        $events[$i]['ZoomLink'] = htmlspecialchars($class['ZoomLink']); 
+        $events[$i]['StudentId'] = htmlspecialchars($class['StudentId']);  
+        $events[$i]['FirstName'] = htmlspecialchars($class['FirstName']);
+        $events[$i]['LastName'] = htmlspecialchars($class['LastName']);       
+        $events[$i]['Email'] = htmlspecialchars($class['Email']);    
+       
+        $i++;     
+    }
+
+    return $events;
+}
+
+// ********************************************************************************************************************************
+
+function getCurrentTimeArray(){
+    $currentTime = date('H:i');   
+    $timeArray = [];
+    $hour = formatDate($currentTime, 'H');  
+    $minutes = formatDate($currentTime, 'i');  
+
+    if($hour > 7 &&                                            //because I just want to show it in the timeframe of my calendar 8:00-23:00
+       $hour < 24){
+
+        $top = (60 * ($hour - 7)) + $minutes; 
+   
+        $timeArray[0]['start'] =  $top;  
+        $timeArray[0]['end'] =  $top + 0.5;
+        $timeArray[0]['currentTime'] =  $currentTime; 
+    }   
+    
+    return $timeArray;
+}
+
+// ********************************************************************************************************************************

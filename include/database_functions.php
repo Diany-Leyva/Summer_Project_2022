@@ -1,10 +1,26 @@
 <?php
 // *********************************************************************************************************************************
-// Admin (this will be a query in the future)
+// Admins table
 // *********************************************************************************************************************************
 
-function getAdmin(){
-   return array('AdminId'=> '1', 'FirstName'=>'Yuniesky', 'LastName'=> 'Quesada', 'Email'=> 'yuniesky3184@yahoo.com', 'Password'=> '123');
+function getAllAdmins(){
+        return dbQuery("
+        SELECT *
+        FROM admins 
+        WHERE DateArchived is NULL 
+        ORDER BY AdminId     
+    ")->fetchAll(); 
+}
+
+// *********************************************************************************************************************************
+
+function getOneAdmin($adminId){
+    return dbQuery("
+        SELECT *
+        FROM admins
+        WHERE AdminId = $adminId
+        AND DateArchived is NULL     
+    ")->fetch(); 
 }
 
 // *********************************************************************************************************************************
@@ -15,6 +31,7 @@ function getAllStudents(){
     return dbQuery("
             SELECT *
             FROM students 
+            WHERE DateArchived is NULL 
             ORDER BY StudentId     
     ")->fetchAll();   
 }
@@ -28,7 +45,8 @@ function getOneStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
-        WHERE StudentId = $studentId;   
+        WHERE StudentId = $studentId
+        AND DateArchived is NULL     
     ")->fetch();  
 }
 
@@ -40,8 +58,20 @@ function getAllClasses(){
     return dbQuery("
             SELECT *
             FROM classes
+            WHERE DateArchived is NULL
             ORDER BY StudentId, StartDate        
     ")->fetchAll();  
+}
+
+// *********************************************************************************************************************************
+
+function getOneClass($classId){
+    return dbQuery("
+        SELECT *
+        FROM classes
+        WHERE ClassId = $classId
+        AND DateArchived is NULL     
+    ")->fetch();  
 }
 
 // *********************************************************************************************************************************
@@ -50,7 +80,8 @@ function getOneStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
-        WHERE StudentId = $studentId  
+        WHERE StudentId = $studentId 
+        AND DateArchived is NULL   
         ORDER BY StartDate
     ")->fetchAll();  
 }
@@ -60,7 +91,8 @@ function getOneStudentClasses($studentId){
 function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
-    FROM classes   
+    FROM classes 
+    WHERE DateArchived is NULL  
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
@@ -73,6 +105,7 @@ function getOneStudentClassesAmount($studentId){
         SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
         WHERE StudentId =  $studentId
+        AND DateArchived is NULL 
         ORDER BY StudentId   
 ")->fetch();
 }
@@ -83,7 +116,8 @@ function getAllStudentsWithClasses(){
     return dbQuery("
         SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink, Type
         FROM classes, students
-        WHERE classes.StudentId = students.StudentId      
+        WHERE classes.StudentId = students.StudentId 
+        AND (students.DateArchived is NULL AND classes.DateArchived is NULL)        
         ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
@@ -96,7 +130,8 @@ function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
     FROM classes 
-    WHERE StartDate > CURRENT_DATE        
+    WHERE StartDate > CURRENT_DATE
+    AND DateArchived is NULL          
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
@@ -229,7 +264,7 @@ function insertRefund($amount, $studentId){
 
 function deleteStudent($studentId){    
     dbQuery("
-        DELETE FROM students WHERE StudentId = :cleanedStudentId
+        UPDATE students SET DateArchived = CURRENT_DATE WHERE StudentId = :cleanedStudentId      
     ",  [       
         'cleanedStudentId' => $studentId        
     ]);
@@ -239,7 +274,7 @@ function deleteStudent($studentId){
 
 function deleteClass($classId){    
     dbQuery("
-        DELETE FROM classes WHERE ClassId = :cleanedClassId
+        UPDATE CLASSES SET DateArchived = CURRENT_DATE WHERE ClassId = :cleanedClassId       
     ",  [       
         'cleanedClassId' => $classId        
     ]);

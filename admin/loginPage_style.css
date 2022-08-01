@@ -106,8 +106,9 @@ body{
   }
   .pass:hover{
     text-decoration: underline;
-  }
-
+  }  
+  
+  
   input[type="submit"]{
     width: 100%;
     height: 50px;

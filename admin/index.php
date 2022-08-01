@@ -1,7 +1,9 @@
 <?php
 include('../include/initialize.php'); 
 checkAdmin();
- 
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     
     if(isset($_REQUEST['AddClassesSubmitted'])){ 
@@ -11,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //If the toggle was on add one credit to the student 
         if(isset($_REQUEST['StdToggle'])){
             insertCredit(1, $studentId);
-        }       
+        }     
+          
         //when a class is submitted so far I'm not letting the students to be able to book a class
         //if they haven't paid. it happened in the past that when Yuni did not charged in advance
         //some people would not paid after the lesson, so unless is a student that has been with
@@ -66,7 +69,7 @@ if($size == 0){
 }
 
 echoHeader('Home');
-echoPageLayout('Welcome back, Yuniesky', $headingInfo, getAdmin());
+echoPageLayout("Welcome back, ".$admin['FirstName'], $headingInfo, $admin);
                                        
 echoNextClassSection($classesToday);                                                      
 
@@ -76,16 +79,18 @@ $totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
 
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
-addEvents($classesToday);
-addCurrentTime();
-classFormIndexPage($allStudents);
+addEvents();
+classFormIndexPage($allStudents, $admin['DefaultZoomLink']);
+classForm($admin['DefaultZoomLink']);
 deleteClassForm();
 
 $jsFiles = "
-    <script src='/include/forms.js'></script>   
-    <script src='/include/home.js'></script>
-    <script src='/include/dayViewCalendar.js'></script>
-    <script src='/include/events.js'></script>
+    <script src='/include/JS/helper_functions.js'></script> 
+    <script src='/include/JS/common_forms.js'></script>   
+    <script src='/include/JS/home.js'></script>
+    <script src='/include/JS/dayViewCalendar.js'></script>
+    <script src='/include/JS/events.js'></script>
     ";
 
 echoFooter($jsFiles); 
+

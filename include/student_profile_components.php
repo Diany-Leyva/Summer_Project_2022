@@ -10,31 +10,30 @@
 // ********************************************************************************************************************************
 
 function echoProfileInfo($student, $picture){
-    $studentId = $student['StudentId'];   
-    $studentArray = array('StudentId'=>$student['StudentId'], 'FirstName'=>$student['FirstName'], 'LastName'=>$student['LastName'], 
-    'Email'=>$student['Email'], 'Phone'=>$student['Phone'], 'Rating'=>$student['ELO'], 'Lichess'=>$student['LichessLink']); 
-   
+    $studentId = htmlspecialchars($student['StudentId']);  
+    $lichessLink = htmlspecialchars($student['LichessLink']);      
+    $lichessUsername = substr($lichessLink,22); 
+    $email = htmlspecialchars($student['Email']);
+      
     echo"
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
                 <ol>
-                    <li>".$student['FirstName']." ".$student['LastName']."</li>
-                    <li>".$student['Email']."</li>
-                    <li>".$student['Phone']."</li>    
-                    <li>ELO ".$student['ELO']."</li>
-                    <li>".$student['LichessLink']."</li>
-                    <input type='hidden' id='hiddenStudent-Edit' value=";echo json_encode($studentArray);echo"       
+                    <li>👤 ".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</li>
+                    <li>🏁 ".htmlspecialchars($student['ELO'])."</li>
+                    <li>☎️ ".htmlspecialchars($student['Phone'])."</li>    
+                    <li class='zoom'><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
+                    <li class='zoom'><a href='mailto:$email'>✉️ $email</a></li>                         
                 </ol>
+                
                 <div class='picturePosition'>
                    <img class= 'profilePicture' src= '/images/$picture.png' alt='$picture'>
-                </div>
-
-            </div>            
+            </div>
+        </div>            
             
-            <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
-            <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>       
-            
-";
+        <button class='editButton onProfile zoom' onclick='openStudentForm($studentId)'>✏️</button>
+        <button class='deleteButton onProfile zoom' onclick='openDeleteStudent($studentId)'>🗑</button>     
+    ";
 }
 
 // ********************************************************************************************************************************
@@ -75,20 +74,18 @@ function echoFutureClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                    <p class='classInfoHeading'>$heading</p>";
+                 <div class='headingBackgraound futureClasses'>
+                    <p class='futureClassesHeading'>$heading</p>
+                </div>";
             
                         if(!empty($classes)){                            
                             foreach($classes as $class){
-                                $classId = $class['ClassId']; 
-                                $date = formatDate($class['StartDate'], 'Y-m-d');
-                                $time = formatDate($class['StartDate'], 'H:i');
-
-                                $classArray = array('ClassId'=>$class['ClassId'], 'Type'=>$class['Type'], 'ClassDate'=>$date, 'ClassTime'=>$time, 'ZoomLink'=>$class['ZoomLink'], 'StudentId'=>$class['StudentId']); 
-                                                           
+                                $classId = $class['ClassId'];                   
+                                                                                      
                                 echo"                  
                                     <li class='info-table-row zoom'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
-                                    <span onclick='openClassForm($classId)'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."</span>                     
-                                    <input type='hidden' id='hiddenClass-Edit' value=";echo json_encode($classArray);echo">                                     
+                                    <span onclick=\"openClassForm($classId)\">".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
+                                                               
                                     </li>
                                 ";        
                             }    
@@ -109,12 +106,13 @@ function echoPastClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                    <p class='classInfoHeading'>$heading</p>";
-            
+                    <div class='headingBackgraound pastClasses'>
+                         <p class='pastClassesHeanding'>$heading</p>
+                    </div>";
                         if(!empty($classes)){                            
                             foreach($classes as $class){                                                                                              
                                 echo"                  
-                                    <li class='info-table-row'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i A')."                      
+                                    <li class='info-table-row'>".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."                      
                                     </li>
                                 ";        
                             }    
@@ -130,58 +128,65 @@ function echoPastClassesInfo($classes, $heading){
 }
 
 // ********************************************************************************************************************************
-//these two function are very similar so I will combine them but I was getting 
-//unexpected behavior when I had only one function so I will keep it like
-//this for now and then combine them
+////I added return false because I'm submiting this with AJAX request
 // ********************************************************************************************************************************
 
-function echoPrivateNotes($notes){   
+function echoPrivateNotes($notes, $studentId){  
     $message;
-
-    echo"<div>";
+    echo"<div>
+            <div class='headingBackgraound privNotes'>
+                <p class='privNotesHeading'>Private Notes</p>
+            </div>
+        ";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
-        echo"<p class='classInfoHeading'>Private Notes</p>
-        <form action='' method='post'>
-            <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('privNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' name='privNotesSaveButtonSubmitted'>Save</button>
-        </form>
-            </div>";
+            echo"
+            
+            <form onsubmit='return false;'>
+                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
+                <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
+            </form>
+        </div>";
 }
 
 // ********************************************************************************************************************************
 
-function echoPublicNotes($notes){   
-    $message; 
+function echoPublicNotes($notes, $studentId){  
+    $message;
 
-    echo"<div>";
-            (!empty($notes))? $message = $notes : $message = 'No notes';  
-        echo"<p class='classInfoHeading'>Public Notes</p>
-        <form action='' method='post'>
+    echo"
+    <div>
+        <div class='headingBackgraound publNotes'>
+            <p class='publNotesHeading'>Public Notes</p>
+        </div>
+    ";
+        (!empty($notes))? $message = $notes : $message = 'No notes';  
+        echo"
+        <form onsubmit='return false;'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' name='publicNotesSaveButtonSubmitted'>Save</button>
+            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
         </form>
-            </div>";
+    </div>";
 }
 
 // ********************************************************************************************************************************
 
 function echoTotalClassesSection($totalClasses){
     echo"
-        <div class='flex-container-totalClassesSection'>
-            <div class='flex-item-total'>
-                <p class='totalSectionHeader'>Month</p>         
-                <div class='profilePicture'>
-                    <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
-                </div>
-            </div>
-        
-            <div class='flex-item-total'>
-                <p class='totalSectionHeader'>Year</p>  
-                <div class='profilePicture'>
-                    <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
-                </div>
+    <div class='flex-container-totalClassesSection'>
+        <div class='flex-item-total'>
+            <p class='totalSectionHeader'>Month</p>         
+            <div class='profilePicture'>
+                <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
             </div>
         </div>
+        
+        <div class='flex-item-total'>
+            <p class='totalSectionHeader'>Year</p>  
+            <div class='profilePicture'>
+                <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
+            </div>
+        </div>
+    </div>
 ";
 }
 
