@@ -354,4 +354,3 @@ function updateClass($classId, $type, $zoomLink, $classDate){
 
 
 
-
