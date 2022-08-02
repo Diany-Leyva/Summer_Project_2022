@@ -2,35 +2,37 @@
 
 // --------------------------------------------------------------------------
 
-function createNewStudentForm(){
+function addStudentForm(){
     echo"         
-    <div id='addStudentForm' class='modal'>        
-        <form class='modal-content animate' action='' method='post'>
+    <div id='addStudentForm' class='modal'> 
+        <form action='' method='post' class='form-container animate'>
             <div class='imgcontainer'>
-                <span onclick= document.getElementById('addStudentForm').style.display='none' class='close' title='Close Modal'>&times;</span>
                 <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
             </div>
         
-            <div class='container'>
+            <div class='container input-container'>
                 <label for='ufname'><b>First Name</b></label>
-                <input type='text' placeholder='First Name' name='ufname' required>
+                <input type='text' placeholder='First Name' name='ufname' id='fname' value='' required>
         
                 <label for='ulname'><b>Last Name</b></label>
-                <input type='text' placeholder='Last Name' name='ulname' required>
+                <input type='text' placeholder='Last Name' name='ulname' id='lname' value='' required>
                     
                 <label for='uemail'><b>Email</b></label>
-                <input type='email' placeholder='Email' name='uemail' required>
+                <input type='email' placeholder='Email' name='uemail' id='email' value='' required>
             
                 <label for='uphone'><b>Phone</b></label>
-                <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required>
+                <input type='tel' name='uphone' placeholder='999-999-9999' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' id='phone' value='' required>
 
                 <label for='urating'><b>ELO Rating</b></label>
-                <input type='number' min='0' max='3000'placeholder='ELO' name='urating' required>       
+                <input type='number' min='0' max='3000'placeholder='ELO' name='urating' id='rating' value='' required>
+                
+                <label for='ulichess'><b>Username</b></label>
+                <input type='text' placeholder='Lichess Username' name='ulichess' id='lichess' value='' required>
             </div>
         
-            <div class='container' style='background-color:#f1f1f1'>
-                <button type='submit' name='AddStudentSubmitted'>Add</button>
-                <button type='button' onclick= document.getElementById('addStudentForm').style.display='none' class='cancelbtn'>Cancel</button>
+            <div class='buttons-container' style='background-color:#f1f1f1'>
+                <button type='submit' class='submit' name='AddStudentSubmitted'>Add</button>
+                <button type='button' class='cancel' onclick= 'closeAddStudentForm()'>Cancel</button>
             </div>
         </form>
     </div>   
@@ -39,32 +41,46 @@ function createNewStudentForm(){
 
 // --------------------------------------------------------------------------
 
-function createAddCreditsForm(){
+function changeCreditsForm(){
+
     echo"          
-        <div class='form-popup' id='addCreditsForm'>
-            <form action='' method='post' class='form-container'>                
-                <button type='submit' class='btn' name='AddCreditsSubmitted'>Add</button>
-                <button type='button' class='btn cancel' onclick='closeCreditForm()'>Close</button>
+        <div id='changeCreditsForm' class='modal'>
+            <form action='' method='post' class='form-container animate'> 
+                <header class='container'>
+                Credits              
+                </header>  
 
-                <label for='camount'><b>Credits Amount</b></label>
-                <input type='number' min='0' max='100' placeholder='0 - 100' name='camount' required>
+                <div class='container input-container'>
+                    <label for='camount'><b>Credits Amount</b></label>
+                    <input id='maxCredit' type='number' min='1' max='100' placeholder='1 - 100' name='camount' required>
+                </div> 
 
-                <label for='id'><b></b></label>
-                <input type='hidden' name='id' value=$_REQUEST[studentId]>        
+                <div class='buttons-container'>
+                    <input type='hidden' id='hiddenButtonName' name='hiddenButtonName' value=''>
+                    <button type='submit' class='submit' name='changeCreditsSubmitted'>Submit</button>               
+                    <button type='button' class='cancel' onclick='closeCreditForm()'>Cancel</button>
+                </div>
             </form>
         </div>
 ";
 }
 
 // --------------------------------------------------------------------------
-
-function createAddClassForm(){
+//I'm sure that as I get more familiar with js libraries I will be able to
+//updated this date-time picker :). I'm literally just using a list for time
+//but I don't want to allow 4:35Pm as a time for instance, I just want :00 or
+// :30 as an option 
+// --------------------------------------------------------------------------
+function addClassForm(){
+    $today = date('Y-m-d');
     echo"          
-        <div class='form-popup' id='addClassForm'>
-            <form action='' method='post' class='form-container'>
-                <button type='button' class='btn cancel' onclick='closeClassForm()'>Close</button>
-                <button type='submit' class='btn' name='AddClassesSubmitted'>Book</button>
+        <div id='addClassForm' class='modal'>
+            <form action='' method='post' class='form-container animate'>  
+                <header class='container'>
+                        Book Class                
+                </header> 
 
+                <div class='container input-container'>
                 <label for='ctype'>Class Type</label>
                 <select id='dropdown' name='ctype'>
                     <option value='Online'>Online</option>
@@ -72,16 +88,78 @@ function createAddClassForm(){
                 </select>   
 
                 <label for='classDate'>Class Date</label>
-                <input type='datetime-local' name='classDate' required> 
+                <input type='date' name='classDate' min='$today' value='$today' required>
+
+                <label for='classTime'>Class Time</label>
+                <select name='classTime' id='clock'>";
+
+                    for($i = 8; $i < 24; $i++){
+                        $meridiam = 'AM';                  
+                      
+                        if($i > 11){
+                            $meridiam = 'PM';
+                        }
+
+                        $hour = $i.":00";
+                        $min = $i.":30";
+                   
+                        echo"<option value=$hour>$hour $meridiam</option>";
+                        echo"<option value=$min>$min $meridiam</option>";
+                    }
+                    echo"
+                </select>        
 
                 <label for='czoomLink'><b>Zoom Link</b></label>
-                <input type='text' placeholder='Link' name='czoomLink' required> 
-
-                <label for='id'><b></b></label>
-                <input type='hidden' name='id' value=$_REQUEST[studentId]>        
+                <input type='text' placeholder='Link' name='czoomLink' required>            
+                </div>        
+                                
+                <div class='buttons-container'>
+                    <button type='submit' class='submit' name='AddClassesSubmitted'>Book</button>
+                    <button type='button' class='cancel' onclick='closeClassForm()'>Cancel</button>               
+                </div>      
             </form>   
         </div>         
 ";
 }
 
 // --------------------------------------------------------------------------
+
+function deleteStudentForm(){    
+    echo"
+        <div id='addDeleteStudent' class='modal'>
+                <form action='' method='post' class='form-container animate'>
+                    <header class='container'>
+                        Delete Student                  
+                        <p>Are you sure you want to delete this student?</p>
+                    </header> 
+                    <div class='buttons-container'>
+                            <input type='hidden' id='hiddenStudentId' name='studentId' value=''>
+                            <button type='submit' class='submit' name='studentDeleted'>Delete</button>                      
+                            <button type='button' class='cancel' onclick='closeDeleteStudent()'>Cancel</button>
+                    </div>                  
+                </form>
+        </div>
+    ";
+}
+
+// -------------------------------------------------------------------------- 
+
+function deleteClassForm(){    
+    echo"
+        <div id='addDeleteClass' class='modal'>
+                <form action='' method='post' class='form-container animate'>
+                    <header class='container'>
+                        Delete Class                  
+                        <p>Are you sure you want to delete this class?</p>
+                    </header> 
+                    <div class='buttons-container'>
+                            <input type='hidden' id='hiddenClassId' name='classId' value=''>
+                            <button type='submit' class='submit' name='classDeleted'>Delete</button>                      
+                            <button type='button' class='cancel' onclick='closeDeleteClass()'>Cancel</button>
+                    </div>                  
+                </form>
+        </div>
+    ";
+}
+
+// -------------------------------------------------------------------------- 

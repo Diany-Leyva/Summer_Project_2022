@@ -24,7 +24,7 @@ background-color: #eee;
 }
 
 .wrapper > section:nth-last-child(odd){
-    height: 176%;
+    height: fit-content;
     background: #d7d0d066 ;
 }      
 
@@ -134,6 +134,7 @@ h2{
 /* Students Table*/
 .studentTable{
     margin-top: -30px;
+    /* overflow: auto; */
 }
 
 li{
@@ -144,16 +145,25 @@ li{
     margin: 56px 38px;
     height: 30%;
     background: #d7d0d066;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
 #tableContainer td, #tableContainer th {
     text-align: left;  
     padding: 11px 28px;
-}   
+}
 
- 
+/* #tableContainer tr {
+    border-bottom: 1px solid  #cfcaca;
+} */
+  
+  #tableContainer tr.header, #tableContainer tr:hover {
+    background-color:  #cfcaca;
+    border-radius: 30px;
+
+  }
+
 /* student_profile.php 
 --------------------------------------------------------------------------- */
 /*Profile photo */
@@ -167,7 +177,7 @@ li{
     padding: 4%;
 }
 
-ol{
+.flex-item-profileInfo ol{
     margin: 10px 174px;
 }
 
@@ -183,18 +193,40 @@ ol li {
 }
 
 .picturePosition{
-    margin: -132px 0px;
+    position: absolute;
+    top: 212px;
+    left: 239px;
 }
+
+.deleteButton{  
+    display: block;
+    color: red;
+    background-color: inherit;    
+    width: fit-content;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.deleteButton.onProfile{
+    position: absolute;
+    margin: 40px 24px;
+}
+      
+  /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
+    display: block;    
+  } */
 
 /*Classes section */
 .flex-container-classesInfo{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     gap: 103px 128px;
     flex-wrap: wrap;
     width: 60%;
-    padding: 69px 52px;
+    padding: 7px 60px;
+    
 }
 .flex-item-classesInfo{
     display: flex;
@@ -205,6 +237,9 @@ ol li {
     width: 335px;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+    overflow: auto;
+    background-color: inherit;
+    border: none;
 }
 
 .flex-item-classesInfo div{
@@ -212,15 +247,39 @@ ol li {
     margin-left: 36px;
 }
 
-.flex-item-classesInfo li{
-    padding: 9px;
+textarea{
+    padding: 10%;
+    resize: none;
+    font-size: 16px;
 }
 
-.classBlock{
-    margin-left: 76px;
-    margin-top: -55px;
-    font-size: 25px;
+.saveNoteButton{
+    visibility:hidden;
+    /* display: none; */
 }
+/* .flex-item-classesInfo li{
+    padding: 9px;
+} */
+ 
+
+
+.classInfoHeading{
+    margin-top: -30px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.info-table-row{
+    display: flex;
+    align-items: baseline;
+    margin-top: 17px;
+}
+
+.deleteButton.onClassInfo{
+    padding: 5%;
+    margin: -23px -1px;
+}
+
 
 /*Credits and buttons section */
 button{
@@ -235,6 +294,22 @@ button{
     margin: 21px 1px;
     cursor: pointer;
     border-radius: 64px;
+    width: 100%;   
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.zoom {
+    transition: transform .2s;
+    cursor: pointer;
+}
+  
+.zoom:hover {
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.3);
 }
 
 .flex-item-buttons{ 
@@ -258,11 +333,14 @@ button{
 
 /*Todal classes section */
 .flex-container-totalClassesSection{
+    position: absolute;
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    width: 20%;
-    margin: -723px 956px;
+    width: 15%;
+    top: 531px;
+    right: 158px;
+    /* margin: -736px 956px; */
     background: #d7d0d066;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -270,7 +348,7 @@ button{
 
 .flex-item-total{
     display: flex;
-    padding: 92px 58px;
+    padding: 93px 41px;
 }
 
 .totalSectionHeader{
@@ -284,31 +362,48 @@ button{
     padding: 40% 40%;
 }
 
-/*Add Student form 
+/*Forms 
 --------------------------------------------------------------------------- */
-/* Full-width input fields */
-.container input[type=text], .container input[type=email], .container input[type=tel]
-,.container input[type=number]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+     
+/* The Modal (background) */
+.modal {
+    display: none;                                                 /* Hidden by default */
+    position: fixed;                                               /* Stay in place */
+    z-index: 1;                                                   
+    left: 0;
+    top: 0;
+    width: 100%;                                                  
+    height: 100%;                                                 
+    overflow: auto;                                                /* Enable scroll if needed */
+    background-color: rgb(0,0,0);                                /* Fallback color */
+    background-color: rgba(0,0,0,0.4);                           /* Black w/ opacity */
+    padding-top: 60px;
   }
   
+/* Add styles to the form container */
+.form-container {
+    max-width: fit-content;
+    width: fit-content;
+    height: fit-content;
+    padding: 16px;
+    background-color: #fefefe;
+    border-radius: 25px;
+    margin: 5% auto 15% auto;
+  } 
 
-  button:hover {
-    opacity: 0.8;
+  .container {
+    padding: 16px;
   }
   
-  /* Extra styles for the cancel button */
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
+  .container.input-container{
+    display: flex;
+    flex-direction: column;
   }
-  
+
+  .buttons-container{
+    display: flex;
+  }
+        
   /* Center the image and position the close button */
   .imgcontainer {
     text-align: center;
@@ -317,52 +412,39 @@ button{
   }
   
   img.avatar {
-    /* width: 40%; */
+    width: 40%;
     border-radius: 50%;
   }
   
-  .container {
-    padding: 16px;
-  }
-  
-      
-  /* The Modal (background) */
-  .modal {
-    display: none;                                                 /* Hidden by default */
-    position: fixed;                                               /* Stay in place */
-    z-index: 1;                                                    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;                                                   /* Full width */
-    height: 100%;                                                  /* Full height */
-    overflow: auto;                                                /* Enable scroll if needed */
-    background-color: rgb(0,0,0);                                /* Fallback color */
-    background-color: rgba(0,0,0,0.4);                           /* Black w/ opacity */
-    padding-top: 60px;
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;                                       /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; 
-  }
-  
-  /* The Close Button (x) */
-  .close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: red;
-    cursor: pointer;
+     
+.container input[type=text], .container input[type=email], .container input[type=tel]
+,.container input[type=number], .container input[type="date" i], .container #clock,
+ .container #dropdown{
+    width: 400px;
+    padding: 10px 0px;
+    margin: 2px 0 16px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background: #f1f1f1;
+} 
+
+  /* When the inputs get focus, do something */
+    
+.container input[type=text]:focus, .container input[type=email]:focus, .container input[type=tel]:focus
+,.container input[type=number]:focus, .container input[type="datetime-local" i]:focus, .container #dropdown:focus{
+    background-color: #ddd;
+    outline: none;
+}       
+
+
+ .submit {
+    background-color: #04AA6D;   
+  }  
+
+
+  .cancel {
+    background-color: #f44336;
   }
   
   /* Add Zoom Animation */
@@ -381,77 +463,135 @@ button{
     to {transform: scale(1)}
   }
   
-  /* Change styles for span and cancel button on extra small screens */
+  /* Change styles on extra small screens */
   @media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
+
+    .cancel {
        width: 100%;
     }
+
+    .submit {
+        width: 100%;
+     }
   }  
       
 
-/*Add Credits and add class form 
+/*Home Page
 --------------------------------------------------------------------------- */
-
-/* The popup form - hidden by default */
-.form-popup {
-    display: none;
-    position: absolute;
-    top: 254px;
-    right: 176px;
-    border: 0px solid #f1f1f1;
-    z-index: 9;
-    border-radius: 28px;
+/* Day view calendar */
+.dayViewContainer{
+    position: relative;  
+    margin: 16px 38px;
+    height: 857px;
+    width: 569px;
+    background: #d7d0d066;
+    /* overflow: auto; */
+    border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-  }
+}
 
-  /* Add styles to the form container */
-  .form-container {
-    max-width: 164px;
-    padding: 16px;
-    background-color: #e6e2e2;
-    border-radius: 25px;
-  } 
+h3{
+    padding: 3%;
+}
 
-  /* Input fields */
-  .form-container input[type=text], .form-container input[type=number] , 
-  .form-container input[type="datetime-local" i], .form-container #dropdown{
-    width: 100%;
-    padding: 11px;
-    margin: 11px 0 1px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  /* When the inputs get focus, do something */
-  .form-container input[type=text]:focus, .form-container input[type=number]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-  
-  /* Set a style for the submit/login button */
-  .form-container .btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 0px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 22px;
-    opacity: 0.8;
-    margin-top: -4px;
-  }
-  
-  /* Add a red background color to the cancel button */
-  .form-container .cancel {
-    background-color: red;
-    margin-top: 5px;
-  }
-  
-  /* Add some hover effects to buttons */
-  .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
-  }
+time{
+    position: absolute;
+    /* top: 50px; */
+    left: 25px;
+}
+
+hr{
+    width: 494px;
+}
+
+.one-hour-class{
+    position: absolute;
+    height: 50px;
+    width: 415px;
+    left: 107px;
+    background-color: #bcb7b7;
+    border-radius: -22px;
+}
+
+/* Next class info */
+.next-class-info{
+    position: absolute;
+    top: 284px;
+    right: 142px;
+    height: 360px;
+    width: 471px;
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+
+.nextClassheader{
+    font-size: 24px;
+    position: absolute;
+    top: 207px;
+    right: 425px;
+}
+
+.nextClassPicturePosition{
+    position: absolute;
+    top: -8px;
+    left: -171px;
+}
+
+.next-class-info-content{
+    position: absolute;
+    top: 42px;
+    right: 114px;
+}
+
+.nextclass-buttons-container p{
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+.nextclass-buttons-container a{
+    font-size: 50px;
+}
+
+.nextclass-buttons-container{
+    display: flex;
+    position: absolute;
+    top: 167px;
+    right: -163px;
+}
+
+.nextclass-buttons-container div{
+    margin: 34px -93px;
+}
+
+.nextclass-buttons-container img{
+    height: 18%;
+}
+
+.noclasses-message{
+    font-size: 25px;
+    margin: 105px 26px;
+}
+
+/* total class section */
+.index-totalClassesSection{
+    position: absolute;
+    display: flex;   
+    width: 511px;
+    height: 360px;
+    top: 760px;
+    right: 101px;
+    background: #d7d0d066;
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+ 
+.item-total{
+    display: flex;
+    padding: 95px 89px;
+}
+
+
+#totalNumberIndexPage {
+    font-size: 30px;
+    padding: 40% 40%;
+}

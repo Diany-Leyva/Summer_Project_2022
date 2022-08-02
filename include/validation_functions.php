@@ -9,15 +9,12 @@ function test_input($data) {
 
 function validateName($name){
 
-    global $errors;    
+    $errors = [];    
 
     if (!preg_match('/^[a-zA-Z- ]*$/',$name)) {
         $errors['Name'] = "Only letters allowed";
     }
+
+    return $errors;
 }
 
-// function validateEmail(&$errors){
-//     if (!filter_var(test_input($_REQUEST["Email"]), FILTER_VALIDATE_EMAIL)) {
-//         $errors['Email'] = "Invalid email format";
-//     }
-// }

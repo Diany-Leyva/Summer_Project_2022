@@ -6,129 +6,96 @@
 function getAllStudents(){
     return dbQuery("
             SELECT *
-            FROM students 
+            FROM students
+            WHERE DateArchived is NULL 
             ORDER BY StudentId     
     ")->fetchAll();   
 }
 
-function getStudent($studentId){
+function getOneStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
-        WHERE StudentId = $studentId;   
+        WHERE StudentId = $studentId
+        AND DateArchived is NULL  
     ")->fetch();  
 }
 
 //Classes Table
 // --------------------------------------------------------------------------
 
-// function getAllClasses(){
-//     return dbQuery("
-//             SELECT *
-//             FROM classes
-//             ORDER BY Class_Id        
-//     ")->fetchAll();  
-// }
-
-// function getAllClassesByStudent($studentId){
-//     return dbQuery("
-//         SELECT *
-//         FROM classes
-//         WHERE Student_id = $studentId  
-//         ORDER BY Start_Date
-//     ")->fetchAll();  
-// }
-
-function getFutureClasses(){
+function getAllClasses(){
     return dbQuery("
-        SELECT StudentId, StartDate 
-        FROM classes
-        WHERE StartDate > CURRENT_DATE
-        ORDER BY StudentId, StartDate
-    ")->fetchAll();   
+            SELECT *
+            FROM classes
+            WHERE DateArchived is NULL 
+            ORDER BY StudentId, StartDate        
+    ")->fetchAll();  
 }
 
-function getStudentsFutureClasses($studentId){
+function getOneStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
-        WHERE StartDate > CURRENT_DATE
-        AND StudentId = $studentId
-        ORDER BY StudentId, StartDate
-    ")->fetchAll();    
+        WHERE StudentId = $studentId 
+        AND DateArchived is NULL      
+        ORDER BY StartDate
+    ")->fetchAll();  
 }
 
-function getStudentPastClasses($studentId){
-    return dbQuery("
-        SELECT *
-        FROM classes
-        WHERE StartDate < CURRENT_DATE
-        AND StudentId = $studentId
-        ORDER BY StudentId, StartDate
-    ")->fetchAll();   
-}
-
-function getClassesAmount(){
+function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
-    FROM classes   
+    FROM classes 
+    WHERE DateArchived is NULL     
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
 }
 
-function getStudentClassesAmount($studentId){
+function getOneStudentClassesAmount($studentId){
     return dbQuery("
         SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
         WHERE StudentId =  $studentId
+        AND DateArchived is NULL   
         ORDER BY StudentId   
 ")->fetch();
 }
 
+function getAllStudentsWithClasses(){
+    return dbQuery("
+        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
+        FROM classes, students
+        WHERE classes.StudentId = students.StudentId  
+        AND (students.DateArchived is NULL AND classes.DateArchived is NULL)   
+        ORDER BY StudentId, StartDate
+    ")->fetchAll();   
+}
+
+//I'm keeping this one for now but I might get rid of it later on
 function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
     FROM classes 
-    WHERE StartDate > CURRENT_DATE        
+    WHERE StartDate > CURRENT_DATE  
+    AND DateArchived is NULL         
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
 }
 
-function getStudentClassesAmountThisMonth($studentId){
-    return dbQuery("
-        SELECT StudentId, COUNT(StudentId) Amount
-        FROM classes
-        WHERE StudentId = $studentId
-        AND MONTH(Startdate) = MONTH(CURRENT_DATE)
-        AND YEAR(Startdate) = YEAR(CURRENT_DATE)
-        GROUP BY StudentId    
-    ")->fetch();
-}
-
-function getStudentClassesAmountThisYear($studentId){
-    return dbQuery("
-        SELECT StudentId, COUNT(StudentId) as Amount
-        FROM classes
-        WHERE StudentId = $studentId        
-        AND YEAR(StartDate) = YEAR(CURRENT_DATE)
-        GROUP BY StudentId    
-    ")->fetch();
-}
-
-
 //Credits Table
 // --------------------------------------------------------------------------
 
-// function getAllCredits(){
-//     return dbQuery("
-//         SELECT *
-//         FROM  credits       
-//         ")->fetchAll();
-// }
+function getAllCredits(){
+    return dbQuery("
+        SELECT *
+        FROM  credits       
+        ")->fetchAll();
+}
 
-function getCreditsAmount(){
+function getAllCreditsAmount(){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
@@ -137,7 +104,7 @@ function getCreditsAmount(){
     ")->fetchAll();
 }
 
-function getStudentCreditAmount($student_Id){
+function getOneStudentCreditAmount($student_Id){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as CreditsAmount
         FROM credits 
@@ -147,47 +114,34 @@ function getStudentCreditAmount($student_Id){
     ")->fetch();
 }
 
-//Students and Classes Table
+//Refunds Table
 // --------------------------------------------------------------------------
-// function getAllStudentsWithClasses(){
-//     return dbQuery("
-//         SELECT S.Student_Id, First_Name, Last_Name, COUNT(C.Student_Id) as Classes
-//         FROM classes C, students S
-//         WHERE S.Student_Id = C.Student_Id
-//         GROUP BY S.Student_Id
-//         ORDER BY Student_Id
-//     ")->fetchAll();
-// }
+function getAllRefundsAmount(){
+    return dbQuery("
+        SELECT StudentId, SUM(Amount) as RefundAmount
+        FROM refunds 
+        GROUP By StudentId
+        ORDER BY StudentId
+    ")->fetchAll();
+}
 
-//Students and Credits Table
-// --------------------------------------------------------------------------
+function getOneStudentRefundAmount($student_Id){
+    return dbQuery("
+        SELECT StudentId, SUM(Amount) as RefundAmount
+        FROM refunds 
+        WHERE StudentId = $student_Id
+        GROUP By StudentId
+        ORDER BY StudentId       
+    ")->fetch();
+}
 
-// function getStudentsCredits(){
-//     return dbQuery("
-//         SELECT S.Student_Id, First_Name, Last_Name, SUM(Amount) as Credits
-//         FROM students S, credits C
-//         WHERE S.Student_Id = C.Student_Id 
-//         GROUP By S.Student_Id
-//         ORDER BY Student_Id
-//     ")->fetchAll();
-// }
-
-// function getAllStudentsWithCredits(){
-//     return dbQuery("
-//         SELECT students.Student_Id, First_Name, Last_Name, Email, Phone, ELO, SUM(Amount) as Credits
-//         FROM students, credits 
-//         WHERE students.Student_Id = credits.Student_Id 
-//         GROUP By students.Student_Id, First_Name, Last_Name, Email, Phone, ELO;
-//     ")->fetchAll();
-// }
-
-// Updates
+// Inserts
 // -------------------------------------------------------------------------- 
 
-function insertStudent($fName, $lName, $email, $phone, $rating){
+function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
     dbQuery("
-    INSERT INTO students(FirstName, LastName, Email, Phone, ELO)
-    VALUES ('$fName', '$lName', '$email', '$phone', '$rating')
+    INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
+    VALUES ('$fName', '$lName', '$email', '$phone', '$rating', '$lichess')
 ");
 }
 
@@ -205,14 +159,66 @@ function insertClass($type, $link, $classDate, $studentId){
 ");
 }
 
+//If there is a better way to handle this please let me know. So, I have a credits table (Every row in that table in actually a purchase the student made).If
+//we subtract a credit means we are returning money to the person which is a refund. So, I have a refund table whith the date of the refund and the amount. 
+//The value will only be inserted in the table if the student has a remaing credit. So, before this query happens I need to check if the student has remaining credits
+//But also, to calculate the remaining credits I need to check if there is any refund in the table for that student. 
+function insertRefund($amount, $studentId){    
+    dbQuery("
+    INSERT INTO refunds(Amount, StudentId)
+    VALUES ('$amount', '$studentId')
+");
+}
+
 // Deletions
 // -------------------------------------------------------------------------- 
 
-function deleteStudents_TableDB($studentId){    
+function deleteStudent($studentId){    
     dbQuery("
-        DELETE FROM students WHERE StudentId = $studentId
+        UPDATE students SET DateArchived = CURRENT_DATE WHERE StudentId = $studentId
 ");
 }
+
+function deleteClass($classId){    
+    dbQuery("
+        UPDATE CLASSES SET DateArchived = CURRENT_DATE WHERE ClassId = $classId
+");
+}
+
+
+// Updates
+// -------------------------------------------------------------------------- 
+
+function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $studentId){
+    dbQuery("
+    UPDATE students
+    SET FirstName ='$fName', LastName='$lName', Email='$email', Phone='$phone', ELO='$rating', LichessLink ='$lichess' 
+    WHERE StudentId = '$studentId'
+");
+}
+
+function updatePrivateNotes($studentId, $notes){
+    dbQuery("
+        UPDATE students
+        SET PrivateNotes = '$notes'
+        WHERE StudentId = '$studentId'
+    ");
+}
+
+// *********************************************************************************************************************************
+
+function updatePublicNotes($studentId, $notes){
+    dbQuery("
+    UPDATE students
+    SET PublicNotes = '$notes'
+    WHERE StudentId = '$studentId'
+");
+}
+
+
+
+
+
 
 
 
