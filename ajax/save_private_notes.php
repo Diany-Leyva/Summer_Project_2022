@@ -10,3 +10,4 @@ $notes = $commments['Notes'];
 
 updatePrivateNotes($studentId, $notes);      
 } 
+

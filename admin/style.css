@@ -14,10 +14,10 @@ body{
 }
 
 /* Grid layout */
-.wrapper{
+/* .wrapper{
     display: grid;
     grid-template-columns: 12% 88%;
-    /* height: 88%; */
+  
 }
 
 .wrapper > section{
@@ -26,18 +26,18 @@ body{
 
 .wrapper > section:nth-last-child(odd){
     height: fit-content;
-    /* background: #ffffff ; */
-}      
+   
+}       */
 
 /* Horizontal Bar*/
 nav{ 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-image: url(../images/chessboard_top_copy.jpg);
+  background-image: url(../images/4.jpg);
   background-repeat: no-repeat;
   height: 488px;
-  background-size: 150%;
+  background-size: 1596px;
   background-position-x: center;
 }
 
@@ -48,11 +48,12 @@ header{
 
 header p{
   font-size: 20px;
-  padding: 1%;
+  margin-top: 1%;
  }
 
 .flex-item-horizontalMenu{
   position: relative;
+  left: -133px;
   top: -9px;
 }
 
@@ -62,8 +63,8 @@ ul li {
 }
 
 ul li a {                                                               
-    font-size: 25px;
-    padding: 0 55px;    
+  font-size: 30px;
+  padding: 0 39px; 
 }
                                                  
 .notificationIcon{
@@ -74,28 +75,34 @@ ul li a {
 }
 
 /* Vertical Bar*/
-.vertical{
+/* .vertical{
   width: 182px;
-  /* background-color: #dddbd1; */
-}
+ 
+} */
 
-.hamburguerButton{
+/* .hamburguerButton{
   width: 35px;
   height: 5px;
   background-color: black;
   margin: 5px 0;
-}
+} */
 
 .adminName{
-    position: absolute;
-    top: 126px;
-    left: 30px;
+  position: relative;
+  top: 111px;
+  left: 562px;
 }
 
 .logOutLink{
-    position: absolute;
-    top: 150px;
-    left: 62px;
+  position: relative;
+  top: 119px;
+  left: 601px;
+}
+
+.navProfilePicture{
+  position: relative;
+  top: -153px;
+  left: 131px;
 }
 
 .flex-container-verticalBar{
@@ -109,22 +116,42 @@ ul li a {
 }
 
 .circlePicture {    
-    width: 75px;
-    height: 75px;
-    border-radius: 75px;  
+  width: 50px;
+  height: 50px;
+  float: right;
+  padding: 50px;
+  border-radius: 75px;
 }
 
 /* List_students.php 
 --------------------------------------------------------------------------- */
 /* Search Bar*/
-h2{
-  position: absolute;
-  top: 502px;
-  left: 436px;
+h2{ 
+  font-size: 30px;
+}
+
+h2.dailyCalendarheader{
+  position: relative;
+  top: 5px;
+  left: 342px;
+}
+
+h2.classesInfoHeader{
+  position: relative;
+  top: 39px;
+  left: 1096px;
+}
+
+h2.searchBar {
+  position: relative;
+  top: 51px;
+  left: 172px;
 }
 
 .flex-item-SearchBar{
-    margin: -24px 56px;
+  position: relative;
+  top: 71px;
+  left: 169px;
 }
 
 .search-bar input[type=text] { 
@@ -136,10 +163,10 @@ h2{
     border: 1px solid #CCC;
 }
 
-.search-bar{ 
+/* .search-bar{ 
     display: flex;
     align-items: center;    
-}
+} */
 
 .searchButton{
     width: 56px;
@@ -161,8 +188,10 @@ h2{
 
 /* Students Table*/
 .studentTable{
-    margin-top: -30px;
-    /* overflow: auto; */
+  position: relative;
+  /* top: -50px; */
+  left: 169px;
+  /* overflow-y: auto; */
 }
 
 li{
@@ -170,11 +199,10 @@ li{
 }
 
 #tableContainer{   
-    margin: 56px 38px;
-    height: 30%;
-    background: #d7d0d066;
-    /* border-radius: 30px; */
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  margin: 125px -5px;
+  background: #d7d0d066;
+  /* border-radius: 30px; */
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
 #tableContainer td, #tableContainer th {
@@ -187,7 +215,7 @@ li{
 } */
   
   #tableContainer tr.header, #tableContainer tr:hover {
-    background-color:  #cfcaca;
+    background-color:  #7e98ad;
     border-radius: 30px;
 
   }
@@ -282,6 +310,7 @@ ol li {
     padding: 7px 60px;
     
 }
+
 .flex-item-classesInfo{
     display: flex;
     justify-content: flex-start;
@@ -400,7 +429,7 @@ textarea{
 
 /*Credits and buttons section */
 button{
-    background-color: #383938;
+    background-color: #2691d9;
     border: none;
     color: white;
     padding: 12px 26px;
@@ -430,13 +459,16 @@ button:hover {
 }
 
 .flex-item-buttons{ 
-    margin: 52px 177px;
+  position: relative;
+  top: 93px;
+  right: 157px;
 }
 
 .item-buttons{
-    display: flex;
-    flex-direction: column;
-    margin: 29px 20px;
+
+  display: flex;
+  flex-direction: column;
+  margin: 29px 20px;
 }
 
 .flex-item-buttons button{
@@ -920,12 +952,11 @@ hr{
 }
 
 .dayViewContainer{
-  position: absolute;
-  top: 534px;
-  margin: 16px 38px;
+  position: relative;
+  margin: 50px 151px;
   height: 1026px;
   width: 569px;
-  background: #d7d0d066;
+  background: #e5e9e9;
   border-radius: 10px;
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
   overflow-y: auto;
@@ -989,9 +1020,9 @@ hr{
 /* Next class info */
 .next-class-info{
   position: absolute;
-  top: 549px;
+  top: 606px;
   background-color: #7e98ad;
-  right: 83px;
+  right: 93px;
   height: 409px;
   width: 471px;
   border-radius: 10px;
@@ -1012,6 +1043,7 @@ hr{
         /* font-size: 0.5em; */
         box-sizing: border-box;
         border-radius: 10px;
+  
 }
 
 .disableAnchor{
@@ -1072,8 +1104,8 @@ hr{
   position: absolute;
   /* display: flex; */
   /* padding: 38px 18px; */
-  top: 1161px;
-  right: 83px;
+  top: 1214px;
+  right: 93px;
   height: 417px;
   background-color: #e5e9e9;
   width: 467px;
@@ -1083,7 +1115,7 @@ hr{
  
 .item-total{
   position: relative;
-  top: -30px;
+  top: -29px;
   left: 1px;
 }
 
@@ -1124,14 +1156,11 @@ hr{
 
   /* Footer */
 
-  .bottomImage{ 
+  footer{
+    height: 416px;
     background-image: url(../images/chessboard_bottom_copy.jpg);
     background-repeat: no-repeat;
-    background-size: 125%;
+    background-size: 1663px;
     background-position: bottom;
-    position: relative;
-    top: 1120px;
-    left: 180px;
-    width: 1339px;
-    height: 348px;
-}
+    opacity: 0.5;
+  }

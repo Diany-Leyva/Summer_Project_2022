@@ -7,7 +7,7 @@ function echoSearchBar($heading){
     echo"
     <div class='flex-container-searchBarButtons'>
         <div>
-            <h2>$heading</h2>
+            <h2 class='searchBar'>$heading</h2>
             <div class='flex-item-SearchBar search-bar'>          
             <input type='text' id='myInput' onkeyup='searchStudent()' placeholder='🔎 Search Name...' title='Type in a name'>
         </div> 

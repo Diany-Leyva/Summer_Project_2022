@@ -8,7 +8,7 @@
 function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
-        <h2 id='target'>Daily Schedule</h2>
+        <h2 id='target' class='dailyCalendarheader'>Daily Schedule</h2>
         <div class='dayViewContainer'>     
             <h3><center> $day</h3>";
             $topPosition = 60;
@@ -32,7 +32,8 @@ function echoDayViewCalendar(){
                 echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
                 </div>";                     
                 $currentTop+=$topPosition;                  
-            }                   
+            }          
+          
 }
 
 //********************************************************************************************************************************
@@ -41,8 +42,9 @@ function echoDayViewCalendar(){
 
 function addEvents(){
     echo"  
-    <div id='timeLine'></div> 
-        <div id='events'></div>";      
+        <div id='timeLine'></div> 
+        <div id='events'></div>
+    </div>";      
 }  
 
 // ********************************************************************************************************************************
@@ -85,8 +87,8 @@ function echoNextClassSection($classesToday){
     $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
     $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm($id)\">✏️</button>";
          
-    echo"    
-    <div class='flex-classesInfo-container'>    
+    echo"   
+        <h2 class='classesInfoHeader'>Classes Info</h2>  
         <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>     
                 <p id='classInfoHeading' class='nextClassheader'>$heading</p>
@@ -101,15 +103,18 @@ function echoNextClassSection($classesToday){
                         <a id='classInfoEmail' class='$class' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                         <p>Message</p>
                     </div>
+
                     <div>
                         <a id='classInfoLichess' class='$class' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                         <p>Lichess</p>
                     </div>
+
                     <div>
                         <a id='classInfoZoom' class='$class' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                         <p>Zoom</p>
                     </div>
                 </div>
+
                 <div class='nextClassPicturePosition'>
                     <span id='showDeleteButton'> $showDeleteButton </span>
                     <span id='showEditButton'> $showEditButton </span>
@@ -137,8 +142,7 @@ function echoIndexTotalSection($totalClasses){
                     <p class='totalNumber year'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
                 </div>
             </div>
-        </div>
-        </div>
+        </div>       
 ";
 }
 
