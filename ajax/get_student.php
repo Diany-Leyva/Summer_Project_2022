@@ -6,4 +6,3 @@ if(isset($_GET['StudentIdToEdit'])){
 
     echo json_encode(getOneStudent($studentId));
 } 
-

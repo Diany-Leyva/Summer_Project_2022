@@ -1,92 +1,145 @@
 <?php
+// *********************************************************************************************************************************
+// Admins table
+// *********************************************************************************************************************************
 
+function getAllAdmins(){
+        return dbQuery("
+        SELECT *
+        FROM admins 
+        WHERE DateArchived is NULL 
+        ORDER BY AdminId     
+    ")->fetchAll(); 
+}
+
+// *********************************************************************************************************************************
+
+function getOneAdmin($adminId){
+    return dbQuery("
+        SELECT *
+        FROM admins
+        WHERE AdminId = $adminId
+        AND DateArchived is NULL     
+    ")->fetch(); 
+}
+
+// *********************************************************************************************************************************
 //Students Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllStudents(){
     return dbQuery("
             SELECT *
-            FROM students
+            FROM students 
             WHERE DateArchived is NULL 
             ORDER BY StudentId     
     ")->fetchAll();   
 }
+
+// *********************************************************************************************************************************
+//I will ask this in next jog but do I need to clean studentid here to prevent sql injection as well?
+//even though this wasn't entered bu the user in the form? My guess is that yes we do, since someone could try to 
+//manipulated in the URL or something like that
 
 function getOneStudent($studentId){
     return dbQuery("
         SELECT *
         FROM students
         WHERE StudentId = $studentId
-        AND DateArchived is NULL  
+        AND DateArchived is NULL     
     ")->fetch();  
 }
 
+// *********************************************************************************************************************************
 //Classes Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllClasses(){
     return dbQuery("
             SELECT *
             FROM classes
-            WHERE DateArchived is NULL 
+            WHERE DateArchived is NULL
             ORDER BY StudentId, StartDate        
     ")->fetchAll();  
 }
+
+// *********************************************************************************************************************************
+
+function getOneClass($classId){
+    return dbQuery("
+        SELECT *
+        FROM classes
+        WHERE ClassId = $classId
+        AND DateArchived is NULL     
+    ")->fetch();  
+}
+
+// *********************************************************************************************************************************
 
 function getOneStudentClasses($studentId){
     return dbQuery("
         SELECT *
         FROM classes
         WHERE StudentId = $studentId 
-        AND DateArchived is NULL      
+        AND DateArchived is NULL   
         ORDER BY StartDate
     ")->fetchAll();  
 }
+
+// *********************************************************************************************************************************
 
 function getAllClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesAmount
     FROM classes 
-    WHERE DateArchived is NULL     
+    WHERE DateArchived is NULL  
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentClassesAmount($studentId){
     return dbQuery("
         SELECT StudentId, COUNT(StudentId) as ClassesAmount
         FROM classes 
         WHERE StudentId =  $studentId
-        AND DateArchived is NULL   
+        AND DateArchived is NULL 
         ORDER BY StudentId   
 ")->fetch();
 }
 
+// *********************************************************************************************************************************
+
 function getAllStudentsWithClasses(){
     return dbQuery("
-        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink
+        SELECT ClassId, classes.StudentId, FirstName, LastName, Email, LichessLink, StartDate, ZoomLink, Type
         FROM classes, students
-        WHERE classes.StudentId = students.StudentId  
-        AND (students.DateArchived is NULL AND classes.DateArchived is NULL)   
+        WHERE classes.StudentId = students.StudentId 
+        AND (students.DateArchived is NULL AND classes.DateArchived is NULL)        
         ORDER BY StudentId, StartDate
     ")->fetchAll();   
 }
 
+// *********************************************************************************************************************************
 //I'm keeping this one for now but I might get rid of it later on
+// *********************************************************************************************************************************
+
 function getFutureClassesAmount(){
     return dbQuery("
     SELECT StudentId, COUNT(StudentId) as ClassesPending
     FROM classes 
-    WHERE StartDate > CURRENT_DATE  
-    AND DateArchived is NULL         
+    WHERE StartDate > CURRENT_DATE
+    AND DateArchived is NULL          
     GROUP BY StudentId 
     ORDER BY StudentId   
 ")->fetchAll();
 }
 
+// *********************************************************************************************************************************
 //Credits Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getAllCredits(){
     return dbQuery("
@@ -94,6 +147,8 @@ function getAllCredits(){
         FROM  credits       
         ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getAllCreditsAmount(){
     return dbQuery("
@@ -103,6 +158,8 @@ function getAllCreditsAmount(){
         ORDER BY StudentId
     ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentCreditAmount($student_Id){
     return dbQuery("
@@ -114,8 +171,10 @@ function getOneStudentCreditAmount($student_Id){
     ")->fetch();
 }
 
+// *********************************************************************************************************************************
 //Refunds Table
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+
 function getAllRefundsAmount(){
     return dbQuery("
         SELECT StudentId, SUM(Amount) as RefundAmount
@@ -124,6 +183,8 @@ function getAllRefundsAmount(){
         ORDER BY StudentId
     ")->fetchAll();
 }
+
+// *********************************************************************************************************************************
 
 function getOneStudentRefundAmount($student_Id){
     return dbQuery("
@@ -135,85 +196,152 @@ function getOneStudentRefundAmount($student_Id){
     ")->fetch();
 }
 
+// *********************************************************************************************************************************
 // Inserts
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function insertStudent($fName, $lName, $email, $phone, $rating, $lichess){
     dbQuery("
-    INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
-    VALUES ('$fName', '$lName', '$email', '$phone', '$rating', '$lichess')
-");
+        INSERT INTO students(FirstName, LastName, Email, Phone, ELO, LichessLink)
+        VALUES(:cleanedfName, :cleanedlName, :cleanedemail, :cleanedphone, :cleanedrating, :cleanedlichess)
+    ",  [
+        'cleanedfName' => $fName,
+        'cleanedlName' => $lName,
+        'cleanedemail' => $email,
+        'cleanedphone' => $phone,
+        'cleanedrating' => $rating,
+        'cleanedlichess' => $lichess
+    ]);
 }
+
+// *********************************************************************************************************************************
 
 function insertCredit($amount, $studentId){    
     dbQuery("
-    INSERT INTO credits(Amount, StudentId)
-    VALUES ('$amount', '$studentId')
-");
+        INSERT INTO credits(Amount, StudentId)
+        VALUES (:cleanedAmount, :cleanedStudentId)
+    ", [
+        'cleanedAmount' => $amount,
+        'cleanedStudentId' => $studentId
+    ]);
 }
+
+// *********************************************************************************************************************************
 
 function insertClass($type, $link, $classDate, $studentId){    
     dbQuery("
-    INSERT INTO classes(Type, ZoomLink, StartDate, StudentId)
-    VALUES ('$type', '$link', '$classDate', '$studentId')   
-");
+        INSERT INTO classes(Type, ZoomLink, StartDate, StudentId)
+        VALUES (:cleanedType, :cleanedLink, :cleanedClassDate, :cleanedStudentId)   
+    ",  [
+        'cleanedType' => $type,
+        'cleanedLink' => $link,
+        'cleanedClassDate' => $classDate,
+        'cleanedStudentId' => $studentId       
+    ]);
 }
+
+// *********************************************************************************************************************************
 
 //If there is a better way to handle this please let me know. So, I have a credits table (Every row in that table in actually a purchase the student made).If
 //we subtract a credit means we are returning money to the person which is a refund. So, I have a refund table whith the date of the refund and the amount. 
 //The value will only be inserted in the table if the student has a remaing credit. So, before this query happens I need to check if the student has remaining credits
 //But also, to calculate the remaining credits I need to check if there is any refund in the table for that student. 
+// *********************************************************************************************************************************
+
 function insertRefund($amount, $studentId){    
     dbQuery("
-    INSERT INTO refunds(Amount, StudentId)
-    VALUES ('$amount', '$studentId')
-");
+        INSERT INTO refunds(Amount, StudentId)
+        VALUES (:cleanedAmount, :cleanedStudentId)
+    ",  [
+        'cleanedAmount' => $amount,
+        'cleanedStudentId' => $studentId        
+    ]);
 }
 
+// *********************************************************************************************************************************
 // Deletions
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function deleteStudent($studentId){    
     dbQuery("
-        UPDATE students SET DateArchived = CURRENT_DATE WHERE StudentId = $studentId
-");
+        UPDATE students SET DateArchived = CURRENT_DATE WHERE StudentId = :cleanedStudentId      
+    ",  [       
+        'cleanedStudentId' => $studentId        
+    ]);
 }
+
+// *********************************************************************************************************************************
 
 function deleteClass($classId){    
     dbQuery("
-        UPDATE CLASSES SET DateArchived = CURRENT_DATE WHERE ClassId = $classId
-");
+        UPDATE CLASSES SET DateArchived = CURRENT_DATE WHERE ClassId = :cleanedClassId       
+    ",  [       
+        'cleanedClassId' => $classId        
+    ]);
 }
 
-
+// *********************************************************************************************************************************
 // Updates
-// -------------------------------------------------------------------------- 
+// *********************************************************************************************************************************
 
 function updateStudent($fName, $lName, $email, $phone, $rating, $lichess, $studentId){
     dbQuery("
-    UPDATE students
-    SET FirstName ='$fName', LastName='$lName', Email='$email', Phone='$phone', ELO='$rating', LichessLink ='$lichess' 
-    WHERE StudentId = '$studentId'
-");
+        UPDATE students
+        SET FirstName=:cleanedFName, LastName=:cleanedLName, Email=:cleanedEmail, Phone=:cleanedPhone, ELO=:cleanedRating, LichessLink=:cleanedLichess
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedFName' => $fName,
+        'cleanedLName' => $lName,
+        'cleanedEmail' => $email,
+        'cleanedPhone' => $phone,
+        'cleanedRating' => $rating,
+        'cleanedLichess' => $lichess,
+        'cleanedStudentId' => $studentId
+    ]);
 }
+
+// *********************************************************************************************************************************
 
 function updatePrivateNotes($studentId, $notes){
     dbQuery("
         UPDATE students
-        SET PrivateNotes = '$notes'
-        WHERE StudentId = '$studentId'
-    ");
+        SET PrivateNotes = :cleanedNotes
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedStudentId' => $studentId,
+        'cleanedNotes' => $notes       
+    ]);
 }
 
 // *********************************************************************************************************************************
 
 function updatePublicNotes($studentId, $notes){
     dbQuery("
-    UPDATE students
-    SET PublicNotes = '$notes'
-    WHERE StudentId = '$studentId'
-");
+        UPDATE students
+        SET PublicNotes = :cleanedNotes
+        WHERE StudentId = :cleanedStudentId
+    ",  [
+        'cleanedStudentId' => $studentId,
+        'cleanedNotes' => $notes       
+    ]);
 }
+
+// *********************************************************************************************************************************
+
+function updateClass($classId, $type, $zoomLink, $classDate){
+    dbQuery("
+        UPDATE classes
+        SET Type =:cleanedType, ZoomLink =:cleanedZoomLink, StartDate =:cleanedClassDate
+        WHERE ClassId = :cleanedClassId
+    ",  [
+        'cleanedClassId' => $classId ,
+        'cleanedType' => $type,
+        'cleanedZoomLink' => $zoomLink,
+        'cleanedClassDate' => $classDate           
+    ]);
+}
+
+// *********************************************************************************************************************************
 
 
 

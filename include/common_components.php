@@ -1,28 +1,36 @@
 <?php
-// --------------------------------------------------------------------------
 
-function echoPageLayout($title, $heading, $subheading){
-    echo "<html>                                                                                                      
-            <head>              
-                <title>$title</title>  
-                <link href='style.css' rel='stylesheet'>                                                                        
-            </head>            
-            <body>
+// *********************************************************************************************************************************
+
+function echoHeader($title){
+    echo "<!DOCTYPE html>                                                                                                    
+    <head>              
+        <title>$title</title>  
+        <link href='style.css' rel='stylesheet'>                                                                        
+    </head> ";
+}
+
+// *********************************************************************************************************************************
+
+function echoPageLayout($heading, $subheading, $adminInfo){
+ 
+    echo "  <body>
                 <section class='wrapper'>
-                    <section>  
+                    <section class='vertical'>  
                         <div class='flex-container-verticalBar'>  
                             <div class='flex-item-verticalBarPicture'>
                                 <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
-                                <h1 >Yuniesky Quesada</h1>
+                                <p class='adminName' >".htmlspecialchars($adminInfo['FirstName'])." ".htmlspecialchars($adminInfo['LastName'])."</p>
+                                <a href='login.php' class='logOutLink' name='logOutLink'>Log Out</a>
                             </div>            
                         </div>  
                     </section>  
-                    <section>     
+                    <section class='horizontal'>     
                         <nav>
                             <header>$heading
                                 <p> $subheading</p>
                             </header>
-                            <div class='flex-item-horizontalMenu'>
+                            <div id='horizontalMenu' class='flex-item-horizontalMenu'>
                                 <ul>                         
                                     <a href='#'> <img class = 'notificationIcon zoom' src= '/images/notification.png' alt='notification'></a> 
                                     <li class='zoom'><a href='/admin/index.php'; '>Home</a></li>                   
@@ -34,18 +42,19 @@ function echoPageLayout($title, $heading, $subheading){
 ";
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
-function echoFooter(){
-    echo"  
-                    </section>
-                </section> 
-                <script src='/include/form_functions.js'></script> 
-                <footer></footer>                            
-           </body>    
-        </html>
+function echoFooter($jsFiles){
+    echo"   
+            
+    </section>
+    </section>    
+        <footer></footer> 
+        $jsFiles                           
+    </body>    
+</html>
 ";
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 

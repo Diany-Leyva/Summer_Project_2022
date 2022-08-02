@@ -1,6 +1,6 @@
 <?php
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function debug($input){
     echo "<pre>";
@@ -10,7 +10,7 @@ function debug($input){
          </pre>";
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function formatDate($date, $format){
     $newDateFormat = $date;
@@ -19,7 +19,7 @@ function formatDate($date, $format){
     return $newDateFormat;
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function removeDuplicate($arrayWithDuplicates, $key) {                                                                
     $tempArray = [];  
@@ -38,7 +38,7 @@ function removeDuplicate($arrayWithDuplicates, $key) {
     return getIndexByPKArray($tempArray, $key);                               
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function getDayDifference($futureDate, $today){ 
     $difference = $futureDate->diff($today);
@@ -48,24 +48,24 @@ function getDayDifference($futureDate, $today){
     return $date;
 }
 
-// --------------------------------------------------------------------------
-//This function takes an indexed arrayWithDuplicates and its primary key name, and returns an 
-//arrayWithDuplicates that is indexed by the primary key. To make it more generic I passed the 
-//primary key name as parameter so it can be used for any arrayWithDuplicates. 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+//This function takes an indexed array and its primary key name, and returns an 
+//array that is indexed by the primary key. To make it more generic I passed the 
+//primary key name as parameter so it can be used for any array. 
+// *********************************************************************************************************************************
 
-function getIndexByPKArray($arrayWithDuplicatesToUpdate, $primaryKey){
+function getIndexByPKArray($arrayToUpdate, $primaryKey){
 
     $newArray = [];
   
-    foreach ($arrayWithDuplicatesToUpdate as $arrayWithDuplicates){
-        $newArray[$arrayWithDuplicates[$primaryKey]] = $arrayWithDuplicates;
+    foreach ($arrayToUpdate as $array){
+        $newArray[$array[$primaryKey]] = $array;
     } 
 
     return $newArray;
 }
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
 
 function compareDate($firstElement, $secondElement) {
 
@@ -74,4 +74,25 @@ function compareDate($firstElement, $secondElement) {
     return $temp1 - $temp2;
 } 
 
-// --------------------------------------------------------------------------
+// *********************************************************************************************************************************
+
+function checkAdmin(){
+
+    if(!isset($_SESSION['AdminId'])){       
+        header('location:login.php');
+		exit();
+    }    
+}
+
+// *********************************************************************************************************************************
+//This is me handling the logout 
+// *********************************************************************************************************************************
+
+function checkLogout(){
+    if(isset($_SESSION['AdminId'])) { 
+        session_destroy();
+        header('Location:login.php');
+        exit;
+    }
+}
+// ********************************************************************************************************************************

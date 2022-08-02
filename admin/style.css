@@ -9,7 +9,8 @@
 }
 
 body{
-background-color: #eee;                                                          
+background-color: #eee; 
+/* background: linear-gradient(356deg,#0b0b0b, #f2ecf4);                                                          */
 }
 
 /* Grid layout */
@@ -67,6 +68,22 @@ ul li a {
 }
 
 /* Vertical Bar*/
+.vertical{
+    width: 270px;
+}
+
+.adminName{
+    position: absolute;
+    top: 126px;
+    left: 30px;
+}
+
+.logOutLink{
+    position: absolute;
+    top: 150px;
+    left: 62px;
+}
+
 .flex-container-verticalBar{
     display: flex;
     flex-direction: column;
@@ -81,11 +98,6 @@ ul li a {
     width: 75px;
     height: 75px;
     border-radius: 75px;  
-}
-
-h1 {
-    font-size: 10px;
-    padding-top: 10;
 }
 
 /* List_students.php 
@@ -182,7 +194,8 @@ li{
 }
 
 ol li {      
-    font-size: 20px;                                                                                                                                                
+    font-size: 20px;  
+    padding: 3px;                                                                                                                                              
 }
 
 .profilePicture {    
@@ -209,12 +222,36 @@ ol li {
 
 .deleteButton.onProfile{
     position: absolute;
-    margin: 40px 24px;
+    top: 336px;
+    left: 308px;
 }
-      
-  /* .flex-item-profileInfo:hover + .deleteButton {    //will work on this later 
-    display: block;    
-  } */
+     
+.deleteButton.onClassSession{
+    position: absolute;
+    top: 110px;
+    left: 203px;
+}
+
+
+.editButton{  
+    background-color: inherit;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+.editButton.onProfile{
+    position: absolute;
+    top: 337px;
+    left: 249px;
+}
+
+.editButton.onClassSession{
+    position: absolute;
+    top: 110px;
+    left: 141px;
+}
 
 /*Classes section */
 .flex-container-classesInfo{
@@ -237,7 +274,8 @@ ol li {
     width: 335px;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: inherit;
     border: none;
 }
@@ -248,7 +286,7 @@ ol li {
 }
 
 textarea{
-    padding: 10%;
+    padding: 68px 34px;
     resize: none;
     font-size: 16px;
 }
@@ -257,11 +295,6 @@ textarea{
     visibility:hidden;
     /* display: none; */
 }
-/* .flex-item-classesInfo li{
-    padding: 9px;
-} */
- 
-
 
 .classInfoHeading{
     margin-top: -30px;
@@ -269,17 +302,84 @@ textarea{
     text-align: center;
 }
 
+.headingBackgraound{ 
+    background-color: #e5e2e2;
+    position: absolute;
+    width: 287px;
+    height: 43px;
+    z-index: 3;
+    border-bottom: 1px solid silver;
+}
+
+.pastClassesHeanding{
+    position: absolute;
+    top: 7px;
+    left: 55px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.pastClasses{
+    top: -46px;
+    left: 508px;
+    width: 287px;
+    height: 43px;
+}
+
+.futureClassesHeading{
+    position: absolute;
+    top: 10px;
+    left: 47px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.futureClasses{
+    top: -46px;
+    left: 45px;    
+}
+
+.privNotesHeading{
+    position: absolute;
+    top: 9px;
+    left: 63px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.privNotes{
+    top: 381px;
+    left: 86px; 
+}
+
+.publNotesHeading{
+    position: absolute;
+    top: 10px;
+    left: 72px;
+    font-size: 25px;
+    z-index: 3;
+}
+
+.headingBackgraound.publNotes{
+    top: 381px;
+    left: 544px;  
+}
+
+
 .info-table-row{
     display: flex;
     align-items: baseline;
     margin-top: 17px;
 }
 
+.info-table-row span{
+    cursor: pointer;
+}
+
 .deleteButton.onClassInfo{
     padding: 5%;
     margin: -23px -1px;
 }
-
 
 /*Credits and buttons section */
 button{
@@ -307,8 +407,8 @@ button:hover {
 }
   
 .zoom:hover {
-    -ms-transform: scale(1.3); /* IE 9 */
-    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    -ms-transform: scale(1.3); 
+    -webkit-transform: scale(1.3); 
     transform: scale(1.3);
 }
 
@@ -340,7 +440,6 @@ button:hover {
     width: 15%;
     top: 531px;
     right: 158px;
-    /* margin: -736px 956px; */
     background: #d7d0d066;
     border-radius: 30px;
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -369,7 +468,7 @@ button:hover {
 .modal {
     display: none;                                                 /* Hidden by default */
     position: fixed;                                               /* Stay in place */
-    z-index: 1;                                                   
+    z-index: 4;                                                   
     left: 0;
     top: 0;
     width: 100%;                                                  
@@ -379,31 +478,252 @@ button:hover {
     background-color: rgba(0,0,0,0.4);                           /* Black w/ opacity */
     padding-top: 60px;
   }
-  
-/* Add styles to the form container */
-.form-container {
-    max-width: fit-content;
-    width: fit-content;
-    height: fit-content;
-    padding: 16px;
-    background-color: #fefefe;
-    border-radius: 25px;
-    margin: 5% auto 15% auto;
+
+  .modal h1{
+    text-align: center;
+    padding: 6px 0;
+    border-bottom: 1px solid silver;
+    font-size: 30px;
+  }
+
+  .creditsForm{
+    position: relative;
+    top: 45px;
+  }
+
+  .classForm{
+    position: relative;
+    top: 45px;
+  }
+
+  .deleteForm{
+    position: relative;
+    top: 45px;
+  }
+
+  .indexPageClassForm{
+    position: relative;
+    top: 40px;
+    /* color: #2691d9; */
+  }
+
+  .modal p{
+    position: relative;
+    top: 56px;
+    left: 17px;
+    font-size: 20px;
   } 
 
-  .container {
-    padding: 16px;
+  .modal form{
+    box-sizing: border-box;
   }
+
+  /* Add styles to the form container */
+.form-container {
+  padding: 5px;
+  background-color: #fefefe;
+  border-radius: 25px;
+  margin: 5% auto 15% auto;
+} 
+
+.form-container.students{
+  width: 484px;
+  height: 869px;
+}
+
+.form-container.credits{
+  width: 376px;
+  height: 318px;
+}
+
+.form-container.class{
+  width: 423px;
+  height: 630px;
+}
+
+.form-container.delete{
+  width: 429px;
+  height: 248px;
+}
+
+.form-container.classIndexPage{
+  width: fit-content;
+  height: auto;
+}
+
+  .txtField{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+   
+  }
+
   
-  .container.input-container{
-    display: flex;
-    flex-direction: column;
+  .txtField2{
+    position: relative;
+    border-bottom: 2px solid  #2691d9;
+   
   }
+
+  .txtField.student{
+    margin: 33px 34px;
+  }
+
+  .txtField2.credit{
+    margin: 97px 34px;
+  }
+
+  .txtField.class{
+    position: relative;
+    top: 46px;
+    left: -18px;
+    margin: 39px 50px;
+    width: 350px;
+  }
+
+  .txtField.classIndexPage, .txtField2.classIndexPage{
+    position: relative;
+    top: 46px;
+    /* left: -5px; */
+    margin: 32px 50px;
+    width: 357px;
+  }
+
+  /* .txtField2.classIndexPage{
+    width: 350px;
+  } */
+
+  .txtField.classIndexPageSecondHalf{
+    position: relative;
+    top: -18px;
+    /* left: -18px; */
+    margin: 32px 50px;
+    width: 350px;
+  }
+
+  .txtField input, .txtField select, .txtField2 input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+  }
+
+  .txtField label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color:#606264;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .txtField2 label{
+    position: absolute;
+    top: -13px;
+    left: 5px;
+    color: #2691d9;
+  }
+
+  .txtField span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+  }
+
+
+  .txtField input:focus ~ label,
+  .txtField input:valid ~ label, 
+  .txtField select:focus ~ label,
+  .txtField select:valid ~ label{
+    top: -5px;
+    color: #2691d9;
+  }
+
+  .txtField input:focus ~ span::before,
+  .txtField input:valid ~ span::before,
+  .txtField select:focus ~ span::before,
+  .txtField select:valid ~ span::before{
+    width: 100%;
+  }
+
+  /*hide show the place holder when it focus the datetime field */
+    input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+    }
+    input[type=date]:focus::-webkit-datetime-edit {
+        color: rgba(44, 42, 42, 0.347) !important;
+    }
+
+  /* this is meant to hide the placeholder */
+  input::placeholder {
+    color: transparent;
+  }
+
+  /* Because I want the plceholder in the credits form to show */
+  #maxCredit::placeholder{
+    color: rgba(44, 42, 42, 0.347);
+  }
+
+    /* show the place holder when it focus the input field */
+    input:focus::placeholder {
+    color: rgba(44, 42, 42, 0.347);
+  }
+
+  .submit, .cancel{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9; 
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .submit:hover, .cancel:hover{
+    border-color: #2691d9;
+    transition: .5s;
+  }
+
 
   .buttons-container{
     display: flex;
+    position: relative;
+   
   }
-        
+
+  .buttons-container.student{
+    margin: 39px 35px;
+  }
+
+  .buttons-container.credits{
+    margin: -70px 27px;
+  }
+       
+  .buttons-container.class{
+    margin: 72px 25px;
+  }
+
+  .buttons-container.delete{
+    margin: 72px 25px;
+   
+  }
+
+  .buttons-container.classIndexPageSecondHalf{
+    margin: 20px 44px;
+  }
+
+  
   /* Center the image and position the close button */
   .imgcontainer {
     text-align: center;
@@ -412,39 +732,99 @@ button:hover {
   }
   
   img.avatar {
-    width: 40%;
+    width: 35%;
     border-radius: 50%;
   }
+
   
-     
-.container input[type=text], .container input[type=email], .container input[type=tel]
-,.container input[type=number], .container input[type="date" i], .container #clock,
- .container #dropdown{
-    width: 400px;
-    padding: 10px 0px;
-    margin: 2px 0 16px 0;
+/* toggle switch in class form */
+
+.toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 62px;
+    height: 32px;
     display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    background: #f1f1f1;
-} 
-
-  /* When the inputs get focus, do something */
-    
-.container input[type=text]:focus, .container input[type=email]:focus, .container input[type=tel]:focus
-,.container input[type=number]:focus, .container input[type="datetime-local" i]:focus, .container #dropdown:focus{
-    background-color: #ddd;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
     outline: none;
-}       
+    border: none;
+    cursor: pointer;
+    background-color: #707070;
+    transition: background-color ease 0.3s;
+  }
+  
+  .toggle.class{
+    position: relative;
+    top: 61px;
+    left: 33px;
+  }
 
+  .toggle.classIndexPageSecondHalf{
+    position: relative;
+    top: 11px;
+    left: 54px;
+  }
+  
 
- .submit {
-    background-color: #04AA6D;   
-  }  
+  .toggle.credit{
+    position: relative;
+    top: 375px;
+    left: 234px;
+  }
 
+  .toggleLinkHeading{
+    position: relative;
+    top: 16px;
+    left: -31px;
+    color:#606264;
+  }
 
-  .cancel {
-    background-color: #f44336;
+  .toggleheadingClassIndexPage{
+    position: relative;
+    top: -44px;
+    left: -13px;
+    color: #606264;
+  }
+
+  .creditLabel{
+    position: relative;
+    top: 319px;
+    left: 172px;
+    color: #606264;
+  }
+
+  .toggle:before {
+    content: "on off";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+    background: #fff;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    font: 10px/28px Helvetica;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-indent: -22px;
+    word-spacing: 37px;
+    color: #fff;
+    text-shadow: -1px -1px rgba(0,0,0,0.15);
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+  }
+  
+  .toggle:checked {
+    background-color: #2691d9;
+  }
+  
+  .toggle:checked:before {
+    left: 32px;
   }
   
   /* Add Zoom Animation */
@@ -479,39 +859,93 @@ button:hover {
 /*Home Page
 --------------------------------------------------------------------------- */
 /* Day view calendar */
-.dayViewContainer{
-    position: relative;  
-    margin: 16px 38px;
-    height: 857px;
-    width: 569px;
-    background: #d7d0d066;
-    /* overflow: auto; */
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-}
-
 h3{
     padding: 3%;
 }
 
 time{
     position: absolute;
-    /* top: 50px; */
+
     left: 25px;
 }
 
 hr{
-    width: 494px;
+    width: 527px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.one-hour-class{
-    position: absolute;
-    height: 50px;
-    width: 415px;
-    left: 107px;
-    background-color: #bcb7b7;
-    border-radius: -22px;
+.currentTime{ 
+    background-color: #f443364d;    
+    padding-top: 2px;
+    position: absolute;    
+    border-radius: 10px;
 }
+
+.dayViewContainer{
+    position: relative;  
+    margin: 16px 38px;
+    height: 1030px;
+    width: 569px;
+    background: #d7d0d066;
+    border-radius: 30px;
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+}
+
+.event {
+    background-color: #57b98654;
+    border-style: solid;
+    border-width: 1px;
+    border-right-width: 5px;
+    border-color: #dfdbdb;
+    border-right-color: #04aa6d;
+    padding-left: 208px;
+    padding-top: 7px;
+    position: absolute;
+    font-size: 0.5em;
+    box-sizing: border-box;
+    border-radius: 10px;
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+}
+
+.event .title {
+  color: #088c5b;;
+  font-size: 210%;
+}
+
+.event .event-name {
+    /* color: #57b986; */
+    font-size: 200%;
+  }
+
+  .event .event-time {
+    font-size: 180%;
+    padding-left: 16px;
+  }
+
+  .event.zoom:hover{
+    transform: scale(0.9);
+  }
+
+  /* I created a div for each timeFrame in the dayView calendar with an id that will have a js eventlistener when clicked,
+  since the event is created on top of this div, I adjusted the features below so when a event is on top the onclick
+  thing does not work and it only works when there is not event (class) */
+  #timeArea8, #timeArea9, #timeArea10, #timeArea11, #timeArea12, #timeArea13, #timeArea14, #timeArea15, #timeArea16, #timeArea17,
+  #timeArea18, #timeArea19, #timeArea20, #timeArea21, #timeArea22, #timeArea23{
+    height: 55px;
+    width: 477px;
+    margin: 5px 44px;
+    /* background-color: aqua; */
+    border-radius: 11px;
+  }
+
+/* .class-content{
+    position: absolute;
+    right: 210px;
+} */
+
+
 
 /* Next class info */
 .next-class-info{
@@ -524,11 +958,32 @@ hr{
     box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
+.nextClassInfoChanged{
+        /* background-color: #bacfc0c9; */
+        background-color: #57b98654;
+        border-style: solid;
+        border-width: 1px;
+        border-right-width: 5px;
+        border-color: #dfdbdb;
+        border-right-color: #04aa6d;
+        /* padding-left: 208px; */
+        /* padding-top: 7px; */
+        /* position: absolute; */
+        /* font-size: 0.5em; */
+        box-sizing: border-box;
+        border-radius: 10px;
+}
+
+.disableAnchor{
+    pointer-events : none;
+}
+
+.enableAnchor{
+    pointer-events : auto;
+}
+
 .nextClassheader{
-    font-size: 24px;
-    position: absolute;
-    top: 207px;
-    right: 425px;
+    font-size: 30px;
 }
 
 .nextClassPicturePosition{
@@ -595,3 +1050,29 @@ hr{
     font-size: 30px;
     padding: 40% 40%;
 }
+
+
+/* Scroll Bar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: 383938; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4c4d4c; 
+    cursor: pointer;
+  }

@@ -1,9 +1,12 @@
 <?php
 include('../include/initialize.php');
+checkAdmin();
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
 
 if(isset($_REQUEST['studentId'])){
 
-  if(isset($_REQUEST['AddStudentSubmitted'])){
+  if(isset($_REQUEST['EditStudentSubmitted'])){
     $errors = [];
     $errors = validateName($_REQUEST['ufname']);                                                                       
     $errors = validateName($_REQUEST['ulname']); 
@@ -12,12 +15,8 @@ if(isset($_REQUEST['studentId'])){
       updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess'], $_REQUEST['studentId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");    
       exit();                                                                
-    }   
-     
-    else{
-    //debug($errors);                                                                                         //This is just to try I will display correct message in the form
-    }
-  }     
+    }  
+  }    
 
     if(isset($_REQUEST['changeCreditsSubmitted'])){
      
@@ -33,13 +32,19 @@ if(isset($_REQUEST['studentId'])){
       exit();  
     }
 
-    if(isset($_REQUEST['AddClassesSubmitted'])){
-
+    if(isset($_REQUEST['AddClassesSubmitted'])){ 
       $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
       insertClass($_REQUEST['ctype'], $_REQUEST['czoomLink'], $date, $_REQUEST['studentId']);                           
       header("location:? studentId={$_REQUEST['studentId']}");  
       exit();                           
     } 
+
+    if(isset($_REQUEST['EditClassesSubmitted'])){    
+      $date = formatDate($_REQUEST['classDate']." ".$_REQUEST['classTime'], 'Y/m/d H:i:s');
+      updateClass($_REQUEST['classId'], $_REQUEST['ctype'], $_REQUEST['czoomLink'], $date);                                                                    
+      header("location:? studentId={$_REQUEST['studentId']}");    
+      exit(); 
+    }    
 
     if(isset($_REQUEST['studentDeleted'])){
      
@@ -52,10 +57,11 @@ if(isset($_REQUEST['studentId'])){
       deleteClass($_REQUEST['classId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");   
       exit();       
-    }  
+    } 
 
     $title = 'Student Profile';
-    echoPageLayout($title, $title, '');
+    echoHeader($title);
+    echoPageLayout($title, '', $admin);
 
     $studentId = $_REQUEST['studentId'];                               
     $student = getOneStudent($studentId);
@@ -87,15 +93,20 @@ if(isset($_REQUEST['studentId'])){
     $totalClasses['YearTotal'] = calcTotalClasses($studentClassess, 'Y');
     echoTotalClassesSection($totalClasses);   
       
-    addClassForm();
-    changeCreditsForm();
+    classForm($admin['DefaultZoomLink']);
+    creditsForm();
     deleteStudentForm();
-    addStudentForm();
+    studentForm();
     deleteClassForm();
 }
 
-echoFooter();    
-         
+$jsFiles = "
+        <script src='/include/JS/helper_functions.js'></script> 
+        <script src='/include/JS/common_forms.js'></script>
+        <script src='/include/JS/student_profile.js'></script>
+    ";
+
+echoFooter($jsFiles); 
 
 
 

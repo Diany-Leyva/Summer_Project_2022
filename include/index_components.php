@@ -1,117 +1,124 @@
 <?php
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 //To place the times I did what you recomended me. Each element position is
 //absolute and en event has height: 50px. So I just loop and add 50 to the 
 //counter as needed. I also add a timeframe for the half hours (tempTop) 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
         <h2>Daily Schedule</h2>
-        <div class='dayViewContainer'>
+        <div class='dayViewContainer'>     
             <h3><center> $day</h3>";
-                $topPosition = 50;
-                $currentTop = 50;
-            
-                for($i = 8; $i < 24; $i++){
-                    $meridiem = 'AM';
+            $topPosition = 60;
+            $currentTop = 60;            
+                                                                                        
+            for($i = 8; $i < 24; $i++){                
+                if($i < 10){
+                    $hour = "0".$i.":00";
+                    $min = "0".$i.":30";
+                }
 
-                    if($i > 12){
-                        $meridiem = 'PM';
-                    }
-
-                    echo"
-                        <div><time style='top:".$currentTop."px;'><hr>$i:00 $meridiem</time><div><br></br>"; 
-                        $tempTop = $currentTop + 25;
-                    echo"<div><time style='top:".$tempTop."px;'><small style='color:#38393882'>$i:30 $meridiem</small></time><div> 
-                        ";       
-                                
-                    $currentTop+=$topPosition;
-                } 
-
-        echo"</div>";  
+                else{
+                    $hour = $i.":00";
+                    $min = $i.":30";
+                }    
+                    
+            echo"
+            <div id='timeArea$i'>
+                <div id='$hour' value='$hour' ><time style='top:".$currentTop."px;'><hr>$hour</time></div><br></br>"; 
+                    $tempTop = $currentTop + 30;
+                echo"<div id='$min' value='$min'><time style='top:".$tempTop."px;'><small style='color:#38393882'>$min</small></time></div> 
+                </div>";                     
+                $currentTop+=$topPosition;                  
+            }                   
 }
 
-// --------------------------------------------------------------------------
-//I'm sure this is not what you had in mind haha since you were talking about a function to pass
-//starting date and ending date and I'm sure involves js. But this is what I came up with in php
-//and so far is doing the job (I finally calculated the half hour too) 
-//Strategy:
-//The class "one-hour-class" has a height of 50px, so I loop throught the array of classesToday and
-//I store the hour and min. Then I multiply the height(50) times the class hour (-7 because my schedule starts at 8)
-//and this is the topPosition of the event. Also, since the minutes are only 00 or 30, I set halfhour to 25 only
-//when min are 30 and add that to the final calculation to place the event in the 30 minutes session. 
-// --------------------------------------------------------------------------
-function echoEvents($classesToday){ 
+//********************************************************************************************************************************
+//I know this function is so tiny. But I will just keep it 
+//********************************************************************************************************************************
 
-    foreach($classesToday as $class){
-        $hour = formatDate($class['StartDate'], 'H');            
-        $min = formatDate($class['StartDate'], 'i');  
-        $halfhour = 0;
+function addEvents(){
+    echo"  
+    <div id='timeLine'></div> 
+        <div id='events'></div>";      
+}  
 
-        if($min == 30){
-            $halfhour = 25;
-        }
-      
-        $topPosition = (50 * ($hour - 7)) + $halfhour;      
+// ********************************************************************************************************************************
+//So here I echo this function but if there is no classes I set up default values
+//I do this because then I use JS to display the class info here when I click an event in the
+//calendar and I'm doing so by using document.getElementbyId('...').value so I need this
+//to have a previus value. Initialy I did if nextclass is not empty echo the stuff otherwise just
+//echo "No pending classes", but that aproach does not work with my js changes 
+// ********************************************************************************************************************************
+
+function echoNextClassSection($classesToday){    
     
-        echo"
-        <p class='one-hour-class' style='top:".$topPosition."px;'>".$class['FirstName']." ".$class['LastName']."<p>";           
-                
-    }
-}
+    $pendingClasses = calcFutureClasses($classesToday); 
+    $nextClass = [];
 
-// --------------------------------------------------------------------------
-
-function echoNextClassSection($nextClass){    
-    
-    echo"
-        <p class='nextClassheader'>Next Class</p>
-        <div class='next-class-info'> 
-            <div class='next-class-info-content'>";      
+    if(!empty($pendingClasses)){                                                              
+        $nextClass = calcNextClass($pendingClasses);
 
         if($nextClass){
-            echo"
+            $heading = 'Next Class';
+            $id = htmlspecialchars($nextClass['ClassId']);
+            $name = htmlspecialchars($nextClass['FirstName'])." ".htmlspecialchars($nextClass['LastName']);
+            $classDate = formatDate(htmlspecialchars($nextClass['StartDate']), 'd M H:i');           
+            $email = htmlspecialchars($nextClass['Email']);
+            $lichess = htmlspecialchars($nextClass['LichessLink']);
+            $zoom = htmlspecialchars($nextClass['ZoomLink']);
+            $hour = '1 hour';     
+            $class = 'enableAnchor';
+            $deleteButtonVisibility = $editButtonVisibility = "style='visibility: visible';";          
+        }
+    }  
+    
+    else{
+        $heading = 'No pending <br>Classes';
+        $id = $name = $classDate = $email = $lichess = $zoom = $hour = '';
+        $class = 'disableAnchor';
+        $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";   
+    }
+
+    $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
+    $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm($id)\">✏️</button>";
          
+    echo"        
+        <div id='nextClassInfo' class='next-class-info'> 
+            <div class='next-class-info-content'>     
+                <p id='classInfoHeading' class='nextClassheader'>$heading</p>
                 <ol>
-                    <li>".$nextClass['FirstName']." ".$nextClass['LastName']."</li>
-                    <li>".formatDate($nextClass['StartDate'], 'd M')."</li>
-                    <li>".formatDate($nextClass['StartDate'], 'H:i A')."</li>    
-                    <li>1 hour</li>                               
+                    <li id='classInfoName'>$name</li>
+                    <li id='classInfoDate' value='$classDate'>$classDate</li>                    
+                    <li id='classInfoDuration'>$hour</li>                               
                 </ol>
-        
+
                 <div class='nextclass-buttons-container'>
                     <div>
-                        <a href='mailto:".$nextClass['Email']."'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
+                        <a id='classInfoEmail' class='$class' href='mailto:$email'><img class ='zoom' src= '/images/envelope.png' alt='zoom'></a>                    
                         <p>Message</p>
                     </div>
-        
                     <div>
-                        <a href='".$nextClass['LichessLink']."'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
+                        <a id='classInfoLichess' class='$class' href='$lichess'><img class ='zoom' src= '/images/chess-pawn.png' alt='zoom'></a>                    
                         <p>Lichess</p>
                     </div>
-        
                     <div>
-                        <a href='".$nextClass['ZoomLink']."'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
+                        <a id='classInfoZoom' class='$class' href='$zoom'><img class ='zoom' src= '/images/zoom-icon.png' alt='zoom'></a>
                         <p>Zoom</p>
                     </div>
                 </div>
                 <div class='nextClassPicturePosition'>
-                    <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>
-                </div>        
-                ";
-        }
-
-        else{
-            echo"<p class='noclasses-message'>No classes pending</p>";
-        }
-        
-        echo"</div>
-    </div>";
+                    <span id='showDeleteButton'> $showDeleteButton </span>
+                    <span id='showEditButton'> $showEditButton </span>
+                    <img class= 'profilePicture' src= '/images/bishop.png' alt='bishop'>                       
+                </div>
+            </div>      
+        </div>";            
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************
 
 function echoIndexTotalSection($totalClasses){
     echo"
@@ -119,18 +126,18 @@ function echoIndexTotalSection($totalClasses){
             <div class='item-total'>
                 <p class='totalSectionHeader'>Month</p>         
                 <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".$totalClasses['MonthTotal']."</p>
+                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
                 </div>
             </div>
 
             <div class='flex-item-total'>
                 <p class='totalSectionHeader'>Year</p>  
                 <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".$totalClasses['YearTotal']."</p>
+                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
                 </div>
             </div>
         </div>
 ";
 }
 
-// --------------------------------------------------------------------------
+// ********************************************************************************************************************************

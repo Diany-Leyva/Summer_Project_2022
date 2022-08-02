@@ -9,4 +9,4 @@ $studentId = $commments['StudentId'];
 $notes = $commments['Notes'];
 
 updatePrivateNotes($studentId, $notes);      
-}
+} 

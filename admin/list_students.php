@@ -1,10 +1,8 @@
 <?php
 include('../include/initialize.php');
-//All my select queries return an indexed array, but I'm updating my functions to work with 
-//arrays indexed by PK. So, I will call the getIndexByPKArray() that updates the array to be 
-//indexed by primary key.
-
-$allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
+checkAdmin();
+$adminId = $_SESSION['AdminId'];
+$admin = getOneAdmin($adminId);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,24 +12,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors = validateName($_REQUEST['ulname']); 
         
        if(sizeof($errors) == 0){
-            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess']);                                                                    
+
+            $lichesslink = "https://lichess.org/@/".$_REQUEST['ulichess'];                                  //The user shoul type the username only, and this will concatinate that username to the link
+            insertStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $lichesslink);                                                                    
             header("location:?"); 
             exit();                                                                     
-       }   
-       
-       else{
-       //debug($errors);                                                                        //This is just to try I will display correct message in the form
-       }
+       }        
+   
     }  
 
     if(isset($_REQUEST['studentDeleted'])){
-        deleteStudent($_REQUEST['studentId']);                                                                    
+        deleteStudent($_REQUEST['studentId']);                                                                   
         header("location:?");  
         exit();                                                             
     }  
 }
- 
-echoPageLayout('Students', 'My Students', "You have ".sizeof($allStudents)." students");
+
+//All my select queries return an indexed array, but I'm updating my functions to work with 
+//arrays indexed by PK. So, I will call the getIndexByPKArray() that updates the array to be 
+//indexed by primary key.
+
+$allStudents = getIndexByPKArray(getAllStudents(), 'StudentId');
+
+echoHeader('Students');
+echoPageLayout('My Students', "You have ".sizeof($allStudents)." students", $admin);
 echoSearchBar("Students' List"); 
 echoAddStudentButton('Add Student');  
 
@@ -52,7 +56,12 @@ else{
     echo"No students to show";                                                                       //This will be used properly later on(e.g. showing the correct message etc)
 }
 
-addStudentForm();
+studentForm();
 deleteStudentForm();
-echoFooter();    
-         
+
+$jsFiles = "
+    <script src='/include/JS/common_forms.js'></script>
+    <script src='/include/JS/list_students.js'></script>
+    ";
+
+echoFooter($jsFiles); 
