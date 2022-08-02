@@ -80,6 +80,7 @@ $totalClasses['YearTotal'] = calcTotalClasses($allStudentsWithClasses, 'Y');
 echoIndexTotalSection($totalClasses);
 echoDayViewCalendar();
 addEvents();
+// echoFooterImage();
 classFormIndexPage($allStudents, $admin['DefaultZoomLink']);
 classForm($admin['DefaultZoomLink']);
 deleteClassForm();

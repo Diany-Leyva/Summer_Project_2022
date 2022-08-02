@@ -17,7 +17,7 @@ function echoPageLayout($heading, $subheading, $adminInfo){
     echo "  <body>
                 <section class='wrapper'>
                     <section class='vertical'>  
-                        <div class='flex-container-verticalBar'>  
+                        <div class='flex-container-verticalBar'>                      
                             <div class='flex-item-verticalBarPicture'>
                                 <img class ='circlePicture zoom' src= '/images/Profile_Yuni.jpg' alt='Profile_Yuni'>
                                 <p class='adminName' >".htmlspecialchars($adminInfo['FirstName'])." ".htmlspecialchars($adminInfo['LastName'])."</p>
@@ -44,14 +44,24 @@ function echoPageLayout($heading, $subheading, $adminInfo){
 
 // *********************************************************************************************************************************
 
+// function echoFooterImage(){
+
+//     echo"
+//         <div class='bottonImage'></div>
+    
+//     ";
+// }
+
+// *********************************************************************************************************************************
+
 function echoFooter($jsFiles){
-    echo"   
-            
-    </section>
+    echo"      
+        </section>
     </section>    
-        <footer></footer> 
+    <footer></footer> 
         $jsFiles                           
-    </body>    
+    </body> 
+    <div class='bottomImage'></div>   
 </html>
 ";
 }

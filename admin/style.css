@@ -9,15 +9,15 @@
 }
 
 body{
-background-color: #eee; 
-/* background: linear-gradient(356deg,#0b0b0b, #f2ecf4);                                                          */
+  background-color: white;
+  overflow-x: hidden;                                                      
 }
 
 /* Grid layout */
 .wrapper{
     display: grid;
     grid-template-columns: 12% 88%;
-    height: 88%;
+    /* height: 88%; */
 }
 
 .wrapper > section{
@@ -26,28 +26,34 @@ background-color: #eee;
 
 .wrapper > section:nth-last-child(odd){
     height: fit-content;
-    background: #d7d0d066 ;
+    /* background: #ffffff ; */
 }      
 
 /* Horizontal Bar*/
-nav{   
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;   
-    background-color: #fff; 
+nav{ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-image: url(../images/chessboard_top_copy.jpg);
+  background-repeat: no-repeat;
+  height: 488px;
+  background-size: 150%;
+  background-position-x: center;
 }
 
 header{
-    font-size: 30px;
-    padding: 63px 59px; 
+  font-size: 30px;
+  padding: 47px 59px;
 }
 
 header p{
-    font-size: 15px;
+  font-size: 20px;
+  padding: 1%;
  }
 
 .flex-item-horizontalMenu{
-    padding-right: 10%;
+  position: relative;
+  top: -9px;
 }
 
 ul li {                                                                                                                                                           
@@ -69,7 +75,15 @@ ul li a {
 
 /* Vertical Bar*/
 .vertical{
-    width: 270px;
+  width: 182px;
+  /* background-color: #dddbd1; */
+}
+
+.hamburguerButton{
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 5px 0;
 }
 
 .adminName{
@@ -104,7 +118,9 @@ ul li a {
 --------------------------------------------------------------------------- */
 /* Search Bar*/
 h2{
-    padding: 31px 59px;
+  position: absolute;
+  top: 502px;
+  left: 436px;
 }
 
 .flex-item-SearchBar{
@@ -254,6 +270,7 @@ ol li {
 }
 
 /*Classes section */
+
 .flex-container-classesInfo{
     position: relative;
     display: flex;
@@ -446,19 +463,38 @@ button:hover {
 }
 
 .flex-item-total{
-    display: flex;
-    padding: 93px 41px;
+  position: relative;
+  /* height: 97px; */
+  top: -59px;
+  right: -234px;
+  
 }
 
 .totalSectionHeader{
-    font-size: 25PX;
-    margin-right: -92px;
-    margin-top: -44px;
+  font-size: 25PX;
+  /* justify-content: center; */
+  /* margin-right: -92px; */
+  /* margin-top: -44px; */
+  position: relative;
+  left: 70px;
+  top: 73px;
 }
 
+.totalSectionHeader.year{
+  left: 84px;
+}
+
+
 #totalNumber{
-    font-size: 30px;
-    padding: 40% 40%;
+  font-size: 30px;
+  padding: 97px 96px;
+}
+
+.square{
+  width: 233px;
+  height: 209px;
+  /* border-radius: 279px; */
+  background: #7e98ad;
 }
 
 /*Forms 
@@ -884,13 +920,16 @@ hr{
 }
 
 .dayViewContainer{
-    position: relative;  
-    margin: 16px 38px;
-    height: 1030px;
-    width: 569px;
-    background: #d7d0d066;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  position: absolute;
+  top: 534px;
+  margin: 16px 38px;
+  height: 1026px;
+  width: 569px;
+  background: #d7d0d066;
+  border-radius: 10px;
+  box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .event {
@@ -949,13 +988,14 @@ hr{
 
 /* Next class info */
 .next-class-info{
-    position: absolute;
-    top: 284px;
-    right: 142px;
-    height: 360px;
-    width: 471px;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  position: absolute;
+  top: 549px;
+  background-color: #7e98ad;
+  right: 83px;
+  height: 409px;
+  width: 471px;
+  border-radius: 10px;
+  box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
 }
 
 .nextClassInfoChanged{
@@ -993,9 +1033,9 @@ hr{
 }
 
 .next-class-info-content{
-    position: absolute;
-    top: 42px;
-    right: 114px;
+  position: absolute;
+  top: 42px;
+  right: 114px;
 }
 
 .nextclass-buttons-container p{
@@ -1008,10 +1048,10 @@ hr{
 }
 
 .nextclass-buttons-container{
-    display: flex;
-    position: absolute;
-    top: 167px;
-    right: -163px;
+  display: flex;
+  position: absolute;
+  top: 167px;
+  right: -163px;
 }
 
 .nextclass-buttons-container div{
@@ -1029,26 +1069,31 @@ hr{
 
 /* total class section */
 .index-totalClassesSection{
-    position: absolute;
-    display: flex;   
-    width: 511px;
-    height: 360px;
-    top: 760px;
-    right: 101px;
-    background: #d7d0d066;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  position: absolute;
+  /* display: flex; */
+  /* padding: 38px 18px; */
+  top: 1161px;
+  right: 83px;
+  height: 417px;
+  background-color: #e5e9e9;
+  width: 467px;
+  border-radius: 10px;
+  box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
 }
  
 .item-total{
-    display: flex;
-    padding: 95px 89px;
+  position: relative;
+  top: -30px;
+  left: 1px;
 }
 
+.totalNumber {
+  font-size: 30px;
+  padding: 97px 96px;
+}
 
-#totalNumberIndexPage {
-    font-size: 30px;
-    padding: 40% 40%;
+.totalNumber.year{
+  padding: 103px 89px;
 }
 
 
@@ -1076,3 +1121,17 @@ hr{
     background: #4c4d4c; 
     cursor: pointer;
   }
+
+  /* Footer */
+
+  .bottomImage{ 
+    background-image: url(../images/chessboard_bottom_copy.jpg);
+    background-repeat: no-repeat;
+    background-size: 125%;
+    background-position: bottom;
+    position: relative;
+    top: 1120px;
+    left: 180px;
+    width: 1339px;
+    height: 348px;
+}

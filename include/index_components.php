@@ -8,7 +8,7 @@
 function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
-        <h2>Daily Schedule</h2>
+        <h2 id='target'>Daily Schedule</h2>
         <div class='dayViewContainer'>     
             <h3><center> $day</h3>";
             $topPosition = 60;
@@ -85,7 +85,8 @@ function echoNextClassSection($classesToday){
     $showDeleteButton = "<button $deleteButtonVisibility id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass($id)\">🗑</button>";
     $showEditButton = "<button $editButtonVisibility id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm($id)\">✏️</button>";
          
-    echo"        
+    echo"    
+    <div class='flex-classesInfo-container'>    
         <div id='nextClassInfo' class='next-class-info'> 
             <div class='next-class-info-content'>     
                 <p id='classInfoHeading' class='nextClassheader'>$heading</p>
@@ -125,17 +126,18 @@ function echoIndexTotalSection($totalClasses){
         <div class='index-totalClassesSection'>
             <div class='item-total'>
                 <p class='totalSectionHeader'>Month</p>         
-                <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
+                <div class='square'>
+                    <p class='totalNumber'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
                 </div>
             </div>
 
             <div class='flex-item-total'>
-                <p class='totalSectionHeader'>Year</p>  
-                <div class='profilePicture'>
-                    <p id='totalNumberIndexPage'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
+                <p class='totalSectionHeader year'>Year</p>  
+                <div class='square'>
+                    <p class='totalNumber year'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
                 </div>
             </div>
+        </div>
         </div>
 ";
 }
