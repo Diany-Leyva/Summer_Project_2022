@@ -81,8 +81,8 @@ ul li a {
 /* Vertical Bar*/
 .vertical{
   width: 182px;
-  height: 129%;
-  background-color: #f0f0f6;
+  /* height: 129%;
+  background-color: #f0f0f6; */
 }
 
 /* .hamburguerButton{
@@ -180,8 +180,8 @@ h2.classesInfoHeader{
 
 h2.searchBar {
   position: relative;
-  top: 51px;
-  left: 172px;
+  top: 224px;
+  left: 82px;
 }
 
 h2.studentProfile{
@@ -192,8 +192,8 @@ h2.studentProfile{
 
 .flex-item-SearchBar{
   position: relative;
-  top: 71px;
-  left: 169px;
+  top: 241px;
+  left: 72px;
 }
 
 .search-bar input[type=text] { 
@@ -231,9 +231,9 @@ h2.studentProfile{
 /* Students Table*/
 .studentTable{
   position: relative;
-  /* top: -50px; */
-  left: 169px;
-  /* overflow-y: auto; */
+  top: 302px;
+  left: 70px;
+ 
 }
 
 li{
@@ -241,7 +241,7 @@ li{
 }
 
 #tableContainer{   
-  margin: 125px -5px;
+  /* margin: 125px -5px; */
   background: #e5e9e9;
   /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -530,8 +530,8 @@ button:hover {
 
 .addStudentButton{ 
   position: relative;
-  top: 85px;
-  left: -149px;
+  top: 254px;
+  left: -445px;
   width: 158px;
 }
 
@@ -635,7 +635,7 @@ button:hover {
 .modal {
     display: none;                                                 /* Hidden by default */
     position: fixed;                                               /* Stay in place */
-    z-index: 4;                                                   
+    z-index: 20;                                                  
     left: 0;
     top: 0;
     width: 100%;                                                  
