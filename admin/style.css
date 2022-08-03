@@ -14,31 +14,35 @@ body{
 }
 
 /* Grid layout */
-/* .wrapper{
+.wrapper{
     display: grid;
     grid-template-columns: 12% 88%;
   
 }
 
 .wrapper > section{
-    height: auto; 
+    /* height: auto;  */
 }
 
 .wrapper > section:nth-last-child(odd){
-    height: fit-content;
+    /* height: fit-content; */
    
-}       */
+}      
 
 /* Horizontal Bar*/
 nav{ 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-image: url(../images/4.jpg);
+  background-color: #f0f0f6;
+  width: 90%;
+  position: fixed;
+  background-image: url(../images/5.jpg);
   background-repeat: no-repeat;
-  height: 488px;
-  background-size: 1596px;
+  height: 184px;
+  background-size: 1786px;
   background-position-x: center;
+  z-index: 10;
 }
 
 header{
@@ -52,9 +56,9 @@ header p{
  }
 
 .flex-item-horizontalMenu{
-  position: relative;
+  /* position: relative;
   left: -133px;
-  top: -9px;
+  top: -9px; */
 }
 
 ul li {                                                                                                                                                           
@@ -75,10 +79,11 @@ ul li a {
 }
 
 /* Vertical Bar*/
-/* .vertical{
+.vertical{
   width: 182px;
- 
-} */
+  height: 129%;
+  background-color: #f0f0f6;
+}
 
 /* .hamburguerButton{
   width: 35px;
@@ -88,6 +93,30 @@ ul li a {
 } */
 
 .adminName{
+  position: absolute;
+  top: 126px;
+  left: 30px;
+}
+
+.logOutLink{
+  position: absolute;
+  top: 150px;
+  left: 62px;
+}
+
+.flex-container-verticalBar{
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flex-item-verticalBarPicture{
+  padding: 46px 47px;
+}
+
+
+/* .adminName{
   position: relative;
   top: 111px;
   left: 562px;
@@ -97,15 +126,22 @@ ul li a {
   position: relative;
   top: 119px;
   left: 601px;
-}
+} */
 
-.navProfilePicture{
+/* .navProfilePicture{
   position: relative;
   top: -153px;
   left: 131px;
+} */
+
+.circlePicture {    
+  width: 75px;
+  height: 75px;
+  border-radius: 75px;  
 }
 
-.flex-container-verticalBar{
+
+/* .flex-container-verticalBar{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -113,15 +149,15 @@ ul li a {
 
 .flex-item-verticalBarPicture{
     padding: 46px 47px;
-}
+} */
 
-.circlePicture {    
+/* .circlePicture {    
   width: 50px;
   height: 50px;
   float: right;
   padding: 50px;
   border-radius: 75px;
-}
+} */
 
 /* List_students.php 
 --------------------------------------------------------------------------- */
@@ -132,20 +168,26 @@ h2{
 
 h2.dailyCalendarheader{
   position: relative;
-  top: 5px;
-  left: 342px;
+  top: 201px;
+  left: 269px;
 }
 
 h2.classesInfoHeader{
   position: relative;
-  top: 39px;
-  left: 1096px;
+  top: 234px;
+  left: 922px;
 }
 
 h2.searchBar {
   position: relative;
   top: 51px;
   left: 172px;
+}
+
+h2.studentProfile{
+  position: relative;
+  top: 51px;
+  left: 291px;
 }
 
 .flex-item-SearchBar{
@@ -160,7 +202,7 @@ h2.searchBar {
     padding: 21px;
     height: 0px;
     border-radius: 262px;
-    border: 1px solid #CCC;
+    border: 1px solid #7e98ad;
 }
 
 /* .search-bar{ 
@@ -200,7 +242,7 @@ li{
 
 #tableContainer{   
   margin: 125px -5px;
-  background: #d7d0d066;
+  background: #e5e9e9;
   /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
@@ -224,9 +266,17 @@ li{
 --------------------------------------------------------------------------- */
 /*Profile photo */
 .flex-container-pictureCredits{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  position: relative;
+  top: 82px;
+  left: 169px;
+  height: 409px;
+  width: 522px;
+  background-color: #7e98ad;
+  right: 93px;
+  height: 297px;
+  width: 452px;
+  border-radius: 30px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
 .flex-item-profileInfo{
@@ -234,40 +284,42 @@ li{
 }
 
 .flex-item-profileInfo ol{
-    margin: 10px 174px;
+  position: relative;
+  top: 16px;
+  left: 198px;
 }
 
 ol li {      
-    font-size: 20px;  
-    padding: 3px;                                                                                                                                              
+  font-size: 20px;
+  padding: 7px;                                                                                                                                            
 }
 
 .profilePicture {    
-    width: 140px;
-    height: 140px;
-    border-radius: 75px;
-    background: gray;
+  width: 140px;
+  height: 140px;
+  border-radius: 75px;
+  background: gray;
 }
 
 .picturePosition{
-    position: absolute;
-    top: 212px;
-    left: 239px;
+  position: absolute;
+  top: 36px;
+  left: 37px;
 }
 
 .deleteButton{  
     display: block;
     color: red;
-    background-color: inherit;    
+    background-color: initial;    
     width: fit-content;
     cursor: pointer;
     font-size: 20px;
 }
 
 .deleteButton.onProfile{
-    position: absolute;
-    top: 336px;
-    left: 308px;
+  position: absolute;
+  top: 165px;
+  left: 119px;
 }
      
 .deleteButton.onClassSession{
@@ -278,17 +330,17 @@ ol li {
 
 
 .editButton{  
-    background-color: inherit;
-    width: fit-content;
-    cursor: pointer;
-    font-size: 20px;
+  background-color: initial;
+  width: fit-content;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 
 .editButton.onProfile{
-    position: absolute;
-    top: 337px;
-    left: 249px;
+  position: absolute;
+  top: 161px;
+  left: 41px;
 }
 
 .editButton.onClassSession{
@@ -300,30 +352,48 @@ ol li {
 /*Classes section */
 
 .flex-container-classesInfo{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 103px 128px;
-    flex-wrap: wrap;
-    width: 60%;
-    padding: 7px 60px;
+  position: relative;
+  top: 195px;
+  left: 121px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 47px 128px;
+  flex-wrap: wrap;
+  padding: 2px 159px;
+  padding: 62px 60px;
+  width: 90%;
     
 }
 
+.flex-item-NotesInfo{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 161px;
+  width: 304px;
+  border-radius: 30px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: inherit;
+  border: none;
+}
+
 .flex-item-classesInfo{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 271px;
-    width: 335px;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
-    overflow-y: auto;
-    overflow-x: hidden;
-    background-color: inherit;
-    border: none;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 295px;
+  width: 372px;
+  border-radius: 30px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: inherit;
+  border: none;
 }
 
 .flex-item-classesInfo div{
@@ -338,8 +408,10 @@ textarea{
 }
 
 .saveNoteButton{
-    visibility:hidden;
-    /* display: none; */
+  visibility: hidden;
+  width: 165px;
+  position: relative;
+  left: 116px;
 }
 
 .classInfoHeading{
@@ -358,64 +430,62 @@ textarea{
 }
 
 .pastClassesHeanding{
-    position: absolute;
-    top: 7px;
-    left: 55px;
-    font-size: 25px;
-    z-index: 3;
+  position: absolute;
+  top: 438px;
+  left: 673px;
+  font-size: 25px;
 }
-
+/* 
 .headingBackgraound.pastClasses{
     top: -46px;
     left: 508px;
     width: 287px;
     height: 43px;
-}
+} */
 
 .futureClassesHeading{
-    position: absolute;
-    top: 10px;
-    left: 47px;
-    font-size: 25px;
-    z-index: 3;
+  position: absolute;
+  top: 438px;
+  left: 7px;
+  left: 166px;
+  font-size: 25px;
 }
 
-.headingBackgraound.futureClasses{
+/* .headingBackgraound.futureClasses{
     top: -46px;
     left: 45px;    
-}
+} */
 
 .privNotesHeading{
-    position: absolute;
-    top: 9px;
-    left: 63px;
-    font-size: 25px;
-    z-index: 3;
+  position: absolute;
+  top: 10px;
+  left: 168px;
+  font-size: 25px;
 }
 
-.headingBackgraound.privNotes{
+/* .headingBackgraound.privNotes{
     top: 381px;
     left: 86px; 
-}
+} */
 
 .publNotesHeading{
-    position: absolute;
-    top: 10px;
-    left: 72px;
-    font-size: 25px;
-    z-index: 3;
+  position: absolute;
+  top: 9px;
+  left: 673px;
+  font-size: 25px;
 }
 
-.headingBackgraound.publNotes{
+/* .headingBackgraound.publNotes{
     top: 381px;
     left: 544px;  
-}
+} */
 
 
 .info-table-row{
-    display: flex;
-    align-items: baseline;
-    margin-top: 17px;
+  position: relative;
+  top: -23px;
+  left: 24px;
+  margin-top: 14px;
 }
 
 .info-table-row span{
@@ -458,17 +528,25 @@ button:hover {
     transform: scale(1.3);
 }
 
+.addStudentButton{ 
+  position: relative;
+  top: 85px;
+  left: -149px;
+  width: 158px;
+}
+
 .flex-item-buttons{ 
   position: relative;
-  top: 93px;
-  right: 157px;
+  top: -324px;
+  left: 957px;
+  width: 158px;
 }
 
 .item-buttons{
-
   display: flex;
-  flex-direction: column;
-  margin: 29px 20px;
+  flex-direction: row;
+  /* width: 40px; */
+  margin-top: 18px;
 }
 
 .flex-item-buttons button{
@@ -476,29 +554,43 @@ button:hover {
 }
 
 .flex-item-buttons p{
-    margin: -8px 20px;
-    font-size: 40px;
+     /* margin: 14px 34px; */
+     font-size: 40px;
+     /* margin-top: 18px; */
+     padding-top: 14px;
 }
 
 /*Todal classes section */
 .flex-container-totalClassesSection{
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    width: 15%;
-    top: 531px;
-    right: 158px;
-    background: #d7d0d066;
-    border-radius: 30px;
-    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  position: absolute;
+  top: 20px;
+  /* display: flex; */
+  /* justify-content: flex-end; */
+  /* flex-wrap: wrap; */
+  width: 335px;
+  top: 1079px;
+  height: 732px;
+  left: 1145px;
+  background: #d7d0d066;
+  border-radius: 30px;
+  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
 .flex-item-total{
   position: relative;
   /* height: 97px; */
-  top: -59px;
-  right: -234px;
+  top: 26px;
+  right: -36px;
+  padding: 73px;
+  
+}
+
+.flex-item-total.index{
+  position: relative;
+  /* height: 97px; */
+  top: -132px;
+  right: -160px;
+  padding: 73px;
   
 }
 
@@ -508,8 +600,13 @@ button:hover {
   /* margin-right: -92px; */
   /* margin-top: -44px; */
   position: relative;
-  left: 70px;
-  top: 73px;
+  left: 37px;
+  top: -15px
+}
+
+.totalSectionHeader.index{
+  left: 64px;
+  top: 84px;
 }
 
 .totalSectionHeader.year{
@@ -519,7 +616,9 @@ button:hover {
 
 #totalNumber{
   font-size: 30px;
-  padding: 97px 96px;
+  position: relative;
+  top: 52px;
+  left: 55px;
 }
 
 .square{
@@ -953,7 +1052,8 @@ hr{
 
 .dayViewContainer{
   position: relative;
-  margin: 50px 151px;
+  top: 237px;
+  left: 64px;
   height: 1026px;
   width: 569px;
   background: #e5e9e9;
@@ -1020,7 +1120,7 @@ hr{
 /* Next class info */
 .next-class-info{
   position: absolute;
-  top: 606px;
+  top: 303px;
   background-color: #7e98ad;
   right: 93px;
   height: 409px;
@@ -1104,7 +1204,7 @@ hr{
   position: absolute;
   /* display: flex; */
   /* padding: 38px 18px; */
-  top: 1214px;
+  top: 916px;
   right: 93px;
   height: 417px;
   background-color: #e5e9e9;
@@ -1156,11 +1256,11 @@ hr{
 
   /* Footer */
 
-  footer{
+  /* footer{
     height: 416px;
     background-image: url(../images/chessboard_bottom_copy.jpg);
     background-repeat: no-repeat;
     background-size: 1663px;
     background-position: bottom;
     opacity: 0.5;
-  }
+  } */

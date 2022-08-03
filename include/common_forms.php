@@ -77,10 +77,7 @@ function creditsForm(){
             </form>
         </div>
 
-        <div class='txtField2 classIndexPage'>
-            <input type='text' name='StdCreditAmount' id='StdCreditAmount' value='' readonly>
-            <label for='StdCreditAmount'>Remaining credits</label>
-        </div>  
+        
 ";
 }
 

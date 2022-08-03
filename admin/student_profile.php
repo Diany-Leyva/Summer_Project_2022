@@ -73,7 +73,11 @@ if(isset($_REQUEST['studentId'])){
     
     //here the strategy is to get an array with all the classes the student has and then calc the 
     //future and past classes on the fly and echo them
-    echo"<div class='flex-container-classesInfo'>";    
+    echo"<div class='flex-container-classesInfo'>";            
+
+        echoPrivateNotes($student['PrivateNotes'], $studentId );
+        echoPublicNotes($student['PublicNotes'], $studentId);
+
         $studentClassess = getIndexByPKArray(getOneStudentClasses($studentId), 'ClassId');
 
         $studentFutureClasses = calcFutureClasses($studentClassess);
@@ -82,8 +86,7 @@ if(isset($_REQUEST['studentId'])){
         $studentPastClasses = calcPastClasses($studentClassess);
         echoPastClassesInfo($studentPastClasses, 'Recent Classes');
 
-        echoPrivateNotes($student['PrivateNotes'], $studentId );
-        echoPublicNotes($student['PublicNotes'], $studentId);
+       
     echo"</div>";       
            
     //Now I call the calcTotalClasses to calc the student total. I tried to make the 

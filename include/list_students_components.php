@@ -19,7 +19,7 @@ function echoSearchBar($heading){
 
 function echoAddStudentButton($buttonText){
     echo"
-        <div class='flex-item-buttons'>              
+        <div class='addStudentButton'>              
             <button class='zoom' onclick=\"openStudentForm('')\">$buttonText</button>
         </div>
     </div>    

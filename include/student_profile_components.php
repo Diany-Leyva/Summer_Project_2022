@@ -16,6 +16,7 @@ function echoProfileInfo($student, $picture){
     $email = htmlspecialchars($student['Email']);
       
     echo"
+    <h2 class='studentProfile'>".$student['FirstName']."'s Profile</h2>
         <div class='flex-container-pictureCredits'>
             <div class='flex-item-profileInfo'>
                 <ol>
@@ -54,9 +55,9 @@ function echoAddClassAndAddCreditsButtons($credits){
                 <p>$credits credits</p>
                 <div class='item-buttons'>                    
                     <button class='zoom' onclick=\"openCreditForm('Add', '')\">+</button>               
-                    <button $buttonState onclick=\"openCreditForm('Subtract', $credits)\">-</button>
-                    <button $buttonState onclick=\"openClassForm('')\">Book Class</button>
+                    <button $buttonState onclick=\"openCreditForm('Subtract', $credits)\">-</button>                   
                 </div>
+                <button $buttonState onclick=\"openClassForm('')\">Book Class</button>
             </div>
         </div>   
 ";
@@ -74,9 +75,9 @@ function echoFutureClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                 <div class='headingBackgraound futureClasses'>
+                
                     <p class='futureClassesHeading'>$heading</p>
-                </div>";
+          ";
             
                         if(!empty($classes)){                            
                             foreach($classes as $class){
@@ -106,9 +107,9 @@ function echoPastClassesInfo($classes, $heading){
     echo"
             <div class='flex-item-classesInfo'>
                 <div>
-                    <div class='headingBackgraound pastClasses'>
+           
                          <p class='pastClassesHeanding'>$heading</p>
-                    </div>";
+        ";
                         if(!empty($classes)){                            
                             foreach($classes as $class){                                                                                              
                                 echo"                  
@@ -133,16 +134,18 @@ function echoPastClassesInfo($classes, $heading){
 
 function echoPrivateNotes($notes, $studentId){  
     $message;
-    echo"<div>
-            <div class='headingBackgraound privNotes'>
-                <p class='privNotesHeading'>Private Notes</p>
-            </div>
+    echo"
+   
+    <p class='privNotesHeading'>Private Notes</p>
+
+    <div>
+           
         ";
             (!empty($notes))? $message = $notes : $message = 'No notes';  
             echo"
             
             <form onsubmit='return false;'>
-                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-classesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
+                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-NotesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
                 <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
             </form>
         </div>";
@@ -154,15 +157,16 @@ function echoPublicNotes($notes, $studentId){
     $message;
 
     echo"
+    
+    <p class='publNotesHeading'>Public Notes</p>
+
     <div>
-        <div class='headingBackgraound publNotes'>
-            <p class='publNotesHeading'>Public Notes</p>
-        </div>
+       
     ";
         (!empty($notes))? $message = $notes : $message = 'No notes';  
         echo"
         <form onsubmit='return false;'>
-            <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-classesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
+            <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-NotesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
             <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
         </form>
     </div>";

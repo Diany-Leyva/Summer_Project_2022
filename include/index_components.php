@@ -130,13 +130,13 @@ function echoIndexTotalSection($totalClasses){
     echo"
         <div class='index-totalClassesSection'>
             <div class='item-total'>
-                <p class='totalSectionHeader'>Month</p>         
+                <p class='totalSectionHeader index'>Month</p>         
                 <div class='square'>
                     <p class='totalNumber'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
                 </div>
             </div>
 
-            <div class='flex-item-total'>
+            <div class='flex-item-total index'>
                 <p class='totalSectionHeader year'>Year</p>  
                 <div class='square'>
                     <p class='totalNumber year'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
