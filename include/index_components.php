@@ -8,7 +8,7 @@
 function echoDayViewCalendar(){
     $day = date('l').", ".date('M d');
     echo"
-        <h2 id='target' class='dailyCalendarheader'>Daily Schedule</h2>
+        <h2 class='dailyCalendarheader'>Daily Schedule</h2>
         <div class='dayViewContainer'>     
             <h3><center> $day</h3>";
             $topPosition = 60;

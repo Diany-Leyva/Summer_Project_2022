@@ -62,7 +62,7 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     document.getElementById('classInfoZoom').className = 'enableAnchor';
     document.getElementById('classInfoZoom').href = Zoom;
     document.getElementById('nextClassInfo').className = 'next-class-info nextClassInfoChanged';
-    // document.getElementById('target').scrollIntoView({behavior: 'smooth'});                        //to jump to that id in screen
+    document.getElementById('target').scrollIntoView({behavior: 'smooth'});                        //to jump to that id in screen
 }
 
     // ********************************************************************************************************************************

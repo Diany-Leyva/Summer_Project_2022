@@ -35,19 +35,19 @@ nav{
   flex-direction: row;
   justify-content: space-between;
   background-color: #f0f0f6;
-  width: 90%;
-  position: fixed;
-  background-image: url(../images/5.jpg);
+  width: 1400px;
+  /* position: fixed; */
+  background-image: url(../images/14.jpg);
   background-repeat: no-repeat;
-  height: 184px;
-  background-size: 1786px;
+  height: 631px;
+  background-size: 2440px;
   background-position-x: center;
-  z-index: 10;
+  /* z-index: 10; */
 }
 
 header{
   font-size: 30px;
-  padding: 47px 59px;
+  padding: 80px 71px;
 }
 
 header p{
@@ -56,9 +56,41 @@ header p{
  }
 
 .flex-item-horizontalMenu{
-  /* position: relative;
-  left: -133px;
-  top: -9px; */
+  border-top: 1px solid #bbb; 
+  border-bottom: 1px solid #bbb;
+  height: 89px;
+  position: relative;
+  top: -80px;
+  left: -227px;
+ 
+}
+
+.home{
+  position: relative;
+  top: 39px;
+}
+
+.students{
+  position: relative;
+    top: 39px;
+    left: 42px;
+}
+
+.calendar{
+  position: relative;
+    top: 39px;
+    left: 244px;
+}
+
+ul{
+  position: fixed;
+  top: -82px;
+  left: 366px;
+  border-bottom: 1px solid #bbb;
+  height: 138px;
+  background-color: #ffffff57;
+  width: 981px;
+  z-index: 20;
 }
 
 ul li {                                                                                                                                                           
@@ -72,17 +104,19 @@ ul li a {
 }
                                                  
 .notificationIcon{
-    width: 25px;
+  width: 25px;
     height: 25px;
     float: right;
     padding: 61px;
+    position: relative;
+    top: 39px;
+    left: 10px;
 }
 
 /* Vertical Bar*/
 .vertical{
-  width: 182px;
-  /* height: 129%;
-  background-color: #f0f0f6; */
+  width: 182px; 
+  background-color: #8398ac6b;
 }
 
 /* .hamburguerButton{
@@ -168,14 +202,14 @@ h2{
 
 h2.dailyCalendarheader{
   position: relative;
-  top: 201px;
-  left: 269px;
+  top: -280px;
+  left: 259px;
 }
 
 h2.classesInfoHeader{
   position: relative;
-  top: 234px;
-  left: 922px;
+  top: -246px;
+  left: 905px;
 }
 
 h2.searchBar {
@@ -186,8 +220,8 @@ h2.searchBar {
 
 h2.studentProfile{
   position: relative;
-  top: 51px;
-  left: 291px;
+  top: 252px;
+  left: 147px;
 }
 
 .flex-item-SearchBar{
@@ -267,8 +301,8 @@ li{
 /*Profile photo */
 .flex-container-pictureCredits{
   position: relative;
-  top: 82px;
-  left: 169px;
+  top: 276px;
+  left: 135px;
   height: 409px;
   width: 522px;
   background-color: #7e98ad;
@@ -353,17 +387,16 @@ ol li {
 
 .flex-container-classesInfo{
   position: relative;
-  top: 195px;
-  left: 121px;
+  top: 427px;
+  left: 81px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 47px 128px;
+  gap: 2px 68px;
   flex-wrap: wrap;
   padding: 2px 159px;
   padding: 62px 60px;
-  width: 90%;
-    
+  width: 90%;    
 }
 
 .flex-item-NotesInfo{
@@ -431,8 +464,8 @@ textarea{
 
 .pastClassesHeanding{
   position: absolute;
-  top: 438px;
-  left: 673px;
+  top: 390px;
+  left: 602px;
   font-size: 25px;
 }
 /* 
@@ -445,7 +478,7 @@ textarea{
 
 .futureClassesHeading{
   position: absolute;
-  top: 438px;
+  top: 393px;
   left: 7px;
   left: 166px;
   font-size: 25px;
@@ -471,7 +504,7 @@ textarea{
 .publNotesHeading{
   position: absolute;
   top: 9px;
-  left: 673px;
+  left: 616px;
   font-size: 25px;
 }
 
@@ -537,9 +570,9 @@ button:hover {
 
 .flex-item-buttons{ 
   position: relative;
-  top: -324px;
-  left: 957px;
-  width: 158px;
+  top: -296px;
+  left: 796px;
+  width: 156px;
 }
 
 .item-buttons{
@@ -563,14 +596,14 @@ button:hover {
 /*Todal classes section */
 .flex-container-totalClassesSection{
   position: absolute;
-  top: 20px;
+  top: 12px;
   /* display: flex; */
   /* justify-content: flex-end; */
   /* flex-wrap: wrap; */
-  width: 335px;
-  top: 1079px;
-  height: 732px;
-  left: 1145px;
+  width: 283px;
+  top: 815px;
+  height: 684px;
+  left: 1216px;
   background: #d7d0d066;
   border-radius: 30px;
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
@@ -580,9 +613,8 @@ button:hover {
   position: relative;
   /* height: 97px; */
   top: 26px;
-  right: -36px;
-  padding: 73px;
-  
+  right: -6px;
+  padding: 73px;  
 }
 
 .flex-item-total.index{
@@ -1052,7 +1084,7 @@ hr{
 
 .dayViewContainer{
   position: relative;
-  top: 237px;
+  top: -262px;
   left: 64px;
   height: 1026px;
   width: 569px;
@@ -1120,10 +1152,10 @@ hr{
 /* Next class info */
 .next-class-info{
   position: absolute;
-  top: 303px;
+  top: 439px;
   background-color: #7e98ad;
   right: 93px;
-  height: 409px;
+  height: 383px;
   width: 471px;
   border-radius: 10px;
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
@@ -1204,13 +1236,14 @@ hr{
   position: absolute;
   /* display: flex; */
   /* padding: 38px 18px; */
-  top: 916px;
+  top: 1046px;
   right: 93px;
   height: 417px;
   background-color: #e5e9e9;
   width: 467px;
   border-radius: 10px;
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
+
 }
  
 .item-total{
