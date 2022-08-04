@@ -128,17 +128,21 @@ function echoNextClassSection($classesToday){
 // ********************************************************************************************************************************
 
 function echoIndexTotalSection($totalClasses){
+
+    $monthName = date('F');
+    $year = date('Y');
+
     echo"
         <div class='index-totalClassesSection'>
             <div class='item-total'>
-                <p class='totalSectionHeader index'>Month</p>         
+                <p class='totalSectionHeader index'>$monthName</p>         
                 <div class='square'>
                     <p class='totalNumber'>".htmlspecialchars($totalClasses['MonthTotal'])."</p>
                 </div>
             </div>
 
             <div class='flex-item-total index'>
-                <p class='totalSectionHeader year'>Year</p>  
+                <p class='totalSectionHeader year'>$year</p>  
                 <div class='square'>
                     <p class='totalNumber year'>".htmlspecialchars($totalClasses['YearTotal'])."</p>
                 </div>

@@ -78,20 +78,18 @@ function echoAddClassAndAddCreditsButtons($credits){
 
 function echoFutureClassesInfo($classes, $heading){
     echo"
-            <div class='flex-item-classesInfo future'>
-                <div>
-                
-                    <p class='futureClassesHeading'>$heading</p>
-          ";
-            
+        <div class='flex-item-classesInfo future'>
+            <div>                
+                <p class='futureClassesHeading'>$heading</p>
+          ";            
                         if(!empty($classes)){                            
                             foreach($classes as $class){
                                 $classId = $class['ClassId'];                   
                                                                                       
                                 echo"                  
                                     <li class='info-table-row'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
-                                    <span onclick=\"openClassForm($classId)\">".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
-                                                               
+                                    <span onclick=\"openClassForm($classId)\">".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                    
+                                                           
                                     </li>
                                 ";        
                             }    
@@ -180,17 +178,20 @@ function echoPublicNotes($notes, $studentId){
 // ********************************************************************************************************************************
 
 function echoTotalClassesSection($totalClasses){
+    $monthName = date('F');
+    $year = date('Y');
+
     echo"
     <div class='flex-container-totalClassesSection'>
         <div class='flex-item-total'>
-            <p class='totalSectionHeader'>Month</p>         
+            <p class='totalSectionHeader'>$monthName</p>         
             <div class='profilePicture'>
                 <p id='totalNumber'>".$totalClasses['MonthTotal']."</p>
             </div>
         </div>
         
         <div class='flex-item-total'>
-            <p class='totalSectionHeader profileYear'>Year</p>  
+            <p class='totalSectionHeader profileYear'>$year</p>  
             <div class='profilePicture'>
                 <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
             </div>
