@@ -10,9 +10,10 @@ if(isset($_REQUEST['studentId'])){
     $errors = [];
     $errors = validateName($_REQUEST['ufname']);                                                                       
     $errors = validateName($_REQUEST['ulname']); 
+    $lichesslink = "https://lichess.org/@/".$_REQUEST['ulichess'];   
       
     if(sizeof($errors) == 0){
-      updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $_REQUEST['ulichess'], $_REQUEST['studentId']);                                                                    
+      updateStudent($_REQUEST['ufname'], $_REQUEST['ulname'], $_REQUEST['uemail'], $_REQUEST['uphone'], $_REQUEST['urating'], $lichesslink, $_REQUEST['studentId']);                                                                    
       header("location:? studentId={$_REQUEST['studentId']}");    
       exit();                                                                
     }  

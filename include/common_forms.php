@@ -7,7 +7,7 @@ function studentForm(){
     <div id='studentForm' class='modal'> 
         <form action='' method='post' class='form-container students animate'>
             <div class='imgcontainer'>
-                <img src='/images/Profile_Yuni.jpg' alt='profile_picture' class='avatar'>
+                <img src='/images/bishop.png' alt='profile_picture' class='avatar'>
             </div>
         
             <h1>Student</h1>         
