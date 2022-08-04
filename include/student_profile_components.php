@@ -23,8 +23,8 @@ function echoProfileInfo($student, $picture){
                     <li>👤 ".htmlspecialchars($student['FirstName'])." ".htmlspecialchars($student['LastName'])."</li>
                     <li>🏁 ".htmlspecialchars($student['ELO'])."</li>
                     <li>☎️ ".htmlspecialchars($student['Phone'])."</li>    
-                    <li class='zoom'><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
-                    <li class='zoom'><a href='mailto:$email'>✉️ $email</a></li>                         
+                    <li><a href='$lichessLink'>🔗 ".$lichessUsername."</a></li>
+                    <li><a href='mailto:$email'>✉️ $email</a></li>                         
                 </ol>
                 
                 <div class='picturePosition'>
@@ -44,7 +44,12 @@ function echoProfileInfo($student, $picture){
 
 function echoAddClassAndAddCreditsButtons($credits){ 
    
-    $buttonState = "enabled class='zoom'";
+    $buttonState = "enabled";
+    $creditsString = 'credits';
+
+    if($credits <  2){
+        $creditsString = 'credit';
+    }
     
     if($credits == 0){                                                                                  //I want subtract and class button to be enabled only when credits are more than 0
         $buttonState = "disabled style ='background-color: #8080807a; cursor:context-menu;'"; 
@@ -52,9 +57,9 @@ function echoAddClassAndAddCreditsButtons($credits){
   
     echo"
             <div class='flex-item-buttons'>
-                <p>$credits credits</p>
+                <p>$credits $creditsString</p>
                 <div class='item-buttons'>                    
-                    <button class='zoom' onclick=\"openCreditForm('Add', '')\">+</button>               
+                    <button onclick=\"openCreditForm('Add', '')\">+</button>               
                     <button $buttonState onclick=\"openCreditForm('Subtract', $credits)\">-</button>                   
                 </div>
                 <button $buttonState onclick=\"openClassForm('')\">Book Class</button>
@@ -73,7 +78,7 @@ function echoAddClassAndAddCreditsButtons($credits){
 
 function echoFutureClassesInfo($classes, $heading){
     echo"
-            <div class='flex-item-classesInfo'>
+            <div class='flex-item-classesInfo future'>
                 <div>
                 
                     <p class='futureClassesHeading'>$heading</p>
@@ -84,7 +89,7 @@ function echoFutureClassesInfo($classes, $heading){
                                 $classId = $class['ClassId'];                   
                                                                                       
                                 echo"                  
-                                    <li class='info-table-row zoom'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
+                                    <li class='info-table-row'><button class='deleteButton onClassInfo zoom' onclick='openDeleteClass($classId)'>🗑</button>
                                     <span onclick=\"openClassForm($classId)\">".$class['Type']."  ".formatDate($class['StartDate'], 'D  M  dS  H:i')."</span>                     
                                                                
                                     </li>
@@ -145,8 +150,8 @@ function echoPrivateNotes($notes, $studentId){
             echo"
             
             <form onsubmit='return false;'>
-                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-NotesInfo' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
-                <button class='saveNoteButton zoom' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
+                <textarea name='privateNotes' id='privateNotesTextarea' class='flex-item-NotesInfo private' onclick=\"showSaveButton('privNotesSaveButton')\" rows='4' cols='50'>$message</textarea>
+                <button class='saveNoteButton' type='submit' id='privNotesSaveButton' onclick='savePrivateNotes($studentId)'>Save</button>
             </form>
         </div>";
 }
@@ -167,7 +172,7 @@ function echoPublicNotes($notes, $studentId){
         echo"
         <form onsubmit='return false;'>
             <textarea name='publicNotes' id='publicNotesTextarea' class='flex-item-NotesInfo' onclick=showSaveButton('publicNotesSaveButton') rows='4' cols='50'>$message</textarea>
-            <button class='saveNoteButton zoom' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
+            <button class='saveNoteButton' type='submit' id='publicNotesSaveButton' onclick='savePublicNotes($studentId)'>Save</button>
         </form>
     </div>";
 }

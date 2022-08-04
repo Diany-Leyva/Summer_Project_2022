@@ -19,9 +19,9 @@ function echoSearchBar($heading){
 
 function echoAddStudentButton($buttonText){
     echo"
-        <div class='addStudentButton'>              
-            <button class='zoom' onclick=\"openStudentForm('')\">$buttonText</button>
-        </div>
+                    
+            <button class='addStudentButton position' onclick=\"openStudentForm('')\">$buttonText</button>
+       
     </div>    
 ";    
 }

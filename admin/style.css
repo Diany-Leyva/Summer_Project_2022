@@ -25,7 +25,7 @@ body{
 }
 
 .wrapper > section:nth-last-child(odd){
-    /* height: fit-content; */
+  height: 1784px;
    
 }      
 
@@ -47,7 +47,7 @@ nav{
 
 header{
   font-size: 30px;
-  padding: 80px 71px;
+  padding: 88px 157px;
 }
 
 header p{
@@ -86,7 +86,7 @@ ul{
   position: fixed;
   top: -82px;
   left: 366px;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid #7e98adc2;
   height: 138px;
   background-color: #ffffff57;
   width: 981px;
@@ -116,7 +116,7 @@ ul li a {
 /* Vertical Bar*/
 .vertical{
   width: 182px; 
-  background-color: #8398ac6b;
+  background-color: #7e98adc2;
 }
 
 /* .hamburguerButton{
@@ -214,29 +214,34 @@ h2.classesInfoHeader{
 
 h2.searchBar {
   position: relative;
-  top: 224px;
-  left: 82px;
+    top: -248px;
+    left: 154px;
 }
 
 h2.studentProfile{
   position: relative;
-  top: 252px;
-  left: 147px;
+  top: -250px;
+  left: 155px;
 }
 
 .flex-item-SearchBar{
   position: relative;
-  top: 241px;
-  left: 72px;
+  top: -246px;
+  left: 145px;
 }
 
 .search-bar input[type=text] { 
-    font-size: 20px;
-    width: 554px;
-    padding: 21px;
-    height: 0px;
-    border-radius: 262px;
-    border: 1px solid #7e98ad;
+  font-size: 20px;
+  width: 554px;
+  padding: 21px;
+  height: 0px;
+  /* border-radius: 262px; */
+  border-bottom: 1px solid #7e98ad;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background-color: #ffffff00;
+
 }
 
 /* .search-bar{ 
@@ -265,9 +270,8 @@ h2.studentProfile{
 /* Students Table*/
 .studentTable{
   position: relative;
-  top: 302px;
-  left: 70px;
- 
+  top: -202px;
+  left: 143px;
 }
 
 li{
@@ -275,15 +279,17 @@ li{
 }
 
 #tableContainer{   
-  /* margin: 125px -5px; */
-  background: #e5e9e9;
-  /* border-radius: 30px; */
-  box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  /* margin: 125px -5px;  */
+    background: inherit;
+    /* border-radius: 30px; */
+    box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+    border: 2px solid #7e98ad;
+
 }
 
 #tableContainer td, #tableContainer th {
     text-align: left;  
-    padding: 11px 28px;
+    padding: 11px 19px;
 }
 
 /* #tableContainer tr {
@@ -301,15 +307,14 @@ li{
 /*Profile photo */
 .flex-container-pictureCredits{
   position: relative;
-  top: 276px;
+  top: -221px;
   left: 135px;
-  height: 409px;
+  height: 317px;
   width: 522px;
   background-color: #7e98ad;
+  background-color: #7e98adc2;
   right: 93px;
-  height: 297px;
-  width: 452px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
 }
 
@@ -348,6 +353,7 @@ ol li {
     width: fit-content;
     cursor: pointer;
     font-size: 20px;
+    border: none;
 }
 
 .deleteButton.onProfile{
@@ -368,6 +374,8 @@ ol li {
   width: fit-content;
   cursor: pointer;
   font-size: 20px;
+  border: none;
+
 }
 
 
@@ -387,16 +395,15 @@ ol li {
 
 .flex-container-classesInfo{
   position: relative;
-  top: 427px;
+  top: -85px;
   left: 81px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 2px 68px;
+  gap: 85px 63px;
   flex-wrap: wrap;
-  padding: 2px 159px;
   padding: 62px 60px;
-  width: 90%;    
+  width: 90%;  
 }
 
 .flex-item-NotesInfo{
@@ -406,12 +413,16 @@ ol li {
   flex-wrap: wrap;
   height: 161px;
   width: 304px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: inherit;
+  background-color: #84a0b778;
   border: none;
+}
+
+.flex-item-NotesInfo.private{
+  background-color: #7e98ad;
 }
 
 .flex-item-classesInfo{
@@ -421,12 +432,16 @@ ol li {
   flex-wrap: wrap;
   height: 295px;
   width: 372px;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: inherit;
+  background-color: #7e98ad;
   border: none;
+}
+
+.flex-item-classesInfo.future{
+  background-color: #84a0b778;
 }
 
 .flex-item-classesInfo div{
@@ -464,7 +479,7 @@ textarea{
 
 .pastClassesHeanding{
   position: absolute;
-  top: 390px;
+  top: 467px;
   left: 602px;
   font-size: 25px;
 }
@@ -478,8 +493,7 @@ textarea{
 
 .futureClassesHeading{
   position: absolute;
-  top: 393px;
-  left: 7px;
+  top: 469px;
   left: 166px;
   font-size: 25px;
 }
@@ -526,13 +540,15 @@ textarea{
 }
 
 .deleteButton.onClassInfo{
-    padding: 5%;
-    margin: -23px -1px;
+  position: relative;
+  padding: 2%;
+  top: 10px;
+  margin: -19px -37px;
 }
 
 /*Credits and buttons section */
 button{
-    background-color: #2691d9;
+    /* background-color: #2691d9;
     border: none;
     color: white;
     padding: 12px 26px;
@@ -543,12 +559,49 @@ button{
     margin: 21px 1px;
     cursor: pointer;
     border-radius: 64px;
-    width: 100%;   
+    width: 100%;    */
+
+    background-color: inherit;
+    padding: 12px 26px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 21px 1px;
+    cursor: pointer;
+    border-radius: 0px;
+    width: -21px;
+    border: 2px solid #7e98ad;
+    color: #7e98ad;
 }
 
+/* .addStudentButton {
+  background-color: inherit;
+  padding: 12px 26px; 
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 21px 1px;
+  cursor: pointer;
+  border-radius: 0px;
+  width: -21px;
+  border: 2px solid #7e98ad;
+  color: #7e98ad;
+} */
+
 button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
+  background-color: #7e98ad;
+  color: white;
 }
+
+button:hover.deleteButton {
+  background-color: initial;
+  color: red;
+}
+
+button:hover.editButton {
+  background-color: initial;
+ }
 
 .zoom {
     transition: transform .2s;
@@ -558,19 +611,19 @@ button:hover {
 .zoom:hover {
     -ms-transform: scale(1.3); 
     -webkit-transform: scale(1.3); 
-    transform: scale(1.3);
+    transform: scale(1.3); 
 }
 
-.addStudentButton{ 
+.addStudentButton.position{ 
   position: relative;
-  top: 254px;
-  left: -445px;
-  width: 158px;
+  top: -232px;
+  left: -231px;
+  width: 143px;
 }
 
 .flex-item-buttons{ 
   position: relative;
-  top: -296px;
+  top: -261px;
   left: 796px;
   width: 156px;
 }
@@ -583,7 +636,7 @@ button:hover {
 }
 
 .flex-item-buttons button{
-    margin: 9px 1px;
+  margin: 9px 4px;
 }
 
 .flex-item-buttons p{
@@ -596,17 +649,18 @@ button:hover {
 /*Todal classes section */
 .flex-container-totalClassesSection{
   position: absolute;
-  top: 12px;
+  /* top: 12px; */
   /* display: flex; */
   /* justify-content: flex-end; */
   /* flex-wrap: wrap; */
   width: 283px;
-  top: 815px;
-  height: 684px;
+  top: 958px;
+  height: 768px;
   left: 1216px;
-  background: #d7d0d066;
-  border-radius: 30px;
+  background: inherit;
+  /* border-radius: 30px; */
   box-shadow: 0 12px 20px 0 rgb(0 0 0 / 25%);
+  border: 2px solid #7e98ad;
 }
 
 .flex-item-total{
@@ -633,7 +687,7 @@ button:hover {
   /* margin-top: -44px; */
   position: relative;
   left: 37px;
-  top: -15px
+  top: 90px
 }
 
 .totalSectionHeader.index{
@@ -1072,7 +1126,7 @@ hr{
     width: 527px;
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(18, 39, 88, 0.611), rgba(0, 0, 0, 0));
 }
 
 .currentTime{ 
@@ -1088,11 +1142,11 @@ hr{
   left: 64px;
   height: 1026px;
   width: 569px;
-  background: #e5e9e9;
-  border-radius: 10px;
+  background: inherit;
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
   overflow-y: auto;
   overflow-x: hidden;
+  border: 2px solid #7e98ad;
 }
 
 .event {
@@ -1153,11 +1207,11 @@ hr{
 .next-class-info{
   position: absolute;
   top: 439px;
-  background-color: #7e98ad;
+  background-color: #7e98adc2;
   right: 93px;
   height: 383px;
   width: 471px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
 }
 
@@ -1239,9 +1293,9 @@ hr{
   top: 1046px;
   right: 93px;
   height: 417px;
-  background-color: #e5e9e9;
+  background-color: #7e98adc2;
   width: 467px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 12px 12px 20px 0 rgb(0 0 0 / 15%);
 
 }
