@@ -696,7 +696,8 @@ button:hover.editButton {
 }
 
 .totalSectionHeader.year{
-  left: 84px;
+  left: 82px;
+    top: 90px;
 }
 
 .totalSectionHeader.profileYear{

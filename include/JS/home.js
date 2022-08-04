@@ -45,7 +45,7 @@ function openIndexPageClassForm(){
 function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, studentId, fName, lName, Email){ 
 
     let date = new Date(StartDate);
-    let day = date.getDate();
+    let day = date.getDate() + 1;
     let month = getMonthShortName(date.getMonth());
    
     document.getElementById('deletButtonInfoClass').style.visibility = 'visible';
@@ -56,13 +56,13 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     document.getElementById('classInfoDate').innerHTML = day+" "+month+" "+StartTime;
     document.getElementById('classInfoDuration').innerHTML = '1 hour';
     document.getElementById('classInfoEmail').className = 'enableAnchor';
-    document.getElementById('classInfoEmail').href = Email;
+    document.getElementById('classInfoEmail').href = "mailto:"+Email;
     document.getElementById('classInfoLichess').className = 'enableAnchor';
     document.getElementById('classInfoLichess').href = Lichess;
     document.getElementById('classInfoZoom').className = 'enableAnchor';
     document.getElementById('classInfoZoom').href = Zoom;
     document.getElementById('nextClassInfo').className = 'next-class-info nextClassInfoChanged';
-    document.getElementById('target').scrollIntoView({behavior: 'smooth'});                        //to jump to that id in screen
+    // document.getElementById('target').scrollIntoView({behavior: 'smooth'});                        //to jump to that id in screen
 }
 
     // ********************************************************************************************************************************
