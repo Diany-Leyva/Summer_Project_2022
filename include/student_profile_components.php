@@ -190,7 +190,7 @@ function echoTotalClassesSection($totalClasses){
         </div>
         
         <div class='flex-item-total'>
-            <p class='totalSectionHeader'>Year</p>  
+            <p class='totalSectionHeader profileYear'>Year</p>  
             <div class='profilePicture'>
                 <p id='totalNumber'>".$totalClasses['YearTotal']."</p>
             </div>

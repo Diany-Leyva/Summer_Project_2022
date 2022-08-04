@@ -88,7 +88,7 @@ ul{
   left: 366px;
   border-bottom: 1px solid #7e98adc2;
   height: 138px;
-  background-color: #ffffff57;
+  background-color: #ffffff00;
   width: 981px;
   z-index: 20;
 }
@@ -100,7 +100,12 @@ ul li {
 
 ul li a {                                                               
   font-size: 30px;
-  padding: 0 39px; 
+    border-radius: 240px;
+    background-color: #fefefe;
+    padding: 41px;
+    background-size: center;  
+    padding: 0 39px;
+    width: -40px; 
 }
                                                  
 .notificationIcon{
@@ -337,7 +342,7 @@ ol li {
   width: 140px;
   height: 140px;
   border-radius: 75px;
-  background: gray;
+  background-color: #7e98adc2;
 }
 
 .picturePosition{
@@ -363,9 +368,9 @@ ol li {
 }
      
 .deleteButton.onClassSession{
-    position: absolute;
-    top: 110px;
-    left: 203px;
+  position: absolute;
+  top: 111px;
+  left: 70px;
 }
 
 
@@ -388,7 +393,7 @@ ol li {
 .editButton.onClassSession{
     position: absolute;
     top: 110px;
-    left: 141px;
+    left: 4px;
 }
 
 /*Classes section */
@@ -568,7 +573,7 @@ button{
     font-size: 16px;
     margin: 21px 1px;
     cursor: pointer;
-    border-radius: 0px;
+    border-radius: 30px;
     width: -21px;
     border: 2px solid #7e98ad;
     color: #7e98ad;
@@ -673,21 +678,16 @@ button:hover.editButton {
 
 .flex-item-total.index{
   position: relative;
-  /* height: 97px; */
   top: -132px;
   right: -160px;
-  padding: 73px;
-  
+  padding: 73px;  
 }
 
 .totalSectionHeader{
-  font-size: 25PX;
-  /* justify-content: center; */
-  /* margin-right: -92px; */
-  /* margin-top: -44px; */
+  font-size: 25px;
   position: relative;
-  left: 37px;
-  top: 90px
+  left: 26px;
+  top: -11px;
 }
 
 .totalSectionHeader.index{
@@ -697,6 +697,10 @@ button:hover.editButton {
 
 .totalSectionHeader.year{
   left: 84px;
+}
+
+.totalSectionHeader.profileYear{
+  left: 39px;
 }
 
 
