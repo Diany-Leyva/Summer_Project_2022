@@ -52,6 +52,7 @@ function displayClassInfo(classId, Type, StartDate, StartTime, Lichess, Zoom, st
     document.getElementById('showDeleteButton').innerHTML = "<button id='deletButtonInfoClass' class='deleteButton onClassSession zoom' onclick=\"openDeleteClass("+classId+")\">🗑</button>";
     document.getElementById('showEditButton').innerHTML = "<button id='EditButtonInfoClass' class='editButton onClassSession zoom' onclick=\"openClassForm("+classId+")\">✏️</button>";
     document.getElementById('classInfoHeading').innerHTML = 'Class Info';
+    document.getElementById('classInfoName').href = "student_profile.php?studentId="+studentId;
     document.getElementById('classInfoName').innerHTML = fName+" "+lName;
     document.getElementById('classInfoDate').innerHTML = day+" "+month+" "+StartTime;
     document.getElementById('classInfoDuration').innerHTML = '1 hour';

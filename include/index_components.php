@@ -65,6 +65,7 @@ function echoNextClassSection($classesToday){
 
         if($nextClass){
             $heading = 'Next Class';
+            $studentId = htmlspecialchars($nextClass['StudentId']);
             $id = htmlspecialchars($nextClass['ClassId']);
             $name = htmlspecialchars($nextClass['FirstName'])." ".htmlspecialchars($nextClass['LastName']);
             $classDate = formatDate(htmlspecialchars($nextClass['StartDate']), 'd M H:i');           
@@ -79,7 +80,7 @@ function echoNextClassSection($classesToday){
     
     else{
         $heading = 'No pending <br>Classes';
-        $id = $name = $classDate = $email = $lichess = $zoom = $hour = '';
+        $id =  $studentId = $name = $classDate = $email = $lichess = $zoom = $hour = '';
         $class = 'disableAnchor';
         $deleteButtonVisibility = $editButtonVisibility = "style='visibility: hidden';";   
     }
@@ -93,7 +94,7 @@ function echoNextClassSection($classesToday){
             <div class='next-class-info-content'>     
                 <p id='classInfoHeading' class='nextClassheader'>$heading</p>
                 <ol>
-                    <li id='classInfoName'>$name</li>
+                    <li class='zoom'><a id='classInfoName' href='student_profile.php?studentId=$studentId'>$name</a></li>                  
                     <li id='classInfoDate' value='$classDate'>$classDate</li>                    
                     <li id='classInfoDuration'>$hour</li>                               
                 </ol>
